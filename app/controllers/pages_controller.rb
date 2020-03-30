@@ -7,20 +7,9 @@ class PagesController < ApplicationController
   end
 
   def search
-    @search_params = search_params
-    if search_params[:area] && search_params[:date]
-      @exhibitions = Exhibition.search(search_params)
-    else
-      @exhibitions = Exhibition.all
-    end
+    @exhibitions = Exhibition.all
   end
 
   def mypage
-  end
-
-  private
-
-  def search_params
-    params.fetch(:search, {}).permit(:area, :date)
   end
 end

@@ -4,7 +4,12 @@ class ExhibitionsController < ApplicationController
   # GET /exhibitions
   # GET /exhibitions.json
   def index
-    @exhibitions = Exhibition.all
+    @search_params = search_params
+    if search_params[:area].present? || search_params[:date].present?
+      @exhibitions = Exhibition.search(search_params)
+    else
+      @exhibitions = Exhibition.all
+    end
   end
 
   # GET /exhibitions/1
@@ -70,5 +75,9 @@ class ExhibitionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def exhibition_params
       params.fetch(:exhibition, {})
+    end
+
+    def search_params
+      params.fetch(:search, {}).permit(:area, :date)
     end
 end

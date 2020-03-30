@@ -3,14 +3,15 @@
 <h2>近くの展覧会を探す</h2>
 
 <h2>場所と日時から探す</h2>
-<%= form_with(scope: :search, url: search_path, method: :get, local: true) do |form| %>
-	場所：<%= form.text_field :area, value: @search_params[:area] %>
-	日時：<%= form.date_field :date, value: @search_params[:date] %>
+<%= form_with(scope: :search, url: exhibitions_path, method: :get, local: true) do |form| %>
+	場所：<%= form.text_field :area %>
+	日時：<%= form.date_field :date %>
 	<%= form.submit "検索" %>
 <% end %>
 
 <h2>美術館から探す</h2>
 
+<h2>おすすめの展覧会</h2>
 <% @exhibitions.each do |exhb| %>
 	<%= link_to exhibition_path(exhb) do %>
 		<% if exhb.image %>

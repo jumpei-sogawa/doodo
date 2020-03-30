@@ -2,6 +2,11 @@
 
 <h1><%= exhb.name %></h1>
 
+<% if exhb.image %>
+	<%= image_tag exhb.image %>
+<% end %>
+
+
 <h2>会場</h2>
 <div>@<%= exhb.museum.name %></div>
 <div><%= exhb.museum.address %></div>
@@ -25,4 +30,4 @@
 <div><%= exhb.organizer %></div>
 
 <h2>公式サイト</h2>
-<div><%= exhb.website %></div>
+<div><%= link_to exhb.website, exhb.website, target: :_blank %></div>
