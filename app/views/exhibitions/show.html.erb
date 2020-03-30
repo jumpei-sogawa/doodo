@@ -31,3 +31,16 @@
 
 <h2>公式サイト</h2>
 <div><%= link_to exhb.website, exhb.website, target: :_blank %></div>
+
+<h2>人気の作品</h2>
+<% @arts.each do |art| %>
+	<%= link_to art_path do %>
+		<% if art.image %>
+			<%= image_tag art.image %>
+		<% end %>
+		<div class="bold"><%= art.name %></div>
+		<div>作者：<%= art.artist.name %></div>
+		<div>制作年：<%= art.year %></div>
+	<% end %>
+	<br>
+<% end %>

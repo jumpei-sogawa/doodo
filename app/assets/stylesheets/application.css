@@ -30,3 +30,7 @@ a:visited {
 a:hover {
 	color: gray;
 }
+
+.bold {
+	font-weight: bold;
+}
