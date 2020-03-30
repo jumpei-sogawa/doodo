@@ -1,5 +1,6 @@
 class LogsController < ApplicationController
   before_action :set_log, only: [:show, :edit, :update, :destroy]
+  before_action :set_exhibition, only: [:new, :create]
 
   # GET /logs
   # GET /logs.json
@@ -14,7 +15,6 @@ class LogsController < ApplicationController
 
   # GET /logs/new
   def new
-    @exhb = Exhibition.find(params[:exhibition_id])
     @exhb_log = ExhbLog.new
   end
 
@@ -25,16 +25,14 @@ class LogsController < ApplicationController
   # POST /logs
   # POST /logs.json
   def create
-    @log = Log.new(log_params)
+    @exhb_log = ExhbLog.new(exhb_log_params)
+    @exhb_log.user = current_user
+    @exhb_log.exhibition = @exhibition
 
-    respond_to do |format|
-      if @log.save
-        format.html { redirect_to @log, notice: 'Log was successfully created.' }
-        format.json { render :show, status: :created, location: @log }
-      else
-        format.html { render :new }
-        format.json { render json: @log.errors, status: :unprocessable_entity }
-      end
+    if @exhb_log.save
+      redirect_to mypage_path
+    else
+      render :new
     end
   end
 
@@ -68,8 +66,16 @@ class LogsController < ApplicationController
       @log = Log.find(params[:id])
     end
 
+    def set_exhibition
+      @exhibition = Exhibition.find(params[:exhibition_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def log_params
       params.fetch(:log, {})
+    end
+
+    def exhb_log_params
+      params.fetch(:exhb_log, {}).permit(:rate, :body)
     end
 end
