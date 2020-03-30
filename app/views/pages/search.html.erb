@@ -1,2 +1,14 @@
-<h1>Pages#search</h1>
-<p>Find me in app/views/pages/search.html.erb</p>
+<h1>検索</h1>
+<h2>近くの展覧会を探す</h2>
+<h2>場所と日時から探す</h2>
+<h2>美術館から探す</h2>
+
+<% @exhibitions.each do |exhb| %>
+	<%= link_to exhibition_path(exhb) do %>
+		<% if exhb.image %>
+			<%= image_tag exhb.image %>
+		<% end %>
+		<div><%= exhb.name %></div>
+	<% end %>
+	<br>
+<% end %>

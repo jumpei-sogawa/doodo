@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   end
 
   def search
+    @exhibitions = Exhibition.all
   end
 
   def mypage
