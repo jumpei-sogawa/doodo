@@ -8,7 +8,7 @@
 
 
 <h2>会場</h2>
-<div>@<%= exhb.museum.name %></div>
+<div><%= link_to exhb.museum.name, museum_path(exhb.museum) %></div>
 <div><%= exhb.museum.address %></div>
 
 <h2>会期</h2>
@@ -30,17 +30,21 @@
 <div><%= exhb.organizer %></div>
 
 <h2>公式サイト</h2>
-<div><%= link_to exhb.website, exhb.website, target: :_blank %></div>
+<% if exhb.website.present? %>
+	<div><%= link_to exhb.website, exhb.website, target: :_blank %></div>
+<% end %>
 
-<h2>人気の作品</h2>
-<% @arts.each do |art| %>
-	<%= link_to art_path(art) do %>
-		<% if art.image %>
-			<%= image_tag art.image %>
+<% if @arts.present?%>
+	<h2>人気の作品</h2>
+	<% @arts.each do |art| %>
+		<%= link_to art_path(art) do %>
+			<% if art.image %>
+				<%= image_tag art.image %>
+			<% end %>
+			<div class="bold"><%= art.name %></div>
+			<div>作者：<%= art.artist.name %></div>
+			<div>制作年：<%= art.year %></div>
 		<% end %>
-		<div class="bold"><%= art.name %></div>
-		<div>作者：<%= art.artist.name %></div>
-		<div>制作年：<%= art.year %></div>
+		<br>
 	<% end %>
-	<br>
 <% end %>

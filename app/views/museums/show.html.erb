@@ -1,0 +1,29 @@
+<h1><%= @museum.name %></h1>
+
+<% if @museum.image %>
+	<%= image_tag @museum.image %>
+<% end %>
+
+<h2>住所</h2>
+<div><%= @museum.address %></div>
+
+<h2>お問い合わせ先</h2>
+<div><%= @museum.phone %></div>
+
+<h2>公式サイト</h2>
+<% if @museum.website.present? %>
+	<div><%= link_to @museum.website, @museum.website, target: :_blank %></div>
+<% end %>
+
+<% if @exhibitions.present? %>
+	<h2>開催中の展覧会</h2>
+	<% @exhibitions.each do |exhb| %>
+		<%= link_to exhibition_path(exhb) do %>
+			<div class="bold"><%= exhb.name %></div>
+			<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
+			<% if exhb.image %>
+				<%= image_tag exhb.image %>
+			<% end %>
+		<% end %>
+	<% end %>
+<% end %>

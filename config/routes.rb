@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/search' => 'pages#search'
   get '/mypage' => 'pages#mypage'
 
+  resources :museums, only: [:index, :show]
   resources :exhibitions, only: [:index, :show]
   resources :arts, only: [:show]
   resources :logs, only: [:new, :create]
