@@ -6,16 +6,12 @@ Rails.application.routes.draw do
   resources :museums, only: [:index, :show]
   resources :exhibitions, only: [:index, :show] do
     resources :logs, only: [:new, :create]
-    resources :exhb_logs, only: [:create]
   end
-  resources :arts, only: [:show] do
-    resources :art_logs, only: [:create]
-  end
+  resources :arts, only: [:show]
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'
   }
   get '/users/:id' => 'users#show'
-
 end

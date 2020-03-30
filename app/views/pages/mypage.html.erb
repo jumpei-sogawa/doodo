@@ -6,7 +6,7 @@
 </div>
 <div><%= current_user.bio %></div>
 
-<h2>展覧会へのコメント</h2>
+<h2>ログ一覧</h2>
 <% @exhb_logs.each do |exhb_log| %>
 	<%= link_to exhibition_path(exhb_log.exhibition) do %>
 		<div class="bold"><%= exhb_log.exhibition.name %></div>
