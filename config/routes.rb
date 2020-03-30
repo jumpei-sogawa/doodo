@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   get '/mypage' => 'pages#mypage'
 
   resources :museums, only: [:index, :show]
-  resources :exhibitions, only: [:index, :show]
-  resources :arts, only: [:show]
-  resources :logs, only: [:new, :create]
+  resources :exhibitions, only: [:index, :show] do
+    resources :logs, only: [:new, :create]
+    resources :exhb_logs, only: [:create]
+  end
+  resources :arts, only: [:show] do
+    resources :art_logs, only: [:create]
+  end
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',

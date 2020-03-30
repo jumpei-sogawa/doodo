@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_085418) do
+ActiveRecord::Schema.define(version: 2020_03_30_171533) do
+
+  create_table "art_logs", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "exhb_log_id"
+    t.integer "art_id"
+    t.integer "star"
+    t.text "body"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["art_id"], name: "index_art_logs_on_art_id"
+    t.index ["exhb_log_id"], name: "index_art_logs_on_exhb_log_id"
+    t.index ["user_id"], name: "index_art_logs_on_user_id"
+  end
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -33,6 +47,17 @@ ActiveRecord::Schema.define(version: 2020_03_30_085418) do
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_arts_on_artist_id"
     t.index ["exhibition_id"], name: "index_arts_on_exhibition_id"
+  end
+
+  create_table "exhb_logs", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "exhibition_id"
+    t.float "rate"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhibition_id"], name: "index_exhb_logs_on_exhibition_id"
+    t.index ["user_id"], name: "index_exhb_logs_on_user_id"
   end
 
   create_table "exhibitions", force: :cascade do |t|

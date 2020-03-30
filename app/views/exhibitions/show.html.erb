@@ -5,7 +5,10 @@
 <% if exhb.image %>
 	<%= image_tag exhb.image %>
 <% end %>
+<br>
 
+<%= link_to "行った！", new_exhibition_log_path(exhb) %>
+<div>興味あり！</div>
 
 <h2>会場</h2>
 <div><%= link_to exhb.museum.name, museum_path(exhb.museum) %></div>

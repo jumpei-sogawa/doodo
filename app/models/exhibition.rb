@@ -1,6 +1,7 @@
 class Exhibition < ApplicationRecord
   belongs_to :museum
   has_many :arts
+  has_many :exhb_logs
 
   def self.search(search_params)
     if search_params[:area].present?

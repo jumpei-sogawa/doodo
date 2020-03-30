@@ -1,2 +1,28 @@
-<h1>Logs#new</h1>
-<p>Find me in app/views/logs/new.html.erb</p>
+<h1>ログを残す</h1>
+
+<%= @exhb.name %>
+
+<%= form_with model: @exhb_log, url: exhibition_logs_path do |form| %>
+  <% form.hidden_field :exhibition_id, value: @exhb.id %>
+
+	<div>
+		評価：<%= form.range_field :rate, min: 0.0, max: 5.0, step: '0.1', value: 0.0 %><span id="rate">0.0</span>
+	</div>
+
+	<div>
+		コメント：<%= form.text_area :body, size: "30x2" %>
+	</div>
+
+	<div>
+		<%= form.submit "保存" %>
+	</div>
+<% end %>
+
+<script type="text/javascript" language="javascript">
+	var target = document.getElementById('exhb_log_rate');
+	var output = document.getElementById('rate');
+
+	target.oninput = function() {
+    output.textContent = Number(target.value).toFixed(1);
+  };
+</script>

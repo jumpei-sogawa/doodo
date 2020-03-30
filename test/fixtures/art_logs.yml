@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  exhb_log: one
+  art: one
+  star: 1
+  body: MyText
+  image: MyString
+
+two:
+  user: two
+  exhb_log: two
+  art: two
+  star: 1
+  body: MyText
+  image: MyString

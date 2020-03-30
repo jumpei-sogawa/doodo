@@ -14,7 +14,8 @@ class LogsController < ApplicationController
 
   # GET /logs/new
   def new
-    # @log = Log.new
+    @exhb = Exhibition.find(params[:exhibition_id])
+    @exhb_log = ExhbLog.new
   end
 
   # GET /logs/1/edit
