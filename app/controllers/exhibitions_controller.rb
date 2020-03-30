@@ -16,6 +16,7 @@ class ExhibitionsController < ApplicationController
   # GET /exhibitions/1.json
   def show
     @arts = @exhibition.arts
+    @exhb_logs = @exhibition.exhb_logs
   end
 
   # GET /exhibitions/new

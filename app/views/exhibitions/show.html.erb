@@ -7,6 +7,7 @@
 <% end %>
 <br>
 
+<div>評価：<%= @exhb_logs.average(:rate).round(2) %>/5</div>
 <%= link_to "行った！", new_exhibition_log_path(exhb) %>
 <div>興味あり！</div>
 
@@ -50,4 +51,18 @@
 		<% end %>
 		<br>
 	<% end %>
+<% end %>
+
+<h2>この展覧会へのコメント</h2>
+<% @exhb_logs.each do |exhb_log| %>
+	<%= link_to user_path(exhb_log.user) do %>
+		<% if exhb_log.user.image %>
+			<%= image_tag exhb_log.user.image, height: "30px" %>
+		<% end %>
+		<div><%= exhb_log.user.display_name %></div>
+		<div>@<%= exhb_log.user.username %></div>
+	<% end %>
+	<div><%= exhb_log.rate %></div>
+	<div><%= exhb_log.body %></div>
+	<br>
 <% end %>

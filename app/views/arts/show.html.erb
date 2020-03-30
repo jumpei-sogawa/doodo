@@ -4,9 +4,10 @@
 <h1><%= @art.name %></h1>
 <div>作者：<%= @art.artist.name %></div>
 <div>制作年：<%= @art.year %></div>
-
+<div>★<%= @art_logs.average(:star).round(2) %></div>
 <br>
 
+<h2>展覧情報</h2>
 <% exhb = @art.exhibition %>
 <%= link_to exhibition_path(exhb) do %>
 	<% if exhb.image %>
@@ -14,4 +15,18 @@
 	<% end %>
 	<div><%= exhb.name %></div>
 	<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
+<% end %>
+
+<h2>この作品へのコメント</h2>
+<% @art_logs.each do |art_log| %>
+	<%= link_to user_path(art_log.user) do %>
+		<% if art_log.user.image %>
+			<%= image_tag art_log.user.image, height: "30px" %>
+		<% end %>
+		<div><%= art_log.user.display_name %></div>
+		<div>@<%= art_log.user.username %></div>
+	<% end %>
+	<div>★<%= art_log.star %></div>
+	<div><%= art_log.body %></div>
+	<br>
 <% end %>
