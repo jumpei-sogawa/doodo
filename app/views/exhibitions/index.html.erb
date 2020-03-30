@@ -1,10 +1,12 @@
 <h1>展覧会一覧</h1>
 
 <% @exhibitions.each do |exhb| %>
-	<div>
-		<div><%= exhb.name %></div>
-		<div>@<%= exhb.museum.name %></div>
-		<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
-		<br>
-	</div>
+	<%= link_to exhibition_path(exhb) do %>
+		<div>
+			<div><%= exhb.name %></div>
+			<div>@<%= exhb.museum.name %></div>
+			<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
+		</div>
+	<% end %>
+	<br>
 <% end %>

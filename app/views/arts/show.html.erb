@@ -1,7 +1,7 @@
 <% art = @art %>
 
 <% if art.image %>
-    <%= image_tag art.image %>
+	<%= image_tag art.image %>
 <% end %>
 <h1><%= art.name %></h1>
 <div>作者：<%= art.artist.name %></div>
@@ -9,7 +9,10 @@
 
 <br>
 
-<% if art.exhibition.image %>
-    <%= image_tag art.exhibition.image %>
+<% exhb = art.exhibition %>
+<%= link_to exhibition_path(exhb) do %>
+	<% if exhb.image %>
+			<%= image_tag exhb.image %>
+	<% end %>
+	<div><%= exhb.name %></div>
 <% end %>
-<div><%= art.exhibition.name %></div>

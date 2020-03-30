@@ -1,10 +1,10 @@
 <h1>トレンド</h1>
 <h2>人気の展覧会</h2>
 <% @exhibitions.each do |exhb| %>
-	<div><%= exhb.name %></div>
+	<div><%= link_to exhb.name, exhibition_path(exhb) %></div>
 <% end %>
 
 <h2>人気の作品</h2>
 <% @arts.each do |art| %>
-	<div><%= art.name %></div>
+	<div><%= link_to art.name, art_path(art) %></div>
 <% end %>
