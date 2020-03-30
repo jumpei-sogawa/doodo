@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root 'pages#trend'
   get '/search' => 'pages#search'
   get '/mypage' => 'pages#mypage'
-  get '/users/:id' => 'users#show'
 
   resources :exhibitions, only: [:index, :show]
   resources :arts, only: [:show]
@@ -12,4 +11,6 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'
   }
+  get '/users/:id' => 'users#show'
+
 end
