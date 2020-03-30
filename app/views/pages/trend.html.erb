@@ -1,2 +1,10 @@
-<h1>Pages#trend</h1>
-<p>Find me in app/views/pages/trend.html.erb</p>
+<h1>トレンド</h1>
+<h2>人気の展覧会</h2>
+<% @exhibitions.each do |exhb| %>
+	<div><%= exhb.name %></div>
+<% end %>
+
+<h2>人気の作品</h2>
+<% @arts.each do |art| %>
+	<div><%= art.name %></div>
+<% end %>
