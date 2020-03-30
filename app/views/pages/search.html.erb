@@ -10,8 +10,12 @@
 <% end %>
 
 <h2>美術館から探す</h2>
+<%= form_with(scope: :search, url: museums_path, method: :get, local: true) do |form| %>
+	場所：<%= form.text_field :area %>
+	<%= form.submit "検索" %>
+<% end %>
 
-<h2>おすすめの展覧会</h2>
+<h1>おすすめの展覧会</h1>
 <% @exhibitions.each do |exhb| %>
 	<%= link_to exhibition_path(exhb) do %>
 		<% if exhb.image %>

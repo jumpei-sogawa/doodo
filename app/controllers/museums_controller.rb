@@ -6,7 +6,7 @@ class MuseumsController < ApplicationController
   def index
     @search_params = search_params
     if search_params[:area].present?
-      @museums = Museum.where("address = ?", "%#{search_params[:area]}%")
+      @museums = Museum.where("address LIKE ?", "%#{search_params[:area]}%")
     else
       @museums = Museum.all
     end
