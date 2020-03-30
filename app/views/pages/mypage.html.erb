@@ -1,2 +1,7 @@
-<h1>Pages#mypage</h1>
-<p>Find me in app/views/pages/mypage.html.erb</p>
+<h1>マイページ</h1>
+<%= image_tag current_user.image %>
+<div>
+	<span><%= current_user.display_name %></span>
+	<span>@<%= current_user.username %></span>
+</div>
+<div><%= current_user.bio %></div>
