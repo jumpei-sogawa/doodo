@@ -34,7 +34,7 @@
 
 <h2>人気の作品</h2>
 <% @arts.each do |art| %>
-	<%= link_to art_path do %>
+	<%= link_to art_path(art) do %>
 		<% if art.image %>
 			<%= image_tag art.image %>
 		<% end %>
