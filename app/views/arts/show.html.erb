@@ -1,2 +1,15 @@
-<h1>Arts#show</h1>
-<p>Find me in app/views/arts/show.html.erb</p>
+<% art = @art %>
+
+<% if art.image %>
+    <%= image_tag art.image %>
+<% end %>
+<h1><%= art.name %></h1>
+<div>作者：<%= art.artist.name %></div>
+<div>制作年：<%= art.year %></div>
+
+<br>
+
+<% if art.exhibition.image %>
+    <%= image_tag art.exhibition.image %>
+<% end %>
+<div><%= art.exhibition.name %></div>

@@ -11,6 +11,7 @@ class CreateExhibitions < ActiveRecord::Migration[5.2]
       t.string :phone
       t.string :organizer
       t.string :website
+      t.string :image
 
       t.timestamps
     end

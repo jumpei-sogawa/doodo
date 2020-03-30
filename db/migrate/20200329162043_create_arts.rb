@@ -6,6 +6,7 @@ class CreateArts < ActiveRecord::Migration[5.2]
       t.references :artist, foreign_key: true
       t.string :name
       t.integer :year
+      t.string :image
 
       t.timestamps
     end

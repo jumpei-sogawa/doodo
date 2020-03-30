@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_085418) do
     t.string "place"
     t.integer "birth_year"
     t.integer "death_year"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_085418) do
     t.integer "artist_id"
     t.string "name"
     t.integer "year"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_arts_on_artist_id"
@@ -44,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_085418) do
     t.string "phone"
     t.string "organizer"
     t.string "website"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["museum_id"], name: "index_exhibitions_on_museum_id"
@@ -55,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_085418) do
     t.string "address"
     t.string "phone"
     t.string "website"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prefecture_id"], name: "index_museums_on_prefecture_id"
