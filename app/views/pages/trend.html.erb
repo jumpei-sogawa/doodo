@@ -1,10 +1,22 @@
 <h1>トレンド</h1>
 <h2>人気の展覧会</h2>
 <% @exhibitions.each do |exhb| %>
-	<div><%= link_to exhb.name, exhibition_path(exhb) %></div>
+	<%= link_to exhibition_path(exhb) do %>
+		<% if exhb.image %>
+			<%= image_tag exhb.image %>
+		<% end %>
+		<div><%= exhb.name %></div>
+	<% end %>
+	<br>
 <% end %>
 
 <h2>人気の作品</h2>
 <% @arts.each do |art| %>
-	<div><%= link_to art.name, art_path(art) %></div>
+	<%= link_to art_path(art) do %>
+		<% if art.image %>
+			<%= image_tag art.image %>
+		<% end %>
+		<div><%= art.name %></div>
+	<% end %>
+	<br>
 <% end %>

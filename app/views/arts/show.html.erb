@@ -1,18 +1,17 @@
-<% art = @art %>
-
-<% if art.image %>
-	<%= image_tag art.image %>
+<% if @art.image %>
+	<%= image_tag @art.image %>
 <% end %>
-<h1><%= art.name %></h1>
-<div>作者：<%= art.artist.name %></div>
-<div>制作年：<%= art.year %></div>
+<h1><%= @art.name %></h1>
+<div>作者：<%= @art.artist.name %></div>
+<div>制作年：<%= @art.year %></div>
 
 <br>
 
-<% exhb = art.exhibition %>
+<% exhb = @art.exhibition %>
 <%= link_to exhibition_path(exhb) do %>
 	<% if exhb.image %>
 			<%= image_tag exhb.image %>
 	<% end %>
 	<div><%= exhb.name %></div>
+	<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
 <% end %>
