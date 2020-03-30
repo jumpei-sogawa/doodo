@@ -8,14 +8,8 @@ class PagesController < ApplicationController
 
   def search
     @search_params = search_params
-    if search_params[:area]
-      museums = Museum.where("address LIKE ?", "%#{search_params[:area]}%")
-      @exhibitions = []
-      museums.each do |museum|
-        museum.exhibitions.each do |exhb|
-          @exhibitions << exhb
-        end
-      end
+    if search_params[:area] && search_params[:date]
+      @exhibitions = Exhibition.search(search_params)
     else
       @exhibitions = Exhibition.all
     end
