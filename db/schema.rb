@@ -1,0 +1,69 @@
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 2020_03_29_162043) do
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name"
+    t.string "place"
+    t.integer "birth_year"
+    t.integer "death_year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "arts", force: :cascade do |t|
+    t.integer "exhibition_id"
+    t.integer "number"
+    t.integer "artist_id"
+    t.string "name"
+    t.integer "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_arts_on_artist_id"
+    t.index ["exhibition_id"], name: "index_arts_on_exhibition_id"
+  end
+
+  create_table "exhibitions", force: :cascade do |t|
+    t.integer "museum_id"
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.text "fee"
+    t.string "closing_day"
+    t.string "opening_hours"
+    t.string "phone"
+    t.string "organizer"
+    t.string "website"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["museum_id"], name: "index_exhibitions_on_museum_id"
+  end
+
+  create_table "museums", force: :cascade do |t|
+    t.integer "prefecture_id"
+    t.string "name"
+    t.string "address"
+    t.string "phone"
+    t.string "website"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prefecture_id"], name: "index_museums_on_prefecture_id"
+  end
+
+  create_table "prefectures", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+end

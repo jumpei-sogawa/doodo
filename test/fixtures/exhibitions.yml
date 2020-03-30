@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  museum: one
+  name: MyString
+  start_date: 2020-03-30
+  end_date: 2020-03-30
+  open_time: 2020-03-30 01:20:26
+  close_time: 2020-03-30 01:20:26
+  website: MyString
+
+two:
+  museum: two
+  name: MyString
+  start_date: 2020-03-30
+  end_date: 2020-03-30
+  open_time: 2020-03-30 01:20:26
+  close_time: 2020-03-30 01:20:26
+  website: MyString
