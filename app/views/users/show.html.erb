@@ -1,2 +1,27 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>ユーザーページ</h1>
+<%= image_tag @user.image %>
+<div>
+	<span><%= @user.display_name %></span>
+	<span>@<%= @user.username %></span>
+</div>
+<div><%= @user.bio %></div>
+
+<h2>ログ一覧</h2>
+<% @exhb_logs.each do |exhb_log| %>
+	<%= link_to exhibition_path(exhb_log.exhibition) do %>
+		<div class="bold"><%= exhb_log.exhibition.name %></div>
+	<% end %>
+	<div><%= exhb_log.rate %></div>
+	<div><%= exhb_log.body %></div>
+	<br>
+	<% exhb_log.art_logs.each do |art_log| %>
+		<%= link_to art_path(art_log.art) do %>
+			<div><%= art_log.art.name %></div>
+		<% end %>
+		<div><%= art_log.art.artist.name %></div>
+		<div><%= art_log.art.year %></div>
+		<div><%= art_log.star %></div>
+		<div><%= art_log.body %></div>
+		<br>
+	<% end %>
+<% end %>

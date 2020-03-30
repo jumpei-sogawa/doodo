@@ -385,4 +385,5 @@
 # 	year: 2019
 # )
 
-User.find(1).update(username: "jumpe123oon", display_name: "Jumpei Sogawa", bio: "よろしくです。\nモネが好き", image: "http://pictogram2.com/p/p0146/i/m.png")
+# User.find(1).update(username: "jumpe123oon", display_name: "Jumpei Sogawa", bio: "よろしくです。\nモネが好き", image: "http://pictogram2.com/p/p0146/i/m.png")
+User.find(2).update(username: "kaitoharitaya", display_name: "Kaito", bio: "他人のログ見る専門", image: "http://pictogram2.com/p/p0751/i/m.png")
