@@ -1,18 +1,38 @@
 <h1>ログを残す</h1>
 
-<%= @exhibition.name %>
+<h2><%= @exhibition.name %></h2>
 
-<%= form_with model: @exhb_log, url: exhibition_logs_path do |form| %>
+<%= form_for(@exhb_log, url: exhibition_logs_path) do |exhb_log_form| %>
 	<div>
-		評価：<%= form.range_field :rate, min: 0.0, max: 5.0, step: '0.1', value: 0.0 %><span id="rate">0.0</span>
+		評価：<%= exhb_log_form.range_field :rate, min: 0.0, max: 5.0, step: '0.1', value: 0.0 %><span id="rate">0.0</span>
 	</div>
 
 	<div>
-		コメント：<%= form.text_area :body, size: "30x2" %>
+		コメント：<%= exhb_log_form.text_area :body, size: "30x2" %>
 	</div>
 
 	<div>
-		<%= form.submit "保存" %>
+		<h3>作品リスト</h3>
+		<% @arts.each do |art| %>
+			<div class="bold"><%= art.name %></div>
+			<div><%= art.artist.name %></div>
+			<div><%= art.year %></div>
+
+			<%= exhb_log_form.fields_for :art_logs do |art_log_fields| %>
+				<%= art_log_fields.hidden_field :art_id, value: art.id %>
+				<div>
+					星<%= art_log_fields.number_field :star, min: 0, max: 3 %>つ
+				</div>
+				<div>
+					コメント：<%= art_log_fields.text_area :body, size: "30x1" %>
+				</div>
+			<% end %>
+			<br>
+		<% end %>
+	</div>
+
+	<div>
+		<%= exhb_log_form.submit "保存" %>
 	</div>
 <% end %>
 

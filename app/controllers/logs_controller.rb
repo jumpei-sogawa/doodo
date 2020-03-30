@@ -16,6 +16,8 @@ class LogsController < ApplicationController
   # GET /logs/new
   def new
     @exhb_log = ExhbLog.new
+    @exhb_log.art_logs.build
+    @arts = @exhibition.arts
   end
 
   # GET /logs/1/edit
@@ -29,10 +31,20 @@ class LogsController < ApplicationController
     @exhb_log.user = current_user
     @exhb_log.exhibition = @exhibition
 
+    binding.pry
+
+    @exhb_log.art_logs.each do |art_log|
+      if art_log.star.blank? && art_log.body.blank?
+        art_log.delete()
+      else
+        art_log.user = current_user
+      end
+    end
+
     if @exhb_log.save
       redirect_to mypage_path
     else
-      render :new
+      redirect_to new_exhibition_log_path
     end
   end
 
@@ -76,6 +88,6 @@ class LogsController < ApplicationController
     end
 
     def exhb_log_params
-      params.fetch(:exhb_log, {}).permit(:rate, :body)
+      params.fetch(:exhb_log, {}).permit(:rate, :body, art_logs_attributes: [:art_id, :star, :body, :image])
     end
 end
