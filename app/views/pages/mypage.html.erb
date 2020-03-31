@@ -1,36 +1,28 @@
 <h1>マイページ</h1>
-<% if current_user.image %>
-	<%= image_tag current_user.image.to_s %>
+<%= image_tag @user.image_url(:thumb) if @user.image.present? %>
+<div><span><%= @user.display_name %></span><span>@<%= @user.username %></span></div>
+<div><%= @user.bio %></div>
+<% if @user == current_user %>
+	<div><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
 <% end %>
-<div>
-	<span><%= current_user.display_name %></span>
-	<span>@<%= current_user.username %></span>
-</div>
-<div><%= current_user.bio %></div>
-<div><%= link_to "プロフィール編集", edit_user_path(current_user) %></div>
 
 <h2>ログ一覧</h2>
 <% @exhb_logs.each do |exhb_log| %>
-	<%= link_to exhibition_path(exhb_log.exhibition) do %>
-		<div class="bold"><%= exhb_log.exhibition.name %></div>
-	<% end %>
+	<%= link_to exhb_log.exhibition.name, exhibition_path(exhb_log.exhibition), class: "bold" %>
 	<div><%= exhb_log.created_at %></div>
-	<% if exhb_log.star %>
-		<div>★<%= exhb_log.star %></div>
-	<% end %>
+	<% if exhb_log.star.present? %><div>★<%= exhb_log.star %></div><% end %>
 	<div><%= exhb_log.body %></div>
 	<br>
 	<% exhb_log.art_logs.each do |art_log| %>
 		<%= link_to art_path(art_log.art) do %>
-			<div><%= art_log.art.name %></div>
-		<% end %>
-		<div><%= art_log.art.artist.name %></div>
-		<div><%= art_log.art.year %></div>
-		<% if art_log.star %>
-			<div>★<%= art_log.star %></div>
+			<div><%= image_tag art_log.image_url(:thumb), width: "200px" if art_log.image.present? %></div>
+			<div><%= art_log.art.name %>(<%= art_log.art.year %>)</div>
+			<div><%= art_log.art.artist.name %></div>
+			<% if art_log.star %>
+				<div>★<%= art_log.star %></div>
+			<% end %>
 		<% end %>
 		<div><%= art_log.body %></div>
-		<div><%= image_tag art_log.image_url(:thumb), width: "200px" if art_log.image.present? %></div>
 		<br>
 	<% end %>
 <% end %>

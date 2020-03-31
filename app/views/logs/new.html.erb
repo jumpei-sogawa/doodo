@@ -21,15 +21,9 @@
 
 				<%= exhb_log_form.fields_for :art_logs do |art_log_fields| %>
 					<%= art_log_fields.hidden_field :art_id, value: art.id %>
-					<div>
-						★<%= art_log_fields.number_field :star, min: 0, max: 3 %>つ
-					</div>
-					<div>
-						コメント：<%= art_log_fields.text_area :body, size: "30x1" %>
-					</div>
-					<div>
-						<%= art_log_fields.file_field :image %>
-					</div>
+					<div>★<%= art_log_fields.number_field :star, min: 0, max: 3 %>つ</div>
+					<div>コメント：<%= art_log_fields.text_area :body, size: "30x1" %></div>
+					<div><%= art_log_fields.file_field :image %></div>
 				<% end %>
 				<br>
 			<% end %>

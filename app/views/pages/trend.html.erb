@@ -2,7 +2,7 @@
 <h2>人気の展覧会</h2>
 <% @exhibitions.each do |exhb| %>
 	<%= link_to exhibition_path(exhb) do %>
-		<% if exhb.image %>
+		<% if exhb.image.present? %>
 			<%= image_tag exhb.image %>
 		<% end %>
 		<div><%= exhb.name %></div>
@@ -16,12 +16,10 @@
 <h2>人気の作品</h2>
 <% @arts.each do |art| %>
 	<%= link_to art_path(art) do %>
-		<% if art.image %>
-			<%= image_tag art.image.to_s %>
-		<% end %>
+		<div><%= image_tag art.image_url(:thumb) if art.image.present? %></div>
 		<div><%= art.name %></div>
 		<div><%= art.artist.name %></div>
-		<% if art.star %>
+		<% if art.star.present? %>
 			<div>★<%= art.star.round(2) %></div>
 		<% end %>
 	<% end %>

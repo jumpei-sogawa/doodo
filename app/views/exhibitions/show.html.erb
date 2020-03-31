@@ -45,13 +45,11 @@
 	<h2>人気の作品</h2>
 	<% @arts.each do |art| %>
 		<%= link_to art_path(art) do %>
-			<% if art.image %>
-				<%= image_tag art.image.to_s %>
-			<% end %>
+			<%= image_tag art.image_url(:thumb) if art.image.present? %>
 			<div class="bold"><%= art.name %></div>
 			<div>作者：<%= art.artist.name %></div>
 			<div>制作年：<%= art.year %></div>
-			<% if art.star %>
+			<% if art.star.present? %>
 				<div>★<%= art.star.round(2) %></div>
 			<% end %>
 		<% end %>
@@ -62,14 +60,14 @@
 <h2>この展覧会へのコメント</h2>
 <% @exhb_logs.each do |exhb_log| %>
 	<%= link_to user_path(exhb_log.user) do %>
-		<% if exhb_log.user.image %>
-			<%= image_tag exhb_log.user.image.to_s, height: "30px" %>
-		<% end %>
+		<%= image_tag exhb_log.user.image_url(:thumb), height: "30px" if exhb_log.user.image.present? %>
 		<div><%= exhb_log.user.display_name %></div>
-		<div>@<%= exhb_log.user.username %></div>
+		<% if exhb_log.user.username.present? %>
+			<div>@<%= exhb_log.user.username %></div>
+		<% end %>
 	<% end %>
 	<div><%= exhb_log.created_at %></div>
-	<% if exhb_log.star %>
+	<% if exhb_log.star.present? %>
 		<div>★<%= exhb_log.star %></div>
 	<% end %>
 	<div><%= exhb_log.body %></div>

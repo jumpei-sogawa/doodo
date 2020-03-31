@@ -11,6 +11,7 @@ class PagesController < ApplicationController
   end
 
   def mypage
+    @user = current_user
     @exhb_logs = current_user.exhb_logs.order(id: "DESC")
   end
 end

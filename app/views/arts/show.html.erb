@@ -1,10 +1,11 @@
+<h1>作品詳細</h1>
 <% if @art.image %>
 	<%= image_tag @art.image.to_s %>
 <% end %>
-<h1><%= @art.name %></h1>
+<h2><%= @art.name %></h2>
 <div>作者：<%= @art.artist.name %></div>
 <div>制作年：<%= @art.year %></div>
-<% if @art.star %>
+<% if @art.star.present? %>
 	<div>★<%= @art.star.round(2) %></div>
 <% end %>
 <br>
@@ -12,8 +13,8 @@
 <h2>展覧情報</h2>
 <% exhb = @art.exhibition %>
 <%= link_to exhibition_path(exhb) do %>
-	<% if exhb.image %>
-			<%= image_tag exhb.image %>
+	<% if exhb.image.present? %>
+		<%= image_tag exhb.image %>
 	<% end %>
 	<div><%= exhb.name %></div>
 	<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
@@ -22,14 +23,14 @@
 <h2>この作品へのコメント</h2>
 <% @art_logs.each do |art_log| %>
 	<%= link_to user_path(art_log.user) do %>
-		<% if art_log.user.image %>
+		<% if art_log.user.image.present? %>
 			<%= image_tag art_log.user.image.to_s, height: "30px" %>
 		<% end %>
 		<div><%= art_log.user.display_name %></div>
 		<div>@<%= art_log.user.username %></div>
 	<% end %>
 	<div><%= art_log.created_at %></div>
-	<% if art_log.star %>
+	<% if art_log.star.present? %>
 		<div>★<%= art_log.star %></div>
 	<% end %>
 	<div><%= art_log.body %></div>
