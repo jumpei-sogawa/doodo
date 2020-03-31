@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_171533) do
     t.string "name"
     t.integer "year"
     t.string "image"
+    t.float "star"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_arts_on_artist_id"
@@ -52,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_171533) do
   create_table "exhb_logs", force: :cascade do |t|
     t.integer "user_id"
     t.integer "exhibition_id"
-    t.float "rate"
+    t.float "star"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_171533) do
     t.string "organizer"
     t.string "website"
     t.string "image"
+    t.float "star"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["museum_id"], name: "index_exhibitions_on_museum_id"

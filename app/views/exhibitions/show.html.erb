@@ -7,33 +7,36 @@
 <% end %>
 <br>
 
-<div>評価：<%= @exhb_logs.average(:rate).round(2) %>/5</div>
+<% if exhb.star %>
+	<div>評価：<%= exhb.star.round(2) %>/5</div>
+<% end %>
 <%= link_to "行った！", new_exhibition_log_path(exhb) %>
 <div>興味あり！</div>
 
-<h2>会場</h2>
+<h2>詳細</h2>
+<h3>会場</h3>
 <div><%= link_to exhb.museum.name, museum_path(exhb.museum) %></div>
 <div><%= exhb.museum.address %></div>
 
-<h2>会期</h2>
+<h3>会期</h3>
 <div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
 
-<h2>入場料</h2>
-<div style="white-space:pre"><%= exhb.fee %></div>
+<h3>入場料</h3>
+<div style="white-space:pre-wrap"><%= exhb.fee %></div>
 
-<h2>休館日</h2>
+<h3>休館日</h3>
 <div><%= exhb.closing_day %></div>
 
-<h2>開館時間</h2>
+<h3>開館時間</h3>
 <div><%= exhb.opening_hours %></div>
 
-<h2>お問い合わせ先</h2>
+<h3>お問い合わせ先</h3>
 <div><%= exhb.phone %></div>
 
-<h2>主催</h2>
+<h3>主催</h3>
 <div><%= exhb.organizer %></div>
 
-<h2>公式サイト</h2>
+<h3>公式サイト</h3>
 <% if exhb.website.present? %>
 	<div><%= link_to exhb.website, exhb.website, target: :_blank %></div>
 <% end %>
@@ -62,7 +65,7 @@
 		<div><%= exhb_log.user.display_name %></div>
 		<div>@<%= exhb_log.user.username %></div>
 	<% end %>
-	<div><%= exhb_log.rate %></div>
+	<div><%= exhb_log.star %></div>
 	<div><%= exhb_log.body %></div>
 	<br>
 <% end %>

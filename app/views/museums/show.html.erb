@@ -4,13 +4,14 @@
 	<%= image_tag @museum.image %>
 <% end %>
 
-<h2>住所</h2>
+<h2>詳細</h2>
+<h3>住所</h3>
 <div><%= @museum.address %></div>
 
-<h2>お問い合わせ先</h2>
+<h3>お問い合わせ先</h3>
 <div><%= @museum.phone %></div>
 
-<h2>公式サイト</h2>
+<h3>公式サイト</h3>
 <% if @museum.website.present? %>
 	<div><%= link_to @museum.website, @museum.website, target: :_blank %></div>
 <% end %>

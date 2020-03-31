@@ -4,7 +4,7 @@
 
 <%= form_for(@exhb_log, url: exhibition_logs_path) do |exhb_log_form| %>
 	<div>
-		評価：<%= exhb_log_form.range_field :rate, min: 0.0, max: 5.0, step: '0.1', value: 0.0 %><span id="rate">0.0</span>
+		評価：<%= exhb_log_form.range_field :star, min: 0.0, max: 3.0, step: '0.5', value: 0.0 %><span id="star">0.0</span>
 	</div>
 
 	<div>
@@ -37,8 +37,8 @@
 <% end %>
 
 <script type="text/javascript" language="javascript">
-	var target = document.getElementById('exhb_log_rate');
-	var output = document.getElementById('rate');
+	var target = document.getElementById('exhb_log_star');
+	var output = document.getElementById('star');
 
 	target.oninput = function() {
     output.textContent = Number(target.value).toFixed(1);

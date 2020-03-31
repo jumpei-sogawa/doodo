@@ -23,4 +23,13 @@ class Exhibition < ApplicationRecord
 
     return exhibitions
   end
+
+  def self.update_star_by(exhb_log)
+    exhb_log.exhibition.update_star
+  end
+
+  def update_star
+    star = self.exhb_logs.average(:star)
+    self.update(star: star)
+  end
 end

@@ -66,16 +66,16 @@
 #     website: ""
 # )
 
-# #1
-# Museum.create(
-# 	prefecture_id: 1,
-# 	name: "国立西洋美術館",
-# 	address: "東京都台東区上野公園7-7",
-# 	phone: "03-5777-8600",
-# 	website: "https://www.nmwa.go.jp/",
-# 	image: "https://artscape.jp/mdb/image/1195763.jpg"
-# )
-# #1
+# # #1
+# # Museum.create(
+# # 	prefecture_id: 1,
+# # 	name: "国立西洋美術館",
+# # 	address: "東京都台東区上野公園7-7",
+# # 	phone: "03-5777-8600",
+# # 	website: "https://www.nmwa.go.jp/",
+# # 	image: "https://artscape.jp/mdb/image/1195763.jpg"
+# # )
+# # #1
 # Exhibition.create(
 # 	museum_id: 1,
 # 	name: "ロンドン・ナショナル・ギャラリー展",
@@ -90,16 +90,16 @@
 # 	image: "https://artscape.jp/exhibition/pickup/image/2003_o_05.jpg"
 # )
 
-# #2
-# Museum.create(
-# 	prefecture_id: 1,
-# 	name: "森美術館",
-# 	address: "東京都港区六本木6-10-1 六本木ヒルズ森タワー53F",
-# 	phone: "03-5777-8600",
-# 	website: "https://www.mori.art.museum/",
-# 	image: "https://artscape.jp/mdb/image/1195842.jpg"
-# )
-# #2
+# # #2
+# # Museum.create(
+# # 	prefecture_id: 1,
+# # 	name: "森美術館",
+# # 	address: "東京都港区六本木6-10-1 六本木ヒルズ森タワー53F",
+# # 	phone: "03-5777-8600",
+# # 	website: "https://www.mori.art.museum/",
+# # 	image: "https://artscape.jp/mdb/image/1195842.jpg"
+# # )
+# # #2
 # Exhibition.create(
 # 	museum_id: 2,
 # 	name: "未来と芸術展：AI、ロボット、都市、生命――人は明日どう生きるのか",
@@ -114,16 +114,16 @@
 # 	image: "https://artscape.jp/exhibition/pickup/image/1911_o_03.jpg"
 # )
 
-# #3
-# Museum.create(
-# 	prefecture_id: 2,
-# 	name: "横浜美術館",
-# 	address: "神奈川県横浜市西区みなとみらい3-4-1",
-# 	phone: "045-221-0300",
-# 	website: "https://yokohama.art.museum/",
-# 	image: "https://artscape.jp/mdb/image/1195883.jpg"
-# )
-# #3
+# # #3
+# # Museum.create(
+# # 	prefecture_id: 2,
+# # 	name: "横浜美術館",
+# # 	address: "神奈川県横浜市西区みなとみらい3-4-1",
+# # 	phone: "045-221-0300",
+# # 	website: "https://yokohama.art.museum/",
+# # 	image: "https://artscape.jp/mdb/image/1195883.jpg"
+# # )
+# # #3
 # Exhibition.create(
 # 	museum_id: 3,
 # 	name: "コレクション展　横浜美術館の西洋美術　木版挿絵からボルタンスキーまで—絵画・版画・写真・彫刻",
@@ -131,15 +131,15 @@
 # 	end_date: Date.new(2020,5,24)
 # )
 
-# #4
-# Museum.create(
-# 	prefecture_id: 3,
-# 	name: "あべのハルカス美術館",
-# 	address: "大阪府大阪市阿倍野区阿倍野筋1-1-43　あべのハルカス16F",
-# 	phone: "06-4399-9050",
-# 	website: "https://www.aham.jp/",
-# )
-# #4
+# # #4
+# # Museum.create(
+# # 	prefecture_id: 3,
+# # 	name: "あべのハルカス美術館",
+# # 	address: "大阪府大阪市阿倍野区阿倍野筋1-1-43　あべのハルカス16F",
+# # 	phone: "06-4399-9050",
+# # 	website: "https://www.aham.jp/",
+# # )
+# # #4
 # Exhibition.create(
 # 	museum_id: 4,
 # 	name: "国宝東塔大修理落慶記念　薬師寺展",
@@ -147,16 +147,16 @@
 # 	end_date: Date.new(2020,4,19)
 # )
 
-# #5
-# Museum.create(
-# 	prefecture_id: 4,
-# 	name: "京都国立近代美術館",
-# 	address: "京都府京都市左京区岡崎円勝寺町26-1",
-# 	phone: "075-761-4111",
-# 	website: "http://www.momak.go.jp/",
-# 	image: "https://artscape.jp/mdb/image/1196138.jpg"
-# )
-# #5
+# # #5
+# # Museum.create(
+# # 	prefecture_id: 4,
+# # 	name: "京都国立近代美術館",
+# # 	address: "京都府京都市左京区岡崎円勝寺町26-1",
+# # 	phone: "075-761-4111",
+# # 	website: "http://www.momak.go.jp/",
+# # 	image: "https://artscape.jp/mdb/image/1196138.jpg"
+# # )
+# # #5
 # Exhibition.create(
 # 	museum_id: 5,
 # 	name: "チェコ・デザイン　100年の旅",
@@ -164,16 +164,16 @@
 # 	end_date: Date.new(2020,5,10)
 # )
 
-# #6
-# Museum.create(
-# 	prefecture_id: 5,
-# 	name: "兵庫県立美術館",
-# 	address: "兵庫県神戸市中央区脇浜海岸通1-1-1",
-# 	phone: "078-262-0901",
-# 	website: "https://www.artm.pref.hyogo.jp/",
-# 	image: "https://artscape.jp/mdb/image/1196219.jpg"
-# )
-# #6
+# # #6
+# # Museum.create(
+# # 	prefecture_id: 5,
+# # 	name: "兵庫県立美術館",
+# # 	address: "兵庫県神戸市中央区脇浜海岸通1-1-1",
+# # 	phone: "078-262-0901",
+# # 	website: "https://www.artm.pref.hyogo.jp/",
+# # 	image: "https://artscape.jp/mdb/image/1196219.jpg"
+# # )
+# # #6
 # Exhibition.create(
 # 	museum_id: 6,
 # 	name: "ゴッホ展",
@@ -181,14 +181,14 @@
 # 	end_date: Date.new(2020,3,29),
 # )
 
-# #7
-# Museum.create(
-# 	prefecture_id: 6,
-# 	name: "愛知県美術館",
-# 	address: "愛知県名古屋市東区東桜1-13-2 愛知芸術文化センター10F",
-# 	phone: "052-971-5511",
-# 	website: "https://www-art.aac.pref.aichi.jp/"
-# )
+# # #7
+# # Museum.create(
+# # 	prefecture_id: 6,
+# # 	name: "愛知県美術館",
+# # 	address: "愛知県名古屋市東区東桜1-13-2 愛知芸術文化センター10F",
+# # 	phone: "052-971-5511",
+# # 	website: "https://www-art.aac.pref.aichi.jp/"
+# # )
 
 # #1
 # Artist.create(
@@ -385,5 +385,5 @@
 # 	year: 2019
 # )
 
-# User.find(1).update(username: "jumpe123oon", display_name: "Jumpei Sogawa", bio: "よろしくです。\nモネが好き", image: "http://pictogram2.com/p/p0146/i/m.png")
+User.find(1).update(username: "jumpe123oon", display_name: "Jumpei Sogawa", bio: "よろしくです。\nモネが好き", image: "http://pictogram2.com/p/p0146/i/m.png")
 User.find(2).update(username: "kaitoharitaya", display_name: "Kaito", bio: "他人のログ見る専門", image: "http://pictogram2.com/p/p0751/i/m.png")

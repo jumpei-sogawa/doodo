@@ -1,5 +1,7 @@
 <h1>マイページ</h1>
-<%= image_tag current_user.image %>
+<% if current_user.image %>
+	<%= image_tag current_user.image %>
+<% end %>
 <div>
 	<span><%= current_user.display_name %></span>
 	<span>@<%= current_user.username %></span>
@@ -11,7 +13,7 @@
 	<%= link_to exhibition_path(exhb_log.exhibition) do %>
 		<div class="bold"><%= exhb_log.exhibition.name %></div>
 	<% end %>
-	<div><%= exhb_log.rate %></div>
+	<div><%= exhb_log.star %></div>
 	<div><%= exhb_log.body %></div>
 	<br>
 	<% exhb_log.art_logs.each do |art_log| %>

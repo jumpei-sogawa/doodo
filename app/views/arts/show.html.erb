@@ -4,7 +4,9 @@
 <h1><%= @art.name %></h1>
 <div>作者：<%= @art.artist.name %></div>
 <div>制作年：<%= @art.year %></div>
-<div>★<%= @art_logs.average(:star).round(2) %></div>
+<% if @art.star %>
+	<div>★<%= @art.star.round(2) %></div>
+<% end %>
 <br>
 
 <h2>展覧情報</h2>

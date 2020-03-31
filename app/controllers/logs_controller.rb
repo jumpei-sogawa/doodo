@@ -1,6 +1,7 @@
 class LogsController < ApplicationController
   before_action :set_log, only: [:show, :edit, :update, :destroy]
   before_action :set_exhibition, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create]
 
   # GET /logs
   # GET /logs.json
@@ -31,8 +32,6 @@ class LogsController < ApplicationController
     @exhb_log.user = current_user
     @exhb_log.exhibition = @exhibition
 
-    binding.pry
-
     @exhb_log.art_logs.each do |art_log|
       if art_log.star.blank? && art_log.body.blank?
         art_log.delete()
@@ -42,6 +41,8 @@ class LogsController < ApplicationController
     end
 
     if @exhb_log.save
+      Exhibition.update_star_by(@exhb_log)
+      Art.update_stars_by(@exhb_log.art_logs)
       redirect_to mypage_path
     else
       redirect_to new_exhibition_log_path
@@ -88,6 +89,6 @@ class LogsController < ApplicationController
     end
 
     def exhb_log_params
-      params.fetch(:exhb_log, {}).permit(:rate, :body, art_logs_attributes: [:art_id, :star, :body, :image])
+      params.fetch(:exhb_log, {}).permit(:star, :body, art_logs_attributes: [:art_id, :star, :body, :image])
     end
 end
