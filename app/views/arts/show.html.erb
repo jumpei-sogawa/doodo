@@ -1,5 +1,5 @@
 <% if @art.image %>
-	<%= image_tag @art.image %>
+	<%= image_tag @art.image.to_s %>
 <% end %>
 <h1><%= @art.name %></h1>
 <div>作者：<%= @art.artist.name %></div>
@@ -23,7 +23,7 @@
 <% @art_logs.each do |art_log| %>
 	<%= link_to user_path(art_log.user) do %>
 		<% if art_log.user.image %>
-			<%= image_tag art_log.user.image, height: "30px" %>
+			<%= image_tag art_log.user.image.to_s, height: "30px" %>
 		<% end %>
 		<div><%= art_log.user.display_name %></div>
 		<div>@<%= art_log.user.username %></div>
@@ -33,5 +33,6 @@
 		<div>★<%= art_log.star %></div>
 	<% end %>
 	<div><%= art_log.body %></div>
+	<div><%= image_tag art_log.image.to_s %></div>
 	<br>
 <% end %>

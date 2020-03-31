@@ -1,6 +1,6 @@
 <h1>マイページ</h1>
 <% if current_user.image %>
-	<%= image_tag current_user.image %>
+	<%= image_tag current_user.image.to_s %>
 <% end %>
 <div>
 	<span><%= current_user.display_name %></span>

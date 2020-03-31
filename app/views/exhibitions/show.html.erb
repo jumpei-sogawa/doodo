@@ -46,7 +46,7 @@
 	<% @arts.each do |art| %>
 		<%= link_to art_path(art) do %>
 			<% if art.image %>
-				<%= image_tag art.image %>
+				<%= image_tag art.image.to_s %>
 			<% end %>
 			<div class="bold"><%= art.name %></div>
 			<div>作者：<%= art.artist.name %></div>
@@ -63,7 +63,7 @@
 <% @exhb_logs.each do |exhb_log| %>
 	<%= link_to user_path(exhb_log.user) do %>
 		<% if exhb_log.user.image %>
-			<%= image_tag exhb_log.user.image, height: "30px" %>
+			<%= image_tag exhb_log.user.image.to_s, height: "30px" %>
 		<% end %>
 		<div><%= exhb_log.user.display_name %></div>
 		<div>@<%= exhb_log.user.username %></div>
