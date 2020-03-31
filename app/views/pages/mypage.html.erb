@@ -7,6 +7,7 @@
 	<span>@<%= current_user.username %></span>
 </div>
 <div><%= current_user.bio %></div>
+<div><%= link_to "プロフィール編集", edit_user_path(current_user) %></div>
 
 <h2>ログ一覧</h2>
 <% @exhb_logs.each do |exhb_log| %>

@@ -1,0 +1,8 @@
+<h1>プロフィール編集</h1>
+
+<%= form_with model: @user do |form| %>
+  <div>username<%= form.text_field :username %></div>
+  <div>display name<%= form.text_field :display_name %></div>
+  <div>bio<%= form.text_area :bio %></div>
+  <div><%= form.submit "完了" %></div>
+<% end %>
