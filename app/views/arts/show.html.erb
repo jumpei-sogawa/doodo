@@ -28,7 +28,10 @@
 		<div><%= art_log.user.display_name %></div>
 		<div>@<%= art_log.user.username %></div>
 	<% end %>
-	<div>★<%= art_log.star %></div>
+	<div><%= art_log.created_at %></div>
+	<% if art_log.star %>
+		<div>★<%= art_log.star %></div>
+	<% end %>
 	<div><%= art_log.body %></div>
 	<br>
 <% end %>

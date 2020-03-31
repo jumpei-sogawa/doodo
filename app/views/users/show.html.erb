@@ -1,5 +1,7 @@
 <h1>ユーザーページ</h1>
-<%= image_tag @user.image %>
+<% if @user.image %>
+	<%= image_tag @user.image %>
+<% end %>
 <div>
 	<span><%= @user.display_name %></span>
 	<span>@<%= @user.username %></span>
@@ -11,7 +13,10 @@
 	<%= link_to exhibition_path(exhb_log.exhibition) do %>
 		<div class="bold"><%= exhb_log.exhibition.name %></div>
 	<% end %>
-	<div><%= exhb_log.star %></div>
+	<div><%= exhb_log.created_at %></div>
+	<% if exhb_log.star %>
+		<div>★<%= exhb_log.star %></div>
+	<% end %>
 	<div><%= exhb_log.body %></div>
 	<br>
 	<% exhb_log.art_logs.each do |art_log| %>
@@ -20,7 +25,9 @@
 		<% end %>
 		<div><%= art_log.art.artist.name %></div>
 		<div><%= art_log.art.year %></div>
-		<div><%= art_log.star %></div>
+		<% if art_log.star %>
+			<div>★<%= art_log.star %></div>
+		<% end %>
 		<div><%= art_log.body %></div>
 		<br>
 	<% end %>

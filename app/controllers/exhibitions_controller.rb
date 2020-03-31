@@ -6,16 +6,16 @@ class ExhibitionsController < ApplicationController
   def index
     @search_params = search_params
     if search_params[:area].present? || search_params[:date].present?
-      @exhibitions = Exhibition.search(search_params)
+      @exhibitions = Exhibition.search(search_params).sort { |a,b| (b <=> a) }
     else
-      @exhibitions = Exhibition.all
+      @exhibitions = Exhibition.all.order(star: "DESC")
     end
   end
 
   # GET /exhibitions/1
   # GET /exhibitions/1.json
   def show
-    @arts = @exhibition.arts
+    @arts = @exhibition.arts.where("star >= ?", 0).order(star: "DESC")
     @exhb_logs = @exhibition.exhb_logs.order(id: "DESC")
   end
 

@@ -21,6 +21,9 @@
 				<%= link_to exhibition_path(exhb) do %>
 					<div class="bold"><%= exhb.name %></div>
 					<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
+					<% if exhb.star %>
+						<div>★<%= exhb.star.round(2) %></div>
+					<% end %>
 					<% if exhb.image %>
 						<%= image_tag exhb.image %>
 					<% end %>

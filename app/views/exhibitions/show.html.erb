@@ -8,7 +8,7 @@
 <br>
 
 <% if exhb.star %>
-	<div>評価：<%= exhb.star.round(2) %>/5</div>
+	<div>★<%= exhb.star.round(2) %></div>
 <% end %>
 <%= link_to "行った！", new_exhibition_log_path(exhb) %>
 <div>興味あり！</div>
@@ -51,6 +51,9 @@
 			<div class="bold"><%= art.name %></div>
 			<div>作者：<%= art.artist.name %></div>
 			<div>制作年：<%= art.year %></div>
+			<% if art.star %>
+				<div>★<%= art.star.round(2) %></div>
+			<% end %>
 		<% end %>
 		<br>
 	<% end %>
@@ -65,7 +68,10 @@
 		<div><%= exhb_log.user.display_name %></div>
 		<div>@<%= exhb_log.user.username %></div>
 	<% end %>
-	<div><%= exhb_log.star %></div>
+	<div><%= exhb_log.created_at %></div>
+	<% if exhb_log.star %>
+		<div>★<%= exhb_log.star %></div>
+	<% end %>
 	<div><%= exhb_log.body %></div>
 	<br>
 <% end %>

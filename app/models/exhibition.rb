@@ -24,6 +24,10 @@ class Exhibition < ApplicationRecord
     return exhibitions
   end
 
+  def to_i
+    return self.star
+  end
+
   def self.update_star_by(exhb_log)
     exhb_log.exhibition.update_star
   end

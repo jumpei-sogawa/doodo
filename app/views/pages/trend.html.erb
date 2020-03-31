@@ -6,6 +6,9 @@
 			<%= image_tag exhb.image %>
 		<% end %>
 		<div><%= exhb.name %></div>
+		<% if exhb.star %>
+			<div>★<%= exhb.star.round(2) %></div>
+		<% end %>
 	<% end %>
 	<br>
 <% end %>
@@ -17,6 +20,9 @@
 			<%= image_tag art.image %>
 		<% end %>
 		<div><%= art.name %></div>
+		<% if art.star %>
+			<div>★<%= art.star.round(2) %></div>
+		<% end %>
 	<% end %>
 	<br>
 <% end %>
