@@ -30,6 +30,7 @@
 			<div>★<%= art_log.star %></div>
 		<% end %>
 		<div><%= art_log.body %></div>
+		<div><%= image_tag art_log.image_url(:thumb), width: "200px" if art_log.image.present? %></div>
 		<br>
 	<% end %>
 <% end %>

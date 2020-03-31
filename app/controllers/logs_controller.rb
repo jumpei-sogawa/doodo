@@ -33,7 +33,7 @@ class LogsController < ApplicationController
     @exhb_log.exhibition = @exhibition
 
     @exhb_log.art_logs.each do |art_log|
-      if art_log.star.blank? && art_log.body.blank?
+      if art_log.star.blank? && art_log.body.blank? && art_log.image.blank?
         art_log.delete()
       else
         art_log.user = current_user
