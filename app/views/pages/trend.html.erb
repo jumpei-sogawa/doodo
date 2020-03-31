@@ -20,6 +20,7 @@
 			<%= image_tag art.image %>
 		<% end %>
 		<div><%= art.name %></div>
+		<div><%= art.artist.name %></div>
 		<% if art.star %>
 			<div>★<%= art.star.round(2) %></div>
 		<% end %>
