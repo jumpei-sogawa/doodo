@@ -6,7 +6,7 @@ class ExhibitionsController < ApplicationController
   def index
     @search_params = search_params
     if search_params[:area].present? || search_params[:date].present?
-      @exhibitions = Exhibition.search(search_params).sort { |a,b| (b <=> a) }
+      @exhibitions = Exhibition.search(search_params).sort { |a,b| b <=> a }
     else
       @exhibitions = Exhibition.all.order(star: "DESC")
     end

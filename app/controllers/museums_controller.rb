@@ -7,8 +7,9 @@ class MuseumsController < ApplicationController
     @search_params = search_params
     if search_params[:area].present?
       @museums = Museum.where("address LIKE ?", "%#{search_params[:area]}%")
+      @museums = @museums.includes(:exhibitions).order("exhibitions.star DESC")
     else
-      @museums = Museum.all
+      @museums = Museum.all.includes(:exhibitions).order("exhibitions.star DESC")
     end
   end
 
