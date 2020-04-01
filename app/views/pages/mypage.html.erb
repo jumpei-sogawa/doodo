@@ -6,6 +6,24 @@
 	<div><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
 <% end %>
 
+<h2>クリップした展覧会</h2>
+<% @exhibitions.each do |exhb| %>
+	<%= link_to exhibition_path(exhb) do %>
+		<div>
+			<% if exhb.image %>
+				<%= image_tag exhb.image %>
+			<% end %>
+			<div><%= exhb.name %></div>
+			<div>@<%= exhb.museum.name %></div>
+			<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
+			<% if exhb.star %>
+				<div>★<%= exhb.star.round(2) %></div>
+			<% end %>
+		</div>
+	<% end %>
+	<br>
+<% end %>
+
 <h2>ログ一覧</h2>
 <% @exhb_logs.each do |exhb_log| %>
 	<%= link_to exhb_log.exhibition.name, exhibition_path(exhb_log.exhibition), class: "bold" %>

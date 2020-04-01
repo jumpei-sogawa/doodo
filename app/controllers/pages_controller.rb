@@ -12,6 +12,7 @@ class PagesController < ApplicationController
 
   def mypage
     @user = current_user
-    @exhb_logs = current_user.exhb_logs.order(id: "DESC")
+    @exhb_logs = @user.exhb_logs.order(id: "DESC")
+    @exhibitions = @user.cliped_exhibitions
   end
 end
