@@ -35,5 +35,14 @@
 	<% end %>
 	<div><%= art_log.body %></div>
 	<div><%= image_tag art_log.image_url(:thumb), width: "200px" if art_log.image.present? %></div>
+	<% if user_signed_in? %>
+		<% if art_log_like = ArtLogLike.find_by(user_id: current_user.id, art_log_id: art_log.id) %>
+			<div><%= link_to "❤️", art_log_art_log_like_path(art_log, art_log_like), method: :delete %></div>
+		<% else %>
+			<div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
+		<% end %>
+	<% else %>
+		<div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
+	<% end %>
 	<br>
 <% end %>

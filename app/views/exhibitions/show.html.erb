@@ -79,5 +79,15 @@
 		<div>★<%= exhb_log.star %></div>
 	<% end %>
 	<div><%= exhb_log.body %></div>
+	<% if user_signed_in? %>
+		<% if exhb_log_like = ExhbLogLike.find_by(user_id: current_user.id, exhb_log_id: exhb_log.id) %>
+			<div><%= link_to "❤️", exhb_log_exhb_log_like_path(exhb_log, exhb_log_like), method: :delete %></div>
+		<% else %>
+			<div><%= link_to "♡", exhb_log_exhb_log_likes_path(exhb_log), method: :post %></div>
+		<% end %>
+	<% else %>
+		<div><%= link_to "♡", exhb_log_exhb_log_likes_path(exhb_log), method: :post %></div>
+	<% end %>
+
 	<br>
 <% end %>
