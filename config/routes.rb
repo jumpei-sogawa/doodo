@@ -12,10 +12,12 @@ Rails.application.routes.draw do
 
   resources :exhb_logs, only: [:show] do
     resources :exhb_log_likes, only: [:create, :destroy]
+    resources :exhb_log_comments, only: [:create]
   end
 
   resources :art_logs, only: [:show] do
     resources :art_log_likes, only: [:create, :destroy]
+    resources :art_log_comments, only: [:create]
   end
 
 

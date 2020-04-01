@@ -44,5 +44,15 @@
 	<% else %>
 		<div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
 	<% end %>
+	<% if art_log.art_log_comments.present? %>
+		<div><%= art_log.art_log_comments.last.user.display_name %> @<%= art_log.art_log_comments.last.user.username %></div>
+		<div><%= art_log.art_log_comments.last.body %></div>
+	<% end %>
+	<% if user_signed_in? %>
+		<%= form_with(model: @art_log_comment, url: art_log_art_log_comments_path(art_log)) do |form| %>
+			<%= form.text_area :body %>
+			<%= form.submit "送信" %>
+		<% end %>
+	<% end %>
 	<br>
 <% end %>

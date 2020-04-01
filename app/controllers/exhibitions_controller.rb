@@ -17,6 +17,7 @@ class ExhibitionsController < ApplicationController
   def show
     @arts = @exhibition.arts.where("star >= ?", 0).order(star: "DESC")
     @exhb_logs = @exhibition.exhb_logs.order(id: "DESC")
+    @exhb_log_comment = ExhbLogComment.new
   end
 
   # GET /exhibitions/new

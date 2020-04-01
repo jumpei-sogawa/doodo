@@ -11,6 +11,7 @@ class ArtsController < ApplicationController
   # GET /arts/1.json
   def show
     @art_logs = @art.art_logs.order(id: "DESC")
+    @art_log_comment = ArtLogComment.new
   end
 
   # GET /arts/new
