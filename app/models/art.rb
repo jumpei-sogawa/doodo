@@ -17,7 +17,7 @@ class Art < ApplicationRecord
   end
 
   def liked_image
-    sorted_art_logs = self.art_logs.sort { |a,b| a.num_likes <=> b.num_likes }
-    sorted_art_logs.first.image
+    sorted_art_logs = self.art_logs.sort { |a,b| a.art_log_likes.count <=> b.art_log_likes.count }
+    sorted_art_logs.last.image
   end
 end

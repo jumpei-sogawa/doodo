@@ -6,8 +6,4 @@ class ArtLog < ApplicationRecord
   has_many :art_log_comments, dependent: :destroy
 
   mount_uploader :image, ImageUploader
-
-  def num_likes
-    self.art_log_likes.count
-  end
 end

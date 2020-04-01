@@ -30,6 +30,16 @@
 	<div><%= exhb_log.created_at %></div>
 	<% if exhb_log.star.present? %><div>★<%= exhb_log.star %></div><% end %>
 	<div><%= exhb_log.body %></div>
+	<% if user_signed_in? %>
+		<% if exhb_log_like = ExhbLogLike.find_by(user_id: current_user.id, exhb_log_id: exhb_log.id) %>
+			<div><%= link_to "❤️", exhb_log_exhb_log_like_path(exhb_log, exhb_log_like), method: :delete %></div>
+		<% else %>
+			<div><%= link_to "♡", exhb_log_exhb_log_likes_path(exhb_log), method: :post %></div>
+		<% end %>
+	<% else %>
+		<div><%= link_to "♡", exhb_log_exhb_log_likes_path(exhb_log), method: :post %></div>
+	<% end %>
+	<%= exhb_log.exhb_log_likes.count %>
 	<br>
 	<% exhb_log.art_logs.each do |art_log| %>
 		<%= link_to art_path(art_log.art) do %>
@@ -41,6 +51,16 @@
 			<% end %>
 		<% end %>
 		<div><%= art_log.body %></div>
+		<% if user_signed_in? %>
+			<% if art_log_like = ArtLogLike.find_by(user_id: current_user.id, art_log_id: art_log.id) %>
+				<div><%= link_to "❤️", art_log_art_log_like_path(art_log, art_log_like), method: :delete %></div>
+			<% else %>
+				<div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
+			<% end %>
+		<% else %>
+			<div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
+		<% end %>
+		<%= art_log.art_log_likes.count %>
 		<br>
 	<% end %>
 <% end %>
