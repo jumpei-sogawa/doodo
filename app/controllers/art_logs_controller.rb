@@ -10,6 +10,7 @@ class ArtLogsController < ApplicationController
   # GET /art_logs/1
   # GET /art_logs/1.json
   def show
+    @art_log_comment = ArtLogComment.new
   end
 
   # GET /art_logs/new
