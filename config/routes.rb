@@ -6,8 +6,18 @@ Rails.application.routes.draw do
   resources :museums, only: [:index, :show]
   resources :exhibitions, only: [:index, :show] do
     resources :logs, only: [:new, :create]
+    resources :exhb_clips, only: [:create, :destroy]
   end
   resources :arts, only: [:show]
+
+  resources :exhb_logs, only: [:show] do
+    resources :exhb_log_likes, only: [:create, :destroy]
+  end
+
+  resources :art_logs, only: [:show] do
+    resources :art_log_likes, only: [:create, :destroy]
+  end
+
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',

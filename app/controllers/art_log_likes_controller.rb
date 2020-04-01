@@ -1,0 +1,2 @@
+class ArtLogLikesController < ApplicationController
+end

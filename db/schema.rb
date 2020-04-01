@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_171533) do
+ActiveRecord::Schema.define(version: 2020_04_01_085830) do
+
+  create_table "art_log_likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "art_log_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["art_log_id"], name: "index_art_log_likes_on_art_log_id"
+    t.index ["user_id"], name: "index_art_log_likes_on_user_id"
+  end
 
   create_table "art_logs", force: :cascade do |t|
     t.integer "user_id"
@@ -48,6 +57,24 @@ ActiveRecord::Schema.define(version: 2020_03_30_171533) do
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_arts_on_artist_id"
     t.index ["exhibition_id"], name: "index_arts_on_exhibition_id"
+  end
+
+  create_table "exhb_clips", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "exhibition_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhibition_id"], name: "index_exhb_clips_on_exhibition_id"
+    t.index ["user_id"], name: "index_exhb_clips_on_user_id"
+  end
+
+  create_table "exhb_log_likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "exhb_log_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhb_log_id"], name: "index_exhb_log_likes_on_exhb_log_id"
+    t.index ["user_id"], name: "index_exhb_log_likes_on_user_id"
   end
 
   create_table "exhb_logs", force: :cascade do |t|

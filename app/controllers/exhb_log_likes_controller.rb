@@ -1,0 +1,2 @@
+class ExhbLogLikesController < ApplicationController
+end

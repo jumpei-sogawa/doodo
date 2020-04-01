@@ -1,7 +1,7 @@
 class LogsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_log, only: [:show, :edit, :update, :destroy]
   before_action :set_exhibition, only: [:new, :create]
-  before_action :authenticate_user!, only: [:new, :create]
 
   # GET /logs
   # GET /logs.json
@@ -43,11 +43,6 @@ class LogsController < ApplicationController
     if @exhb_log.save
       Exhibition.update_star_by(@exhb_log)
       Art.update_stars_by(@exhb_log.art_logs)
-      @exhb_log.art_logs.each do |art_log|
-        if art_log.image.present?
-          art_log.art.update(image: art_log.image)
-        end
-      end
       redirect_to mypage_path
     else
       redirect_to new_exhibition_log_path

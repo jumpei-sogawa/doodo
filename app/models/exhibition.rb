@@ -2,6 +2,7 @@ class Exhibition < ApplicationRecord
   belongs_to :museum
   has_many :arts, dependent: :destroy
   has_many :exhb_logs, dependent: :destroy
+  has_many :exhb_clips, dependent: :destroy
 
   def self.search(search_params)
     if search_params[:area].present?

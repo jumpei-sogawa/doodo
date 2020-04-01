@@ -1,0 +1,2 @@
+module ArtLogLikesHelper
+end
