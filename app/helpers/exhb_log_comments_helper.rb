@@ -1,0 +1,2 @@
+module ExhbLogCommentsHelper
+end
