@@ -15,4 +15,9 @@ class Art < ApplicationRecord
     star = self.art_logs.average(:star)
     self.update(star: star)
   end
+
+  def liked_image
+    sorted_art_logs = self.art_logs.sort { |a,b| a.num_likes <=> b.num_likes }
+    sorted_art_logs.first.image
+  end
 end

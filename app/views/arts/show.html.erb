@@ -1,6 +1,6 @@
 <h1>作品詳細</h1>
 <% if @art.image %>
-	<%= image_tag @art.image.to_s %>
+	<%= image_tag @art.liked_image.to_s %>
 <% end %>
 <h2><%= @art.name %></h2>
 <div>作者：<%= @art.artist.name %></div>

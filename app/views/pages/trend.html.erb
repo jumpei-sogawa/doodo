@@ -16,7 +16,7 @@
 <h2>人気の作品</h2>
 <% @arts.each do |art| %>
 	<%= link_to art_path(art) do %>
-		<div><%= image_tag art.image_url(:thumb) if art.image.present? %></div>
+		<div><%= image_tag art.liked_image.to_s, width: "200px" %></div>
 		<div><%= art.name %></div>
 		<div><%= art.artist.name %></div>
 		<% if art.star.present? %>
