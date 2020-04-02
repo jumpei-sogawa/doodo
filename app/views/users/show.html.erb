@@ -1,7 +1,22 @@
-<h1>ユーザーページ</h1>
-<%= render partial: "users/show", locals: {
-  user: @user,
-  clipped_exhibitions: @clipped_exhibitions,
-  visited_exhibitions: @visited_exhibitions,
-  exhb_logs: @exhb_logs,
-  } %>
+<% if @user == current_user %>
+  <h1>マイページ</h1>
+<% else %>
+  <h1>ユーザーページ</h1>
+<% end %>
+
+<%= image_tag user.image_url(:thumb) if user.image.present? %>
+<div><span><%= user.display_name %></span><span>@<%= user.username %></span></div>
+<div><%= user.bio %></div>
+
+<% if user == current_user %>
+	<div><%= link_to "プロフィール編集", edit_user_path(user) %></div>
+<% end %>
+
+<h2>クリップした展覧会一覧</h2>
+<%= render partial: "exhibitions/index", locals: {exhibitions: @clipped_exhibitions} %>
+
+<h2>行った展覧会一覧</h2>
+<%= render partial: "exhibitions/index", locals: {exhibitions: @visited_exhibitions} %>
+
+<h2>ログ一覧</h2>
+<%= render partial: "logs/index", locals: {exhb_logs: @exhb_logs} %>

@@ -1,12 +1,10 @@
 <h1>作品のログ詳細</h1>
-<% @user = @art_log.user %>
-<%= render "users/user" %>
+<%= render partial: "users/show", locals: {user: @art_log.user} %>
 
-<%= render "art_logs/show" %>
+<%= render partial: "art_logs/show", locals: {art_log: @art_log} %>
 
 <% @art_log.art_log_comments.each do |art_log_comment| %>
-  <% @user = art_log_comment.user %>
-  <%= render "users/user" %>
+  <%= render partial: "users/show", locals: {user: art_log_comment.user} %>
   <div><%= art_log_comment.body %></div>
 <% end %>
 

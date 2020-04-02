@@ -1,11 +1,11 @@
 <div>
 	<% art_logs.each do |art_log| %>
-		<%= render partial: "users/user", locals: {user: art_log.user} %>
+		<%= render partial: "users/show", locals: {user: art_log.user} %>
 
 		<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
 
 		<% if art_log.art_log_comments.present? %>
-			<%= render partial: "users/user", locals: {user: art_log.art_log_comments.last.user} %>
+			<%= render partial: "users/show", locals: {user: art_log.art_log_comments.last.user} %>
 			<div><%= art_log.art_log_comments.last.body %></div>
 		<% end %>
 
