@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update]
 
   def show
+    @clipped_exhibitions = @user.clipped_exhibitions.distinct
+    @visited_exhibitions = @user.visited_exhibitions.distinct
     @exhb_logs = @user.exhb_logs.order(id: "DESC")
-    @clipped_exhibitions = @user.clipped_exhibitions.uniq
-    @visited_exhibitions = @user.visited_exhibitions.uniq
   end
 
   def edit

@@ -16,4 +16,4 @@
 <% end %>
 
 <h1>おすすめの展覧会一覧</h1>
-<%= render "exhibitions/index" %>
+<%= render partial: "exhibitions/index", locals: {exhibitions: @exhibitions} %>

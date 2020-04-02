@@ -1,23 +1,19 @@
-<div>views/users/_show.html.erb</div>
+<%= image_tag user.image_url(:thumb) if user.image.present? %>
+<div><span><%= user.display_name %></span><span>@<%= user.username %></span></div>
+<div><%= user.bio %></div>
 
-<%= image_tag @user.image_url(:thumb) if @user.image.present? %>
-<div><span><%= @user.display_name %></span><span>@<%= @user.username %></span></div>
-<div><%= @user.bio %></div>
-
-<% if @user == current_user %>
-	<div><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
+<% if user == current_user %>
+	<div><%= link_to "プロフィール編集", edit_user_path(user) %></div>
 <% end %>
 
 <h2>クリップした展覧会一覧</h2>
-<% @exhibitions = @clipped_exhibitions %>
-<%= render "exhibitions/index" %>
+<%= render partial: "exhibitions/index", locals: {exhibitions: clipped_exhibitions} %>
 
 <h2>行った展覧会一覧</h2>
-<% @exhibitions = @visited_exhibitions %>
-<%= render "exhibitions/index" %>
+<%= render partial: "exhibitions/index", locals: {exhibitions: visited_exhibitions} %>
 
 <h2>ログ一覧</h2>
-<% @exhb_logs.each do |exhb_log| %>
+<% exhb_logs.each do |exhb_log| %>
 	<%= link_to exhb_log.exhibition.name, exhibition_path(exhb_log.exhibition), class: "bold" %>
 	<div><%= exhb_log.created_at %></div>
 	<% if exhb_log.star.present? %><div>★<%= exhb_log.star %></div><% end %>

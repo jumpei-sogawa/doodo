@@ -1,6 +1,6 @@
 <h1>トレンド</h1>
 <h2>人気の展覧会一覧</h2>
-<%= render "exhibitions/index" %>
+<%= render partial: "exhibitions/index", locals: {exhibitions: @exhibitions} %>
 
 <h2>人気の作品一覧</h2>
-<%= render "arts/index" %>
+<%= render partial: "arts/index", locals: {arts: @arts} %>

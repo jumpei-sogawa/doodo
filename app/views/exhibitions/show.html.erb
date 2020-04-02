@@ -49,8 +49,8 @@
 
 <% if @arts.present? %>
 	<h2>人気の作品一覧</h2>
-	<%= render "arts/index" %>
+	<%= render partial: "arts/index", locals: {arts: @arts} %>
 <% end %>
 
 <h2>展覧会のログ一覧</h2>
-<%= render "exhb_logs/index" %>
+<%= render partial: "exhb_logs/index", locals: {exhb_logs: @exhb_logs} %>

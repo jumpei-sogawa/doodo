@@ -1,24 +1,21 @@
-<div>views/exhb_logs/_index.html.erb</div>
+<div>
+	<% exhb_logs.each do |exhb_log| %>
+		<%= render partial: "users/user", locals: {user: exhb_log.user} %>
 
-<% @exhb_logs.each do |exhb_log| %>
-  <% @user = exhb_log.user %>
-  <%= render "users/user" %>
+		<%= render partial: "exhb_logs/show", locals: {exhb_log: exhb_log} %>
 
-	<% @exhb_log = exhb_log %>
-	<%= render "exhb_logs/show" %>
-
-	<% if exhb_log.exhb_log_comments.present? %>
-    <% @user = exhb_log.exhb_log_comments.last.user %>
-    <%= render "users/user" %>
-		<div><%= exhb_log.exhb_log_comments.last.body %></div>
-	<% end %>
-
-	<% if user_signed_in? %>
-		<%= form_with(model: @exhb_log_comment, url: exhb_log_exhb_log_comments_path(exhb_log)) do |form| %>
-			<%= form.text_area :body %>
-			<%= form.submit "送信" %>
+		<% if exhb_log.exhb_log_comments.present? %>
+			<%= render partial: "users/user", locals: {user: exhb_log.exhb_log_comments.last.user} %>
+			<div><%= exhb_log.exhb_log_comments.last.body %></div>
 		<% end %>
-	<% end %>
 
-	<br>
-<% end %>
+		<% if user_signed_in? %>
+			<%= form_with(model: @exhb_log_comment, url: exhb_log_exhb_log_comments_path(exhb_log)) do |form| %>
+				<%= form.text_area :body %>
+				<%= form.submit "送信" %>
+			<% end %>
+		<% end %>
+
+		<br>
+	<% end %>
+</div>

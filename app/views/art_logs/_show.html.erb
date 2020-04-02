@@ -1,20 +1,20 @@
-<div><%= @art_log.created_at %></div>
-<%= link_to art_log_path(@art_log) do %>
-  <div><%= image_tag @art_log.image_url(:thumb), width: "200px" if @art_log.image.present? %></div>
+<div><%= art_log.created_at %></div>
+<%= link_to art_log_path(art_log) do %>
+  <div><%= image_tag art_log.image_url(:thumb), width: "200px" if art_log.image.present? %></div>
 <% end %>
-<% if @art_log.star.present? %>
-  <div>★<%= @art_log.star %></div>
+<% if art_log.star.present? %>
+  <div>★<%= art_log.star %></div>
 <% end %>
-<div><%= @art_log.body %></div>
+<div><%= art_log.body %></div>
 
 <% if user_signed_in? %>
-  <% if art_log_like = ArtLogLike.find_by(user_id: current_user.id, art_log_id: @art_log.id) %>
-    <div><%= link_to "❤️", art_log_art_log_like_path(@art_log, art_log_like), method: :delete %></div>
+  <% if art_log_like = ArtLogLike.find_by(user_id: current_user.id, art_log_id: art_log.id) %>
+    <div><%= link_to "❤️", art_log_art_log_like_path(art_log, art_log_like), method: :delete %></div>
   <% else %>
-    <div><%= link_to "♡", art_log_art_log_likes_path(@art_log), method: :post %></div>
+    <div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
   <% end %>
 <% else %>
-  <div><%= link_to "♡", art_log_art_log_likes_path(@art_log), method: :post %></div>
+  <div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
 <% end %>
 
-いいね<%= @art_log.art_log_likes.count %>件
+いいね<%= art_log.art_log_likes.count %>件

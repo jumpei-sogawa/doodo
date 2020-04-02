@@ -1,7 +1,5 @@
-<div>views/exhibitions/_index.html.erb</div>
-
 <div>
-	<% @exhibitions.each do |exhb| %>
+	<% exhibitions.each do |exhb| %>
 		<div>
 			<%= link_to exhibition_path(exhb) do %>
 				<div><%= image_tag exhb.image if exhb.image.present? %></div>

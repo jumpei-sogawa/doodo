@@ -1,2 +1,7 @@
 <h1>ユーザーページ</h1>
-<%= render "users/show" %>
+<%= render partial: "users/show", locals: {
+  user: @user,
+  clipped_exhibitions: @clipped_exhibitions,
+  visited_exhibitions: @visited_exhibitions,
+  exhb_logs: @exhb_logs,
+  } %>
