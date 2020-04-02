@@ -2,14 +2,12 @@
 
 <h1><%= exhb.name %></h1>
 
-<% if exhb.image %>
-	<%= image_tag exhb.image %>
-<% end %>
-<br>
+<div><%= image_tag exhb.image if exhb.image.present? %></div>
 
 <% if exhb.star %>
-	<div>★<%= exhb.star.round(2) %></div>
+	<div>⭐️<%= exhb.star.round(2) %></div>
 <% end %>
+
 <%= link_to "行った！", new_exhibition_log_path(exhb) %>
 <% if user_signed_in? %>
 	<% if exhb_clip = ExhbClip.find_by(user_id: current_user.id, exhibition_id: exhb.id) %>
@@ -49,7 +47,7 @@
 	<div><%= link_to exhb.website, exhb.website, target: :_blank %></div>
 <% end %>
 
-<% if @arts.present?%>
+<% if @arts.present? %>
 	<h2>人気の作品一覧</h2>
 	<%= render "arts/index" %>
 <% end %>

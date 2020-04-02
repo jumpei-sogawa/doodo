@@ -1,34 +1,17 @@
-<% art_log = @art_log%>
 <h1>作品のログ詳細</h1>
-<%= link_to user_path(art_log.user) do %>
-  <% if art_log.user.image.present? %>
-    <%= image_tag art_log.user.image.to_s, height: "30px" %>
-  <% end %>
-  <div><%= art_log.user.display_name %></div>
-  <div>@<%= art_log.user.username %></div>
-<% end %>
-<div><%= art_log.created_at %></div>
-<% if art_log.star.present? %>
-  <div>★<%= art_log.star %></div>
-<% end %>
-<div><%= art_log.body %></div>
-<div><%= image_tag art_log.image_url if art_log.image.present? %></div>
-<% if user_signed_in? %>
-  <% if art_log_like = ArtLogLike.find_by(user_id: current_user.id, art_log_id: art_log.id) %>
-    <div><%= link_to "❤️", art_log_art_log_like_path(art_log, art_log_like), method: :delete %></div>
-  <% else %>
-    <div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
-  <% end %>
-<% else %>
-  <div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
-<% end %>
-<%= art_log.art_log_likes.count %>
-<% art_log.art_log_comments.each do |art_log_comment| %>
-  <div><%= art_log_comment.user.display_name %> @<%= art_log_comment.user.username %></div>
+<% @user = @art_log.user %>
+<%= render "users/user" %>
+
+<%= render "art_logs/show" %>
+
+<% @art_log.art_log_comments.each do |art_log_comment| %>
+  <% @user = art_log_comment.user %>
+  <%= render "users/user" %>
   <div><%= art_log_comment.body %></div>
 <% end %>
+
 <% if user_signed_in? %>
-  <%= form_with(model: @art_log_comment, url: art_log_art_log_comments_path(art_log)) do |form| %>
+  <%= form_with(model: @art_log_comment, url: art_log_art_log_comments_path(@art_log)) do |form| %>
     <%= form.text_area :body %>
     <%= form.submit "送信" %>
   <% end %>
