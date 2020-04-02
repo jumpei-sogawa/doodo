@@ -53,40 +53,4 @@
 <% end %>
 
 <h2>展覧会のログ一覧</h2>
-<% @exhb_logs.each do |exhb_log| %>
-	<%= link_to user_path(exhb_log.user) do %>
-		<%= image_tag exhb_log.user.image_url(:thumb), height: "30px" if exhb_log.user.image.present? %>
-		<div>
-			<%= exhb_log.user.display_name %>
-			<% if exhb_log.user.username.present? %>
-				 @<%= exhb_log.user.username %>
-			<% end %>
-		</div>
-	<% end %>
-	<div><%= exhb_log.created_at %></div>
-	<% if exhb_log.star.present? %>
-		<div>★<%= exhb_log.star %></div>
-	<% end %>
-	<div><%= exhb_log.body %></div>
-	<% if user_signed_in? %>
-		<% if exhb_log_like = ExhbLogLike.find_by(user_id: current_user.id, exhb_log_id: exhb_log.id) %>
-			<div><%= link_to "❤️", exhb_log_exhb_log_like_path(exhb_log, exhb_log_like), method: :delete %></div>
-		<% else %>
-			<div><%= link_to "♡", exhb_log_exhb_log_likes_path(exhb_log), method: :post %></div>
-		<% end %>
-	<% else %>
-		<div><%= link_to "♡", exhb_log_exhb_log_likes_path(exhb_log), method: :post %></div>
-	<% end %>
-	<%= exhb_log.exhb_log_likes.count %>
-	<% if exhb_log.exhb_log_comments.present? %>
-		<div><%= exhb_log.exhb_log_comments.last.user.display_name %> @<%= exhb_log.exhb_log_comments.last.user.username %></div>
-		<div><%= exhb_log.exhb_log_comments.last.body %></div>
-	<% end %>
-	<% if user_signed_in? %>
-		<%= form_with(model: @exhb_log_comment, url: exhb_log_exhb_log_comments_path(exhb_log)) do |form| %>
-			<%= form.text_area :body %>
-			<%= form.submit "送信" %>
-		<% end %>
-	<% end %>
-	<br>
-<% end %>
+<%= render "exhb_logs/index" %>
