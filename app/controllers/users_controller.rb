@@ -10,22 +10,22 @@ class UsersController < ApplicationController
 
   def edit
     unless @user == current_user
-      redirect_to user_path(@user)
+      redirect_to "/#{@user.username}"
     end
   end
 
   def update
     if current_user.update(user_params)
-      redirect_to mypage_path
+      redirect_to "/#{user_params[:username]}"
     else
-      redirect_to edit_user_path
+      redirect_to "/#{@user.username}/edit"
     end
   end
 
   private
 
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find_by(username: params[:username])
     end
 
     def user_params

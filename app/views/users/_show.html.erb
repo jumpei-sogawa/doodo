@@ -1,4 +1,4 @@
-<%= link_to user_path(user) do %>
+<%= link_to "/#{user.username}" do %>
   <% if user.image.present? %>
     <%= image_tag user.image.to_s, height: "30px" %>
   <% end %>

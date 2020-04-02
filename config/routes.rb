@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   root 'pages#trend'
   get '/search' => 'pages#search'
-  get '/mypage' => 'pages#mypage'
 
   resources :museums, only: [:index, :show]
+
   resources :exhibitions, only: [:index, :show] do
     resources :logs, only: [:new, :create]
     resources :exhb_clips, only: [:create, :destroy]
   end
+
   resources :arts, only: [:show]
 
   resources :exhb_logs, only: [:show] do
@@ -25,5 +26,9 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'
   }
-  resources :users, only: [:show, :edit, :update]
+
+  get '/mypage' => 'pages#mypage'
+  get '/:username' => 'users#show'
+  get '/:username/edit' => 'users#edit'
+  patch '/:username' => 'users#update'
 end

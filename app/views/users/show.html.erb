@@ -9,7 +9,7 @@
 <div><%= @user.bio %></div>
 
 <% if @user == current_user %>
-	<div><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
+	<div><%= link_to "プロフィール編集", "#{@user.username}/edit" %></div>
 <% end %>
 
 <h2>クリップした展覧会一覧</h2>

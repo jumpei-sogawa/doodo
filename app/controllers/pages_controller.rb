@@ -11,6 +11,6 @@ class PagesController < ApplicationController
   end
 
   def mypage
-    redirect_to user_path(current_user)
+    redirect_to "/#{current_user.username}"
   end
 end
