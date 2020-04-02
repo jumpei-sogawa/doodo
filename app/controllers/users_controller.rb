@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
-  before_action :set_user
+  before_action :set_user, only: [:show, :edit, :update]
+
+  def mypage
+    redirect_to "/#{current_user.username}"
+  end
 
   def show
     @clipped_exhibitions = @user.clipped_exhibitions.distinct

@@ -9,8 +9,4 @@ class PagesController < ApplicationController
   def search
     @exhibitions = Exhibition.all
   end
-
-  def mypage
-    redirect_to "/#{current_user.username}"
-  end
 end

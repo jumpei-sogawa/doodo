@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions'
   }
 
-  get '/mypage' => 'pages#mypage'
+  get '/mypage' => 'users#mypage'
   get '/:username' => 'users#show'
   get '/:username/edit' => 'users#edit'
   patch '/:username' => 'users#update'
