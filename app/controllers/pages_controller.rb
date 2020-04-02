@@ -11,8 +11,6 @@ class PagesController < ApplicationController
   end
 
   def mypage
-    @user = current_user
-    @exhb_logs = @user.exhb_logs.order(id: "DESC")
-    @exhibitions = @user.cliped_exhibitions
+    redirect_to user_path(current_user)
   end
 end

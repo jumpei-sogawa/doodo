@@ -1,0 +1,58 @@
+<div>views/users/_show.html.erb</div>
+
+<%= image_tag @user.image_url(:thumb) if @user.image.present? %>
+<div><span><%= @user.display_name %></span><span>@<%= @user.username %></span></div>
+<div><%= @user.bio %></div>
+
+<% if @user == current_user %>
+	<div><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
+<% end %>
+
+<h2>クリップした展覧会一覧</h2>
+<% @exhibitions = @clipped_exhibitions %>
+<%= render "exhibitions/index" %>
+
+<h2>行った展覧会一覧</h2>
+<% @exhibitions = @visited_exhibitions %>
+<%= render "exhibitions/index" %>
+
+<h2>ログ一覧</h2>
+<% @exhb_logs.each do |exhb_log| %>
+	<%= link_to exhb_log.exhibition.name, exhibition_path(exhb_log.exhibition), class: "bold" %>
+	<div><%= exhb_log.created_at %></div>
+	<% if exhb_log.star.present? %><div>★<%= exhb_log.star %></div><% end %>
+	<div><%= exhb_log.body %></div>
+	<% if user_signed_in? %>
+		<% if exhb_log_like = ExhbLogLike.find_by(user_id: current_user.id, exhb_log_id: exhb_log.id) %>
+			<div><%= link_to "❤️", exhb_log_exhb_log_like_path(exhb_log, exhb_log_like), method: :delete %></div>
+		<% else %>
+			<div><%= link_to "♡", exhb_log_exhb_log_likes_path(exhb_log), method: :post %></div>
+		<% end %>
+	<% else %>
+		<div><%= link_to "♡", exhb_log_exhb_log_likes_path(exhb_log), method: :post %></div>
+	<% end %>
+	<%= exhb_log.exhb_log_likes.count %>
+	<br>
+	<% exhb_log.art_logs.each do |art_log| %>
+		<%= link_to art_path(art_log.art) do %>
+			<div><%= image_tag art_log.image_url(:thumb), width: "200px" if art_log.image.present? %></div>
+			<div><%= art_log.art.name %>(<%= art_log.art.year %>)</div>
+			<div><%= art_log.art.artist.name %></div>
+			<% if art_log.star %>
+				<div>★<%= art_log.star %></div>
+			<% end %>
+		<% end %>
+		<div><%= art_log.body %></div>
+		<% if user_signed_in? %>
+			<% if art_log_like = ArtLogLike.find_by(user_id: current_user.id, art_log_id: art_log.id) %>
+				<div><%= link_to "❤️", art_log_art_log_like_path(art_log, art_log_like), method: :delete %></div>
+			<% else %>
+				<div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
+			<% end %>
+		<% else %>
+			<div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
+		<% end %>
+		<%= art_log.art_log_likes.count %>
+		<br>
+	<% end %>
+<% end %>

@@ -1,0 +1,9 @@
+<div>views/users/_user.html.erb</div>
+
+<%= link_to user_path(@user) do %>
+  <% if @user.image.present? %>
+    <%= image_tag @user.image.to_s, height: "30px" %>
+  <% end %>
+  <div><%= @user.display_name %></div>
+  <div>@<%= @user.username %></div>
+<% end %>

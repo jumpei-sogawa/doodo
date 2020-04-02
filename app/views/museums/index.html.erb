@@ -4,7 +4,7 @@
 	<%= form.submit "検索" %>
 <% end %>
 
-<h2>検索結果（<%= @museums.count %>件）</h2>
+<h2>検索ヒットした美術館一覧（<%= @museums.count %>件）</h2>
 
 <% @museums.each do |museum| %>
 	<%= link_to museum_path(museum) do %>
@@ -16,19 +16,9 @@
 		</div>
 	<% end %>
 	<% if museum.exhibitions.present? %>
-			<div class="bold">[開催中の展覧会]</div>
-			<% museum.exhibitions.each do |exhb| %>
-				<%= link_to exhibition_path(exhb) do %>
-					<div class="bold"><%= exhb.name %></div>
-					<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
-					<% if exhb.star %>
-						<div>★<%= exhb.star.round(2) %></div>
-					<% end %>
-					<% if exhb.image %>
-						<%= image_tag exhb.image %>
-					<% end %>
-				<% end %>
-			<% end %>
+			<div class="bold">[開催中の展覧会一覧]</div>
+			<% @exhibitions = museum.exhibitions %>
+			<%= render "exhibitions/index" %>
 		<% end %>
 	<br>
 <% end %>

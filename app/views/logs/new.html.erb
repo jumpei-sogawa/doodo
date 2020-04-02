@@ -1,4 +1,4 @@
-<h1>ログを残す</h1>
+<h1>展覧会のログフォーム</h1>
 
 <h2><%= @exhibition.name %></h2>
 
@@ -13,7 +13,7 @@
 
 	<% if @arts.present? %>
 		<div>
-			<h3>作品リスト</h3>
+			<h2>作品一覧</h2>
 			<% @arts.each do |art| %>
 				<div class="bold"><%= art.name %></div>
 				<div><%= art.artist.name %></div>

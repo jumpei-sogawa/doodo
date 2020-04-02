@@ -1,27 +1,6 @@
 <h1>トレンド</h1>
-<h2>人気の展覧会</h2>
-<% @exhibitions.each do |exhb| %>
-	<%= link_to exhibition_path(exhb) do %>
-		<% if exhb.image.present? %>
-			<%= image_tag exhb.image %>
-		<% end %>
-		<div><%= exhb.name %></div>
-		<% if exhb.star %>
-			<div>★<%= exhb.star.round(2) %></div>
-		<% end %>
-	<% end %>
-	<br>
-<% end %>
+<h2>人気の展覧会一覧</h2>
+<%= render "exhibitions/index" %>
 
-<h2>人気の作品</h2>
-<% @arts.each do |art| %>
-	<%= link_to art_path(art) do %>
-		<div><%= image_tag art.liked_image.to_s, width: "200px" %></div>
-		<div><%= art.name %></div>
-		<div><%= art.artist.name %></div>
-		<% if art.star.present? %>
-			<div>★<%= art.star.round(2) %></div>
-		<% end %>
-	<% end %>
-	<br>
-<% end %>
+<h2>人気の作品一覧</h2>
+<%= render "arts/index" %>

@@ -1,5 +1,5 @@
 <% art_log = @art_log%>
-<h1>作品へのログ詳細</h1>
+<h1>作品のログ詳細</h1>
 <%= link_to user_path(art_log.user) do %>
   <% if art_log.user.image.present? %>
     <%= image_tag art_log.user.image.to_s, height: "30px" %>

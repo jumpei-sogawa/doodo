@@ -1,10 +1,8 @@
 <h1><%= @museum.name %></h1>
 
-<% if @museum.image %>
-	<%= image_tag @museum.image %>
-<% end %>
+<%= image_tag @museum.image if @museum.image.present? %>
 
-<h2>詳細</h2>
+<h2>美術館詳細</h2>
 <h3>住所</h3>
 <div><%= @museum.address %></div>
 
@@ -16,18 +14,5 @@
 	<div><%= link_to @museum.website, @museum.website, target: :_blank %></div>
 <% end %>
 
-<% if @exhibitions.present? %>
-	<h2>開催中の展覧会</h2>
-	<% @exhibitions.each do |exhb| %>
-		<%= link_to exhibition_path(exhb) do %>
-			<div class="bold"><%= exhb.name %></div>
-			<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
-			<% if exhb.star %>
-				<div>★<%= exhb.star.round(2) %></div>
-			<% end %>
-			<% if exhb.image %>
-				<%= image_tag exhb.image %>
-			<% end %>
-		<% end %>
-	<% end %>
-<% end %>
+<h2>開催中の展覧会一覧</h2>
+<%= render "exhibitions/index" %>

@@ -1,25 +1,9 @@
-<h1>展覧会を検索</h1>
+<h1>場所と日時から探す</h1>
 <%= form_with(scope: :search, url: exhibitions_path, method: :get, local: true) do |form| %>
 	場所：<%= form.text_field :area, value: @search_params[:area] %>
 	日時：<%= form.date_field :date, value: @search_params[:date] %>
 	<%= form.submit "検索" %>
 <% end %>
 
-<h2>検索結果（<%= @exhibitions.count %>件）</h2>
-
-<% @exhibitions.each do |exhb| %>
-	<%= link_to exhibition_path(exhb) do %>
-		<div>
-			<% if exhb.image %>
-				<%= image_tag exhb.image %>
-			<% end %>
-			<div><%= exhb.name %></div>
-			<div>@<%= exhb.museum.name %></div>
-			<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
-			<% if exhb.star %>
-				<div>★<%= exhb.star.round(2) %></div>
-			<% end %>
-		</div>
-	<% end %>
-	<br>
-<% end %>
+<h2>検索ヒットした展覧会一覧（<%= @exhibitions.count %>件）</h2>
+<%= render "exhibitions/index" %>

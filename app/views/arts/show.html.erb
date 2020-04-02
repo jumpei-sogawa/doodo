@@ -8,7 +8,7 @@
 <% end %>
 <br>
 
-<h2>展覧情報</h2>
+<h2>展覧会</h2>
 <% exhb = @art.exhibition %>
 <%= link_to exhibition_path(exhb) do %>
 	<% if exhb.image.present? %>
@@ -18,42 +18,5 @@
 	<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
 <% end %>
 
-<h2>この作品へのコメント</h2>
-<% @art_logs.each do |art_log| %>
-	<%= link_to user_path(art_log.user) do %>
-		<% if art_log.user.image.present? %>
-			<%= image_tag art_log.user.image.to_s, height: "30px" %>
-		<% end %>
-		<div><%= art_log.user.display_name %></div>
-		<div>@<%= art_log.user.username %></div>
-	<% end %>
-	<div><%= art_log.created_at %></div>
-	<% if art_log.star.present? %>
-		<div>★<%= art_log.star %></div>
-	<% end %>
-	<div><%= art_log.body %></div>
-	<%= link_to art_log_path(art_log) do %>
-		<div><%= image_tag art_log.image_url(:thumb), width: "200px" if art_log.image.present? %></div>
-	<% end %>
-	<% if user_signed_in? %>
-		<% if art_log_like = ArtLogLike.find_by(user_id: current_user.id, art_log_id: art_log.id) %>
-			<div><%= link_to "❤️", art_log_art_log_like_path(art_log, art_log_like), method: :delete %></div>
-		<% else %>
-			<div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
-		<% end %>
-	<% else %>
-		<div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post %></div>
-	<% end %>
-	<%= art_log.art_log_likes.count %>
-	<% if art_log.art_log_comments.present? %>
-		<div><%= art_log.art_log_comments.last.user.display_name %> @<%= art_log.art_log_comments.last.user.username %></div>
-		<div><%= art_log.art_log_comments.last.body %></div>
-	<% end %>
-	<% if user_signed_in? %>
-		<%= form_with(model: @art_log_comment, url: art_log_art_log_comments_path(art_log)) do |form| %>
-			<%= form.text_area :body %>
-			<%= form.submit "送信" %>
-		<% end %>
-	<% end %>
-	<br>
-<% end %>
+<h2>作品のログ一覧</h2>
+<%= render "art_logs/index" %>

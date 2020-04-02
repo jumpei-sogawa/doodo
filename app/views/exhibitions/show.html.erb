@@ -21,7 +21,7 @@
 	<div><%= link_to "クリップ！", exhibition_exhb_clips_path(exhb), method: :post %></div>
 <% end %>
 
-<h2>詳細</h2>
+<h2>展覧会詳細</h2>
 <h3>会場</h3>
 <div><%= link_to exhb.museum.name, museum_path(exhb.museum) %></div>
 <div><%= exhb.museum.address %></div>
@@ -50,22 +50,11 @@
 <% end %>
 
 <% if @arts.present?%>
-	<h2>人気の作品</h2>
-	<% @arts.each do |art| %>
-		<%= link_to art_path(art) do %>
-			<%= image_tag art.liked_image.to_s, width: "200px" if art.liked_image.present? %>
-			<div class="bold"><%= art.name %></div>
-			<div>作者：<%= art.artist.name %></div>
-			<div>制作年：<%= art.year %></div>
-			<% if art.star.present? %>
-				<div>★<%= art.star.round(2) %></div>
-			<% end %>
-		<% end %>
-		<br>
-	<% end %>
+	<h2>人気の作品一覧</h2>
+	<%= render "arts/index" %>
 <% end %>
 
-<h2>この展覧会へのコメント</h2>
+<h2>展覧会のログ一覧</h2>
 <% @exhb_logs.each do |exhb_log| %>
 	<%= link_to user_path(exhb_log.user) do %>
 		<%= image_tag exhb_log.user.image_url(:thumb), height: "30px" if exhb_log.user.image.present? %>
@@ -101,6 +90,5 @@
 			<%= form.submit "送信" %>
 		<% end %>
 	<% end %>
-
 	<br>
 <% end %>

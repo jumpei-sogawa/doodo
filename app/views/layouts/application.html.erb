@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ARTON</title>
+    <title>stART</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,13 +10,13 @@
   </head>
 
   <body>
-    <%= link_to root_path do %><h1>ARTON</h1><% end %>
+    <%= link_to root_path do %><h1>stART</h1><% end %>
     <h1>MENU</h1>
     <div><%= link_to 'トレンド', "/" %></div>
     <div><%= link_to '検索', "/search" %></div>
     <div>NEWS</div>
+    <div><%= link_to 'マイページ', "/mypage" %></div>
     <% if user_signed_in? %>
-      <div><%= link_to 'マイページ', "/mypage" %></div>
       <div><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></div>
     <% else %>
       <div><%= link_to 'ログイン', new_user_session_path %></div>

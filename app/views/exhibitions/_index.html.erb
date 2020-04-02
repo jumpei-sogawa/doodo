@@ -1,0 +1,18 @@
+<div>views/exhibitions/_index.html.erb</div>
+
+<div>
+	<% @exhibitions.each do |exhb| %>
+		<div>
+			<%= link_to exhibition_path(exhb) do %>
+				<div><%= image_tag exhb.image if exhb.image.present? %></div>
+				<div><%= exhb.name %></div>
+			<% end %>
+			<div><%= link_to "@#{exhb.museum.name}", museum_path(exhb.museum) %></div>
+			<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
+			<% if exhb.star.present? %>
+				<div>★<%= exhb.star.round(2) %></div>
+			<% end %>
+		</div>
+		<br>
+	<% end %>
+</div>

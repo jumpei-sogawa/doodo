@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @exhb_logs = @user.exhb_logs.order(id: "DESC")
-    @exhibitions = @user.cliped_exhibitions
+    @clipped_exhibitions = @user.clipped_exhibitions.uniq
+    @visited_exhibitions = @user.visited_exhibitions.uniq
   end
 
   def edit
