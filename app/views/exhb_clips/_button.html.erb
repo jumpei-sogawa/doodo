@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+	<% if exhb_clip = ExhbClip.find_by(user_id: current_user.id, exhibition_id: exhb.id) %>
+		<div><%= link_to "クリップを外す", exhibition_exhb_clip_path(exhb, exhb_clip), method: :delete, remote: true %></div>
+	<% else %>
+		<div><%= link_to "クリップ！", exhibition_exhb_clips_path(exhb), method: :post, remote: true %></div>
+	<% end %>
+<% else %>
+	<div><%= link_to "クリップ！", exhibition_exhb_clips_path(exhb), method: :post, remote: true %></div>
+<% end %>

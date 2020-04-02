@@ -9,15 +9,9 @@
 <% end %>
 
 <%= link_to "行った！", new_exhibition_log_path(exhb) %>
-<% if user_signed_in? %>
-	<% if exhb_clip = ExhbClip.find_by(user_id: current_user.id, exhibition_id: exhb.id) %>
-		<div><%= link_to "クリップを外す", exhibition_exhb_clip_path(exhb, exhb_clip), method: :delete %></div>
-	<% else %>
-		<div><%= link_to "クリップ！", exhibition_exhb_clips_path(exhb), method: :post %></div>
-	<% end %>
-<% else %>
-	<div><%= link_to "クリップ！", exhibition_exhb_clips_path(exhb), method: :post %></div>
-<% end %>
+<div id="exhb_clip">
+	<%= render partial: "exhb_clips/button", locals: {exhb: exhb} %>
+</div>
 
 <h2>展覧会詳細</h2>
 <h3>会場</h3>

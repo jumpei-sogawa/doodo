@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <% if art_log_like = ArtLogLike.find_by(user_id: current_user.id, art_log_id: art_log.id) %>
+    <div><%= link_to "❤️", art_log_art_log_like_path(art_log, art_log_like), method: :delete, remote: true %></div>
+  <% else %>
+    <div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post, remote: true %></div>
+  <% end %>
+<% else %>
+  <div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post, remote: true %></div>
+<% end %>

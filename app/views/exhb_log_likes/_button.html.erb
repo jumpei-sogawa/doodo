@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <% if exhb_log_like = ExhbLogLike.find_by(user_id: current_user.id, exhb_log_id: exhb_log.id) %>
+    <div><%= link_to "❤️", exhb_log_exhb_log_like_path(exhb_log, exhb_log_like), method: :delete, remote: true %></div>
+  <% else %>
+    <div><%= link_to "♡", exhb_log_exhb_log_likes_path(exhb_log), method: :post, remote: true %></div>
+  <% end %>
+<% else %>
+  <div><%= link_to "♡", exhb_log_exhb_log_likes_path(exhb_log), method: :post, remote: true %></div>
+<% end %>
