@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update]
+  before_action :authenticate_user!, only: [:edit, :update]
+  before_action :set_user
 
   def show
     @clipped_exhibitions = @user.clipped_exhibitions.distinct
@@ -8,7 +9,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    unless @user == current_user
+      redirect_to user_path(@user)
+    end
   end
 
   def update
