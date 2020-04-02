@@ -15,9 +15,10 @@
 		<div>
 			<h2>作品一覧</h2>
 			<% @arts.each do |art| %>
+				<%= image_tag art.liked_image.to_s, width: "200px" if art.liked_image.present? %>
 				<div class="bold"><%= art.name %></div>
-				<div><%= art.artist.name %></div>
-				<div><%= art.year %></div>
+				<div>作者：<%= art.artist.name %></div>
+				<div>制作年：<%= art.year %></div>
 
 				<%= exhb_log_form.fields_for :art_logs do |art_log_fields| %>
 					<%= art_log_fields.hidden_field :art_id, value: art.id %>
