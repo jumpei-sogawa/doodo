@@ -14,25 +14,16 @@
  *= require_self
  */
 
-* {
-	color: #282828;
-	background-color: #fcfcfc;
-}
-
-a {
-	text-decoration: none;
-}
-
-a:visited {
-	color: black;
-}
-
-a:hover {
-	color: gray;
-}
-
 .bold {
 	font-weight: bold;
+}
+
+.center {
+	margin: 0 auto;
+}
+
+.mr10 {
+	margin-right: 10px;
 }
 
 @import "css/main";

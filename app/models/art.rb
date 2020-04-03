@@ -19,7 +19,7 @@ class Art < ApplicationRecord
   def liked_image
     sorted_art_logs = self.art_logs.sort { |a,b| a.art_log_likes.count <=> b.art_log_likes.count }
     if sorted_art_logs.present?
-      return sorted_art_logs.last.image
+      return sorted_art_logs.last.image_url(:thumb)
     else
       return nil
     end
