@@ -1,12 +1,27 @@
-<h1>美術館を検索</h1>
-<%= form_with(scope: :search, url: museums_path, method: :get, local: true) do |form| %>
-	場所：<%= form.text_field :area, value: @search_params[:area] %>
-	<%= form.submit "検索" %>
-<% end %>
+<section>
+	<form method="get" action="/museums" accept-charset="UTF-8">
+		<div class="row gtr-uniform">
+			<div class="col-1 col-3-xsmall">
+				<h3>エリア</h3>
+			</div>
+			<div class="col-5 col-9-xsmall">
+				<input type="text" name="search[area]" id="search_area" value="" placeholder="東京" />
+			</div>
+			<!-- Break -->
+			<div class="col-4 col-12-xsmall">
+				<ul class="actions">
+					<li><input type="submit" value="検索" class="primary" /></li>
+					<li><input type="reset" value="リセット" /></li>
+				</ul>
+			</div>
+		</div>
+	</form>
 
-<h2>検索ヒットした美術館一覧（<%= @museums.count %>件）</h2>
+	<header class="major">
+		<h2>検索結果（<%= @museums.count %>件）</h2>
+	</header>
 
-<% @museums.each do |museum| %>
+	<% @museums.each do |museum| %>
 	<%= link_to museum_path(museum) do %>
 		<div>
 			<h3><%= museum.name %></h3>
@@ -21,3 +36,5 @@
 		<% end %>
 	<br>
 <% end %>
+
+</section>
