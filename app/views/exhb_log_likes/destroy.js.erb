@@ -1,2 +1,2 @@
 $("#exhb_log_like_<%= @exhb_log.id %>").html("<%= j(render partial: "exhb_log_likes/button", locals: {exhb_log: @exhb_log}) %>");
-$("#exhb_log_like_count_<%= @exhb_log.id %>").html("<%= j(render partial: "exhb_log_likes/count", locals: {exhb_log: @exhb_log}) %>");
+$("#exhb_log_likes_count_<%= @exhb_log.id %>").html("<%= j(render partial: "exhb_log_likes/count", locals: {exhb_log: @exhb_log}) %>");
