@@ -1,9 +1,37 @@
-<h1>場所と日時から探す</h1>
-<%= form_with(scope: :search, url: exhibitions_path, method: :get, local: true) do |form| %>
-	場所：<%= form.text_field :area, value: @search_params[:area] %>
-	日時：<%= form.date_field :date, value: @search_params[:date] %>
-	<%= form.submit "検索" %>
-<% end %>
 
-<h2>検索ヒットした展覧会一覧（<%= @exhibitions.count %>件）</h2>
-<%= render partial: "exhibitions/index", locals: {exhibitions: @exhibitions} %>
+
+<section>
+	<form method="get" action="/exhibitions" accept-charset="UTF-8">
+		<div class="row gtr-uniform">
+			<div class="col-1 col-3-xsmall">
+				<h3>エリア</h3>
+			</div>
+			<div class="col-4 col-7-xsmall">
+				<input type="text" name="search[area]" id="search_area" value="" placeholder="東京" />
+			</div>
+			<div class="col-1 col-2-xsmall">
+			</div>
+			<div class="col-1 col-2-xsmall">
+				<h3>日時</h3>
+			</div>
+			<div class="col-5 off-1-xsmall col-8-xsmall">
+				<input type="date" name="search[date]" id="search_date" value="" placeholder="" />
+			</div>
+			<!-- Break -->
+			<div class="col-12">
+				<ul class="actions">
+					<li><input type="submit" value="検索" class="primary" /></li>
+					<li><input type="reset" value="リセット" /></li>
+				</ul>
+			</div>
+		</div>
+	</form>
+
+	<header class="major">
+		<h2>検索ヒットした展覧会一覧（<%= @exhibitions.count %>件）</h2>
+	</header>
+	<div class="features">
+		<%= render partial: "exhibitions/index", locals: {exhibitions: @exhibitions} %>
+	</div>
+</section>
+
