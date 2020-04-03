@@ -11,4 +11,6 @@
   <%= render partial: "art_log_likes/button", locals: {art_log: art_log} %>
 </div>
 
-<div>いいね<%= art_log.art_log_likes.count %>件</div>
+<div id="art_log_like_count_<%= art_log.id %>">
+  <%= render partial: "art_log_likes/count", locals: {art_log: art_log} %>
+</div>

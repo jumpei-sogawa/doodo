@@ -7,4 +7,9 @@
 <div id="exhb_log_like_<%= exhb_log.id %>">
   <%= render partial: "exhb_log_likes/button", locals: {exhb_log: exhb_log} %>
 </div>
-<div>いいね<%= exhb_log.exhb_log_likes.count %>件</div>
+
+<div id="exhb_log_like_count_<%= exhb_log.id %>">
+  <%= render partial: "exhb_log_likes/count", locals: {exhb_log: exhb_log} %>
+</div>
+
+
