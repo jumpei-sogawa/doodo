@@ -1,18 +1,31 @@
-<h1><%= @museum.name %></h1>
+<section>
+	<header class="major">
+		<h2><%= @museum.name %></h2>
+	</header>
 
-<%= image_tag @museum.image if @museum.image.present? %>
+	<div class="row">
+		<div class="col-6 col-12-xsmall image">
+			<%= image_tag @museum.image, width: "100%" if @museum.image.present? %>
 
-<h2>美術館詳細</h2>
-<h3>住所</h3>
-<div><%= @museum.address %></div>
+			<p>
+				<h3>住所</h3>
+				<p><%= @museum.address %></p>
 
-<h3>お問い合わせ先</h3>
-<div><%= @museum.phone %></div>
+				<h3>お問い合わせ先</h3>
+				<p><%= @museum.phone %></p>
 
-<h3>公式サイト</h3>
-<% if @museum.website.present? %>
-	<div><%= link_to @museum.website, @museum.website, target: :_blank %></div>
-<% end %>
+				<h3>公式サイト</h3>
+				<% if @museum.website.present? %>
+					<p><%= link_to @museum.website, @museum.website, target: :_blank %></p>
+				<% end %>
+			</p>
+		</div>
 
-<h2>開催中の展覧会一覧</h2>
-<%= render partial: "exhibitions/index", locals: {exhibitions: @exhibitions} %>
+		<div class="col-6 col-12-xsmall">
+			<header>
+				<h2>開催中の展覧会一覧</h2>
+			</header>
+			<%= render partial: "exhibitions/index", locals: {exhibitions: @exhibitions} %>
+		</div>
+	</div>
+</section>
