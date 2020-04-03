@@ -4,6 +4,7 @@ class MuseumsController < ApplicationController
   # GET /museums
   # GET /museums.json
   def index
+    @title = "美術館検索"
     @search_params = search_params
     if search_params[:area].present?
       @museums = Museum.where("address LIKE ?", "%#{search_params[:area]}%")
@@ -16,6 +17,7 @@ class MuseumsController < ApplicationController
   # GET /museums/1
   # GET /museums/1.json
   def show
+    @title = "美術館詳細"
     @exhibitions = @museum.exhibitions
   end
 

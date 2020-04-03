@@ -4,6 +4,7 @@ class ExhibitionsController < ApplicationController
   # GET /exhibitions
   # GET /exhibitions.json
   def index
+    @title = "展覧会検索"
     @search_params = search_params
     if search_params[:area].present? || search_params[:date].present?
       @exhibitions = Exhibition.search(search_params).sort { |a,b| b <=> a }
@@ -15,6 +16,7 @@ class ExhibitionsController < ApplicationController
   # GET /exhibitions/1
   # GET /exhibitions/1.json
   def show
+    @title = "展覧会詳細"
     @arts = @exhibition.arts.where("star >= ?", 0).order(star: "DESC")
     @exhb_logs = @exhibition.exhb_logs.order(id: "DESC")
     @exhb_log_comment = ExhbLogComment.new

@@ -16,6 +16,7 @@ class LogsController < ApplicationController
 
   # GET /logs/new
   def new
+    @title = "ログフォーム"
     @exhb_log = ExhbLog.new
     @exhb_log.art_logs.build
     @arts = @exhibition.arts
