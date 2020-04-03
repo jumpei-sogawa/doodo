@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'pages#trend'
+  root 'pages#home'
+  get '/trend' => 'pages#trend'
   get '/search' => 'pages#search'
 
   resources :museums, only: [:index, :show]

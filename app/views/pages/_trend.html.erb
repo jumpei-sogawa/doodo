@@ -1,0 +1,19 @@
+<!-- Section -->
+<section>
+  <header class="major">
+    <h2>人気の展覧会</h2>
+  </header>
+  <div class="features">
+    <%= render partial: "exhibitions/index", locals: {exhibitions: exhibitions} %>
+  </div>
+</section>
+
+<!-- Section -->
+<section>
+  <header class="major">
+    <h2>人気の作品</h2>
+  </header>
+  <div class="features">
+    <%= render partial: "arts/index", locals: {arts: arts} %>
+  </div>
+</section>

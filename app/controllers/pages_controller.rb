@@ -1,4 +1,10 @@
 class PagesController < ApplicationController
+  def home
+    @title = ""
+    @exhibitions = Exhibition.where("star >= ?", 0).order(star: "DESC")
+    @arts = Art.where("star >= ?", 0).order(star: "DESC")
+  end
+
   def trend
     @title = "トレンド"
     @exhibitions = Exhibition.where("star >= ?", 0).order(star: "DESC")
@@ -6,6 +12,7 @@ class PagesController < ApplicationController
   end
 
   def search
+    @title = "検索"
     @exhibitions = Exhibition.all
   end
 end
