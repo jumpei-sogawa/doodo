@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:mypage, :edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
 
   def mypage
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to "/#{user_params[:username]}"
+      redirect_to "/#{current_user.username}"
     else
       redirect_to "/#{@user.username}/edit"
     end
