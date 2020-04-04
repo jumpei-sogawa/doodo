@@ -4,7 +4,11 @@
     <h2>今人気の展覧会</h2>
   </header>
   <div class="features">
-    <%= render partial: "exhibitions/index", locals: {exhibitions: exhibitions} %>
+    <% @exhibitions.each do |exhb| %>
+			<article>
+				<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+			</article>
+		<% end %>
   </div>
 </section>
 

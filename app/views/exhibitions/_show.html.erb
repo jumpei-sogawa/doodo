@@ -6,9 +6,19 @@
 <div class="content">
   <p>
     <h3><a href="/exhibitions/<%=exhb.id%>"><%= exhb.name %></a></h3>
-    <% if exhb.star.present? %>
-      <h2><i class="fas fa-star yellow"></i><%= exhb.star.round(2) %></h2>
-    <% end %>
+    <h2 class="row">
+      <% if exhb.star.present? %>
+        <div class="col-6">
+          <i class="fas fa-star yellow"></i><%= exhb.star.round(2) %>
+        </div>
+      <% end %>
+      <div class="col-3 align-center">
+        <a href="/exhibitions/<%=exhb.id%>/logs/new"><i class="fas fa-edit"></i></a>
+      </div>
+      <div id="exhb_clip_<%= exhb.id %>" class="col-3 align-center">
+        <%= render partial: "exhb_clips/button", locals: {exhb: exhb} %>
+      </div>
+    </h2>
     <div>@<%= exhb.museum.name %></div>
     <div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
   </p>

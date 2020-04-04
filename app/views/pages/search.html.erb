@@ -56,9 +56,13 @@
   <header class="major">
     <h2>おすすめの展覧会一覧</h2>
   </header>
-  <div class="features">
-    <%= render partial: "exhibitions/index", locals: {exhibitions: @exhibitions} %>
-  </div>
+	<div class="features">
+		<% @exhibitions.each do |exhb| %>
+			<article>
+				<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+			</article>
+		<% end %>
+	</div>
 </section>
 
 

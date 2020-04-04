@@ -13,10 +13,22 @@
 <% end %>
 
 <h2>クリップした展覧会一覧</h2>
-<%= render partial: "exhibitions/index", locals: {exhibitions: @clipped_exhibitions} %>
+<div class="features">
+  <% @clipped_exhibitions.each do |exhb| %>
+    <article>
+      <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+    </article>
+  <% end %>
+</div>
 
 <h2>行った展覧会一覧</h2>
-<%= render partial: "exhibitions/index", locals: {exhibitions: @visited_exhibitions} %>
+<div class="features">
+  <% @visited_exhibitions.each do |exhb| %>
+    <article>
+      <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+    </article>
+  <% end %>
+</div>
 
 <h2>ログ一覧</h2>
 <%= render partial: "logs/index", locals: {exhb_logs: @exhb_logs} %>

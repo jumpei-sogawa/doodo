@@ -29,7 +29,11 @@
 		<h2>検索ヒットした展覧会一覧（<%= @exhibitions.count %>件）</h2>
 	</header>
 	<div class="features">
-		<%= render partial: "exhibitions/index", locals: {exhibitions: @exhibitions} %>
+		<% @exhibitions.each do |exhb| %>
+			<article>
+				<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+			</article>
+		<% end %>
 	</div>
 </section>
 

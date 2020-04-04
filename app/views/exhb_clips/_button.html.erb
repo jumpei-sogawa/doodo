@@ -1,15 +1,15 @@
 <% if user_signed_in? %>
 	<% if exhb_clip = ExhbClip.find_by(user_id: current_user.id, exhibition_id: exhb.id) %>
-		<h1><a data-remote="true" rel="nofollow" data-method="delete" href="/exhibitions/<%=exhb.id%>/exhb_clips/<%=exhb_clip.id%>">
+		<a data-remote="true" rel="nofollow" data-method="delete" href="/exhibitions/<%=exhb.id%>/exhb_clips/<%=exhb_clip.id%>">
 			<i class="fas fa-thumbtack pink"></i>
-		</a></h1>
+		</a>
 	<% else %>
-		<h1><a data-remote="true" rel="nofollow" data-method="post" href="/exhibitions/<%=exhb.id%>/exhb_clips">
+		<a data-remote="true" rel="nofollow" data-method="post" href="/exhibitions/<%=exhb.id%>/exhb_clips">
 			<i class="fas fa-thumbtack"></i>
-		</a></h1>
+		</a>
 	<% end %>
 <% else %>
-	<h1><a data-remote="true" rel="nofollow" data-method="post" href="/exhibitions/<%=exhb.id%>/exhb_clips">
+	<a data-remote="true" rel="nofollow" data-method="post" href="/exhibitions/<%=exhb.id%>/exhb_clips">
 		<i class="fas fa-thumbtack"></i>
-	</a></h1>
+	</a>
 <% end %>
