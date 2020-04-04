@@ -16,10 +16,19 @@ class Art < ApplicationRecord
     self.update(star: star)
   end
 
-  def liked_image
+  def liked_thumb
     sorted_art_logs = self.art_logs.sort { |a,b| a.art_log_likes.count <=> b.art_log_likes.count }
     if sorted_art_logs.present?
       return sorted_art_logs.last.image_url(:thumb)
+    else
+      return nil
+    end
+  end
+
+  def liked_image
+    sorted_art_logs = self.art_logs.sort { |a,b| a.art_log_likes.count <=> b.art_log_likes.count }
+    if sorted_art_logs.present?
+      return sorted_art_logs.last.image
     else
       return nil
     end

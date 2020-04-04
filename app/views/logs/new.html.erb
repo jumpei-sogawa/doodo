@@ -1,21 +1,25 @@
-<h1>展覧会のログフォーム</h1>
+<section>
+	<header class="major">
+		<h2><%= @exhibition.name %></h2>
+	</header>
 
-<h2><%= @exhibition.name %></h2>
-
-<%= form_for(@exhb_log, url: exhibition_logs_path) do |exhb_log_form| %>
-	<div>
-		評価：<%= exhb_log_form.range_field :star, min: 0.0, max: 3.0, step: '0.5', value: 0.0 %><span id="star">0.0</span>
-	</div>
-
-	<div>
-		コメント：<%= exhb_log_form.text_area :body, size: "30x2" %>
-	</div>
-
-	<% if @arts.present? %>
+	<%= form_for(@exhb_log, url: exhibition_logs_path) do |exhb_log_form| %>
 		<div>
-			<h2>作品一覧</h2>
+			<h1><i class="fas fa-star yellow"></i></h1>
+			<%= exhb_log_form.range_field :star, min: 0.0, max: 3.0, step: '0.5', value: 0.0 %><span id="star">0.0</span>
+		</div>
+
+		<div>
+			コメント：<%= exhb_log_form.text_area :body, size: "30x2" %>
+		</div>
+</section>
+<section>
+		<% if @arts.present? %>
+			<header class="major">
+				<h2>作品一覧</h2>
+			</header>
 			<% @arts.each do |art| %>
-				<%= image_tag art.liked_image.to_s, width: "200px" if art.liked_image.present? %>
+				<%= image_tag art.liked_thumb, width: "200px" if art.liked_thumb.present? %>
 				<div class="bold"><%= art.name %></div>
 				<div>作者：<%= art.artist.name %></div>
 				<div>制作年：<%= art.year %></div>
@@ -28,13 +32,14 @@
 				<% end %>
 				<br>
 			<% end %>
+		<% end %>
+
+		<div>
+			<%= exhb_log_form.submit "保存" %>
 		</div>
 	<% end %>
+</section>
 
-	<div>
-		<%= exhb_log_form.submit "保存" %>
-	</div>
-<% end %>
 
 <script type="text/javascript" language="javascript">
 	var target = document.getElementById('exhb_log_star');

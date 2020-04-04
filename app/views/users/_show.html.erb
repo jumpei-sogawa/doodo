@@ -1,7 +1,17 @@
-<%= link_to "/#{user.username}" do %>
-  <% if user.image.present? %>
-    <%= image_tag user.image.to_s, height: "30px" %>
-  <% end %>
-  <div><%= user.display_name %></div>
-  <div>@<%= user.username %></div>
-<% end %>
+<div>
+  <span>
+    <a href="/<%=user.username%>" class="image">
+      <%= image_tag user.image.to_s, height: "30px" if user.image.present? %>
+    </a>
+  </span>
+  <span>
+    <a href="/<%=user.username%>" class="dark bb0">
+      <%= user.display_name %>
+    </a>
+  </span>
+  <span>
+    <a href="/<%=user.username%>" class="dark bb0">
+      @<%= user.username %>
+    </a>
+  </span>
+</div>

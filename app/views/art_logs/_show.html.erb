@@ -1,16 +1,26 @@
-<div><%= art_log.created_at %></div>
-<%= link_to art_log_path(art_log) do %>
-  <div><%= image_tag art_log.image_url(:thumb), width: "200px" if art_log.image.present? %></div>
-<% end %>
-<% if art_log.star.present? %>
-  <div>★<%= art_log.star %></div>
-<% end %>
-<div><%= art_log.body %></div>
-
-<div id="art_log_like_<%= art_log.id %>">
-  <%= render partial: "art_log_likes/button", locals: {art_log: art_log} %>
+<div class="row">
+  <% art_log.star.times do %>
+    <div class="col-1">
+      <h2><i class="fas fa-star yellow"></i><h2>
+    </div>
+  <% end %>
+  <div class="col-9"><%= art_log.created_at %></div>
+  <div class="col-12"><%= art_log.body %></div>
 </div>
 
-<div id="art_log_likes_count_<%= art_log.id %>">
-  <%= render partial: "art_log_likes/count", locals: {art_log: art_log} %>
+<div>
+  <a href="/art_logs/<%=art_log.id%>" class="image">
+    <%= image_tag art_log.image_url(:thumb), width: "200px" if art_log.image.present? %>
+  </a>
 </div>
+
+<div class="row">
+  <span id="art_log_like_<%= art_log.id %>">
+    <%= render partial: "art_log_likes/button", locals: {art_log: art_log} %>
+  </span>
+
+  <span id="art_log_likes_count_<%= art_log.id %>">
+    <%= render partial: "art_log_likes/count", locals: {art_log: art_log} %>
+  </span>
+</div>
+

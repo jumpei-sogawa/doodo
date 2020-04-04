@@ -1,9 +1,15 @@
 <% if user_signed_in? %>
   <% if art_log_like = ArtLogLike.find_by(user_id: current_user.id, art_log_id: art_log.id) %>
-    <div><%= link_to "❤️", art_log_art_log_like_path(art_log, art_log_like), method: :delete, remote: true %></div>
+    <a data-remote="true" rel="nofollow" data-method="delete" href="/art_logs/<%=art_log.id%>/art_log_likes/<%=art_log_like.id%>" class="bb0">
+			<h2><i class="fas fa-heart pink bb0"></i></h2>
+		</a>
   <% else %>
-    <div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post, remote: true %></div>
+    <a data-remote="true" rel="nofollow" data-method="post" href="/art_logs/<%=art_log.id%>/art_log_likes" class="bb0">
+			<h2><i class="far fa-heart"></i></h2>
+		</a>
   <% end %>
 <% else %>
-  <div><%= link_to "♡", art_log_art_log_likes_path(art_log), method: :post, remote: true %></div>
+  <a data-remote="true" rel="nofollow" data-method="post" href="/art_logs/<%=art_log.id%>/art_log_likes" class="bb0">
+    <h2><i class="far fa-heart"></i></h2>
+  </a>
 <% end %>
