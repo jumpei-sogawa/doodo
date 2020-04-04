@@ -23,36 +23,38 @@
 				</div>
 			</h1>
 
+			<header class="major">
+				<h2>詳細情報</h2>
+			</header>
+
+			<h3>会場</h3>
 			<p>
-				<h3>会場</h3>
-				<p>
-					<a href="/museums/<%=exhb.museum.id%>"><%= exhb.museum.name %></a><br>
-					<%= exhb.museum.address %>
-				</p>
-
-				<h3>会期</h3>
-				<p><%= exhb.start_date %>〜<%= exhb.end_date %></p>
-
-				<h3>入場料</h3>
-				<p style="white-space:pre-wrap"><%= exhb.fee %></p>
-
-				<h3>休館日</h3>
-				<p><%= exhb.closing_day %></p>
-
-				<h3>開館時間</h3>
-				<p><%= exhb.opening_hours %></p>
-
-				<h3>お問い合わせ先</h3>
-				<p><%= exhb.phone %></p>
-
-				<h3>主催</h3>
-				<p><%= exhb.organizer %></p>
-
-				<h3>公式サイト</h3>
-				<% if exhb.website.present? %>
-					<p><%= link_to exhb.website, exhb.website, target: :_blank %></p>
-				<% end %>
+				<a href="/museums/<%=exhb.museum.id%>"><%= exhb.museum.name %></a><br>
+				<%= exhb.museum.address %>
 			</p>
+
+			<h3>会期</h3>
+			<p><%= exhb.start_date %>〜<%= exhb.end_date %></p>
+
+			<h3>入場料</h3>
+			<p style="white-space:pre-wrap"><%= exhb.fee %></p>
+
+			<h3>休館日</h3>
+			<p><%= exhb.closing_day %></p>
+
+			<h3>開館時間</h3>
+			<p><%= exhb.opening_hours %></p>
+
+			<h3>お問い合わせ先</h3>
+			<p><%= exhb.phone %></p>
+
+			<h3>主催</h3>
+			<p><%= exhb.organizer %></p>
+
+			<h3>公式サイト</h3>
+			<% if exhb.website.present? %>
+				<p><%= link_to exhb.website, exhb.website, target: :_blank %></p>
+			<% end %>
 		</div>
 
 		<div class="col-6 col-12-xsmall">
