@@ -1,16 +1,16 @@
 <% if user_signed_in? %>
   <% if exhb_log_like = ExhbLogLike.find_by(user_id: current_user.id, exhb_log_id: exhb_log.id) %>
     <a data-remote="true" rel="nofollow" data-method="delete" href="/exhb_logs/<%=exhb_log.id%>/exhb_log_likes/<%=exhb_log_like.id%>" class="bb0">
-			<h2><i class="fas fa-heart pink bb0"></i></h2>
+			<h2 class="mb0 align-center"><i class="fas fa-heart pink bb0"></i></h2>
 		</a>
   <% else %>
     <a data-remote="true" rel="nofollow" data-method="post" href="/exhb_logs/<%=exhb_log.id%>/exhb_log_likes" class="bb0">
-			<h2><i class="far fa-heart"></i></h2>
+			<h2 class="mb0 align-center"><i class="far fa-heart"></i></h2>
 		</a>
   <% end %>
 <% else %>
   <a data-remote="true" rel="nofollow" data-method="post" href="/exhb_logs/<%=exhb_log.id%>/exhb_log_likes" class="bb0">
-    <h2><i class="far fa-heart"></i></h2>
+    <h2 class="mb0 align-center"><i class="far fa-heart"></i></h2>
   </a>
 <% end %>
 

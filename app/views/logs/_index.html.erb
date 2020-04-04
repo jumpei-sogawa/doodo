@@ -1,32 +1,15 @@
-<% exhb_logs.each do |exhb_log| %>
-	<%= link_to exhb_log.exhibition.name, exhibition_path(exhb_log.exhibition), class: "bold" %>
-	<div><%= exhb_log.created_at %></div>
-	<% if exhb_log.star.present? %><div>★<%= exhb_log.star %></div><% end %>
-	<div><%= exhb_log.body %></div>
-	<div id="exhb_log_like_<%= exhb_log.id %>">
-		<%= render partial: "exhb_log_likes/button", locals: {exhb_log: exhb_log} %>
-	</div>
-	<div id="exhb_log_likes_count_<%= exhb_log.id %>">
-		<%= render partial: "exhb_log_likes/count", locals: {exhb_log: exhb_log} %>
-	</div>
-	<br>
+<div class="row">
+	<% exhb_logs.each do |exhb_log| %>
+		<div class="col-6 col-12-xsmall">
+			<h3>
+				<%= link_to exhb_log.exhibition.name, exhibition_path(exhb_log.exhibition), class: "" %>
+			</h3>
 
-	<% exhb_log.art_logs.each do |art_log| %>
-		<%= link_to art_path(art_log.art) do %>
-			<div><%= image_tag art_log.image_url(:thumb), width: "200px" if art_log.image.present? %></div>
-			<div><%= art_log.art.name %>(<%= art_log.art.year %>)</div>
-			<div><%= art_log.art.artist.name %></div>
-			<% if art_log.star %>
-				<div>★<%= art_log.star %></div>
+			<%= render partial: "exhb_logs/show", locals: {exhb_log: exhb_log} %>
+
+			<% exhb_log.art_logs.each do |art_log| %>
+				<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
 			<% end %>
-		<% end %>
-		<div><%= art_log.body %></div>
-		<div id="art_log_like_<%= art_log.id %>">
-			<%= render partial: "art_log_likes/button", locals: {art_log: art_log} %>
 		</div>
-		<div id="art_log_likes_count_<%= art_log.id %>">
-			<%= render partial: "art_log_likes/count", locals: {art_log: art_log} %>
-		</div>
-		<br>
 	<% end %>
-<% end %>
+</div>
