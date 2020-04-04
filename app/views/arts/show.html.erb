@@ -20,19 +20,7 @@
 				<h2>この作品を展示している展覧会</h2>
 			</header>
 			<% exhb = @art.exhibition %>
-			<% if exhb.image.present? %>
-				<span><a href="/exhibitions/<%=exhb.id%>" class="image"><%= image_tag exhb.image, width: "100%" %></a></span>
-			<% else%>
-				<span><a href="/arts/<%=art.id%>" class="icon fa-gem mr10"></a></span>
-			<% end %>
-			<p>
-				<h3><a href="/exhibitions/<%=exhb.id%>"><%= exhb.name %></a></h3>
-				<% if exhb.star.present? %>
-					<h2><i class="fas fa-star yellow"></i><%= exhb.star.round(2) %></h2>
-				<% end %>
-				<div>@<%= exhb.museum.name %></div>
-				<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
-			</p>
+			<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
 
 			<header class="major">
 				<h2>作品のログ一覧</h2>

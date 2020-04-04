@@ -1,0 +1,15 @@
+<% if exhb.image.present? %>
+  <span><a href="/exhibitions/<%=exhb.id%>" class="image mr10"><%= image_tag exhb.image %></a></span>
+<% else%>
+  <span><a href="/exhibitions/<%=exhb.id%>" class="icon fa-gem mr10"></a></span>
+<% end %>
+<div class="content">
+  <p>
+    <h3><a href="/exhibitions/<%=exhb.id%>"><%= exhb.name %></a></h3>
+    <% if exhb.star.present? %>
+      <h2><i class="fas fa-star yellow"></i><%= exhb.star.round(2) %></h2>
+    <% end %>
+    <div>@<%= exhb.museum.name %></div>
+    <div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
+  </p>
+</div>
