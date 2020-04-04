@@ -1,15 +1,18 @@
-<div><%= exhb_log.created_at %></div>
-<% if exhb_log.star.present? %>
-  <div>★<%= exhb_log.star %></div>
-<% end %>
-<div><%= exhb_log.body %></div>
-
-<div id="exhb_log_like_<%= exhb_log.id %>">
-  <%= render partial: "exhb_log_likes/button", locals: {exhb_log: exhb_log} %>
+<div class="row">
+    <div class="col-3">
+      <h2><i class="fas fa-star yellow"></i><%= exhb_log.star %><h2>
+    </div>
+  <div class="col-9"><%= exhb_log.created_at %></div>
+  <div class="col-12"><%= exhb_log.body %></div>
 </div>
 
-<div id="exhb_log_likes_count_<%= exhb_log.id %>">
-  <%= render partial: "exhb_log_likes/count", locals: {exhb_log: exhb_log} %>
-</div>
+<div class="row">
+  <span id="exhb_log_like_<%= exhb_log.id %>">
+    <%= render partial: "exhb_log_likes/button", locals: {exhb_log: exhb_log} %>
+  </span>
 
+  <span id="exhb_log_likes_count_<%= exhb_log.id %>">
+    <%= render partial: "exhb_log_likes/count", locals: {exhb_log: exhb_log} %>
+  </span>
+</div>
 

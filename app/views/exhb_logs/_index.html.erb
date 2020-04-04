@@ -1,7 +1,7 @@
-<div>
-	<% exhb_logs.each do |exhb_log| %>
-		<%= render partial: "users/show", locals: {user: exhb_log.user} %>
 
+<% exhb_logs.each do |exhb_log| %>
+	<div>
+		<%= render partial: "users/show", locals: {user: exhb_log.user} %>
 		<%= render partial: "exhb_logs/show", locals: {exhb_log: exhb_log} %>
 
 		<% if exhb_log.exhb_log_comments.present? %>
@@ -16,6 +16,5 @@
 			<% end %>
 		<% end %>
 
-		<br>
-	<% end %>
-</div>
+	</div>
+<% end %>
