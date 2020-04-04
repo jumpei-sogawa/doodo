@@ -1,4 +1,9 @@
-<h1>作品のログ詳細</h1>
+<section>
+  <header class="major">
+    <h2><%= @art_log.art.name %></h2>
+  </header>
+</section>
+
 <%= render partial: "users/show", locals: {user: @art_log.user} %>
 
 <%= render partial: "art_logs/show", locals: {art_log: @art_log} %>
