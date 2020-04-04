@@ -6,13 +6,15 @@
 	<div class="row">
 		<div class="col-6 col-12-xsmall">
 			<%= image_tag @art.liked_image.to_s, width: "100%" if @art.liked_image.present?%>
-			<h3>作者</h3>
-				<%= @art.artist.name %>
-			<div>制作年：<%= @art.year %></div>
-			<% if @art.star.present? %>
-				<div>★<%= @art.star.round(2) %></div>
-			<% end %>
+			<p>
+				<% if @art.star.present? %>
+					<h1><i class="fas fa-star yellow"></i><%= @art.star.round(2) %></h1>
+				<% end %>
+				<div>作者：<%= @art.artist.name %></div>
+				<div>制作年：<%= @art.year %>年</div>
+			</p>
 		</div>
+
 		<div class="col-6 col-12-xsmall">
 			<header class="major">
 				<h2>この作品を展示している展覧会</h2>
@@ -25,11 +27,11 @@
 			<% end %>
 			<p>
 				<h3><a href="/exhibitions/<%=exhb.id%>"><%= exhb.name %></a></h3>
+				<% if exhb.star.present? %>
+					<h2><i class="fas fa-star yellow"></i><%= exhb.star.round(2) %></h2>
+				<% end %>
 				<div>@<%= exhb.museum.name %></div>
 				<div><%= exhb.start_date %>〜<%= exhb.end_date %></div>
-				<% if exhb.star.present? %>
-					<div>★<%= exhb.star.round(2) %></div>
-				<% end %>
 			</p>
 
 			<header class="major">
