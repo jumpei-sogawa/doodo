@@ -5,7 +5,10 @@
 
 	<div class="row">
 		<div class="col-6 col-12-xsmall">
-			<%= image_tag @art.liked_image.to_s, width: "100%" if @art.liked_image.present?%>
+			<div>
+				<%= image_tag @art.liked_image.to_s, class: "image", width: "100%" if @art.liked_image.present? %>
+			</div>
+
 			<p>
 				<% if @art.star.present? %>
 					<h1><i class="fas fa-star yellow"></i><%= @art.star.round(2) %></h1>

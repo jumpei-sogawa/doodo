@@ -5,37 +5,34 @@
 </div>
 
 <strong><%= art_log.art.name %></strong>
-<div><%= art_log.art.artist.name %></div>
-<div><%= art_log.art.year %></div>
+<div>作者：<%= art_log.art.artist.name %></div>
+<div>制作年：<%= art_log.art.year %>年</div>
 
-<div class="row">
+<div class="row mb10">
   <div class="col-9 row">
     <% art_log.star.present? ? count = art_log.star : count = 0 %>
     <% count.times do %>
-      <div class="col-1">
-        <h2><i class="fas fa-star yellow"></i><h2>
+      <div class="col-2 mb0">
+        <h1 class="mb0"><i class="fas fa-star yellow"></i></h1>
       </div>
     <% end %>
-
     <% (3 - count).times do %>
-      <div class="col-1">
-        <h2><i class="fas fa-star light-gray"></i><h2>
+      <div class="col-2 mb0">
+        <h1 class="mb0"><i class="fas fa-star light-gray"></i></h1>
       </div>
     <% end %>
-    <div class="col-9"><%= art_log.created_at %></div>
-
-    <p class="col-12"><%= art_log.body %></p>
   </div>
 
   <div class="col-3">
     <span id="art_log_like_<%= art_log.id %>">
       <%= render partial: "art_log_likes/button", locals: {art_log: art_log} %>
     </span>
-
     <span id="art_log_likes_count_<%= art_log.id %>">
       <%= render partial: "art_log_likes/count", locals: {art_log: art_log} %>
     </span>
   </div>
 
+  <div class="col-12"><%= art_log.created_at %></div>
+  <div class="col-12"><%= art_log.body %></div>
 
 </div>

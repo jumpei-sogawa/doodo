@@ -5,12 +5,12 @@
 
 		<% if art_log.art_log_comments.present? %>
 			<%= render partial: "users/show", locals: {user: art_log.art_log_comments.last.user} %>
-			<div><%= art_log.art_log_comments.last.body %></div>
+			<div class="mb10"><%= art_log.art_log_comments.last.body %></div>
 		<% end %>
 
 		<% if user_signed_in? %>
 			<%= form_with(model: @art_log_comment, url: art_log_art_log_comments_path(art_log)) do |form| %>
-				<%= form.text_area :body %>
+				<div class="mb10"><%= form.text_area :body %></div>
 				<%= form.submit "送信" %>
 			<% end %>
 		<% end %>

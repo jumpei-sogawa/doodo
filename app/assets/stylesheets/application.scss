@@ -28,12 +28,24 @@
   bottom: 0;
 }
 
+.bb0 {
+  border-bottom: 0px;
+}
+
 .mr10 {
 	margin-right: 10px;
 }
 
 .mb0 {
   margin-bottom: 0px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.pb0 {
+  padding-bottom: 0px;
 }
 
 .pink {
@@ -60,8 +72,8 @@
   color: rgba(245, 106, 106, 0.15);
 }
 
-.bb0 {
-	border-bottom: 0px;
+span.denominator {
+  font-size: 0.5em;
 }
 
 .input-range[type="range"] {

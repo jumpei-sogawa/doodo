@@ -8,9 +8,15 @@
     <div class="content">
       <p>
         <h3><a href="/arts/<%=art.id%>"><%= art.name %></a></h3>
-        <% if art.star.present? %>
-          <h2><i class="fas fa-star yellow"></i><%= art.star.round(2) %></h2>
-        <% end %>
+        <h2>
+          <i class="fas fa-star yellow"></i>
+          <% if art.star.present? %>
+            <span><%= art.star.round(2) %></span>
+          <% else %>
+            <span>&nbsp;-&nbsp;</span>
+          <% end %>
+          <span class="denominator">/3</span>
+        </h2>
         <div>作者：<%= art.artist.name %></div>
         <div>制作年：<%= art.year %>年</div>
       </p>

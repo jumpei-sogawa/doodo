@@ -7,21 +7,27 @@
 
 	<div class="row">
 		<div class="col-6 col-12-xsmall">
-			<div><%= image_tag exhb.image, width: "100%" if exhb.image.present? %></div>
+			<div>
+				<%= image_tag exhb.image, class: "image", width: "100%" if exhb.image.present? %>
+			</div>
 
-			<h1 class="row">
+			<div class="row">
 				<% if exhb.star.present? %>
 					<div class="col-6">
-						<i class="fas fa-star yellow"></i><span><%= exhb.star.round(2) %></span>
+						<h1>
+							<i class="fas fa-star yellow"></i>
+							<span><%= exhb.star.round(2) %></span>
+							<span class="denominator">/3</span>
+						</h1>
 					</div>
 				<% end %>
 				<div class="col-3 align-center">
-					<a href="/exhibitions/<%=exhb.id%>/logs/new"><i class="fas fa-edit"></i></a>
+					<h1><a href="/exhibitions/<%=exhb.id%>/logs/new"><i class="fas fa-edit"></i></a></h1>
 				</div>
 				<div id="exhb_clip" class="col-3 align-center">
-					<%= render partial: "exhb_clips/button", locals: {exhb: exhb} %>
+					<h1><%= render partial: "exhb_clips/button", locals: {exhb: exhb} %></h1>
 				</div>
-			</h1>
+			</div>
 
 			<header class="major">
 				<h2>詳細情報</h2>

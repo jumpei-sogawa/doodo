@@ -1,1 +1,11 @@
-<div class="align-center">いいね<%= art_log.art_log_likes.count %>件</div>
+<% if user_signed_in? %>
+  <% if ArtLogLike.find_by(user_id: current_user.id, art_log_id: art_log.id) %>
+    <div class="align-center pink">いいね<%= art_log.art_log_likes.count %>件</div>
+  <% else %>
+    <div class="align-center">いいね<%= art_log.art_log_likes.count %>件</div>
+  <% end %>
+<% else %>
+  <div class="align-center">いいね<%= art_log.art_log_likes.count %>件</div>
+<% end %>
+
+

@@ -7,11 +7,15 @@
   <p>
     <h3><a href="/exhibitions/<%=exhb.id%>"><%= exhb.name %></a></h3>
     <h2 class="row">
-      <% if exhb.star.present? %>
-        <div class="col-6">
-          <i class="fas fa-star yellow"></i><%= exhb.star.round(2) %>
-        </div>
-      <% end %>
+      <div class="col-6">
+        <i class="fas fa-star yellow"></i>
+        <% if exhb.star.present? %>
+          <span><%= exhb.star.round(2) %></span>
+        <% else %>
+          <span>&nbsp;-&nbsp;</span>
+        <% end %>
+        <span class="denominator">/3</span>
+      </div>
       <div class="col-3 align-center">
         <a href="/exhibitions/<%=exhb.id%>/logs/new"><i class="fas fa-edit"></i></a>
       </div>
