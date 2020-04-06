@@ -1,25 +1,20 @@
-<% arts.each do |art| %>
-  <article>
-    <% if art.liked_thumb.present? %>
-      <span><a href="/arts/<%=art.id%>" class="image mr10"><%= image_tag art.liked_thumb %></a></span>
-    <% else%>
-      <span><a href="/arts/<%=art.id%>" class="icon fa-gem mr10"></a></span>
-    <% end %>
-    <div class="content">
-      <p>
-        <h3><a href="/arts/<%=art.id%>"><%= art.name %></a></h3>
-        <h2>
-          <i class="fas fa-star yellow"></i>
-          <% if art.star.present? %>
-            <span><%= art.star.round(2) %></span>
-          <% else %>
-            <span>&nbsp;-&nbsp;</span>
-          <% end %>
-          <span class="denominator">/3</span>
-        </h2>
-        <div>作者：<%= art.artist.name %></div>
-        <div>制作年：<%= art.year %>年</div>
-      </p>
-    </div>
-	</article>
+<% if art.liked_thumb.present? %>
+  <span class="image mr10 w100"><a href="/arts/<%=art.id%>" class=""><%= image_tag art.liked_image.to_s, class: "w100" %></a></span>
+<% else%>
+  <span><a href="/arts/<%=art.id%>" class="icon fa-gem mr10"></a></span>
 <% end %>
+<div class="content mt10">
+  <h3><a href="/arts/<%=art.id%>"><%= art.name %></a></h3>
+  <h2>
+    <i class="fas fa-star yellow"></i>
+    <% if art.star.present? %>
+      <span><%= art.star.round(2) %></span>
+    <% else %>
+      <span>&nbsp;-&nbsp;</span>
+    <% end %>
+    <span class="denominator">/3</span>
+  </h2>
+  <div><%= art.artist.name %>作</div>
+  <div class="mb10"><%= art.year %>年</div>
+  <a href="/exhibitions/<%=art.exhibition.id%>" class="bb0 gray"><%= art.exhibition.name %></a>
+</div>

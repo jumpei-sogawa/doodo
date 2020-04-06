@@ -13,8 +13,8 @@
 				<% if @art.star.present? %>
 					<h1><i class="fas fa-star yellow"></i><%= @art.star.round(2) %></h1>
 				<% end %>
-				<div>作者：<%= @art.artist.name %></div>
-				<div>制作年：<%= @art.year %>年</div>
+				<div><%= @art.artist.name %>作</div>
+				<div><%= @art.year %>年</div>
 			</p>
 		</div>
 

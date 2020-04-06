@@ -18,6 +18,10 @@
     <h2>今人気の作品</h2>
   </header>
   <div class="features">
-    <%= render partial: "arts/index", locals: {arts: arts} %>
+    <% arts.each do |art| %>
+      <article>
+        <%= render partial: "arts/index", locals: {art: art} %>
+      </article>
+    <% end %>
   </div>
 </section>

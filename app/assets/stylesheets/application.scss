@@ -44,8 +44,16 @@
   margin-bottom: 10px;
 }
 
+.mt10 {
+  margin-top: 10px;
+}
+
 .pb0 {
   padding-bottom: 0px;
+}
+
+.pl0 {
+  padding-left: 0;
 }
 
 .pink {
@@ -74,6 +82,10 @@
 
 span.denominator {
   font-size: 0.5em;
+}
+
+.w100 {
+  width: 100%;
 }
 
 .input-range[type="range"] {

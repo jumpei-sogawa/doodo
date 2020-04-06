@@ -37,8 +37,8 @@
 						<div class="row">
 							<div class="col-12"><%= image_tag art.liked_thumb, width: "200px" if art.liked_thumb.present? %></div>
 							<strong class="col-12"><%= art.name %></strong>
-							<div class="col-12">作者：<%= art.artist.name %></div>
-							<div class="col-12">制作年：<%= art.year %>年</div>
+							<div class="col-12"><%= art.artist.name %>作</div>
+							<div class="col-12"><%= art.year %>年</div>
 
 							<%= exhb_log_form.fields_for :art_logs do |art_log_fields| %>
 								<%= art_log_fields.hidden_field :art_id, value: art.id %>
