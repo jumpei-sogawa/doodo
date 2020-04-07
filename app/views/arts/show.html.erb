@@ -6,7 +6,11 @@
 	<div class="row">
 		<div class="col-6 col-12-xsmall">
 			<div>
-				<%= image_tag @art.liked_image.to_s, class: "image", width: "100%" if @art.liked_image.present? %>
+				<% if @art.image.present? %>
+					<%= image_tag @art.image.to_s, class: "image", width: "100%" %>
+				<% else %>
+					<%= image_tag @art.liked_image.to_s, class: "image", width: "100%" if @art.liked_image.present? %>
+				<% end %>
 			</div>
 
 			<p>
@@ -23,12 +27,14 @@
 				<h2>この作品を展示している展覧会</h2>
 			</header>
 			<% exhb = @art.exhibition %>
-			<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+			<div class="mb10"><%= render partial: "exhibitions/show", locals: {exhb: exhb} %></div>
 
-			<header class="major">
-				<h2>作品のログ</h2>
-			</header>
-			<%= render partial: "art_logs/index", locals: {art_logs: @art_logs} %>
+			<% if @art_logs.present? %>
+				<header class="major">
+					<h2>作品のログ</h2>
+				</header>
+				<%= render partial: "art_logs/index", locals: {art_logs: @art_logs} %>
+			<% end %>
 		</div>
 	</div>
 </section>
