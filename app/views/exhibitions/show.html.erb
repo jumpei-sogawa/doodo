@@ -68,14 +68,23 @@
 		<div class="col-6 col-12-xsmall">
 			<% if @arts.present? %>
 				<header class="major">
-					<h2>人気の作品一覧</h2>
+					<h2>人気の作品</h2>
 				</header>
-				<%= render partial: "arts/index", locals: {arts: @arts} %>
+				<% @arts.each do |art| %>
+					<%= render partial: "arts/show", locals: {art: art} %>
+				<% end %>
+			<% else %>
+				<header class="major">
+					<h2>作品一覧</h2>
+				</header>
+				<% exhb.arts.each do |art| %>
+					<%= render partial: "arts/show", locals: {art: art} %>
+				<% end %>
 			<% end %>
 
 			<% if @exhb_logs.present? %>
 				<header class="major">
-					<h2>展覧会のログ一覧</h2>
+					<h2>展覧会のログ</h2>
 				</header>
 				<%= render partial: "exhb_logs/index", locals: {exhb_logs: @exhb_logs} %>
 			<% end %>

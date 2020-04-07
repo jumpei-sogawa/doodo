@@ -20,7 +20,7 @@
   <div class="features">
     <% arts.each do |art| %>
       <article>
-        <%= render partial: "arts/index", locals: {art: art} %>
+        <%= render partial: "arts/show", locals: {art: art} %>
       </article>
     <% end %>
   </div>
