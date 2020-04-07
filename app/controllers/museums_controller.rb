@@ -4,14 +4,12 @@ class MuseumsController < ApplicationController
   # GET /museums
   # GET /museums.json
   def index
-    @title = "美術館検索"
-    @search_params = search_params
-    if search_params[:area].present?
-      @museums = Museum.where("address LIKE ?", "%#{search_params[:area]}%")
-      @museums = @museums.includes(:exhibitions).order("exhibitions.star DESC")
+    if params[:area].present? || params[:name]
+      @museums = Museum.where(["address LIKE ? AND name LIKE ?", "%#{params[:area]}%", "%#{params[:name]}%"])
     else
       @museums = Museum.all.includes(:exhibitions).order("exhibitions.star DESC")
     end
+    @title = "美術館 #{@museums.count}件"
   end
 
   # GET /museums/1
@@ -79,9 +77,5 @@ class MuseumsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def museum_params
       params.fetch(:museum, {})
-    end
-
-    def search_params
-      params.fetch(:search, {}).permit(:area)
     end
 end

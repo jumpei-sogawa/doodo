@@ -1,25 +1,27 @@
 <section>
-	<form method="get" action="/museums" accept-charset="UTF-8">
+	<%= form_with(url: museums_path, method: :get, local: true) do |form| %>
 		<div class="row gtr-uniform">
-			<div class="col-1 col-3-xsmall">
-				<h3>エリア</h3>
+			<div class="col-1 col-2-xsmall">
+				<h3 class="align-center pt5">位置</h3>
 			</div>
-			<div class="col-5 col-9-xsmall">
-				<input type="text" name="search[area]" id="search_area" value="" placeholder="東京" />
+			<div class="col-5 col-4-xsmall">
+				<%= form.text_field :area, value: "", placeholder: params[:area] %>
+			</div>
+			<div class="col-1 col-2-xsmall">
+				<h3 class="align-center pt5">館名</h3>
+			</div>
+			<div class="col-5 col-4-xsmall">
+				<%= form.text_field :name, value: "", placeholder: params[:name] %>
 			</div>
 			<!-- Break -->
-			<div class="col-4 col-12-xsmall">
+			<div class="col-12">
 				<ul class="actions">
 					<li><input type="submit" value="検索" class="primary" /></li>
 					<li><input type="reset" value="リセット" /></li>
 				</ul>
 			</div>
 		</div>
-	</form>
-
-	<header class="major">
-		<h2>検索結果（<%= @museums.count %>件）</h2>
-	</header>
+	<% end %>
 
 	<% @museums.each do |museum| %>
 		<%= link_to museum_path(museum) do %>
@@ -35,7 +37,7 @@
 
 		<% if museum.exhibitions.present? %>
 			<header>
-				<h3>開催中の展覧会</h3>
+				<h3 class="mt10">開催中の展覧会</h3>
 			</header>
 			<div class="features">
 				<% museum.exhibitions.each do |exhb| %>

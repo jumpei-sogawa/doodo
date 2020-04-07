@@ -4,13 +4,12 @@ class ExhibitionsController < ApplicationController
   # GET /exhibitions
   # GET /exhibitions.json
   def index
-    @title = "展覧会検索"
-    @search_params = search_params
-    if search_params[:area].present? || search_params[:date].present?
-      @exhibitions = Exhibition.search(search_params).sort { |a,b| b <=> a }
+    if params[:area].present? || params[:name].present? || params[:date].present?
+      @exhibitions = Exhibition.search(params)
     else
       @exhibitions = Exhibition.all.order(star: "DESC")
     end
+    @title = "展覧会 #{@exhibitions.count}件"
   end
 
   # GET /exhibitions/1

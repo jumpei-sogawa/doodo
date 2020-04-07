@@ -3,19 +3,26 @@
 		<h2>展覧会を探す</h2>
 	</header>
 
-	<form method="get" action="/exhibitions" accept-charset="UTF-8">
+	<%= form_with(url: exhibitions_path, method: :get, local: true) do |form| %>
 		<div class="row gtr-uniform">
-			<div class="col-1 col-3-xsmall">
-				<h3>エリア</h3>
+			<div class="col-1 col-2-xsmall">
+				<h3 class="align-center pt5">位置</h3>
 			</div>
-			<div class="col-5 col-9-xsmall">
-				<input type="text" name="search[area]" id="search_area" value="" placeholder="東京" />
+			<div class="col-5 col-4-xsmall">
+				<%= form.text_field :area, value: "", placeholder: params[:area] %>
 			</div>
 			<div class="col-1 col-2-xsmall">
-				<h3>日時</h3>
+				<h3 class="align-center pt5">展名</h3>
 			</div>
-			<div class="col-5 off-1-xsmall col-8-xsmall">
-				<input type="date" name="search[date]" id="search_date" value="" placeholder="" />
+			<div class="col-5 col-4-xsmall">
+				<%= form.text_field :name, value: "", placeholder: params[:name] %>
+			</div>
+
+			<div class="col-1 col-2-xsmall">
+				<h3 class="align-center pt5">日時</h3>
+			</div>
+			<div class="col-5 col-6-xsmall">
+				<%= form.date_field :date, value: "", placeholder: params[:date] %>
 			</div>
 			<!-- Break -->
 			<div class="col-12">
@@ -25,7 +32,7 @@
 				</ul>
 			</div>
 		</div>
-	</form>
+	<% end %>
 </section>
 
 <section>
@@ -33,13 +40,19 @@
 		<h2>美術館を探す</h2>
 	</header>
 
-	<form method="get" action="/museums" accept-charset="UTF-8">
+	<%= form_with(url: museums_path, method: :get, local: true) do |form| %>
 		<div class="row gtr-uniform">
-			<div class="col-1 col-3-xsmall">
-				<h3>エリア</h3>
+			<div class="col-1 col-2-xsmall">
+				<h3 class="align-center pt5">位置</h3>
 			</div>
-			<div class="col-5 col-9-xsmall">
-				<input type="text" name="search[area]" id="search_area" value="" placeholder="東京" />
+			<div class="col-5 col-4-xsmall">
+				<%= form.text_field :area, value: "", placeholder: params[:area] %>
+			</div>
+			<div class="col-1 col-2-xsmall">
+				<h3 class="align-center pt5">館名</h3>
+			</div>
+			<div class="col-5 col-4-xsmall">
+				<%= form.text_field :name, value: "", placeholder: params[:name] %>
 			</div>
 			<!-- Break -->
 			<div class="col-12">
@@ -49,7 +62,7 @@
 				</ul>
 			</div>
 		</div>
-	</form>
+	<% end %>
 </section>
 
 <section>
@@ -64,6 +77,4 @@
 		<% end %>
 	</div>
 </section>
-
-
 
