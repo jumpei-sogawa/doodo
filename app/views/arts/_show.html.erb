@@ -2,7 +2,7 @@
   <span class="image mr10 w100"><a href="/arts/<%=art.id%>" class=""><%= image_tag art.image, class: "w100" %></a></span>
 <% else%>
   <% if art.liked_image? %>
-    <span class="image mr10 w100"><a href="/arts/<%=art.id%>" class=""><%= image_tag art.liked_image, class: "w100" %></a></span>
+    <span class="image mr10 w100"><a href="/arts/<%=art.id%>" class=""><%= image_tag art.liked_image.to_s, class: "w100" %></a></span>
   <% else %>
     <span><a href="/arts/<%=art.id%>" class="icon fa-gem mr10"></a></span>
   <% end %>
