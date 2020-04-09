@@ -17,11 +17,11 @@
 @import "css/main";
 
 .bold {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .center {
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 .b0 {
@@ -32,8 +32,16 @@
   border-bottom: 0px;
 }
 
+.ml5 {
+  margin-left: 5px;
+}
+
+.ml10 {
+  margin-left: 20px;
+}
+
 .mr10 {
-	margin-right: 10px;
+  margin-right: 10px;
 }
 
 .mb0 {
@@ -46,6 +54,10 @@
 
 .mb20 {
   margin-bottom: 20px;
+}
+
+.mt5 {
+  margin-top: 5px;
 }
 
 .mt10 {
@@ -77,15 +89,15 @@
 }
 
 .pink {
-	color: #f56a6a;
+  color: #f56a6a;
 }
 
 .yellow {
-	color: #f8f060;
+  color: #f8f060;
 }
 
 .dark {
-	color: #3d4449;
+  color: #3d4449;
 }
 
 .gray {
@@ -106,6 +118,14 @@ span.denominator {
 
 .w100 {
   width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.star {
+  display: inline-block;
 }
 
 .input-range[type="range"] {

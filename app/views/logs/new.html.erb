@@ -1,80 +1,153 @@
 <section>
-	<header class="major">
-		<h2><%= @exhibition.name %></h2>
-	</header>
+  <header class="major">
+    <h2><%= @exhibition.name %></h2>
+  </header>
 
-	<%= form_for(@exhb_log, url: exhibition_logs_path) do |exhb_log_form| %>
-		<div class="row gtr-uniform">
-			<h1 class="col-12 row">
-				<div class="col-5 col-8-xsmall">
-					<input type="range" class="input-range" min="0.0" max="3.0" step="0.5" value="0.0" name="exhb_log[star]" id="exhb_log_star">
-				</div>
-				<div class="col-1">
-					<i class="fas fa-star yellow"></i>
-				</div>
-				<div class="col-2">
-					<span id="exhb_star">0.0</span>
-				</div>
-			</h1>
+  <%= form_for(@exhb_log, url: exhibition_logs_path) do |exhb_log_form| %>
+    <div class="row gtr-uniform">
+      <h1 class="col-12 row">
+        <div class="col-5 col-8-xsmall">
+          <input type="range" class="input-range" min="0.0" max="3.0" step="0.5" value="0.0" name="exhb_log[star]" id="exhb_log_star">
+        </div>
+        <div class="col-1">
+          <i class="fas fa-star yellow"></i>
+        </div>
+        <div class="col-2">
+          <span id="exhb_star">0.0</span>
+        </div>
+      </h1>
 
-			<div class="col-8 col-12-xsmall">
-				<%= exhb_log_form.text_area :body, size: "30x2", placeholder: "感想" %>
-			</div>
+      <div class="col-8 col-12-xsmall">
+        <%= exhb_log_form.text_area :body, size: "30x1", placeholder: "感想..." %>
+      </div>
 
-			<div class="col-12">
-				<ul class="actions">
-					<li><input type="submit" name="commit" value="保存" data-disable-with="保存" class="primary" /></li>
-				</ul>
-			</div>
+      <div class="col-12">
+        <ul class="actions">
+          <li><input type="submit" name="commit" value="保存" data-disable-with="保存" class="primary"/></li>
+        </ul>
+      </div>
 
-			<div class="col-12">
-				<% if @arts.present? %>
-					<header class="major">
-						<h2>作品一覧</h2>
-					</header>
+      <div class="col-12">
+        <% if @arts.present? %>
+          <header class="major">
+            <h2>作品一覧</h2>
+          </header>
 
-					<% @arts.each.with_index do |art, i| %>
-						<div class="row">
-							<div class="col-12"><%= image_tag art.liked_thumb, width: "200px" if art.liked_thumb.present? %></div>
-							<strong class="col-12"><%= art.name %></strong>
-							<div class="col-12"><%= art.artist.name %>作</div>
-							<div class="col-12"><%= art.year %>年</div>
+          <% @arts.each.with_index do |art, i| %>
+            <div class="row mb20">
+              <div class="col-12"><%= image_tag art.liked_thumb, width: "200px" if art.liked_thumb.present? %></div>
+              <strong class="col-12"><%= art.name %></strong>
+              <div class="col-12"><%= art.artist.name %>作</div>
+              <div class="col-12"><%= art.year %>年</div>
 
-							<%= exhb_log_form.fields_for :art_logs do |art_log_fields| %>
-								<%= art_log_fields.hidden_field :art_id, value: art.id %>
-								<h2 class="col-12 row">
-									<div class="col-2 col-8-xsmall">
-										<input type="range" class="input-range" min="0" max="3" step="1" value="0" name="exhb_log[art_logs_attributes][<%=i%>][star]" id="exhb_log_art_logs_attributes_<%=i%>_star">
-									</div>
-									<div class="col-1">
-										<i class="fas fa-star yellow"></i>
-									</div>
-									<div class="col-2">
-										<span id="art_star_<%=i%>">0.0</span>
-									</div>
-								</h2>
-								<div class="col-8 col-12-xsmall">
-									<%= art_log_fields.text_area :body, size: "30x1" %>
-								</div>
-								<div class="col-12">
-									<%= art_log_fields.file_field :image %>
-								</div>
-							<% end %>
-						</div>
-					<% end %>
-				<% end %>
+              <%= exhb_log_form.fields_for :art_logs do |art_log_fields| %>
+                <%= art_log_fields.hidden_field :art_id, value: art.id %>
+                <div class="col-12 row pb0">
+                  <div class="col-12">
+                    <%= art_log_fields.file_field :image, style: "" %>
+                  </div>
+                  <div class="col-3 col-5-xsmall ml5">
+                    <%= art_log_fields.hidden_field :star, value: 0 %>
+                    <span><h1 id="art<%= i %>_star1" class="star mb0"><i class="fas fa-star"></i></h1></span>
+                    <span><h1 id="art<%= i %>_star2" class="star mb0"><i class="fas fa-star"></i></h1></span>
+                    <span><h1 id="art<%= i %>_star3" class="star mb0"><i class="fas fa-star"></i></h1></span>
+                  </div>
+                  <div class="col-6-xsmall align-right">
+                    <div id="art<%= i %>_reset" class="button small mt5">リセット</div>
+                  </div>
+                </div>
+                <div class="col-8 col-12-xsmall mb10">
+                  <%= art_log_fields.text_area :body, size: "30x1", placeholder: "コメント..." %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
 
-				<ul class="actions">
-					<li><input type="submit" name="commit" value="保存" data-disable-with="保存" class="primary" /></li>
-				</ul>
-			</div>
-	<% end %>
+        <ul class="actions">
+          <li><input type="submit" name="commit" value="保存" data-disable-with="保存" class="primary"/></li>
+        </ul>
+      </div>
+  <% end %>
 </section>
 
+
 <script type="text/javascript" language="javascript">
-	const exhb_slider = document.getElementById('exhb_log_star');
-	const exhb_star_count = document.getElementById('exhb_star');
-	exhb_slider.oninput = function() {
-    exhb_star_count.textContent = Number(exhb_slider.value).toFixed(1);
-	};
+    var exhb_slider = $('#exhb_log_star')[0];
+    var exhb_star_count = $('#exhb_star')[0];
+    exhb_slider.oninput = function () {
+        exhb_star_count.textContent = Number(exhb_slider.value).toFixed(1);
+    };
+
+    <% @arts.each.with_index do |art, i| %>
+    var art<%= i %>_star1 = $('#art<%= i %>_star1')[0];
+    var art<%= i %>_star2 = $('#art<%= i %>_star2')[0];
+    var art<%= i %>_star3 = $('#art<%= i %>_star3')[0];
+    var art<%= i %>_reset = $('#art<%= i %>_reset')[0];
+
+    function art<%= i %>_star0_func() {
+        $('#art<%= i %>_star1').removeClass('yellow');
+        $('#art<%= i %>_star2').removeClass('yellow');
+        $('#art<%= i %>_star3').removeClass('yellow');
+        $('#exhb_log_art_logs_attributes_<%= i %>_star').val(0);
+    }
+
+    function art<%= i %>_star1_func() {
+        $('#art<%= i %>_star1').addClass('yellow');
+        $('#art<%= i %>_star2').removeClass('yellow');
+        $('#art<%= i %>_star3').removeClass('yellow');
+        $('#exhb_log_art_logs_attributes_<%= i %>_star').val(1);
+    }
+
+    function art<%= i %>_star2_func() {
+        $('#art<%= i %>_star1').addClass('yellow');
+        $('#art<%= i %>_star2').addClass('yellow');
+        $('#art<%= i %>_star3').removeClass('yellow');
+        $('#exhb_log_art_logs_attributes_<%= i %>_star').val(2);
+    }
+
+    function art<%= i %>_star3_func() {
+        $('#art<%= i %>_star1').addClass('yellow');
+        $('#art<%= i %>_star2').addClass('yellow');
+        $('#art<%= i %>_star3').addClass('yellow');
+        $('#exhb_log_art_logs_attributes_<%= i %>_star').val(3);
+    }
+
+    art<%= i %>_star1.onclick = function () {
+        if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
+            art<%= i %>_star1_func();
+        } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
+            art<%= i %>_star0_func();
+        } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
+            art<%= i %>_star1_func();
+        } else {
+            art<%= i %>_star1_func();
+        }
+    };
+    art<%= i %>_star2.onclick = function () {
+        if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
+            art<%= i %>_star2_func();
+        } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
+            art<%= i %>_star2_func();
+        } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
+            art<%= i %>_star1_func();
+        } else {
+            art<%= i %>_star2_func();
+        }
+    };
+    art<%= i %>_star3.onclick = function () {
+        if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
+            art<%= i %>_star3_func();
+        } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
+            art<%= i %>_star3_func();
+        } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
+            art<%= i %>_star3_func();
+        } else {
+            art<%= i %>_star2_func();
+        }
+    };
+    art<%= i %>_reset.onclick = function () {
+        art<%= i %>_star0_func();
+    }
+    <% end %>
 </script>
