@@ -1,41 +1,35 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<section class="mt100">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="mt10 row">
-    <div class="col-2 col-12-xsmall">
-      <h3 class="pt10">メールアドレス</h3>
+    <div class="mt10 row">
+      <div class="col-10  col-12-xsmall">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+      </div>
     </div>
-    <div class="col-10  col-12-xsmall">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-  </div>
 
-  <div class="mt10 row">
-    <div class="col-2 col-12-xsmall">
-      <h3 class="pt10">パスワード</h3>
+    <div class="mt10 row">
+      <div class="col-10  col-12-xsmall">
+        <% if @minimum_password_length %>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード（最低 #{@minimum_password_length} 文字以上）" %>
+        <% else %>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード" %>
+        <% end %>
+      </div>
     </div>
-    <div class="col-10  col-12-xsmall">
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
-    <% if @minimum_password_length %>
-      <em>(最低 <%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-  </div>
 
-  <div class="mt10 row">
-    <div class="col-2 col-12-xsmall">
-      <h3 class="pt10">パスワード確認</h3>
+    <div class="mt10 row">
+      <div class="col-10  col-12-xsmall">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード（確認）" %>
+      </div>
     </div>
-    <div class="col-10  col-12-xsmall">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
-  </div>
 
-  <div class="mt20 row">
-    <div class="actions">
-      <%= f.submit "アカウント作成" %>
+    <div class="mt20 row">
+      <div class="actions">
+        <%= f.submit "アカウント作成" %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 
-<%= render "users/shared/links" %>
+  <%= render "users/shared/links" %>
+</section>
