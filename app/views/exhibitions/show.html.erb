@@ -37,12 +37,12 @@
 
 			<h3>会場</h3>
 			<p>
-				<a href="/museums/<%=exhb.museum.id%>"><%= exhb.museum.name %></a><br>
+				<a href="/museums/<%=exhb.museum.id%>" , class="bb0"><%= exhb.museum.name %></a><br>
 				<%= exhb.museum.address %>
 			</p>
 
 			<h3>会期</h3>
-			<p><%= exhb.start_date %>〜<%= exhb.end_date %></p>
+			<p><%= l exhb.start_date, format: :long %>〜<%= l exhb.end_date, format: :long %></p>
 
 			<h3>入場料</h3>
 			<p style="white-space:pre-wrap"><%= exhb.fee %></p>
@@ -61,7 +61,7 @@
 
 			<h3>公式サイト</h3>
 			<% if exhb.website.present? %>
-				<p><%= link_to exhb.website, exhb.website, target: :_blank %></p>
+				<p><%= link_to exhb.website, exhb.website, target: :_blank, class: "bb0" %></p>
 			<% end %>
 		</div>
 

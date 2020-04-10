@@ -13,16 +13,29 @@
 				<% end %>
 			</div>
 
-			<p>
-				<% if @art.star.present? %>
-					<h1><i class="fas fa-star yellow"></i><%= @art.star.round(2) %></h1>
-				<% end %>
-				<div><%= @art.artist.name %>作</div>
-				<div><%= @art.year %>年</div>
-			</p>
+			<div class="row">
+				<div class="col-6">
+					<h1>
+						<i class="fas fa-star yellow"></i>
+						<% if @art.star.present? %>
+							<span><%= @art.star.round(2) %></span>
+						<% else %>
+							<span>&nbsp;-&nbsp;</span>
+						<% end %>
+						<span class="denominator">/3</span>
+					</h1>
+				</div>
+				<div class="col-3 align-center">
+				</div>
+				<div id="exhb_clip" class="col-3 align-center">
+				</div>
+			</div>
+
+			<div><%= @art.artist.name %>作</div>
+			<div>（<%= @art.year %>年）</div>
 		</div>
 
-		<div class="col-6 col-12-xsmall">
+		<div class="mt20 col-6 col-12-xsmall">
 			<header class="major">
 				<h2>この作品を展示している展覧会</h2>
 			</header>
@@ -30,8 +43,8 @@
 			<div class="mb10"><%= render partial: "exhibitions/show", locals: {exhb: exhb} %></div>
 
 			<% if @art_logs.present? %>
-				<header class="major">
-					<h2>作品のログ</h2>
+				<header class="mt20 major">
+					<h2>この作品のログ</h2>
 				</header>
 				<%= render partial: "art_logs/index", locals: {art_logs: @art_logs} %>
 			<% end %>

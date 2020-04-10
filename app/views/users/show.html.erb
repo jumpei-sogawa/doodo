@@ -10,10 +10,8 @@
           <li><a href="/<%=@user.username%>/edit" class="button">プロフィール編集</a></li>
         </ul>
       <% end %>
-      <p>
-        <div class="dark"><%= @user.display_name %></div>
-        <div class="dark">@<%= @user.username %></div>
-      </p>
+      <h3 class="dark mb0"><%= @user.display_name %></h3>
+      <div class="dark"><%= @user.username %></div>
     </div>
 
     <div class="col-6 col-12-xsmall">
@@ -36,7 +34,7 @@
   </div>
 
   <header class="major">
-    <h2>クリップした展覧会</h2>
+    <h2>ピン留めした展覧会</h2>
   </header>
   <div class="features">
     <% @clipped_exhibitions.each do |exhb| %>
@@ -47,7 +45,7 @@
   </div>
 
   <header class="major">
-    <h2>ログ</h2>
+    <h2>すべてのログ</h2>
   </header>
   <%= render partial: "logs/index", locals: {exhb_logs: @exhb_logs} %>
 </section>

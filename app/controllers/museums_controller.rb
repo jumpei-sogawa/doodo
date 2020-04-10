@@ -15,7 +15,7 @@ class MuseumsController < ApplicationController
   # GET /museums/1
   # GET /museums/1.json
   def show
-    @title = "美術館詳細"
+    @title = "美術館 詳細"
     @exhibitions = @museum.exhibitions
   end
 
