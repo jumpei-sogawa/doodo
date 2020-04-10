@@ -1,130 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>stART</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<head>
+  <title>stART</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body class="is-preload">
-		<!-- Wrapper -->
-			<div id="wrapper">
+<body class="is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
+  <!-- Main -->
+  <div id="main">
+    <div class="inner">
 
-							<!-- Header -->
-								<header id="header">
-									<span class="logo"><a href="/" class="logo">stART...</a> <strong class="title"><%= @title %></strong></span>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
-									</ul>
-								</header>
+      <!-- Header -->
+      <header id="header">
+        <span class="logo"><a href="/" class="logo"><%= image_tag "stART-logo.jpg", height: "15px" %></a><strong class="title ml10"><%= @title %></strong></span>
+      </header>
 
-              <%= yield %>
+      <%= yield %>
 
-						</div>
-					</div>
+    </div>
+  </div>
 
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <div class="inner">
 
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
+      <!-- Search -->
+      <section>
+        <%= form_with(url: exhibitions_path, method: :get, local: true) do |form| %>
+          <div class="row">
+            <div class="col-8">
+              <%= form.text_field :any, placeholder: "例:東京、モネ展" %>
+            </div>
+            <div class="col-4">
+              <%= form.submit "検索" %>
+            </div>
+          </div>
+        <% end %>
+      </section>
 
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>メニュー</h2>
-									</header>
-									<ul>
-                    <li><%= link_to root_path do %>ホーム<% end %></li>
-                    <li><%= link_to '検索', search_path %></li>
-                    <% if user_signed_in? %>
-                      <li><%= link_to 'マイページ', "/#{current_user.username}" %></li>
-                      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-                    <% else %>
-                      <li><%= link_to 'マイページ', mypage_path %></li>
-                      <li><%= link_to 'ログイン', new_user_session_path %></li>
-                      <li><%= link_to 'アカウント作成', new_user_registration_path %></li>
-                    <% end %>
-										<li>
-											<span class="opener">Submenu</span>
-											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-												<li><a href="#">Tempus Magna</a></li>
-												<li><a href="#">Feugiat Veroeros</a></li>
-											</ul>
-										</li>
-									</ul>
-								</nav>
+      <!-- Menu -->
+      <nav id="menu">
+        <header class="major">
+          <h2>メニュー</h2>
+        </header>
+        <ul>
+          <li><%= link_to root_path do %>ホーム
+            <% end %></li>
+          <li><%= link_to '条件を指定して検索', search_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to 'マイページ', "/#{current_user.username}" %></li>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'マイページ', mypage_path %></li>
+            <li><%= link_to 'ログイン', new_user_session_path %></li>
+            <li><%= link_to 'アカウント作成', new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
 
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Ante interdum</h2>
-									</header>
-									<div class="mini-posts">
-										<article>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-										<article>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-										<article>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-									</div>
-									<ul class="actions">
-										<li><a href="#" class="button">More</a></li>
-									</ul>
-								</section>
-
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Get in touch</h2>
-									</header>
-									<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-									<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-										<li class="icon solid fa-phone">(000) 000-0000</li>
-										<li class="icon solid fa-home">1234 Somewhere Road #8254<br />
-										Nashville, TN 00000-0000</li>
-									</ul>
-								</section>
-
-							<!-- Footer -->
-								<footer id="footer">
-									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-								</footer>
-
-						</div>
-					</div>
-
-			</div>
+</div>
 
 
-		<!-- Scripts -->
-      <%= javascript_include_tag 'jquery.min.js' %>
-      <%= javascript_include_tag 'browser.min.js' %>
-      <%= javascript_include_tag 'breakpoints.min.js' %>
-      <%= javascript_include_tag 'util.js' %>
-      <%= javascript_include_tag 'main.js' %>
-  </body>
+<!-- Scripts -->
+<%= javascript_include_tag 'jquery.min.js' %>
+<%= javascript_include_tag 'browser.min.js' %>
+<%= javascript_include_tag 'breakpoints.min.js' %>
+<%= javascript_include_tag 'util.js' %>
+<%= javascript_include_tag 'main.js' %>
+</body>
 </html>

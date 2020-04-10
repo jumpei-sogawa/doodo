@@ -35,19 +35,29 @@
 
           <% @arts.each.with_index do |art, i| %>
             <div class="row mb20">
-              <div class="col-12"><%= image_tag art.liked_thumb, width: "200px" if art.liked_thumb.present? %></div>
-              <strong class="col-12"><%= art.name %></strong>
-              <div class="col-12"><%= art.artist.name %>作</div>
-              <div class="col-12"><%= art.year %>年</div>
+              <div class="col-8 row">
+                <strong class="col-12"><%= art.name %></strong>
+                <div class="col-12"><%= art.artist.name %>作</div>
+                <div class="col-12"><%= art.year %>年</div>
+              </div>
+              <div class="col-4">
+                <%= image_tag art.image, width: "100%" if art.image.present? %>
+              </div>
 
               <%= exhb_log_form.fields_for :art_logs do |art_log_fields| %>
                 <%= art_log_fields.hidden_field :art_id, value: art.id %>
                 <div class="col-12 row pb0">
                   <div class="col-12">
-                    <%= art_log_fields.file_field :image, style: "" %>
+                    <%= art_log_fields.file_field :image, style: "display:none;" %>
+                    <label for="exhb_log_art_logs_attributes_<%= i %>_image">
+                      <div class="button small">画像をアップロード
+                      </div class=button small"">
+                    </label>
                   </div>
+                </div>
+                <div class="col-12 row pb0">
+                  <%= art_log_fields.hidden_field :star, value: 0 %>
                   <div class="col-3 col-5-xsmall ml5">
-                    <%= art_log_fields.hidden_field :star, value: 0 %>
                     <span><h1 id="art<%= i %>_star1" class="star mb0"><i class="fas fa-star"></i></h1></span>
                     <span><h1 id="art<%= i %>_star2" class="star mb0"><i class="fas fa-star"></i></h1></span>
                     <span><h1 id="art<%= i %>_star3" class="star mb0"><i class="fas fa-star"></i></h1></span>

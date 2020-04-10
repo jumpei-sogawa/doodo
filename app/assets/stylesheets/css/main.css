@@ -2030,10 +2030,11 @@ button,
     text-align: right; }
   @media screen and (max-width: 1680px) {
     #header {
-      padding-top: 5em; } }
+      padding-top: 1em; } }
   @media screen and (max-width: 736px) {
     #header {
-      padding-top: 6.5em; }
+      padding-top: 1em;
+      padding-left: 5em; }
       #header .logo {
         font-size: 1.25em;
         margin: 0;

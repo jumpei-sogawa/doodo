@@ -4,7 +4,9 @@ class ExhibitionsController < ApplicationController
   # GET /exhibitions
   # GET /exhibitions.json
   def index
-    if params[:area].present? || params[:name].present? || params[:date].present?
+    if params[:any].present?
+      @exhibitions = Exhibition.search_any(params)
+    elsif params[:area].present? || params[:name].present? || params[:date].present?
       @exhibitions = Exhibition.search(params)
     else
       @exhibitions = Exhibition.all.order(star: "DESC")
