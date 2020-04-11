@@ -22,8 +22,18 @@
       <%= render partial: "exhb_clips/button", locals: {exhb: exhb} %>
     </div>
   </h2>
-  <div>@<%= exhb.museum.name %></div>
+  <% if !@title.include?("美術館") %>
+    <div>@<%= exhb.museum.name %></div>
+  <% end %>
   <div>
-    <%= l exhb.start_date, format: :long %> 〜 <%= l exhb.end_date, format: :long %>
+    <% if exhb.start_date.year == exhb.end_date.year %>
+      <span><%= l exhb.start_date, format: :long %></span>
+      <span> 〜 </span>
+      <span><%= l exhb.end_date, format: :short %></span>
+    <% else %>
+      <span><%= l exhb.start_date, format: :short %></span>
+      <span> 〜 </span>
+      <span><%= l exhb.end_date, format: :long %></span>
+    <% end %>
   </div>
 </div>

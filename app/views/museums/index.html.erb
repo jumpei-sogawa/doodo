@@ -5,13 +5,13 @@
 				<h3 class="align-center pt5">場所</h3>
 			</div>
 			<div class="col-5 col-4-xsmall">
-				<%= form.text_field :area, value: "", placeholder: params[:area] %>
+				<%= form.text_field :area, value: params[:area], placeholder: "例:東京" %>
 			</div>
 			<div class="col-1 col-2-xsmall">
 				<h3 class="align-center pt5">館名</h3>
 			</div>
 			<div class="col-5 col-4-xsmall">
-				<%= form.text_field :name, value: "", placeholder: params[:name] %>
+				<%= form.text_field :name, value: params[:name], placeholder: "例:国立" %>
 			</div>
 			<!-- Break -->
 			<div class="col-12">
@@ -23,30 +23,26 @@
 		</div>
 	<% end %>
 
-	<% @museums.each do |museum| %>
-		<%= link_to museum_path(museum) do %>
-			<div>
-				<header class="major">
-					<h3><%= museum.name %></h3>
-				</header>
-				<div class="image">
-					<%= image_tag museum.image, width: "100%" if museum.image.present? %>
-				</div>
-			</div>
-		<% end %>
+	<div class="row">
+		<% @museums.each do |museum| %>
+			<div class="col-6">
+				<%= link_to museum_path(museum) do %>
+					<header class="major">
+						<h3 style="margin-bottom:1em;"><%= museum.name %></h3>
+					</header>
+				<% end %>
 
-		<% if museum.exhibitions.present? %>
-			<header>
-				<h3 class="mt10">開催中の展覧会</h3>
-			</header>
-			<div class="features">
-				<% museum.exhibitions.each do |exhb| %>
-					<article>
-						<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
-					</article>
+				<% if museum.exhibitions.present? %>
+					<div class="features">
+						<% museum.exhibitions.each do |exhb| %>
+							<article>
+								<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+							</article>
+						<% end %>
+					</div>
 				<% end %>
 			</div>
 		<% end %>
-	<% end %>
+	</div>
 
 </section>
