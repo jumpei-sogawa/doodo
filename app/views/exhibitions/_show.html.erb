@@ -24,7 +24,7 @@
     </div>
   </h2>
 
-  <% if !@title.include?("美術館") %>
+  <% unless controller.controller_name == "museums" %>
     <div>@<%= exhb.museum.name %></div>
   <% end %>
   <div class="row">

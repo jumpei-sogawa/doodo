@@ -1,0 +1,60 @@
+<section>
+  <div class="row">
+    <div class="col-8 col-12-xsmall">
+      <div class="mb10">
+        <%= render partial: "users/show", locals: {user: @exhb_log.user, body: @exhb_log} %>
+        <%= render partial: "exhb_logs/show", locals: {exhb_log: @exhb_log} %>
+      </div>
+
+      <div class="row">
+        <div class="off-1 col-10">
+          <div class="mb10">
+            <% @exhb_log_comments.each do |exhb_log_comment| %>
+              <%= render partial: "users/show", locals: {user: exhb_log_comment.user, body: exhb_log_comment} %>
+              <div class="row mb10">
+                <div class="off-3 col-9 off-2-xsmall col-10">
+                  <%= exhb_log_comment.body %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <%= form_with(model: @exhb_log_comment, url: exhb_log_exhb_log_comments_path(@exhb_log)) do |form| %>
+            <div class="mb10"><%= form.text_area :body, rows: 1, placeholder: "コメント..." %></div>
+            <div class="align-right"><%= form.submit "送信" %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4 col-12-xsmall">
+      <header class="major">
+        <h2>
+          <%= @exhb_log.exhibition.name %>
+        </h2>
+      </header>
+
+      <%= link_to exhibition_path(@exhb_log.exhibition) do %>
+        <div>
+          <%= image_tag @exhb_log.exhibition.image, class: "image w100" if @exhb_log.exhibition.image.present? %>
+        </div>
+      <% end %>
+
+      <div class="align-center">
+        <a href="/museums/<%=@exhb_log.exhibition.museum.id%>" class="bb0"><%= @exhb_log.exhibition.museum.name %></a>
+      </div>
+
+			<div class="align-center">
+				<% if @exhb_log.exhibition.start_date.year == @exhb_log.exhibition.end_date.year %>
+					<strong><%= l @exhb_log.exhibition.start_date, format: :long %></strong>
+					<strong> 〜 </strong>
+					<strong><%= l @exhb_log.exhibition.end_date, format: :short %></strong>
+				<% else %>
+					<strong><%= l @exhb_log.exhibition.start_date, format: :short %></strong>
+					<strong> 〜 </strong>
+					<strong><%= l @exhb_log.exhibition.end_date, format: :long %></strong>
+				<% end %>
+			</div>
+    </div>
+  </div>
+</section>

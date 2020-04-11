@@ -1,14 +1,21 @@
 <div class="row">
-  <span class="col-1 ml10 pb0 mr10">
+  <span class="col-3 col-2-xsmall pb0">
     <a href="/<%=user.username%>" class="image">
       <%= image_tag user.image.to_s, height: "30px" if user.image.present? %>
     </a>
   </span>
-  <div class="col-8 pt5 ml10">
+
+  <div class="col-5 col-5-xsmall pt5">
     <strong>
       <a href="/<%=user.username%>" class="dark bb0">
         <%= user.username %>
       </a>
     </strong>
   </div>
+
+  <% if body.present? %>
+    <div class="col-4 col-5-xsmall mt5 align-right">
+      <%= l body.created_at, format: :short_date %>
+    </div>
+  <% end %>
 </div>
