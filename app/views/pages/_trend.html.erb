@@ -3,9 +3,9 @@
   <header class="major">
     <h2>今人気の展覧会</h2>
   </header>
-  <div class="features row">
+  <div class="row">
     <% @exhibitions.each do |exhb| %>
-			<div class="col-3 col-6-xsmall pl10 pr10">
+			<div class="col-3 col-6-xsmall">
 				<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
 			</div>
 		<% end %>
@@ -17,11 +17,12 @@
   <header class="major">
     <h2>今人気の作品</h2>
   </header>
-  <div class="features row">
+  <div class="row">
     <% arts.each do |art| %>
-      <div class="col-3 col-6-xsmall pl10 pr10">
+      <div class="col-3 col-6-xsmall">
         <%= render partial: "arts/show", locals: {art: art} %>
       </div>
     <% end %>
   </div>
 </section>
+
