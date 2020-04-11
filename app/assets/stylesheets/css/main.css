@@ -1866,7 +1866,7 @@ button,
         padding: 4em 0 2em 0 ; } }
   @media screen and (max-width: 736px) {
     #main > .inner {
-      padding: 0 2em 0.1em 2em ; }
+      padding: 0 1em 0.1em 1em ; }
       #main > .inner > section {
         padding: 3em 0 1em 0 ; } }
 
@@ -2092,7 +2092,7 @@ button,
   @media screen and (max-width: 736px) {
     #header {
       padding-top: 1em;
-      padding-left: 5em; }
+      padding-left: 5.5em; }
       #header .logo {
         font-size: 1.25em;
         margin: 0;

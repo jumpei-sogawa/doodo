@@ -3,11 +3,11 @@
   <header class="major">
     <h2>今人気の展覧会</h2>
   </header>
-  <div class="features">
+  <div class="features row">
     <% @exhibitions.each do |exhb| %>
-			<article>
+			<div class="col-3 col-6-xsmall pl10 pr10">
 				<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
-			</article>
+			</div>
 		<% end %>
   </div>
 </section>
@@ -17,11 +17,11 @@
   <header class="major">
     <h2>今人気の作品</h2>
   </header>
-  <div class="features">
+  <div class="features row">
     <% arts.each do |art| %>
-      <article>
+      <div class="col-3 col-6-xsmall pl10 pr10">
         <%= render partial: "arts/show", locals: {art: art} %>
-      </article>
+      </div>
     <% end %>
   </div>
 </section>
