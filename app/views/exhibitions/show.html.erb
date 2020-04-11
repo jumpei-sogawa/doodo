@@ -1,22 +1,38 @@
-<% exhb = @exhibition %>
-
 <section>
 	<header class="major">
-		<h2><%= exhb.name %></h2>
+		<h2><%= @exhibition.name %></h2>
 	</header>
 
 	<div class="row">
-		<div class="col-6 col-12-xsmall">
+		<div class="col-4 col-12-xsmall">
 			<div>
-				<%= image_tag exhb.image, class: "image", width: "100%" if exhb.image.present? %>
+				<%= image_tag @exhibition.image, class: "image", width: "100%" if @exhibition.image.present? %>
 			</div>
 
+			<div class="align-center">
+				<a href="/museums/<%=@exhibition.museum.id%>" class="bb0"><%= @exhibition.museum.name %></a>
+			</div>
+
+			<h3 class="align-center">
+				<% if @exhibition.start_date.year == @exhibition.end_date.year %>
+					<span><%= l @exhibition.start_date, format: :long %></span>
+					<span> 〜 </span>
+					<span><%= l @exhibition.end_date, format: :short %></span>
+				<% else %>
+					<span><%= l @exhibition.start_date, format: :short %></span>
+					<span> 〜 </span>
+					<span><%= l @exhibition.end_date, format: :long %></span>
+				<% end %>
+			</h3>
+		</div>
+
+		<div class="col-8 col-12-xsmall">
 			<div class="row">
 				<div class="col-6">
 					<h1>
 						<i class="fas fa-star yellow"></i>
-						<% if exhb.star.present? %>
-							<span><%= exhb.star.round(2) %></span>
+						<% if @exhibition.star.present? %>
+							<span><%= @exhibition.star.round(2) %></span>
 						<% else %>
 							<span>&nbsp;-&nbsp;</span>
 						<% end %>
@@ -24,70 +40,96 @@
 					</h1>
 				</div>
 				<div class="col-3 align-center">
-					<h1><a href="/exhibitions/<%=exhb.id%>/logs/new"><i class="fas fa-edit"></i></a></h1>
+					<h1><a href="/exhibitions/<%=@exhibition.id%>/logs/new"><i class="fas fa-edit"></i></a></h1>
 				</div>
 				<div id="exhb_clip" class="col-3 align-center">
-					<h1><%= render partial: "exhb_clips/button", locals: {exhb: exhb} %></h1>
+					<h1><%= render partial: "exhb_clips/button", locals: {exhb: @exhibition} %></h1>
 				</div>
 			</div>
 
-			<header class="major">
-				<h2>詳細情報</h2>
-			</header>
+			<div>
+				<header class="major align-center">
+					<h2 style="">みどころ</h2>
+				</header>
 
+				<p>
+					ああああああああああああああああああああああ
+					ああああああああああああああああああああああ
+					ああああああああああああああああああああああ
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-6 col-12-xsmall">
+		<% if @arts.present? %>
+			<header class="major align-center">
+				<h2>人気の作品</h2>
+			</header>
+			<div class="row">
+				<% @arts.first(4).each do |art| %>
+					<div class="col-3 col-6-xsmall">
+						<%= render partial: "arts/show", locals: {art: art} %>
+					</div>
+				<% end %>
+			</div>
+		<% else %>
+			<header class="major align-center">
+				<h2>作品一覧</h2>
+			</header>
+			<div class="row">
+				<% @exhibition.arts.first(4).each do |art| %>
+					<div class="col-3 col-6-xsmall">
+						<%= render partial: "arts/show", locals: {art: art} %>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="col-6 col-12-xsmall">
+		<header class="major align-center">
+			<h2>開催概要</h2>
+		</header>
+		<div class="mb20">
 			<h3>会場</h3>
 			<p>
-				<a href="/museums/<%=exhb.museum.id%>" , class="bb0"><%= exhb.museum.name %></a><br>
-				<%= exhb.museum.address %>
+				<a href="/museums/<%=@exhibition.museum.id%>"  class="bb0"><%= @exhibition.museum.name %></a>
 			</p>
 
 			<h3>会期</h3>
-			<p><%= l exhb.start_date, format: :long %>〜<%= l exhb.end_date, format: :long %></p>
+			<p>
+				<%= l @exhibition.start_date, format: :long %> 〜 <%= l @exhibition.end_date, format: :short %>
+			</p>
 
 			<h3>入場料</h3>
-			<p style="white-space:pre-wrap"><%= exhb.fee %></p>
+			<p class="is-text"><%= @exhibition.fee %></p>
 
 			<h3>休館日</h3>
-			<p><%= exhb.closing_day %></p>
+			<p><%= @exhibition.closing_day %></p>
 
 			<h3>開館時間</h3>
-			<p><%= exhb.opening_hours %></p>
+			<p><%= @exhibition.opening_hours %></p>
 
 			<h3>お問い合わせ先</h3>
-			<p><%= exhb.phone %></p>
+			<p><%= @exhibition.phone %></p>
 
 			<h3>主催</h3>
-			<p><%= exhb.organizer %></p>
+			<p><%= @exhibition.organizer %></p>
 
 			<h3>公式サイト</h3>
-			<% if exhb.website.present? %>
-				<p><%= link_to exhb.website, exhb.website, target: :_blank, class: "bb0" %></p>
+			<% if @exhibition.website.present? %>
+				<a href="<%= @exhibition.website %>" class="button" target="blank">公式サイトはこちら</a>
 			<% end %>
 		</div>
+	</div>
 
-		<div class="col-6 col-12-xsmall">
-			<% if @arts.present? %>
-				<header class="major">
-					<h2>人気の作品</h2>
-				</header>
-				<% @arts.each do |art| %>
-					<%= render partial: "arts/show", locals: {art: art} %>
-				<% end %>
-			<% else %>
-				<header class="major">
-					<h2>作品一覧</h2>
-				</header>
-				<% exhb.arts.each do |art| %>
-					<%= render partial: "arts/show", locals: {art: art} %>
-				<% end %>
-			<% end %>
-
-			<% if @exhb_logs.present? %>
-				<header class="major">
-					<h2>展覧会のログ</h2>
-				</header>
-				<%= render partial: "exhb_logs/index", locals: {exhb_logs: @exhb_logs} %>
-			<% end %>
-		</div>
+	<div class="col-6 col-12-xsmall">
+		<% if @exhb_logs.present? %>
+			<header class="major align-center">
+				<h2>この展覧会のログ</h2>
+			</header>
+			<%= render partial: "exhb_logs/index", locals: {exhb_logs: @exhb_logs} %>
+		<% end %>
 	</div>
 </section>

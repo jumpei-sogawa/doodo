@@ -42,7 +42,7 @@
             <div class="col-8 b0">
               <strong><%= art.name %></strong>
               <div><%= art.artist.name %>作</div>
-              <div><%= art.year %>年</div>
+              <div>（<%= art.year %>年）</div>
             </div>
 
             <%= exhb_log_form.fields_for :art_logs do |art_log_fields| %>

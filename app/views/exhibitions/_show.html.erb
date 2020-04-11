@@ -5,6 +5,7 @@
 <% end %>
 <div class="content mt10 mb20">
   <h3><a href="/exhibitions/<%=exhb.id%>"><%= exhb.name %></a></h3>
+
   <h2 class="row">
     <div class="col-8">
       <i class="fas fa-star yellow"></i>
@@ -22,18 +23,16 @@
       <%= render partial: "exhb_clips/button", locals: {exhb: exhb} %>
     </div>
   </h2>
+
   <% if !@title.include?("美術館") %>
     <div>@<%= exhb.museum.name %></div>
   <% end %>
-  <div>
-    <% if exhb.start_date.year == exhb.end_date.year %>
-      <span><%= l exhb.start_date, format: :long %></span>
-      <span> 〜 </span>
-      <span><%= l exhb.end_date, format: :short %></span>
-    <% else %>
-      <span><%= l exhb.start_date, format: :short %></span>
-      <span> 〜 </span>
-      <span><%= l exhb.end_date, format: :long %></span>
-    <% end %>
+  <div class="row">
+    <div class="col-12">
+      <%= l exhb.start_date, format: :long %>
+    </div>
+    <div class="col-11 col-12-xsmall align-right">
+        〜 <%= l exhb.end_date, format: :long %>
+    </div>
   </div>
 </div>

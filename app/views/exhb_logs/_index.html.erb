@@ -1,20 +1,8 @@
-
-<% exhb_logs.each do |exhb_log| %>
-	<div>
-		<%= render partial: "users/show", locals: {user: exhb_log.user} %>
-		<%= render partial: "exhb_logs/show", locals: {exhb_log: exhb_log} %>
-
-		<% if exhb_log.exhb_log_comments.present? %>
-			<%= render partial: "users/show", locals: {user: exhb_log.exhb_log_comments.last.user} %>
-			<div class="mb10"><%= exhb_log.exhb_log_comments.last.body %></div>
-		<% end %>
-
-		<% if user_signed_in? %>
-			<%= form_with(model: @exhb_log_comment, url: exhb_log_exhb_log_comments_path(exhb_log)) do |form| %>
-				<div class="mb10"><%= form.text_area :body, rows: "1" %></div>
-				<%= form.submit "送信" %>
-			<% end %>
-		<% end %>
-
-	</div>
-<% end %>
+<div class="row">
+	<% exhb_logs.each do |exhb_log| %>
+		<div class="col-6 col-12-xsmall mb10">
+			<%= render partial: "users/show", locals: {user: exhb_log.user} %>
+			<%= render partial: "exhb_logs/show", locals: {exhb_log: exhb_log} %>
+		</div>
+	<% end %>
+</div>

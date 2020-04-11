@@ -24,6 +24,10 @@
   margin: 0 auto;
 }
 
+.is-text {
+  white-space: pre-wrap;
+}
+
 .b0 {
   bottom: 0;
 }
@@ -122,6 +126,11 @@
 
 .light-pink {
   color: rgba(245, 106, 106, 0.15);
+}
+
+a.button.dark {
+  color: #3d4449 !important;
+  box-shadow: inset 0 0 0 2px #3d4449;
 }
 
 span.denominator {

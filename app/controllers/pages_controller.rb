@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
   def home
     @title = ""
-    @exhibitions = Exhibition.where("star >= ?", 0).order(star: "DESC").slice(0, 4)
-    @arts = Art.where("star >= ?", 0).order(star: "DESC").slice(0, 4)
+    @exhibitions = Exhibition.where("star >= ?", 0).order(star: "DESC").first(4)
+    @arts = Art.where("star >= ?", 0).order(star: "DESC").first(4)
   end
 
   def trend

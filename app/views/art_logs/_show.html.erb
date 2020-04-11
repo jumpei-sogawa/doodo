@@ -6,7 +6,7 @@
 
 <strong><%= art_log.art.name %></strong>
 <div><%= art_log.art.artist.name %>作</div>
-<div><%= art_log.art.year %>年</div>
+<div>（<%= art_log.art.year %>年）</div>
 
 <div class="row mb10">
   <div class="col-9 row">
@@ -33,6 +33,6 @@
   </div>
 
   <div class="col-12"><%= art_log.created_at %></div>
-  <div class="col-12"><%= art_log.body %></div>
+  <div class="col-12 is-text"><%= art_log.body %></div>
 
 </div>

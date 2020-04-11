@@ -19,7 +19,7 @@ class ExhibitionsController < ApplicationController
   def show
     @title = "展覧会 詳細"
     @arts = @exhibition.arts.where("star >= ?", 0).order(star: "DESC")
-    @exhb_logs = @exhibition.exhb_logs.order(id: "DESC")
+    @exhb_logs = @exhibition.exhb_logs.order(id: "DESC").first(10)
     @exhb_log_comment = ExhbLogComment.new
   end
 
