@@ -1,5 +1,5 @@
 <section>
-	<header class="major">
+	<header class="major align-center">
 		<h2><%= @museum.name %></h2>
 	</header>
 
@@ -15,19 +15,23 @@
 				<p><%= @museum.phone %></p>
 
 				<h3>公式サイト</h3>
-				<% if @museum.website.present? %>
-					<p><%= link_to @museum.website, @museum.website, target: :_blank, class: "bb0" %></p>
-				<% end %>
+					<% if @museum.website.present? %>
+						<a href="<%= @museum.website %>" class="button" target="blank">公式サイトはこちら</a>
+					<% end %>
 			</p>
 		</div>
 
 		<div class="col-6 col-12-xsmall">
-			<header>
+			<header class="align-center">
 				<h2>開催中の展覧会</h2>
 			</header>
-			<% @exhibitions.each do |exhb| %>
-				<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
-			<% end %>
+			<div class="row">
+				<% @exhibitions.each do |exhb| %>
+					<div class=" off-3 col-6 off-3-xsmall col-6-xsmall">
+						<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </section>

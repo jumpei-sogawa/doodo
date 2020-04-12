@@ -22,30 +22,37 @@
 
   </div>
 
-  <header class="major">
-    <h2>行った展覧会</h2>
-  </header>
-  <div class="features">
-    <% @visited_exhibitions.each do |exhb| %>
-      <article>
-        <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
-      </article>
-    <% end %>
-  </div>
 
-  <header class="major">
-    <h2>ピン留めした展覧会</h2>
-  </header>
-  <div class="features">
-    <% @clipped_exhibitions.each do |exhb| %>
-      <article>
-        <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
-      </article>
-    <% end %>
-  </div>
+  <% if @visited_exhibitions.present? %>
+    <header class="major align-center">
+      <h2>行った展覧会</h2>
+    </header>
+    <div class="features">
+      <% @visited_exhibitions.each do |exhb| %>
+        <article>
+          <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+        </article>
+      <% end %>
+    </div>
+  <% end %>
 
-  <header class="major">
-    <h2>すべてのログ</h2>
-  </header>
-  <%= render partial: "logs/index", locals: {exhb_logs: @exhb_logs} %>
+  <%= if @clipped_exhibitions.present? %>
+    <header class="major align-center">
+      <h2>ピン留めした展覧会</h2>
+    </header>
+    <div class="features">
+      <% @clipped_exhibitions.each do |exhb| %>
+        <article>
+          <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+        </article>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= if @exhb_logs.present? %>
+    <header class="major align-center">
+      <h2>すべてのログ</h2>
+    </header>
+    <%= render partial: "logs/index", locals: {exhb_logs: @exhb_logs} %>
+  <% end %>
 </section>

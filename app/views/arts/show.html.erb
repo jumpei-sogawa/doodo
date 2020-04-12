@@ -1,5 +1,5 @@
 <section>
-	<header class="major">
+	<header class="major align-center">
 		<h2><%= @art.name %></h2>
 	</header>
 
@@ -36,7 +36,7 @@
 		</div>
 
 		<div class="mt20 col-6 col-12-xsmall">
-			<header class="major">
+			<header class="major align-center">
 				<h2>この作品を展示している展覧会</h2>
 			</header>
 			<div class="row">
@@ -46,7 +46,7 @@
 			</div>
 
 			<% if @art_logs.present? %>
-				<header class="mt20 major">
+				<header class="mt20 major align-center">
 					<h2>この作品のログ</h2>
 				</header>
 				<%= render partial: "art_logs/index", locals: {art_logs: @art_logs} %>
