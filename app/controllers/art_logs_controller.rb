@@ -12,6 +12,10 @@ class ArtLogsController < ApplicationController
   def show
     @title = "作品のログ"
     @art_log_comment = ArtLogComment.new
+    @art_log_comments = @art_log.art_log_comments
+    @art = @art_log.art
+    @exhibition = @art.exhibition
+    @museum = @exhibition.museum
   end
 
   # GET /art_logs/new

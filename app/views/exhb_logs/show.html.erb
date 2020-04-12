@@ -28,31 +28,31 @@
     </div>
 
     <div class="col-4 col-12-xsmall">
-      <header class="major">
+      <header class="major align-center">
         <h2>
-          <%= @exhb_log.exhibition.name %>
+          <%= @exhibition.name %>
         </h2>
       </header>
 
-      <%= link_to exhibition_path(@exhb_log.exhibition) do %>
+      <%= link_to exhibition_path(@exhibition) do %>
         <div>
-          <%= image_tag @exhb_log.exhibition.image, class: "image w100" if @exhb_log.exhibition.image.present? %>
+          <%= image_tag @exhibition.image, class: "image w100" if @exhibition.image.present? %>
         </div>
       <% end %>
 
       <div class="align-center">
-        <a href="/museums/<%=@exhb_log.exhibition.museum.id%>" class="bb0"><%= @exhb_log.exhibition.museum.name %></a>
+        <a href="/museums/<%=@museum.id%>" class="bb0"><%= @museum.name %></a>
       </div>
 
 			<div class="align-center">
-				<% if @exhb_log.exhibition.start_date.year == @exhb_log.exhibition.end_date.year %>
-					<strong><%= l @exhb_log.exhibition.start_date, format: :long %></strong>
+				<% if @exhibition.start_date.year == @exhibition.end_date.year %>
+					<strong><%= l @exhibition.start_date, format: :long %></strong>
 					<strong> 〜 </strong>
-					<strong><%= l @exhb_log.exhibition.end_date, format: :short %></strong>
+					<strong><%= l @exhibition.end_date, format: :short %></strong>
 				<% else %>
-					<strong><%= l @exhb_log.exhibition.start_date, format: :short %></strong>
+					<strong><%= l @exhibition.start_date, format: :short %></strong>
 					<strong> 〜 </strong>
-					<strong><%= l @exhb_log.exhibition.end_date, format: :long %></strong>
+					<strong><%= l @exhibition.end_date, format: :long %></strong>
 				<% end %>
 			</div>
     </div>

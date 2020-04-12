@@ -13,6 +13,8 @@ class ExhbLogsController < ApplicationController
     @title = "展覧会のログ"
     @exhb_log_comment = ExhbLogComment.new
     @exhb_log_comments = @exhb_log.exhb_log_comments
+    @exhibition = @exhb_log.exhibition
+    @museum = @exhibition.museum
   end
 
   # GET /exhb_logs/new
