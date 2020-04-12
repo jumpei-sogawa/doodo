@@ -21,6 +21,8 @@ class User < ApplicationRecord
     length: { minimum: 4, maximum: 20 },
     format: { with: /\A[a-z0-9]+\z/, message: "ユーザー名は半角英数字です"}
 
+  validates :display_name, length: { maximum: 20, message: "20字以内で入力してください" }
+
   attr_writer :login
 
   def login

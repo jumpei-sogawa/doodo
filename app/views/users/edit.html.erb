@@ -12,7 +12,7 @@
         名前
       </div>
       <div class="col-4 col-12-xsmall">
-        <%= form.text_field :display_name, value: @user.display_name, placeholder: "名前" %>
+        <%= form.text_field :display_name, value: @user.display_name, placeholder: "名前（20文字以内）" %>
       </div>
     </div>
 
@@ -21,7 +21,11 @@
         ユーザーネーム
       </div>
       <div class="col-4 col-12-xsmall">
-        <%= form.text_field :username, autofocus: true, autocomplete: "username", value: @user.username, placeholder: "ユーザーネーム" %>
+        <%= form.text_field :username,
+                              autofocus: true,
+                              autocomplete: "username",
+                              value: @user.username,
+                              placeholder: "ユーザーネーム（半角英小文字/数字 4〜20字）" %>
       </div>
     </div>
 
