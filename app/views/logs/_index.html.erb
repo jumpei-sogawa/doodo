@@ -1,15 +1,23 @@
 <div class="row">
 	<% exhb_logs.each do |exhb_log| %>
-		<div class="col-6 col-12-xsmall">
-			<h3>
-				<%= link_to exhb_log.exhibition.name, exhibition_path(exhb_log.exhibition), class: "" %>
-			</h3>
+		<div class="col-6 col-12-xsmall mb20">
+			<header class="major align-center">
+				<h3>
+					<%= link_to exhb_log.exhibition.name, exhibition_path(exhb_log.exhibition), class: "" %>
+				</h3>
+			</header>
 
+			<%= render partial: "users/show", locals: {user: exhb_log.user, body: exhb_log} %>
 			<%= render partial: "exhb_logs/show", locals: {exhb_log: exhb_log} %>
 
-			<% exhb_log.art_logs.each do |art_log| %>
-				<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
-			<% end %>
+			<div class="row">
+				<% exhb_log.art_logs.each do |art_log| %>
+					<div class="off-1-xsmall col-11-xsmall">
+						<%= render partial: "users/show", locals: {user: art_log.user, body: art_log} %>
+						<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	<% end %>
 </div>
