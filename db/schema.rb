@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 2020_04_01_104635) do
     t.integer "year"
     t.string "image"
     t.float "star"
+    t.string "title"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_arts_on_artist_id"
@@ -121,6 +123,8 @@ ActiveRecord::Schema.define(version: 2020_04_01_104635) do
     t.string "website"
     t.string "image"
     t.float "star"
+    t.string "title"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["museum_id"], name: "index_exhibitions_on_museum_id"
@@ -133,6 +137,8 @@ ActiveRecord::Schema.define(version: 2020_04_01_104635) do
     t.string "phone"
     t.string "website"
     t.string "image"
+    t.string "title"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prefecture_id"], name: "index_museums_on_prefecture_id"
@@ -151,7 +157,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_104635) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "username"
-    t.string "display_name"
+    t.string "name"
     t.text "bio"
     t.string "image"
     t.datetime "created_at", null: false

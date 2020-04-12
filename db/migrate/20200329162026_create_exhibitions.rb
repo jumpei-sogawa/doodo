@@ -13,6 +13,8 @@ class CreateExhibitions < ActiveRecord::Migration[5.2]
       t.string :website
       t.string :image
       t.float  :star
+      t.string :title
+      t.text   :description
 
       t.timestamps
     end

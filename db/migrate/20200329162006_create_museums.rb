@@ -7,6 +7,8 @@ class CreateMuseums < ActiveRecord::Migration[5.2]
       t.string :phone
       t.string :website
       t.string :image
+      t.string :title
+      t.text   :description
 
       t.timestamps
     end

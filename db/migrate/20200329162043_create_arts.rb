@@ -8,6 +8,8 @@ class CreateArts < ActiveRecord::Migration[5.2]
       t.integer :year
       t.string :image
       t.float :star
+      t.string :title
+      t.text   :description
 
       t.timestamps
     end
