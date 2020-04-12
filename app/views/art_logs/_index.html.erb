@@ -1,18 +1,8 @@
-<% art_logs.each do |art_log| %>
-	<div>
-		<%= render partial: "users/show", locals: {user: art_log.user} %>
-		<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
-
-		<% if art_log.art_log_comments.present? %>
-			<%= render partial: "users/show", locals: {user: art_log.art_log_comments.last.user} %>
-			<div class="mb10 is-text"><%= art_log.art_log_comments.last.body %></div>
-		<% end %>
-
-		<% if user_signed_in? %>
-			<%= form_with(model: @art_log_comment, url: art_log_art_log_comments_path(art_log)) do |form| %>
-				<div class="mb10"><%= form.text_area :body %></div>
-				<%= form.submit "送信" %>
-			<% end %>
-		<% end %>
-	</div>
-<% end %>
+<div class="row">
+	<% art_logs.each do |art_log| %>
+		<div class="col-6 col-12-xsmall mb10">
+			<%= render partial: "users/show", locals: {user: art_log.user, body: art_log} %>
+			<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
+		</div>
+	<% end %>
+</div>

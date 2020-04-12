@@ -1,38 +1,50 @@
 <div>
-  <a href="/art_logs/<%=art_log.id%>" class="image">
-    <%= image_tag art_log.image_url(:thumb), width: "200px" if art_log.image.present? %>
+  <a href="/art_logs/<%=art_log.id%>" class="image w100">
+    <%= image_tag art_log.image_url(:thumb), class: "w100" if art_log.image.present? %>
   </a>
 </div>
 
-<strong><%= art_log.art.name %></strong>
-<div><%= art_log.art.artist.name %>作</div>
-<div>（<%= art_log.art.year %>年）</div>
+<div>
+  <strong><%= art_log.art.name %></strong>
+  <div><%= art_log.art.artist.name %>作</div>
+  <div>（<%= art_log.art.year %>年）</div>
+</div>
 
-<div class="row mb10">
-  <div class="col-9 row">
+<div class="row">
+  <div class="col-3 col-4-xsmall">
     <% art_log.star.present? ? count = art_log.star : count = 0 %>
-    <% count.times do %>
-      <div class="col-2 mb0">
-        <h1 class="mb0"><i class="fas fa-star yellow"></i></h1>
-      </div>
-    <% end %>
-    <% (3 - count).times do %>
-      <div class="col-2 mb0">
-        <h1 class="mb0"><i class="fas fa-star light-gray"></i></h1>
-      </div>
-    <% end %>
+    <h2>
+      <% count.times do %>
+        <span><i class="fas fa-star yellow"></i></span>
+      <% end %>
+      <% (3 - count).times do %>
+        <span><i class="fas fa-star light-gray"></i></span>
+      <% end %>
+    </h2>
   </div>
 
-  <div class="col-3">
-    <span id="art_log_like_<%= art_log.id %>">
-      <%= render partial: "art_log_likes/button", locals: {art_log: art_log} %>
-    </span>
-    <span id="art_log_likes_count_<%= art_log.id %>">
-      <%= render partial: "art_log_likes/count", locals: {art_log: art_log} %>
-    </span>
+  <div class="col-9 col-8-xsmall">
+    <%= link_to art_log_path(art_log) do %>
+      <div class="dark is-text mt5 mb10"><%= art_log.body %></div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-7">
+        <% unless controller.controller_name == "art_logs" %>
+          <% if art_log.body.present? %>
+            <a href="/art_logs/<%=art_log.id%>" class="button dark">コメントする</a>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="col-5">
+        <span id="art_log_like_<%= art_log.id %>">
+          <%= render partial: "art_log_likes/button", locals: {art_log: art_log} %>
+        </span>
+        <span id="art_log_likes_count_<%= art_log.id %>">
+          <%= render partial: "art_log_likes/count", locals: {art_log: art_log} %>
+        </span>
+      </div>
+    </div>
   </div>
-
-  <div class="col-12"><%= art_log.created_at %></div>
-  <div class="col-12 is-text"><%= art_log.body %></div>
-
 </div>

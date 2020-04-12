@@ -39,8 +39,11 @@
 			<header class="major">
 				<h2>この作品を展示している展覧会</h2>
 			</header>
-			<% exhb = @art.exhibition %>
-			<div class="mb10"><%= render partial: "exhibitions/show", locals: {exhb: exhb} %></div>
+			<div class="row">
+				<div class="col-3 off-3-xsmall col-6-xsmall">
+					<div class="mb10"><%= render partial: "exhibitions/show", locals: {exhb: @art.exhibition} %></div>
+				</div>
+			</div>
 
 			<% if @art_logs.present? %>
 				<header class="mt20 major">
