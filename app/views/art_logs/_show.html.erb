@@ -1,17 +1,14 @@
-<div>
-  <a href="/art_logs/<%=art_log.id%>" class="image w100">
-    <%= image_tag art_log.image_url(:thumb), class: "w100" if art_log.image.present? %>
-  </a>
-</div>
+<% if art_log.image.present? %>
+  <div>
+    <a href="/art_logs/<%=art_log.id%>" class="image w100">
+      <%= image_tag art_log.image_url(:thumb), class: "w100" %>
+    </a>
+  </div>
+<% end %>
 
-<div>
-  <strong><%= art_log.art.name %></strong>
-  <div><%= art_log.art.artist.name %>作</div>
-  <div>（<%= art_log.art.year %>年）</div>
-</div>
 
 <div class="row">
-  <div class="col-3 col-4-xsmall">
+  <div class="col-4 col-4-xsmall">
     <% art_log.star.present? ? count = art_log.star : count = 0 %>
     <h2>
       <% count.times do %>
@@ -23,7 +20,12 @@
     </h2>
   </div>
 
-  <div class="col-9 col-8-xsmall">
+  <div class="col-8 col-8-xsmall">
+    <div>
+      <strong><%= art_log.art.name %></strong>
+      <div><%= art_log.art.artist.name %>作</div>
+      <div>（<%= art_log.art.year %>年）</div>
+    </div>
     <%= link_to art_log_path(art_log) do %>
       <div class="dark is-text mt5 mb10"><%= art_log.body %></div>
     <% end %>

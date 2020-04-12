@@ -12,7 +12,7 @@
 
 			<div class="row">
 				<% exhb_log.art_logs.each do |art_log| %>
-					<div class="off-1-xsmall col-11-xsmall">
+					<div class="off-1 col-11">
 						<%= render partial: "users/show", locals: {user: art_log.user, body: art_log} %>
 						<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
 					</div>

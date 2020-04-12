@@ -4,7 +4,7 @@
 	</header>
 
 	<div class="row">
-		<div class="col-6 col-12-xsmall">
+		<div class="col-4 col-12-xsmall">
 			<div>
 				<% if @art.image.present? %>
 					<%= image_tag @art.image.to_s, class: "image", width: "100%" %>
@@ -15,7 +15,7 @@
 
 			<div class="row">
 				<div class="col-6">
-					<h1>
+					<h2 class="mobile-fs3em mb10">
 						<i class="fas fa-star yellow"></i>
 						<% if @art.star.present? %>
 							<span><%= @art.star.round(2) %></span>
@@ -23,7 +23,7 @@
 							<span>&nbsp;-&nbsp;</span>
 						<% end %>
 						<span class="denominator">/3</span>
-					</h1>
+					</h2>
 				</div>
 				<div class="col-3 align-center">
 				</div>
@@ -31,26 +31,29 @@
 				</div>
 			</div>
 
+			<strong><%= @art.name %></strong>
 			<div><%= @art.artist.name %>作</div>
 			<div>（<%= @art.year %>年）</div>
 		</div>
 
-		<div class="mt20 col-6 col-12-xsmall">
+		<div class="mt20 col-8 col-12-xsmall">
 			<header class="major align-center">
 				<h2>この作品を展示している展覧会</h2>
 			</header>
 			<div class="row">
-				<div class="col-3 off-3-xsmall col-6-xsmall">
+				<div class="off-4 col-4 off-3-xsmall col-6-xsmall">
 					<div class="mb10"><%= render partial: "exhibitions/show", locals: {exhb: @art.exhibition} %></div>
 				</div>
 			</div>
-
-			<% if @art_logs.present? %>
-				<header class="mt20 major align-center">
-					<h2>この作品のログ</h2>
-				</header>
-				<%= render partial: "art_logs/index", locals: {art_logs: @art_logs} %>
-			<% end %>
 		</div>
+	</div>
+
+	<div>
+		<% if @art_logs.present? %>
+			<header class="mt20 major align-center">
+				<h2>この作品のログ</h2>
+			</header>
+			<%= render partial: "art_logs/index", locals: {art_logs: @art_logs} %>
+		<% end %>
 	</div>
 </section>

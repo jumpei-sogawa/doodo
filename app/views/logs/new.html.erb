@@ -21,55 +21,55 @@
         <%= exhb_log_form.text_area :body, size: "30x1", placeholder: "感想..." %>
       </div>
 
-      <div class="col-12">
+      <div class="col-4 col-12-xsmall">
         <div class="w100 align-right">
-          <input type="submit" name="commit" value="展覧会のログだけ保存" data-disable-with="保存" class="primary"/>
+          <input type="submit" name="commit" value="展覧会のログだけ保存" data-disable-with="展覧会のログだけ保存" class="primary"/>
         </div>
       </div>
     </div>
 
     <div class="mt20">
       <% if @arts.present? %>
-        <header class="major">
+        <header class="major align-center">
           <h2>作品のログも残す</h2>
         </header>
 
-        <% @arts.each.with_index do |art, i| %>
-          <div class="row mb20">
-            <div class="col-4">
-              <%= image_tag art.image, width: "100%" if art.image.present? %>
-            </div>
-            <div class="col-8 b0">
-              <strong><%= art.name %></strong>
-              <div><%= art.artist.name %>作</div>
-              <div>（<%= art.year %>年）</div>
-            </div>
+        <div class="row">
+          <% @arts.each.with_index do |art, i| %>
+            <div class="col-6 col-12-xsmall">
+              <%= exhb_log_form.fields_for :art_logs do |art_log_fields| %>
+                <%= art_log_fields.hidden_field :art_id, value: art.id %>
+                <div class="row mb20">
+                  <div class="col-5">
+                    <%= image_tag art.image, width: "100%" if art.image.present? %>
 
-            <%= exhb_log_form.fields_for :art_logs do |art_log_fields| %>
-              <%= art_log_fields.hidden_field :art_id, value: art.id %>
-              <div class="col-12">
-                <%= art_log_fields.file_field :image, style: "display:none;" %>
-                <label for="exhb_log_art_logs_attributes_<%= i %>_image" class="mb0">
-                  <div class="button small">画像をアップロード</div class="button small">
-                </label>
-              </div>
-              <div class="col-12 row pb0">
-                <%= art_log_fields.hidden_field :star, value: 0 %>
-                <div class="col-3 col-5-xsmall">
-                  <span><h1 id="art<%= i %>_star1" class="star mb0"><i class="fas fa-star"></i></h1></span>
-                  <span><h1 id="art<%= i %>_star2" class="star mb0"><i class="fas fa-star"></i></h1></span>
-                  <span><h1 id="art<%= i %>_star3" class="star mb0"><i class="fas fa-star"></i></h1></span>
+                    <%= art_log_fields.file_field :image, style: "display:none;" %>
+                    <label for="exhb_log_art_logs_attributes_<%= i %>_image" class="mb0">
+                      <div class="button small w100">画像をアップロード</div class="button small">
+                    </label>
+                  </div>
+
+                  <div class="col-7 b0">
+                    <strong><%= art.name %></strong>
+                    <div><%= art.artist.name %>作</div>
+                    <div>（<%= art.year %>年）</div>
+
+                    <%= art_log_fields.hidden_field :star, value: 0 %>
+                    <div class="col-4 col-5-xsmall">
+                      <h2 class="mobile-fs2em mt10 mb10">
+                        <span id="art<%= i %>_star1" class="star mb0"><i class="fas fa-star"></i></span>
+                        <span id="art<%= i %>_star2" class="star mb0"><i class="fas fa-star"></i></span>
+                        <span id="art<%= i %>_star3" class="star mb0"><i class="fas fa-star"></i></span>
+                      </h2>
+                    </div>
+
+                    <%= art_log_fields.text_area :body, rows: 1, placeholder: "コメント..." %>
+                  </div>
                 </div>
-                <div class="col-6-xsmall align-right">
-                  <div id="art<%= i %>_reset" class="button small mt5">リセット</div>
-                </div>
-              </div>
-              <div class="col-8 col-12-xsmall mb10">
-                <%= art_log_fields.text_area :body, size: "30x1", placeholder: "コメント..." %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       <% end %>
 
       <div class="w100 align-right">

@@ -1,5 +1,5 @@
 class ExhbLogCommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:create]
 
   def create
     exhb_log_comment = ExhbLogComment.new(exhb_log_comment_params)

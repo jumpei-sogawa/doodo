@@ -1,7 +1,11 @@
 <section>
   <div class="row mb20">
     <div class="col-3 col-3-xsmall">
-      <%= image_tag @user.image_url, width: "100%" if @user.image.present? %>
+      <% if @user.image.present? %>
+        <%= image_tag @user.image_url, width: "100%" %>
+      <% else %>
+        <%= image_tag "default-profile-image.png", width: "100%" %>
+      <% end %>
     </div>
 
     <div class="col-9 col-9-xsmall">
@@ -20,8 +24,9 @@
       <% end %>
     </div>
   </div>
+</section>
 
-
+<section>
   <% if @visited_exhibitions.present? %>
     <header class="major align-center">
       <h2>行った展覧会</h2>
@@ -34,7 +39,9 @@
       <% end %>
     </div>
   <% end %>
+</section>
 
+<section>
   <% if @clipped_exhibitions.present? %>
     <header class="major align-center">
       <h2>ピン留めした展覧会</h2>
@@ -47,7 +54,9 @@
       <% end %>
     </div>
   <% end %>
+</section>
 
+<section>
   <% if @exhb_logs.present? %>
     <header class="major align-center">
       <h2>すべてのログ</h2>

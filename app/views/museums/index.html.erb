@@ -25,7 +25,7 @@
 
 	<div class="row">
 		<% @museums.each do |museum| %>
-			<div class="col-6">
+			<div class="col-3 col-6-xsmall">
 				<%= link_to museum_path(museum) do %>
 					<header class="major">
 						<h3 style="margin-bottom:1em;"><%= museum.name %></h3>
@@ -33,13 +33,9 @@
 				<% end %>
 
 				<% if museum.exhibitions.present? %>
-					<div class="features">
-						<% museum.exhibitions.each do |exhb| %>
-							<article>
-								<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
-							</article>
-						<% end %>
-					</div>
+					<% museum.exhibitions.each do |exhb| %>
+						<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+					<% end %>
 				<% end %>
 			</div>
 		<% end %>

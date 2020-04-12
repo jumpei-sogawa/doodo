@@ -69,11 +69,11 @@
   <header class="major">
     <h2>あなたにおすすめの展覧会</h2>
   </header>
-	<div class="features">
+	<div class="row">
 		<% @exhibitions.each do |exhb| %>
-			<article>
+			<div class="col-3 col-6-xsmall">
 				<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
-			</article>
+			</div>
 		<% end %>
 	</div>
 </section>

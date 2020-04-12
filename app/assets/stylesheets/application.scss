@@ -157,6 +157,15 @@ span.denominator {
   display: inline-block;
 }
 
+@media screen and (max-width: 480px) {
+  h2.mobile-fs3em {
+    font-size: 3em;
+  }
+  h2.mobile-fs2em {
+    font-size: 2em;
+  }
+}
+
 .input-range[type="range"] {
   -webkit-appearance: none;
   appearance: none;

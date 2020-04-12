@@ -1,6 +1,6 @@
 <section>
   <div class="row">
-    <div class="col-8 col-12-xsmall">
+    <div class="col-6 col-12-xsmall">
       <div class="mb10">
         <%= render partial: "users/show", locals: {user: @art_log.user, body: @art_log} %>
         <%= render partial: "art_logs/show", locals: {art_log: @art_log} %>
@@ -27,21 +27,26 @@
       </div>
     </div>
 
-    <div class="col-4 col-12-xsmall">
+    <div class="col-6 col-12-xsmall">
       <header class="major align-center">
         <h2>この作品が展示された展覧会</h2>
       </header>
 
-      <%= link_to exhibition_path(@art) do %>
-        <div>
-          <%= image_tag @exhibition.image, class: "image w100" if @exhibition.image.present? %>
+      <div class="row">
+        <div class="off-3 col-6">
+          <a href="/exhibitions/<%=@exhibition.id%>" class="image">
+            <%= image_tag @exhibition.image, class: "w100" if @exhibition.image.present? %>
+          </a>
         </div>
-      <% end %>
-
-      <div class="align-center">
-        <a href="/museums/<%=@museum.id%>" class="bb0"><%= @museum.name %></a>
       </div>
 
+      <div class="align-center">
+        <%= link_to @exhibition.name, exhibition_path(@exhibition), class: "bb0" %>
+      </div>
+
+      <div class="align-center">
+        <a href="/museums/<%=@museum.id%>" class="bb0 dark"><%= @museum.name %></a>
+      </div>
 
       <div class="align-center">
 				<% if @exhibition.start_date.year == @exhibition.end_date.year %>

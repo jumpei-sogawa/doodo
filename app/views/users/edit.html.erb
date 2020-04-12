@@ -2,7 +2,11 @@
   <%= form_with(model: @user, url: "/#{@user.username}") do |form| %>
     <div class="row">
       <div class="col-3 off-3-xsmall col-6-xsmall">
-        <%= image_tag @user.image_url, width: "100%" if @user.image.present? %>
+        <% if @user.image.present? %>
+          <%= image_tag @user.image_url, width: "100%" %>
+        <% else %>
+          <%= image_tag "default-profile-image.png", width: "100%" %>
+        <% end %>
         <%= form.file_field :image, class: "align-center" %>
       </div>
     </div>
