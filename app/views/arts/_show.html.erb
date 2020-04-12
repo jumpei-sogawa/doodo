@@ -26,7 +26,7 @@
   </h2>
   <div><%= art.artist.name %>作</div>
   <div class="mb10">（<%= art.year %>年）</div>
-  <% unless controller.controller_name == "exhibitions" %>
+  <% if controller.controller_name != "exhibitions" %>
     <div><a href="/exhibitions/<%=art.exhibition.id%>" class="bb0 gray"><%= art.exhibition.name %></a></div>
   <% end %>
 </div>

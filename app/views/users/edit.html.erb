@@ -1,9 +1,44 @@
-<h1>プロフィール編集</h1>
+<section>
+  <%= form_with(model: @user, url: "/#{@user.username}") do |form| %>
+    <div class="row">
+      <div class="col-3 off-3-xsmall col-6-xsmall">
+        <%= image_tag @user.image_url, width: "100%" if @user.image.present? %>
+        <%= form.file_field :image, class: "align-center" %>
+      </div>
+    </div>
 
-<%= form_with(model: @user, url: "/#{@user.username}") do |form| %>
-  <div>username<%= form.text_field :username %></div>
-  <div>display name<%= form.text_field :display_name %></div>
-  <div>bio<%= form.text_area :bio %></div>
-  <div><%= form.file_field :image %></div>
-  <div><%= form.submit "保存" %></div>
-<% end %>
+
+    <div class="mt10 row">
+      <div class="col-2 col-12-xsmall">
+        ユーザーネーム
+      </div>
+      <div class="col-4 col-12-xsmall">
+        <%= form.text_field :username, autofocus: true, autocomplete: "username", value: @user.username, placeholder: "ユーザーネーム" %>
+      </div>
+    </div>
+
+    <div class="mt10 row">
+      <div class="col-2 col-12-xsmall">
+        表示名
+      </div>
+      <div class="col-4 col-12-xsmall">
+        <%= form.text_field :display_name, value: @user.display_name, placeholder: "表示名" %>
+      </div>
+    </div>
+
+    <div class="mt10 row">
+      <div class="col-2 col-12-xsmall">
+        自己紹介
+      </div>
+      <div class="col-4  col-12-xsmall">
+        <%= form.text_area :bio, value: @user.bio, placeholder: "自己紹介" %>
+      </div>
+    </div>
+
+    <div class="mt20 row">
+      <div class="actions">
+        <%= form.submit "保存" %>
+      </div>
+    </div>
+  <% end %>
+</section>

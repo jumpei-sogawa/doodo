@@ -24,7 +24,7 @@
     </div>
   </h2>
 
-  <% unless controller.controller_name == "museums" %>
+  <% if controller.controller_name != "museums" %>
     <div><%= exhb.museum.name %></div>
   <% end %>
   <div class="row">

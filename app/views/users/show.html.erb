@@ -1,25 +1,24 @@
 <section>
-  <div class="row">
-    <div class="col-3 col-6-xsmall">
+  <div class="row mb20">
+    <div class="col-3 col-3-xsmall">
       <%= image_tag @user.image_url, width: "100%" if @user.image.present? %>
     </div>
 
-    <div class="col-9 col-6-xsmall">
-      <% if @user == current_user %>
-        <ul class="actions">
-          <li><a href="/<%=@user.username%>/edit" class="button">プロフィール編集</a></li>
-        </ul>
-      <% end %>
-      <h3 class="dark mb0"><%= @user.display_name %></h3>
-      <div class="dark"><%= @user.username %></div>
+    <div class="col-9 col-9-xsmall">
     </div>
 
     <div class="col-6 col-12-xsmall">
-      <p class="dark">
+      <h3 class="dark mb0"><%= @user.display_name %></h3>
+      <div class="dark"><%= @user.username %></div>
+      <p class="dark mb20">
         <%= @user.bio %>
       </p>
+      <% if @user == current_user %>
+        <div class="w100">
+          <a href="/<%=@user.username%>/edit" class="w100 button dark">プロフィール編集</a>
+        </div>
+      <% end %>
     </div>
-
   </div>
 
 
@@ -27,29 +26,29 @@
     <header class="major align-center">
       <h2>行った展覧会</h2>
     </header>
-    <div class="features">
+    <div class="row">
       <% @visited_exhibitions.each do |exhb| %>
-        <article>
+        <div class="col-3 col-6-xsmall">
           <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
-        </article>
+        </div>
       <% end %>
     </div>
   <% end %>
 
-  <%= if @clipped_exhibitions.present? %>
+  <% if @clipped_exhibitions.present? %>
     <header class="major align-center">
       <h2>ピン留めした展覧会</h2>
     </header>
-    <div class="features">
+    <div class="row">
       <% @clipped_exhibitions.each do |exhb| %>
-        <article>
+        <div class="col-3 col-6-xsmall">
           <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
-        </article>
+        </div>
       <% end %>
     </div>
   <% end %>
 
-  <%= if @exhb_logs.present? %>
+  <% if @exhb_logs.present? %>
     <header class="major align-center">
       <h2>すべてのログ</h2>
     </header>

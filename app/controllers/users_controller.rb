@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    unless @user == current_user
+    if @user != current_user
       redirect_to "/#{@user.username}"
     end
     @title = "プロフィール編集"
