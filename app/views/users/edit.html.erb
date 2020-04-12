@@ -7,6 +7,14 @@
       </div>
     </div>
 
+    <div class="mt10 row">
+      <div class="col-2 col-12-xsmall">
+        名前
+      </div>
+      <div class="col-4 col-12-xsmall">
+        <%= form.text_field :display_name, value: @user.display_name, placeholder: "名前" %>
+      </div>
+    </div>
 
     <div class="mt10 row">
       <div class="col-2 col-12-xsmall">
@@ -14,15 +22,6 @@
       </div>
       <div class="col-4 col-12-xsmall">
         <%= form.text_field :username, autofocus: true, autocomplete: "username", value: @user.username, placeholder: "ユーザーネーム" %>
-      </div>
-    </div>
-
-    <div class="mt10 row">
-      <div class="col-2 col-12-xsmall">
-        表示名
-      </div>
-      <div class="col-4 col-12-xsmall">
-        <%= form.text_field :display_name, value: @user.display_name, placeholder: "表示名" %>
       </div>
     </div>
 
