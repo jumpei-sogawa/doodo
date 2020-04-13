@@ -1,13 +1,16 @@
 <section>
   <%= form_with(model: @user, url: "/#{@user.username}") do |form| %>
     <div class="row">
-      <div class="col-3 off-3-xsmall col-6-xsmall">
-        <% if @user.image.present? %>
-          <%= image_tag @user.image_url, width: "100%" %>
-        <% else %>
-          <%= image_tag "default-profile-image.png", width: "100%" %>
-        <% end %>
-        <%= form.file_field :image, class: "align-center" %>
+      <div class="off-2 col-2 off-3-xsmall col-6-xsmall">
+        <div id="img_field" onClick="$('#user_image').click()" >
+          <% if @user.image.present? %>
+            <%= image_tag @user.image_url, width: "100%" %>
+          <% else %>
+            <%= image_tag "default-profile-image.png", width: "100%" %>
+          <% end %>
+        </div>
+        <%= form.file_field :image, style: "display:none;" %>
+        <label for="user_image"><div class="button small w100 align-center">画像をアップロード</div></label>
       </div>
     </div>
 
@@ -16,7 +19,7 @@
         名前
       </div>
       <div class="col-4 col-12-xsmall">
-        <%= form.text_field :name, value: @user.name, placeholder: "名前（20文字以内）" %>
+        <%= form.text_field :name, autofocus: true, value: @user.name, placeholder: "名前（20文字以内）" %>
       </div>
     </div>
 
@@ -49,3 +52,29 @@
     </div>
   <% end %>
 </section>
+
+<script type="text/javascript" language="javascript">
+  $(function(){
+    $fileField = $('#user_image')
+
+    // 選択された画像を取得し表示
+    $($fileField).on('change', $fileField, function(e) {
+      file = e.target.files[0]
+      reader = new FileReader(),
+      $preview = $("#img_field");
+
+      reader.onload = (function(file) {
+        return function(e) {
+          $preview.empty();
+          $preview.append($('<img>').attr({
+            src: e.target.result,
+            width: "100%",
+            class: "preview",
+            title: file.name
+          }));
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  });
+</script>
