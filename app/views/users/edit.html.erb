@@ -2,7 +2,7 @@
   <%= form_with(model: @user, url: "/#{@user.username}") do |form| %>
     <div class="row">
       <div class="off-2 col-2 off-3-xsmall col-6-xsmall">
-        <div id="img_field" onClick="$('#user_image').click()" >
+        <div id="img_field" onClick="$('#user_image').click()">
           <% if @user.image.present? %>
             <%= image_tag @user.image_url, width: "100%" %>
           <% else %>
