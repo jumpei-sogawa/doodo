@@ -1,6 +1,6 @@
 <div class="row">
   <span class="col-3 col-2-xsmall pb0">
-    <a href="/<%=user.username%>" class="image">
+    <a href="/<%=user.username%>" class="image circle">
       <% if user.image.present? %>
         <%= image_tag user.image.to_s, height: "30px" %>
       <% else %>

@@ -157,6 +157,10 @@ span.denominator {
   display: inline-block;
 }
 
+.circle {
+  border-radius: 50%;
+}
+
 @media screen and (max-width: 480px) {
   h2.mobile-fs3em {
     font-size: 3em;
@@ -192,4 +196,68 @@ span.denominator {
     border-radius: 50%;
     -webkit-border-radius: 50%;
   }
+}
+
+// オーバーレイ
+.overlay {
+  z-index: 100;
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.85);
+}
+
+// トリミング部の親要素
+.crop_modal {
+  width: 100%;
+  position: relative;
+  padding-top: 6em;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+}
+
+
+// 閉じるボタンを擬似要素で作成
+.overlay .close_btn {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.overlay .close_btn:before {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 36px;
+  background-color: #fff;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 8px;
+  left: 25px;
+}
+.overlay .close_btn:after {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 36px;
+  background-color: #fff;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 8px;
+  left: 25px;
+}
+
+// トリミング決定ボタン
+.overlay .select_btn {
+  width: 100%;
+  position: absolute;
+  top: 392px;
+  margin-top: 6em;
+  padding-top: 20px;
+  cursor: pointer;
 }

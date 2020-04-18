@@ -1,16 +1,27 @@
+<%# ajax処理で使う分のパラメータをhidden_fieldで持っておく %>
+<%= hidden_field_tag "username", @user.username %>
+
+<div class="overlay" style="display:none;">
+  <div class="crop_modal"></div>
+  <div class="close_btn"></div>
+  <div class="select_btn align-center">
+    <div class="w100 button primary" id="select_btn">決定</div>
+  </div>
+</div>
+
 <section>
   <%= form_with(model: @user, url: "/#{@user.username}") do |form| %>
     <div class="row">
       <div class="off-2 col-2 off-3-xsmall col-6-xsmall">
         <div id="img_field" onClick="$('#user_image').click()">
           <% if @user.image.present? %>
-            <%= image_tag @user.image_url, width: "100%" %>
+            <%= image_tag @user.image_url, class: "w100 circle" %>
           <% else %>
-            <%= image_tag "default-profile-image.png", width: "100%" %>
+            <%= image_tag "default-profile-image.png", class: "w100 circle" %>
           <% end %>
         </div>
         <%= form.file_field :image, style: "display:none;" %>
-        <label for="user_image"><div class="button small w100 align-center">画像をアップロード</div></label>
+        <label for="user_image"><div class="button small w100 align-center">プロフィール写真を変更</div></label>
       </div>
     </div>
 
@@ -45,36 +56,176 @@
       </div>
     </div>
 
-    <div class="mt20 row">
-      <div class="actions">
-        <%= form.submit "保存" %>
-      </div>
+    <%# jsでajax送信するためのボタンを作成 %>
+    <div class="mt20">
+      <div id="submit_btn" class="button">保存</div>
     </div>
   <% end %>
 </section>
 
-<script type="text/javascript" language="javascript">
-  $(function(){
-    $fileField = $('#user_image')
+<%= stylesheet_link_tag    'cropper' %>
+<%= javascript_include_tag 'cropper' %>
 
-    // 選択された画像を取得し表示
+<script type="text/javascript" language="javascript">
+  $(function() {
+    $fileField = $('#user_image')
+    $preview = $("#img_field");
+    $overlay = $('.overlay')
+    $crop_modal = $('.crop_modal')
+    $close_btn = $('.close_btn')
+    $select_btn = $('#select_btn')
+
+
+    // 選択された画像を取得しモーダルに表示
     $($fileField).on('change', $fileField, function(e) {
-      file = e.target.files[0]
-      reader = new FileReader(),
-      $preview = $("#img_field");
+      file = e.target.files[0];
+      reader = new FileReader();
+
+      if(file.type.indexOf('image') < 0){
+        return false;
+      };
 
       reader.onload = (function(file) {
         return function(e) {
-          $preview.empty();
-          $preview.append($('<img>').attr({
+          $overlay.fadeIn();
+          $('.crop_modal').height(window.innerWidth);
+          $crop_modal.append($('<img>').attr({
             src: e.target.result,
             width: "100%",
-            class: "preview",
+            height: "100%",
+            id: "crop_img",
+            class: "image",
+            style: "object-fit: cover;",
             title: file.name
           }));
+          initIconCrop();
         };
       })(file);
       reader.readAsDataURL(file);
     });
+
+    // cropper生成
+    var cropper;
+    var croppable = false;
+    function initIconCrop(){
+      cropper = new Cropper(crop_img, {
+        dragMode: 'move',
+        aspectRatio: 1,
+        restore: false,
+        guides: false,
+        center: false,
+        highlight: false,
+        cropBoxMovable: false,
+        cropBoxResizable: false,
+        minCropBoxWidth: 280,
+        minCropBoxHeight: 280,
+        ready: function(){
+          croppable = true;
+        }
+      });
+    }
+
+    // 戻るボタン
+    $($close_btn).on('click', function(){
+      $overlay.fadeOut();
+      $('#crop_img').remove();
+      $('.cropper-container').remove();
+    });
+
+    // トリミング決定時
+    $($select_btn).on('click', function(){
+      iconCropping();
+      $overlay.fadeOut();
+      $('#crop_img').remove();
+      $('.cropper-container').remove();
+    });
+
+    // croppedCanvas（トリミング後の画像をプレビューとして表示するための部分）のコーディング
+    var croppedCanvas;
+    function iconCropping(){
+      if (!croppable) {
+        alert('トリミングする画像が設定されていません。');
+        return false;
+      }
+      croppedCanvas = cropper.getCroppedCanvas({
+        width: $preview.width(),
+        height: $preview.height(),
+      });
+      var croppedImage = document.createElement('img');
+      croppedImage.src = croppedCanvas.toDataURL();
+      img_field.innerHTML = '';
+      img_field.appendChild(croppedImage);
+      $('#img_field img').addClass("circle");
+    };
+
+    // コントローラーへ送信
+    $('#submit_btn').on('click', function(){
+      blobing();
+    });
+
+    // blobへ変換するためのコーディング（blobという形式で画像データを保存するため）
+    var blob;
+    function blobing(){
+      if (croppedCanvas && croppedCanvas.toBlob){
+        croppedCanvas.toBlob(function(b){
+          blob = b;
+          sending();
+        });
+      }else if(croppedCanvas && croppedCanvas.msToBlob){
+        blob = croppedCanvas.msToBlob();
+        sending();
+      }else{
+        blob = null;
+        sending();
+      };
+    };
+
+    // formデータをまとめてajaxでコントローラーに渡すための準備
+    function sending(){
+      var formData = new FormData();
+      const username = $('#username').val();
+
+  　　 // CSRF対策（独自のajax処理を行う場合、head内にあるcsrf-tokenを取得して送る必要がある）
+      $.ajaxPrefilter(function(options, originalOptions, jqXHR){
+        var token;
+        if (!options.crossDomain){
+          token = $('meta[name="csrf-token"]').attr('content');
+
+          if (token){
+            return jqXHR.setRequestHeader('X-CSRF-Token', token);
+          };
+        };
+      });
+
+      // 入力されたformデータをformDataに入れる
+      usersVal(formData);
+
+      $.ajax({
+        url: '/' + username,
+        datatype: 'json',
+        type: 'patch',
+        data: formData,
+        processData: false,
+        contentType: false,
+      });
+    };
+
+    // 入力されたformデータ（textやradioなど）を取得する関数作成
+    function usersVal(formData){
+      name = $('#user_name').val();
+      username = $('#user_username').val();
+      bio = $('#usere_bio').val()
+
+      if (blob != null){
+        let time = Date.parse(new Date());
+        let type = blob.type.slice(6);
+        formData.append('user[image]', blob, `${time}.${type}`);
+      }
+      formData.append('user[name]', name);
+      formData.append('user[username]', username);
+      formData.append('user[bio]', bio)
+      return formData
+    }
+
   });
 </script>
