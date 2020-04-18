@@ -2,11 +2,11 @@
 <%= hidden_field_tag "username", @user.username %>
 
 <div class="overlay" style="display:none;">
-  <div class="crop_modal"></div>
-  <div class="close_btn"></div>
-  <div class="select_btn align-center">
-    <div class="w100 button primary" id="select_btn">決定</div>
-  </div>
+    <div class="crop_modal"></div>
+    <div class="buttons">
+      <div class="w50 button" id="close_btn">キャンセル</div>
+      <div class="w50 button primary" id="select_btn">決定</div>
+    </div>
 </div>
 
 <section>
@@ -15,12 +15,16 @@
       <div class="off-2 col-2 off-3-xsmall col-6-xsmall">
         <div id="img_field" onClick="$('#user_image').click()">
           <% if @user.image.present? %>
-            <%= image_tag @user.image_url, class: "w100 circle" %>
+            <%= image_tag @user.image_url, class: "w100 circle pointer" %>
           <% else %>
             <%= image_tag "default-profile-image.png", class: "w100 circle" %>
           <% end %>
         </div>
         <%= form.file_field :image, style: "display:none;" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="off-1 col-4 off-2-xsmall col-8-xsmall">
         <label for="user_image"><div class="button small w100 align-center">プロフィール写真を変更</div></label>
       </div>
     </div>
@@ -72,7 +76,7 @@
     $preview = $("#img_field");
     $overlay = $('.overlay')
     $crop_modal = $('.crop_modal')
-    $close_btn = $('.close_btn')
+    $close_btn = $('#close_btn')
     $select_btn = $('#select_btn')
 
 
@@ -88,7 +92,7 @@
       reader.onload = (function(file) {
         return function(e) {
           $overlay.fadeIn();
-          $('.crop_modal').height(window.innerWidth);
+          $('.crop_modal').height("350px");
           $crop_modal.append($('<img>').attr({
             src: e.target.result,
             width: "100%",

@@ -145,6 +145,10 @@ span.denominator {
   font-size: 0.5em;
 }
 
+.w50 {
+  width: 50%;
+}
+
 .w100 {
   width: 100%;
 }
@@ -159,6 +163,10 @@ span.denominator {
 
 .circle {
   border-radius: 50%;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
@@ -220,7 +228,6 @@ span.denominator {
   margin: 0 auto;
 }
 
-
 // 閉じるボタンを擬似要素で作成
 .overlay .close_btn {
   width: 50px;
@@ -253,11 +260,9 @@ span.denominator {
 }
 
 // トリミング決定ボタン
-.overlay .select_btn {
+.overlay .buttons {
   width: 100%;
   position: absolute;
-  top: 392px;
-  margin-top: 6em;
-  padding-top: 20px;
-  cursor: pointer;
+  bottom: 20px;
+  display: flex;
 }

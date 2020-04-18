@@ -37,14 +37,4 @@ class UsersController < ApplicationController
     def user_params
       params.fetch(:user, {}).permit(:username, :name, :bio, :image)
     end
-
-    def image_from_base64(b64)
-      bin = Base64.decode64(b64)
-      file = Tempfile.new('img')
-      file.binmode
-      file << bin
-      file.rewind
-
-      return file
-    end
 end
