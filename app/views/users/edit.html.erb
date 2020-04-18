@@ -34,7 +34,7 @@
         名前
       </div>
       <div class="col-4 col-12-xsmall">
-        <%= form.text_field :name, autofocus: true, value: @user.name, placeholder: "名前（20文字以内）" %>
+        <%= form.text_field :name, autofocus: true, value: @user.name, placeholder: "名前（20字以内）" %>
       </div>
     </div>
 
@@ -56,7 +56,7 @@
         自己紹介
       </div>
       <div class="col-4  col-12-xsmall">
-        <%= form.text_area :bio, value: @user.bio, placeholder: "自己紹介" %>
+        <%= form.text_area :bio, value: @user.bio, placeholder: "自己紹介（150字以内）", maxlength: 150 %>
       </div>
     </div>
 
