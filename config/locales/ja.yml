@@ -33,6 +33,7 @@ ja:
         username: ユーザーネーム
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード（確認）
         name: 名前
         bio: 自己紹介
         image: プロフィール画像
