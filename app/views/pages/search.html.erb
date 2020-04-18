@@ -1,72 +1,76 @@
 <section>
-	<header class="major">
-		<h2>展覧会を探す</h2>
-	</header>
+	<div class="row">
+		<div class="col-6 col-12-xsmall">
+			<header class="major align-center">
+				<h2>展覧会を探す</h2>
+			</header>
 
-	<%= form_with(url: exhibitions_path, method: :get, local: true) do |form| %>
-		<div class="row gtr-uniform">
-			<div class="col-1 col-2-xsmall">
-				<h3 class="align-center pt5">場所</h3>
-			</div>
-			<div class="col-5 col-4-xsmall">
-				<%= form.text_field :area, value: params[:area], placeholder: "例:東京" %>
-			</div>
-			<div class="col-1 col-2-xsmall">
-				<h3 class="align-center pt5">展名</h3>
-			</div>
-			<div class="col-5 col-4-xsmall">
-				<%= form.text_field :name, value: params[:name], placeholder: "例:モネ" %>
-			</div>
+			<%= form_with(url: exhibitions_path, method: :get, local: true) do |form| %>
+				<div class="row gtr-uniform">
+					<div class="col-2 col-2-xsmall">
+						<h3 class="align-center pt5">場所</h3>
+					</div>
+					<div class="col-4 col-4-xsmall">
+						<%= form.text_field :area, value: params[:area], placeholder: "例:東京" %>
+					</div>
+					<div class="col-2 col-2-xsmall">
+						<h3 class="align-center pt5">展名</h3>
+					</div>
+					<div class="col-4 col-4-xsmall">
+						<%= form.text_field :name, value: params[:name], placeholder: "例:モネ" %>
+					</div>
 
-			<div class="col-1 col-2-xsmall">
-				<h3 class="align-center pt5">日時</h3>
-			</div>
-			<div class="col-5 col-6-xsmall">
-				<%= form.date_field :date, value: params[:date], placeholder: Date.today %>
-			</div>
-			<!-- Break -->
-			<div class="col-12">
-				<ul class="actions">
-					<li><input type="submit" value="検索" class="primary" /></li>
-					<li><input type="reset" value="リセット" /></li>
-				</ul>
-			</div>
+					<div class="col-2 col-2-xsmall">
+						<h3 class="align-center pt5">日時</h3>
+					</div>
+					<div class="col-6 col-6-xsmall">
+						<%= form.date_field :date, value: params[:date], placeholder: Date.today %>
+					</div>
+					<!-- Break -->
+					<div class="col-12 col-12-xsmall">
+						<div class="row">
+								<div class="col-6"><input type="reset" value="リセット" class="w100" /></div>
+								<div class="col-6"><input type="submit" value="検索" class="w100 primary" /></div>
+						</div>
+					</div>
+				</div>
+			<% end %>
 		</div>
-	<% end %>
+
+		<div class="col-6 col-12-xsmall">
+			<header class="major align-center">
+				<h2>美術館を探す</h2>
+			</header>
+
+			<%= form_with(url: museums_path, method: :get, local: true) do |form| %>
+				<div class="row gtr-uniform">
+					<div class="col-2 col-2-xsmall">
+						<h3 class="align-center pt5">場所</h3>
+					</div>
+					<div class="col-4 col-4-xsmall">
+						<%= form.text_field :area, value: params[:area], placeholder: "例:東京" %>
+					</div>
+					<div class="col-2 col-2-xsmall">
+						<h3 class="align-center pt5">館名</h3>
+					</div>
+					<div class="col-4 col-4-xsmall">
+						<%= form.text_field :name, value: params[:name], placeholder: "例:国立" %>
+					</div>
+					<!-- Break -->
+					<div class="col-12 col-12-xsmall">
+						<div class="row">
+							<div class="col-6"><input type="reset" value="リセット" class="w100" /></div>
+							<div class="col-6"><input type="submit" value="検索" class="w100 primary" /></div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
 </section>
 
 <section>
-	<header class="major">
-		<h2>美術館を探す</h2>
-	</header>
-
-	<%= form_with(url: museums_path, method: :get, local: true) do |form| %>
-		<div class="row gtr-uniform">
-			<div class="col-1 col-2-xsmall">
-				<h3 class="align-center pt5">場所</h3>
-			</div>
-			<div class="col-5 col-4-xsmall">
-				<%= form.text_field :area, value: params[:area], placeholder: "例:東京" %>
-			</div>
-			<div class="col-1 col-2-xsmall">
-				<h3 class="align-center pt5">館名</h3>
-			</div>
-			<div class="col-5 col-4-xsmall">
-				<%= form.text_field :name, value: params[:name], placeholder: "例:国立" %>
-			</div>
-			<!-- Break -->
-			<div class="col-12">
-				<ul class="actions">
-					<li><input type="submit" value="検索" class="primary" /></li>
-					<li><input type="reset" value="リセット" /></li>
-				</ul>
-			</div>
-		</div>
-	<% end %>
-</section>
-
-<section>
-  <header class="major">
+  <header class="major align-center">
     <h2>あなたにおすすめの展覧会</h2>
   </header>
 	<div class="row">
