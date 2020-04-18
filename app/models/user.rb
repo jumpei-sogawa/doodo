@@ -11,21 +11,29 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  validate :username_validate
+
+  validates :username,
+    # presence: true,
+    # length: { minimum: 4, maximum: 20 },
+    uniqueness: { case_sensitive: :false },
+    format: { with: /\A[a-z0-9]+\z/, message: "は半角英小文字/数字で入力してください"}
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          authentication_keys: [:login]
 
-  validates :username,
-    presence: true,
-    uniqueness: { case_sensitive: :false },
-    length: { minimum: 4, maximum: 20 },
-    format: { with: /\A[a-z0-9]+\z/, message: "ユーザー名は半角英数字です"}
-
-  validates :name, length: { maximum: 20, message: "20字以内で入力してください" }
+         validates :name, length: { maximum: 20, message: "20字以内で入力してください" }
 
   validates :bio, length: { maximum: 150, message: "150字以内で入力してください"}
 
   attr_writer :login
+
+  def username_validate
+    if username.blank? || username.length < 4 || username.length >20
+      errors.add(:username, "を4~20字で入力してください")
+    end
+  end
 
   def login
     @login || self.username || self.email
