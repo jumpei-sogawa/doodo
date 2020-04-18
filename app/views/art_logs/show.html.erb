@@ -20,7 +20,7 @@
           </div>
 
           <%= form_with(model: @art_log_comment, url: art_log_art_log_comments_path(@art_log)) do |form| %>
-            <div class="mb10"><%= form.text_area :body, rows: 1, placeholder: "コメント..." %></div>
+            <div class="mb10"><%= form.text_area :body, rows: 1, value: session[:art_log_comment_body], placeholder: "コメント..." %></div>
             <div class="align-right"><%= form.submit "送信" %></div>
           <% end %>
         </div>

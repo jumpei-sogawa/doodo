@@ -1,5 +1,4 @@
 class ExhbLogCommentsController < ApplicationController
-  # before_action :authenticate_user!, only: [:create]
 
   def create
     if user_signed_in?
@@ -7,7 +6,7 @@ class ExhbLogCommentsController < ApplicationController
       exhb_log_comment.user_id = current_user.id
       exhb_log_comment.exhb_log_id = params[:exhb_log_id]
       if exhb_log_comment.save
-        session[:exhb_log_comment_body].clear
+        session[:exhb_log_comment_body] = nil
         redirect_to exhb_log_path(exhb_log_comment.exhb_log)
       end
     else

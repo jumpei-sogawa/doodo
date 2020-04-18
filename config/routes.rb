@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     resources :art_log_comments, only: [:create]
   end
 
+  get 'art_logs/:id/art_log_comments' => 'art_logs#show'
+
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
