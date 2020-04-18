@@ -25,12 +25,12 @@
     </div>
     <div class="row">
       <div class="off-1 col-4 off-2-xsmall col-8-xsmall">
-        <label for="user_image"><div class="button small w100 align-center">プロフィール写真を変更</div></label>
+        <label for="user_image"><div class="button small w100 align-center" tabindex="0">プロフィール写真を変更</div></label>
       </div>
     </div>
 
     <div class="mt10 row">
-      <div class="col-2 col-12-xsmall">
+      <div class="col-2 col-12-xsmall mt10">
         名前
       </div>
       <div class="col-4 col-12-xsmall">
@@ -39,7 +39,7 @@
     </div>
 
     <div class="mt10 row">
-      <div class="col-2 col-12-xsmall">
+      <div class="col-2 col-12-xsmall mt10">
         ユーザーネーム
       </div>
       <div class="col-4 col-12-xsmall">
@@ -52,7 +52,7 @@
     </div>
 
     <div class="mt10 row">
-      <div class="col-2 col-12-xsmall">
+      <div class="col-2 col-12-xsmall mt10">
         自己紹介
       </div>
       <div class="col-4  col-12-xsmall">
@@ -62,7 +62,7 @@
 
     <%# jsでajax送信するためのボタンを作成 %>
     <div class="mt20">
-      <div id="submit_btn" class="button">保存</div>
+      <div id="submit_btn" class="button" tabindex="0">保存</div>
     </div>
   <% end %>
 </section>
@@ -218,7 +218,7 @@
     function usersVal(formData){
       name = $('#user_name').val();
       username = $('#user_username').val();
-      bio = $('#usere_bio').val()
+      bio = $('#user_bio').val()
 
       if (blob != null){
         let time = Date.parse(new Date());

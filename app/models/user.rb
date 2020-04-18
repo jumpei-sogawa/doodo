@@ -23,7 +23,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          authentication_keys: [:login]
 
-         validates :name, length: { maximum: 20, message: "20字以内で入力してください" }
+  validates :name, length: { maximum: 20, message: "20字以内で入力してください" }
 
   validates :bio, length: { maximum: 150, message: "150字以内で入力してください"}
 

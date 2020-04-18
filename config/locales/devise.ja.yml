@@ -8,7 +8,7 @@ ja:
 
   devise:
     failure:
-      unauthenticated: 'ログインしてください'
+      unauthenticated: ''
       unconfirmed: '本登録を行ってください'
       locked: 'あなたのアカウントは凍結されています'
       invalid: 'ユーザーネーム、メールアドレス、パスワードのどれかが違います'
