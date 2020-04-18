@@ -28,7 +28,7 @@ class Users::SessionsController < Devise::SessionsController
 
   private
     def after_sign_in_path_for(resource)
-      mypage_path
+      session[:previous_url] || mypage_path
     end
 
     def after_sign_out_path_for(resource)

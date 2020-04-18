@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :exhb_log_comments, only: [:create]
   end
 
+  get 'exhb_logs/:id/exhb_log_comments' => 'exhb_logs#show'
+
   resources :art_logs, only: [:show] do
     resources :art_log_likes, only: [:create, :destroy]
     resources :art_log_comments, only: [:create]

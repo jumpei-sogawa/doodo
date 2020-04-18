@@ -1,12 +1,18 @@
 class ExhbLogCommentsController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  # before_action :authenticate_user!, only: [:create]
 
   def create
-    exhb_log_comment = ExhbLogComment.new(exhb_log_comment_params)
-    exhb_log_comment.user_id = current_user.id
-    exhb_log_comment.exhb_log_id = params[:exhb_log_id]
-    if exhb_log_comment.save
-      redirect_back(fallback_location: root_path)
+    if user_signed_in?
+      exhb_log_comment = ExhbLogComment.new(exhb_log_comment_params)
+      exhb_log_comment.user_id = current_user.id
+      exhb_log_comment.exhb_log_id = params[:exhb_log_id]
+      if exhb_log_comment.save
+        session[:exhb_log_comment_body].clear
+        redirect_to exhb_log_path(exhb_log_comment.exhb_log)
+      end
+    else
+      session[:exhb_log_comment_body] = params[:exhb_log_comment][:body]
+      redirect_to new_user_session_path
     end
   end
 
