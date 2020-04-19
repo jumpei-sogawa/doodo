@@ -7,7 +7,7 @@ class Exhibition < ApplicationRecord
   def self.search_any(params)
     exhibitions_by_area = []
 
-    museums = Museum.where("address LIKE ?", "%#{params[:any]}%")
+    museums = Museum.where("address LIKE ?", "%#{params[:any]}%").includes(:exhibitions).order("exhibitions.star DESC NULLS LAST")
     museums.each do |museum|
       museum.exhibitions.each do |exhb|
         exhibitions_by_area << exhb
@@ -29,8 +29,7 @@ class Exhibition < ApplicationRecord
       return exhibitions_by_area
     end
 
-    exhibitions = Exhibition.where("name LIKE ?", "%#{params[:any]}%")
-    return exhibitions
+    Exhibition.where("name LIKE ?", "%#{params[:any]}%")
   end
 
   def self.search(params)
@@ -60,11 +59,11 @@ class Exhibition < ApplicationRecord
       exhibitions = exhibitions.select { |exhb| (exhb.start_date <= date && exhb.end_date >= date) }
     end
 
-    return exhibitions
+    exhibitions
   end
 
   def to_i
-    return self.star
+    self.star
   end
 
   def self.update_star_by(exhb_log)
@@ -77,6 +76,6 @@ class Exhibition < ApplicationRecord
   end
 
   def self.is_open
-    return self.where("start_date <= ? AND end_date >= ?", Date.today, Date.today)
+    self.where("start_date <= ? AND end_date >= ?", Date.today, Date.today)
   end
 end

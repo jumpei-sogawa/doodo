@@ -5,11 +5,27 @@ class ExhibitionsController < ApplicationController
   # GET /exhibitions.json
   def index
     if params[:any].present?
-      @exhibitions = Exhibition.search_any(params)
+      @exhibitions = Exhibition.search_any(params).sort do |a,b|
+        if !a.star.present?
+          1
+        elsif !b.star.present?
+          -1
+        else
+          a <=> b
+        end
+      end
     elsif params[:area].present? || params[:name].present? || params[:date].present?
-      @exhibitions = Exhibition.search(params)
+      @exhibitions = Exhibition.search(params).sort do |a,b|
+        if !a.star.present?
+          1
+        elsif !b.star.present?
+          -1
+        else
+          a <=> b
+        end
+      end
     else
-      @exhibitions = Exhibition.all.order(star: "DESC")
+      @exhibitions = Exhibition.order("star DESC NULLS LAST")
     end
     @title = "展覧会 #{@exhibitions.count}件"
   end
@@ -18,7 +34,7 @@ class ExhibitionsController < ApplicationController
   # GET /exhibitions/1.json
   def show
     @title = "展覧会 詳細"
-    @arts = @exhibition.arts.where("star >= ?", 0).order(star: "DESC")
+    @arts = @exhibition.arts.where("star >= ?", 0).order("star DESC NULLS LAST")
     @exhb_logs = @exhibition.exhb_logs.order(id: "DESC").first(10)
     @exhb_log_comment = ExhbLogComment.new
   end

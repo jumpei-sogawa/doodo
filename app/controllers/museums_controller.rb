@@ -5,9 +5,18 @@ class MuseumsController < ApplicationController
   # GET /museums.json
   def index
     if params[:area].present? || params[:name].present?
-      @museums = Museum.where(["address LIKE ? AND name LIKE ?", "%#{params[:area]}%", "%#{params[:name]}%"])
+      museums = Museum.where("address LIKE ?", "%#{params[:area]}%").where("name LIKE ?", "%#{params[:name]}%")
+      @museums = museums.sort do |a,b|
+        if !a.exhibitions.last.star.present?
+          1
+        elsif !b.exhibitions.last.star.present?
+          -1
+        else
+          a <=> b
+        end
+      end
     else
-      @museums = Museum.all.includes(:exhibitions).order("exhibitions.star DESC")
+      @museums = Museum.includes(:exhibitions).order("exhibitions.star DESC NULLS LAST")
     end
     @title = "美術館 #{@museums.count}件"
   end
