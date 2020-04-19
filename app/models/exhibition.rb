@@ -76,7 +76,7 @@ class Exhibition < ApplicationRecord
     self.update(star: star)
   end
 
-  def self.is_held
+  def self.is_open
     exhibitions = self.where("start_date <= ? AND end_date >= ?", Date.today, Date.today)
     return exhibitions
   end

@@ -24,7 +24,9 @@
     <div>
       <strong><%= art_log.art.name %></strong>
       <div><%= art_log.art.artist.name %>作</div>
-      <div>（<%= art_log.art.year %>年）</div>
+      <% if art_log.art.year.present? %>
+        <div>（<%= art_log.art.year %>年）</div>
+      <% end %>
     </div>
     <%= link_to art_log_path(art_log) do %>
       <div class="dark is-text mt5 mb10"><%= art_log.body %></div>

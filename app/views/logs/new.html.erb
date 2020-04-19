@@ -23,7 +23,7 @@
 
       <div class="col-4 col-12-xsmall">
         <div class="w100 align-right">
-          <input type="submit" name="commit" value="展覧会のログだけ保存" data-disable-with="展覧会のログだけ保存" class="primary"/>
+          <input type="submit" name="commit" value="保存" data-disable-with="保存中" class="w30 primary"/>
         </div>
       </div>
     </div>
@@ -42,7 +42,16 @@
                 <div class="row mb20">
                   <div class="col-5">
                     <div id="art<%=i%>_img_field" onclick="$('#exhb_log_art_logs_attributes_<%= i %>_image').click()">
-                      <%= image_tag art.image, width: "100%" if art.image.present? %>
+                      <% if art.image.present? %>
+                        <%= image_tag art.image, class: "image w100" %>
+                      <% else %>
+                        <div class="adjust-box box-16x9">
+                          <div class="inner-box align-center">
+                            <div class="icon fa-gem gray" style="font-size:3em;"></div>
+                          </div>
+                        </div>
+                        <div class="image"></div>
+                      <% end %>
                     </div>
 
                     <%= art_log_fields.file_field :image, style: "display:none;" %>
@@ -54,7 +63,9 @@
                   <div class="col-7 b0">
                     <strong><%= art.name %></strong>
                     <div><%= art.artist.name %>作</div>
-                    <div>（<%= art.year %>年）</div>
+                    <% if art.year.present? %>
+                      <div>（<%= art.year %>年）</div>
+                    <% end %>
 
                     <%= art_log_fields.hidden_field :star, value: 0 %>
                     <div class="col-4 col-5-xsmall">
@@ -75,7 +86,7 @@
       <% end %>
 
       <div class="w100 align-right">
-        <input type="submit" name="commit" value="すべて保存" data-disable-with="すべて保存" class="primary"/>
+        <input type="submit" name="commit" value="すべて保存" data-disable-with="保存中" class="w30 primary"/>
       </div>
     </div>
   <% end %>

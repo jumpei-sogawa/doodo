@@ -1,6 +1,6 @@
 <section>
   <div class="row">
-    <div class="col-8 col-12-xsmall">
+    <div class="col-6 col-12-xsmall">
       <div class="mb10">
         <%= render partial: "users/show", locals: {user: @exhb_log.user, body: @exhb_log} %>
         <%= render partial: "exhb_logs/show", locals: {exhb_log: @exhb_log} %>
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="col-4 col-12-xsmall">
+    <div class="col-6 col-12-xsmall">
       <header class="major align-center">
         <h2>
           <%= @exhibition.name %>
@@ -35,8 +35,21 @@
       </header>
 
       <%= link_to exhibition_path(@exhibition) do %>
-        <div>
-          <%= image_tag @exhibition.image, class: "image w100" if @exhibition.image.present? %>
+        <div class="row">
+          <% if @exhibition.image.present? %>
+            <div class="off-3 col-6">
+              <%= image_tag @exhibition.image, class: "image w100" %>
+            </div>
+          <% else %>
+            <div class="off-3 col-6">
+              <div class="adjust-box box-16x9">
+                <div class="inner-box align-center">
+                  <div class="icon fa-gem gray" style="font-size:4em;"></div>
+                </div>
+              </div>
+              <div class="image"></div>
+            </div>
+          <% end %>
         </div>
       <% end %>
 

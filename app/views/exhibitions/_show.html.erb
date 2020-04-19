@@ -1,7 +1,12 @@
 <% if exhb.image.present? %>
   <div class="image w100 mr10"><a href="/exhibitions/<%=exhb.id%>"><%= image_tag exhb.image, class: "w100" %></a></div>
 <% else%>
-  <span class="image w100 mr10 mb0"><a href="/exhibitions/<%=exhb.id%>" class="icon fa-gem mr10 mb0"></a></span>
+  <div class="adjust-box box-3x4">
+    <div class="inner-box align-center">
+      <a href="/exhibitions/<%=exhb.id%>" class="icon fa-gem gray" style="font-size:4em;"></a>
+    </div>
+  </div>
+  <div class="image"></div>
 <% end %>
 <div class="content mt10 mb20">
   <h3><a href="/exhibitions/<%=exhb.id%>"><%= exhb.name %></a></h3>

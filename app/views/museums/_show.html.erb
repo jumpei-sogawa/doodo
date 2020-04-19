@@ -1,0 +1,5 @@
+<% if museum.image.present? %>
+  <div class="image w100 mr10"><a href="/museums/<%=museum.id%>"><%= image_tag museum.image, class: "w100" %></a></div>
+<% else%>
+  <span class="image w100 mr10 mb0"><a href="/museums/<%=museum.id%>" class="icon fa-gem mr10 mb0"></a></span>
+<% end %>

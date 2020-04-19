@@ -5,19 +5,31 @@
 
 	<div class="row">
 		<div class="col-6 col-12-xsmall image">
-			<%= image_tag @museum.image, width: "100%" if @museum.image.present? %>
+			<% if @museum.image.present? %>
+				<%= image_tag @museum.image, width: "100%" %>
+			<% else %>
+				<div class="adjust-box box-16x9">
+    			<div class="inner-box align-center">
+						<div class="icon fa-gem gray" style="font-size:4em;"></div>
+					</div>
+				</div>
+			<% end %>
 
 			<p>
-				<h3>住所</h3>
-				<p><%= @museum.address %></p>
+				<% if @museum.address.present? %>
+					<h3>住所</h3>
+					<p><%= @museum.address %></p>
+				<% end %>
 
-				<h3>お問い合わせ先</h3>
-				<p><%= @museum.phone %></p>
+				<% if @museum.phone.present? %>
+					<h3>お問い合わせ先</h3>
+					<p><%= @museum.phone %></p>
+				<% end %>
 
-				<h3>公式サイト</h3>
-					<% if @museum.website.present? %>
-						<a href="<%= @museum.website %>" class="button" target="blank">公式サイトはこちら</a>
-					<% end %>
+				<% if @museum.website.present? %>
+					<h3>公式サイト</h3>
+					<a href="<%= @museum.website %>" class="button" target="blank">公式サイトはこちら</a>
+				<% end %>
 			</p>
 		</div>
 

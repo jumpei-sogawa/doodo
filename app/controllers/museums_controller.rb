@@ -4,7 +4,7 @@ class MuseumsController < ApplicationController
   # GET /museums
   # GET /museums.json
   def index
-    if params[:area].present? || params[:name]
+    if params[:area].present? || params[:name].present?
       @museums = Museum.where(["address LIKE ? AND name LIKE ?", "%#{params[:area]}%", "%#{params[:name]}%"])
     else
       @museums = Museum.all.includes(:exhibitions).order("exhibitions.star DESC")
