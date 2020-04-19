@@ -9,8 +9,8 @@
 		</a>
   <% end %>
 <% else %>
-  <a data-remote="true" rel="nofollow" data-method="post" href="/exhb_logs/<%=exhb_log.id%>/exhb_log_likes" class="bb0">
+  <%= link_to new_user_session_path do %>
     <h2 class="mb0 align-center"><i class="far fa-heart"></i></h2>
-  </a>
+  <% end %>
 <% end %>
 

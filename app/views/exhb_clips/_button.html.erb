@@ -9,7 +9,7 @@
 		</a>
 	<% end %>
 <% else %>
-	<a data-remote="true" rel="nofollow" data-method="post" href="/exhibitions/<%=exhb.id%>/exhb_clips">
+	<%= link_to new_user_session_path do %>
 		<i class="fas fa-thumbtack"></i>
-	</a>
+	<% end %>
 <% end %>

@@ -7,7 +7,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user.id == current_user.id ? @title = "マイページ" : @title = "ユーザーページ"
+    if user_signed_in?
+      @user.id == current_user.id ? @title = "マイページ" : @title = "ユーザーページ"
+    else
+      @title = "ユーザーページ"
+    end
     @clipped_exhibitions = @user.clipped_exhibitions.distinct
     @visited_exhibitions = @user.visited_exhibitions.distinct
     @exhb_logs = @user.exhb_logs.order(id: "DESC")

@@ -9,7 +9,7 @@
 		</a>
   <% end %>
 <% else %>
-  <a data-remote="true" rel="nofollow" data-method="post" href="/art_logs/<%=art_log.id%>/art_log_likes" class="bb0">
+  <%= link_to new_user_session_path do %>
     <h2 class="mb0 align-center"><i class="far fa-heart"></i></h2>
-  </a>
+  <% end %>
 <% end %>
