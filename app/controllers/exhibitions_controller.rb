@@ -11,7 +11,7 @@ class ExhibitionsController < ApplicationController
         elsif !b.star.present?
           -1
         else
-          a <=> b
+          b <=> a
         end
       end
     elsif params[:area].present? || params[:name].present? || params[:date].present?
@@ -21,7 +21,7 @@ class ExhibitionsController < ApplicationController
         elsif !b.star.present?
           -1
         else
-          a <=> b
+          b <=> a
         end
       end
     else

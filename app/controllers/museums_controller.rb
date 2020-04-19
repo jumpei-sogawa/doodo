@@ -12,7 +12,7 @@ class MuseumsController < ApplicationController
         elsif !b.exhibitions.last.star.present?
           -1
         else
-          a <=> b
+          b <=> a
         end
       end
     else

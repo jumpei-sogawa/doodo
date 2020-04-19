@@ -7,7 +7,7 @@ class Exhibition < ApplicationRecord
   def self.search_any(params)
     exhibitions_by_area = []
 
-    museums = Museum.where("address LIKE ?", "%#{params[:any]}%").includes(:exhibitions).order("exhibitions.star DESC NULLS LAST")
+    museums = Museum.where("address LIKE ?", "%#{params[:any]}%")
     museums.each do |museum|
       museum.exhibitions.each do |exhb|
         exhibitions_by_area << exhb
