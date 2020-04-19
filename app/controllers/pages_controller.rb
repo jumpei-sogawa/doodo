@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
     @title = ""
-    @exhibitions = Exhibition.is_open.order(star: "DESC").first(4)
+    @exhibitions = Exhibition.is_open.order("star DESC").first(4)
     @arts = Art.order(star: "DESC").first(4)
   end
 

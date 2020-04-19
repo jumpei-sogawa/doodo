@@ -7,8 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    if user_signed_in?
-      @user.id == current_user.id ? @title = "マイページ" : @title = "ユーザーページ"
+    if user_signed_in? && @user.id == current_user.id
+      @title = "マイページ"
     else
       @title = "ユーザーページ"
     end
