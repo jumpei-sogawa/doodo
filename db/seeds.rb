@@ -333,5 +333,5 @@ Art.create(exhibition_id: 36, artist_id: 63, name: "マシューのゆめ", year
 Art.create(exhibition_id: 36, artist_id: 63, name: "スイミー", year: 1963, image: "https://www.fashion-press.net/img/common/touka.gif", title: "スイミー / レオ・レオーニ：作品検索 | アート・展覧会の口コミなら【stART】", description: "『スイミー』は、レオ・レオーニが作成した作品。")
 Art.create(exhibition_id: 36, artist_id: 63, name: "フレデリック", year: 1967, image: "https://www.fashion-press.net/img/common/touka.gif", title: "フレデリック / レオ・レオーニ：作品検索 | アート・展覧会の口コミなら【stART】", description: "『フレデリック』は、レオ・レオーニが作成した作品。")
 
-User.create(email: "a@a", password: "aaaaaa", username: "jumpe123oon", name: "Jumpei Sogawa", bio: "よろしくです。\nモネが好き", image: nil)
-User.create(email: "b@b", password: "bbbbbb", username: "kaitoharitaya", name: "張田谷 魁人", bio: "他人のログ見る専門", image: nil)
+# User.create(email: "a@a", password: "aaaaaa", username: "jumpe123oon", name: "Jumpei Sogawa", bio: "よろしくです。\nモネが好き", image: nil)
+# User.create(email: "b@b", password: "bbbbbb", username: "kaitoharitaya", name: "張田谷 魁人", bio: "他人のログ見る専門", image: nil)

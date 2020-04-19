@@ -75,4 +75,9 @@ class Exhibition < ApplicationRecord
     star = self.exhb_logs.average(:star)
     self.update(star: star)
   end
+
+  def self.is_held
+    exhibitions = self.where("start_date <= ? AND end_date >= ?", Date.today, Date.today)
+    return exhibitions
+  end
 end
