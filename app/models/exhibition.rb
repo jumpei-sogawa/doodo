@@ -6,38 +6,35 @@ class Exhibition < ApplicationRecord
 
   def self.search_any(params)
     exhibitions_by_area = []
-
-    museums = Museum.where("address LIKE ?", "%#{params[:any]}%")
-    museums.each do |museum|
+    Museum.where("address LIKE ?", "%#{params[:any]}%").each do |museum|
       museum.exhibitions.each do |exhb|
         exhibitions_by_area << exhb
       end
     end
 
-    exhibitions = []
+    exhibitions = exhibitions_by_area
 
-    if exhibitions_by_area.present?
+    if exhibitions.present?
       exhibitions_by_name = Exhibition.where("name LIKE ?", "%#{params[:any]}%")
       if exhibitions_by_name.present?
         exhibitions_by_name.each do |exhibition|
-          exhibitions_by_area.select { |exhb| exhibition.id != exhb.id }.each do |e|
-            exhibitions << e
-          end
+          exhibitions << exhibition
         end
+        return exhibitions.uniq
+      else
         return exhibitions
       end
-      return exhibitions_by_area
+    else
+      return Exhibition.where("name LIKE ?", "%#{params[:any]}%")
     end
 
-    Exhibition.where("name LIKE ?", "%#{params[:any]}%")
   end
 
   def self.search(params)
     exhibitions = []
 
     if params[:area].present?
-      museums = Museum.where("address LIKE ?", "%#{params[:area]}%")
-      museums.each do |museum|
+      Museum.where("address LIKE ?", "%#{params[:area]}%").each do |museum|
         museum.exhibitions.each do |exhb|
           exhibitions << exhb
         end
