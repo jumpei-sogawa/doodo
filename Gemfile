@@ -75,3 +75,5 @@ gem 'mini_magick'
 gem 'fog'
 
 gem 'jquery-rails'
+
+gem 'google-analytics-rails'
