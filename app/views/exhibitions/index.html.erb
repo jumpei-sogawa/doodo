@@ -20,12 +20,11 @@
 			<div class="col-5 col-6-xsmall">
 				<%= form.date_field :date, value: params[:date], placeholder: Date.today %>
 			</div>
-			<!-- Break -->
-			<div class="col-12">
-				<ul class="actions">
-					<li><input type="submit" value="検索" class="primary" /></li>
-					<li><div id="exhb_form_reset" class="button" onClick=>リセット</div></li>
-				</ul>
+			<div class="col-12 col-12-xsmall">
+				<div class="row">
+					<div class="col-3 off-1-xsmall col-5-xsmall"><div id="exhb_form_reset" class="button w100">リセット</div></div>
+					<div class="col-3 col-5-xsmall"><input type="submit" value="検索" class="primary w100" /></div>
+				</div>
 			</div>
 		</div>
 	<% end %>

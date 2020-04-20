@@ -13,12 +13,11 @@
 			<div class="col-5 col-4-xsmall">
 				<%= form.text_field :name, value: params[:name], placeholder: "例:国立" %>
 			</div>
-			<!-- Break -->
-			<div class="col-12">
-				<ul class="actions">
-					<li><input type="submit" value="検索" class="primary" /></li>
-					<li><div id="museum_form_reset" class="button" onClick=>リセット</div></li>
-				</ul>
+			<div class="col-12 col-12-xsmall">
+				<div class="row">
+					<div class="col-3 off-1-xsmall col-5-xsmall"><div id="museum_form_reset" class="button w100">リセット</div></div>
+					<div class="col-3 col-5-xsmall"><input type="submit" value="検索" class="primary w100" /></div>
+				</div>
 			</div>
 		</div>
 	<% end %>
