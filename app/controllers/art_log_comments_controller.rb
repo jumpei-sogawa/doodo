@@ -1,6 +1,10 @@
 class ArtLogCommentsController < ApplicationController
 
   def create
+    if art_log_comment_params[:body].blank?
+      redirect_to art_log_path(art_log_comment.art_log)
+    end
+
     if user_signed_in?
       art_log_comment = ArtLogComment.new(art_log_comment_params)
       art_log_comment.user_id = current_user.id

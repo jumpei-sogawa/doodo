@@ -1,6 +1,10 @@
 class ExhbLogCommentsController < ApplicationController
 
   def create
+    if exhb_log_comment_params[:body].blank?
+      redirect_to exhb_log_path(exhb_log_comment.exhb_log)
+    end
+
     if user_signed_in?
       exhb_log_comment = ExhbLogComment.new(exhb_log_comment_params)
       exhb_log_comment.user_id = current_user.id
