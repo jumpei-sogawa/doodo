@@ -17,7 +17,7 @@
 			<div class="col-12">
 				<ul class="actions">
 					<li><input type="submit" value="検索" class="primary" /></li>
-					<li><input type="reset" value="リセット" /></li>
+					<li><div id="museum_form_reset" class="button" onClick=>リセット</div></li>
 				</ul>
 			</div>
 		</div>
@@ -44,3 +44,12 @@
 	</div>
 
 </section>
+
+<script type="text/javascript" language="javascript">
+	$(function() {
+		$('#museum_form_reset').on('click', function(){
+			$('#name').val("");
+			$('#area').val("");
+    });
+	});
+</script>
