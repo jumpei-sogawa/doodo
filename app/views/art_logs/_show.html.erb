@@ -1,16 +1,22 @@
-<% if art_log.image.present? %>
-  <div>
-    <a href="/art_logs/<%=art_log.id%>" class="image w100">
+<div class="row mb10">
+  <% if art_log.image.present? %>
+    <a href="/art_logs/<%=art_log.id%>" class="image off-3 col-6 off-0-xsmall col-12-xsmall">
       <%= image_tag art_log.image_url(:thumb), class: "w100" %>
     </a>
-  </div>
-<% end %>
+  <% elsif art_log.art.image.present? %>
+    <div class="image off-3 col-6 off-0-xsmall col-12-xsmall">
+      <%= link_to art_path(art_log.art) do %>
+        <%= image_tag art_log.art.image, class: "image w100" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
 
 <div class="row">
   <div class="col-4 col-4-xsmall">
     <% art_log.star.present? ? count = art_log.star : count = 0 %>
-    <h2>
+    <h2 class="align-center">
       <% count.times do %>
         <span><i class="fas fa-star yellow"></i></span>
       <% end %>

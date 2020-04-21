@@ -882,6 +882,8 @@ hr {
         align-items: flex-end; }
       .row > .imp-xsmall {
         order: -1; }
+      .row > .off-0-xsmall {
+        margin-left: 0%; }
       .row > .col-1-xsmall {
         width: 8.33333%; }
       .row > .off-1-xsmall {

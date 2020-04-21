@@ -4,22 +4,36 @@
 			<% if exhb_log.exhibition_id != 1 %>
 				<header class="major align-center">
 					<h3>
-						<%= link_to exhb_log.exhibition.name, exhibition_path(exhb_log.exhibition), class: "" %>
+						<%= link_to exhb_log.exhibition.name, exhibition_path(exhb_log.exhibition) %>
 					</h3>
 				</header>
 
 				<%= render partial: "users/show", locals: {user: exhb_log.user, body: exhb_log} %>
 				<%= render partial: "exhb_logs/show", locals: {exhb_log: exhb_log} %>
-			<% end %>
 
-			<div class="row">
-				<% exhb_log.art_logs.each do |art_log| %>
-					<div class="off-1 col-11">
+				<div class="row">
+					<% exhb_log.art_logs.each do |art_log| %>
+						<div class="off-1 col-11">
+							<%= render partial: "users/show", locals: {user: art_log.user, body: art_log} %>
+							<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
+						</div>
+					<% end %>
+				</div>
+			<% elsif (art_log = exhb_log.art_logs.first).present? %>
+				<header class="major align-center">
+					<h3>
+						<%= link_to art_log.art.name, art_path(art_log.art) %>
+					</h3>
+				</header>
+
+				<div class="row">
+					<div class="col-12">
 						<%= render partial: "users/show", locals: {user: art_log.user, body: art_log} %>
 						<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
 					</div>
-				<% end %>
-			</div>
+				</div>
+			<% end %>
+
 		</div>
 	<% end %>
 </div>
