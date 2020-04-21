@@ -3,8 +3,9 @@
     <h2><%= @art.name %></h2>
   </header>
 
+
   <div class="row">
-    <div class="col-6">
+    <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
       <% if @art.image.present? %>
         <%= image_tag @art.image, class: "image w100" %>
       <% else %>
@@ -16,22 +17,30 @@
         <div class="image"></div>
       <% end %>
 
-      <strong><%= @art.name %></strong>
-      <div><%= @art.artist.name %>作</div>
-      <% if @art.year.present? %>
-        <div>（<%= @art.year %>年）</div>
-      <% end %>
+      <div class="align-center">
+        <strong><%= @art.name %></strong>
+        <div><%= @art.artist.name %>作</div>
+        <% if @art.year.present? %>
+          <div>（<%= @art.year %>年）</div>
+        <% end %>
+      </div>
 
       <%= form_for(@exhb_log, url: art_art_logs_path) do |exhb_log_form| %>
         <%= exhb_log_form.fields_for :art_logs do |art_log_fields| %>
           <%= art_log_fields.hidden_field :art_id, value: @art.id %>
           <%= art_log_fields.hidden_field :star, value: 0 %>
-          <span id="star1" class="star mb0 light-gray"><i class="fas fa-star"></i></span>
-          <span id="star2" class="star mb0 light-gray"><i class="fas fa-star"></i></span>
-          <span id="star3" class="star mb0 light-gray"><i class="fas fa-star"></i></span>
-          <%= art_log_fields.text_area :body, rows: 1, placeholder: "感想..." %>
+          <h1 class="align-center mb10">
+            <span id="star1" class="star mb0 light-gray"><i class="fas fa-star"></i></span>
+            <span id="star2" class="star mb0 light-gray"><i class="fas fa-star"></i></span>
+            <span id="star3" class="star mb0 light-gray"><i class="fas fa-star"></i></span>
+          </h1>
+          <div class="mb10">
+            <%= art_log_fields.text_area :body, rows: 1, placeholder: "感想..." %>
+          </div>
         <% end %>
-        <input type="submit" name="commit" value="保存" data-disable-with="保存中" class="w30 primary"/>
+        <div class="align-right">
+          <input type="submit" name="commit" value="保存" data-disable-with="保存中" class="w30 primary"/>
+        </div>
       <% end %>
     </div>
   </div>
