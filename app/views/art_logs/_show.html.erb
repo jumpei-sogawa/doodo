@@ -3,7 +3,7 @@
     <a href="/art_logs/<%=art_log.id%>" class="image off-3 col-6 off-0-xsmall col-12-xsmall">
       <%= image_tag art_log.image_url(:thumb), class: "w100" %>
     </a>
-  <% elsif art_log.art.image.present? %>
+  <% elsif params[:controller] != "arts" && art_log.art.image.present? %>
     <div class="image off-3 col-6 off-0-xsmall col-12-xsmall">
       <%= link_to art_path(art_log.art) do %>
         <%= image_tag art_log.art.image, class: "image w100" %>
@@ -27,11 +27,13 @@
   </div>
 
   <div class="col-8 col-8-xsmall">
-    <%= link_to art_path(art_log.art) do %>
-      <div class="bold dark bb0"><%= art_log.art.name %></div>
-      <div class="gray"><%= art_log.art.artist.name %>作</div>
-      <% if art_log.art.year.present? %>
-        <div class="gray">（<%= art_log.art.year %>年）</div>
+    <% if params[:controller] != "arts" %>
+      <%= link_to art_path(art_log.art) do %>
+        <div class="bold dark bb0"><%= art_log.art.name %></div>
+        <div class="gray"><%= art_log.art.artist.name %>作</div>
+        <% if art_log.art.year.present? %>
+          <div class="gray">（<%= art_log.art.year %>年）</div>
+        <% end %>
       <% end %>
     <% end %>
     <%= link_to art_log_path(art_log) do %>
