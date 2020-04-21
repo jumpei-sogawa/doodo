@@ -4,6 +4,8 @@ module ApplicationHelper
       # site: 'ほげほげのサイト',
       # reverse: true,
       # separator: '|',
+      title: @title,
+      description: @description,
       og: defalut_og,
       twitter: default_twitter_card
     }
