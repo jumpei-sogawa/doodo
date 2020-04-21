@@ -27,12 +27,16 @@ class ExhibitionsController < ApplicationController
     else
       @exhibitions = Exhibition.order("star DESC NULLS LAST")
     end
+    @exhibitions = @exhibitions.select { |exhb| exhb.id != 1 }
     @title = "展覧会 #{@exhibitions.count}件"
   end
 
   # GET /exhibitions/1
   # GET /exhibitions/1.json
   def show
+    if @exhibition.id == 1
+      redirect_to exhibitions_path
+    end
     @title = "展覧会 詳細"
     @arts = @exhibition.arts.where("star >= ?", 0).order("star DESC NULLS LAST")
     @exhb_logs = @exhibition.exhb_logs.order(id: "DESC").first(10)

@@ -16,6 +16,9 @@ class LogsController < ApplicationController
 
   # GET /logs/new
   def new
+    if @exhibition.id == 1
+      redirect_to exhibitions_path
+    end
     @title = "ログ投稿"
     @exhb_log = ExhbLog.new
     @exhb_log.art_logs.build

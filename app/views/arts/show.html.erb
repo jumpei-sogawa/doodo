@@ -4,6 +4,9 @@
 	</header>
 
 	<div class="row">
+		<% if @art.exhibition_id == 1 %>
+			<div class="col-4 col-12-xsmall"></div>
+		<% end %>
 		<div class="col-4 col-12-xsmall">
 			<div>
 				<% if @art.image.present? %>
@@ -45,16 +48,18 @@
 			<% end %>
 		</div>
 
-		<div class="mt20 col-8 col-12-xsmall">
-			<header class="major align-center">
-				<h2>この作品を展示している展覧会</h2>
-			</header>
-			<div class="row">
-				<div class="off-4 col-4 off-3-xsmall col-6-xsmall">
-					<div class="mb10"><%= render partial: "exhibitions/show", locals: {exhb: @art.exhibition} %></div>
+		<% if @art.exhibition_id != 1 %>
+			<div class="mt20 col-8 col-12-xsmall">
+				<header class="major align-center">
+					<h2>この作品を展示している展覧会</h2>
+				</header>
+				<div class="row">
+					<div class="off-4 col-4 off-3-xsmall col-6-xsmall">
+						<div class="mb10"><%= render partial: "exhibitions/show", locals: {exhb: @art.exhibition} %></div>
+					</div>
 				</div>
 			</div>
-		</div>
+		<% end %>
 	</div>
 
 	<div>

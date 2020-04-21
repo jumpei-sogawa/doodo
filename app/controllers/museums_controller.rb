@@ -18,12 +18,16 @@ class MuseumsController < ApplicationController
     else
       @museums = Museum.includes(:exhibitions).order("exhibitions.star DESC NULLS LAST")
     end
+    @museums = @museums.select { |museum| museum.id != 1 }
     @title = "美術館 #{@museums.count}件"
   end
 
   # GET /museums/1
   # GET /museums/1.json
   def show
+    if @museum.id == 1
+      redirect_to museums_path
+    end
     @title = "美術館 詳細"
     @exhibitions = @museum.exhibitions
   end
