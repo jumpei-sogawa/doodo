@@ -16,8 +16,8 @@ class UsersController < ApplicationController
       @description = "アート・展覧会の口コミサイト「stART」のユーザーページです。stARTはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
       @headline = "ユーザーページ"
     end
-    @clipped_exhibitions = @user.clipped_exhibitions.distinct
-    @visited_exhibitions = @user.visited_exhibitions.distinct
+    @clipped_exhibitions = @user.clipped_exhibitions.distinct.select { |exhb| exhb.id != 1}
+    @visited_exhibitions = @user.visited_exhibitions.distinct.select { |exhb| exhb.id != 1}
     @exhb_logs = @user.exhb_logs.order(id: "DESC")
   end
 

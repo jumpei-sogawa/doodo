@@ -21,13 +21,13 @@
   </div>
 
   <div class="col-8 col-8-xsmall">
-    <div>
-      <strong><%= art_log.art.name %></strong>
-      <div><%= art_log.art.artist.name %>作</div>
+    <%= link_to art_path(art_log.art) do %>
+      <div class="bold dark bb0"><%= art_log.art.name %></div>
+      <div class="gray"><%= art_log.art.artist.name %>作</div>
       <% if art_log.art.year.present? %>
-        <div>（<%= art_log.art.year %>年）</div>
+        <div class="gray">（<%= art_log.art.year %>年）</div>
       <% end %>
-    </div>
+    <% end %>
     <%= link_to art_log_path(art_log) do %>
       <div class="dark is-text mt5 mb10"><%= art_log.body %></div>
     <% end %>

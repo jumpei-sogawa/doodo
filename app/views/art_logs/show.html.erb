@@ -28,48 +28,69 @@
     </div>
 
     <div class="col-6 col-12-xsmall">
-      <header class="major align-center">
-        <h2>この作品が展示された展覧会</h2>
-      </header>
+      <% if @exhibition.id != 1%>
+        <header class="major align-center">
+          <h2>この作品が展示された展覧会</h2>
+        </header>
 
-      <%= link_to exhibition_path(@exhibition) do %>
-        <div class="row">
-          <% if @exhibition.image.present? %>
-            <div class="off-3 col-6">
-              <%= image_tag @exhibition.image, class: "image w100" %>
-            </div>
-          <% else %>
-            <div class="off-3 col-6">
-              <div class="adjust-box box-16x9">
-                <div class="inner-box align-center">
-                  <div class="icon fa-gem gray" style="font-size:4em;"></div>
-                </div>
+        <%= link_to exhibition_path(@exhibition) do %>
+          <div class="row">
+            <% if @exhibition.image.present? %>
+              <div class="off-3 col-6">
+                <%= image_tag @exhibition.image, class: "image w100" %>
               </div>
-              <div class="image"></div>
-            </div>
+            <% else %>
+              <div class="off-3 col-6">
+                <div class="adjust-box box-16x9">
+                  <div class="inner-box align-center">
+                    <div class="icon fa-gem gray" style="font-size:4em;"></div>
+                  </div>
+                </div>
+                <div class="image"></div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="align-center">
+          <%= link_to @exhibition.name, exhibition_path(@exhibition), class: "bb0" %>
+        </div>
+
+        <div class="align-center">
+          <a href="/museums/<%=@museum.id%>" class="bb0 dark"><%= @museum.name %></a>
+        </div>
+
+        <div class="align-center">
+          <% if @exhibition.start_date.year == @exhibition.end_date.year %>
+            <strong><%= l @exhibition.start_date, format: :long %></strong>
+            <strong> 〜 </strong>
+            <strong><%= l @exhibition.end_date, format: :short %></strong>
+          <% else %>
+            <strong><%= l @exhibition.start_date, format: :short %></strong>
+            <strong> 〜 </strong>
+            <strong><%= l @exhibition.end_date, format: :long %></strong>
           <% end %>
         </div>
+      <% else %>
+        <%= link_to art_path(@art) do %>
+          <div class="row">
+            <% if @art.image.present? %>
+              <div class="off-3 col-6">
+                <%= image_tag @art.image, class: "image w100" %>
+              </div>
+            <% else %>
+              <div class="off-3 col-6">
+                <div class="adjust-box box-16x9">
+                  <div class="inner-box align-center">
+                    <div class="icon fa-gem gray" style="font-size:4em;"></div>
+                  </div>
+                </div>
+                <div class="image"></div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
-
-      <div class="align-center">
-        <%= link_to @exhibition.name, exhibition_path(@exhibition), class: "bb0" %>
-      </div>
-
-      <div class="align-center">
-        <a href="/museums/<%=@museum.id%>" class="bb0 dark"><%= @museum.name %></a>
-      </div>
-
-      <div class="align-center">
-				<% if @exhibition.start_date.year == @exhibition.end_date.year %>
-					<strong><%= l @exhibition.start_date, format: :long %></strong>
-					<strong> 〜 </strong>
-					<strong><%= l @exhibition.end_date, format: :short %></strong>
-				<% else %>
-					<strong><%= l @exhibition.start_date, format: :short %></strong>
-					<strong> 〜 </strong>
-					<strong><%= l @exhibition.end_date, format: :long %></strong>
-				<% end %>
-			</div>
     </div>
   </div>
 </section>

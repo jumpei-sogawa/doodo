@@ -1,14 +1,16 @@
 <div class="row">
 	<% exhb_logs.each do |exhb_log| %>
 		<div class="col-6 col-12-xsmall mb20">
-			<header class="major align-center">
-				<h3>
-					<%= link_to exhb_log.exhibition.name, exhibition_path(exhb_log.exhibition), class: "" %>
-				</h3>
-			</header>
+			<% if exhb_log.exhibition_id != 1 %>
+				<header class="major align-center">
+					<h3>
+						<%= link_to exhb_log.exhibition.name, exhibition_path(exhb_log.exhibition), class: "" %>
+					</h3>
+				</header>
 
-			<%= render partial: "users/show", locals: {user: exhb_log.user, body: exhb_log} %>
-			<%= render partial: "exhb_logs/show", locals: {exhb_log: exhb_log} %>
+				<%= render partial: "users/show", locals: {user: exhb_log.user, body: exhb_log} %>
+				<%= render partial: "exhb_logs/show", locals: {exhb_log: exhb_log} %>
+			<% end %>
 
 			<div class="row">
 				<% exhb_log.art_logs.each do |art_log| %>
