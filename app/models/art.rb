@@ -3,6 +3,30 @@ class Art < ApplicationRecord
   belongs_to :artist
   has_many :art_logs, dependent: :destroy
 
+  def self.search_by(params)
+    arts = []
+
+    if params[:artist_name].present?
+      Artist.where("name LIKE ?", "%#{params[:artist_name]}%").each do |artist|
+        artist.arts.each do |art|
+          arts << art
+        end
+      end
+    else
+      arts = Art.all
+    end
+
+    temp_arts = []
+    if params[:art_name].present?
+      Art.where("name LIKE ?", "%#{params[:art_name]}%").each do |art|
+        temp_arts << arts.select { |a| a.id == art.id }[0]
+      end
+      arts = temp_arts
+    end
+
+    arts
+  end
+
   def self.update_stars_by(art_logs)
     art_logs.each do |art_log|
       art_log.art.update_star

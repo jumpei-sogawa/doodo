@@ -4,7 +4,7 @@ class Exhibition < ApplicationRecord
   has_many :exhb_logs, dependent: :destroy
   has_many :exhb_clips, dependent: :destroy
 
-  def self.search_any(params)
+  def self.search_by_any(params)
     exhibitions_by_area = []
     Museum.where("address LIKE ?", "%#{params[:any]}%").each do |museum|
       museum.exhibitions.each do |exhb|
@@ -30,11 +30,11 @@ class Exhibition < ApplicationRecord
 
   end
 
-  def self.search(params)
+  def self.search_by(params)
     exhibitions = []
 
-    if params[:area].present?
-      Museum.where("address LIKE ?", "%#{params[:area]}%").each do |museum|
+    if params[:exhb_area].present?
+      Museum.where("address LIKE ?", "%#{params[:exhb_area]}%").each do |museum|
         museum.exhibitions.each do |exhb|
           exhibitions << exhb
         end
@@ -44,15 +44,15 @@ class Exhibition < ApplicationRecord
     end
 
     exhbs = []
-    if params[:name].present?
-      Exhibition.where("name LIKE ?", "%#{params[:name]}%").each do |exhb|
+    if params[:exhb_name].present?
+      Exhibition.where("name LIKE ?", "%#{params[:exhb_name]}%").each do |exhb|
         exhbs << exhibitions.select { |e| e.id == exhb.id }[0]
       end
-      exhbitions = exhbs
+      exhibitions = exhbs
     end
 
-    if params[:date].present?
-      date = Date.strptime(params[:date])
+    if params[:exhb_date].present?
+      date = Date.strptime(params[:exhb_date])
       exhibitions = exhibitions.select { |exhb| (exhb.start_date <= date && exhb.end_date >= date) }
     end
 

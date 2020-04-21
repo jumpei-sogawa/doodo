@@ -4,8 +4,8 @@ class MuseumsController < ApplicationController
   # GET /museums
   # GET /museums.json
   def index
-    if params[:area].present? || params[:name].present?
-      museums = Museum.where("address LIKE ?", "%#{params[:area]}%").where("name LIKE ?", "%#{params[:name]}%")
+    if params[:museum_area].present? || params[:museum_name].present?
+      museums = Museum.where("address LIKE ?", "%#{params[:museum_area]}%").where("name LIKE ?", "%#{params[:museum_name]}%")
       @museums = museums.sort do |a,b|
         if !a.exhibitions.last.star.present?
           1

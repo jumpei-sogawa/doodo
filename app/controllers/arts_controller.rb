@@ -4,7 +4,20 @@ class ArtsController < ApplicationController
   # GET /arts
   # GET /arts.json
   def index
-    @arts = Art.all
+    arts = Art.search_by(params)
+    @arts = arts.sort do |a,b|
+      if !a.star.present?
+        1
+      elsif !b.star.present?
+        -1
+      else
+        b <=> a
+      end
+    end
+
+    @title = "作品検索ページ | アート・展覧会の口コミなら【stART】"
+    @description = "アート・展覧会の口コミサイト「stART」の作品検索ページです。stARTはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
+    @headline = "作品 #{@arts.count}件"
   end
 
   # GET /arts/1

@@ -5,7 +5,7 @@ class ExhibitionsController < ApplicationController
   # GET /exhibitions.json
   def index
     if params[:any].present?
-      @exhibitions = Exhibition.search_any(params).sort do |a,b|
+      @exhibitions = Exhibition.search_by_any(params).sort do |a,b|
         if !a.star.present?
           1
         elsif !b.star.present?
@@ -14,8 +14,8 @@ class ExhibitionsController < ApplicationController
           b <=> a
         end
       end
-    elsif params[:area].present? || params[:name].present? || params[:date].present?
-      @exhibitions = Exhibition.search(params).sort do |a,b|
+    elsif params[:exhb_area].present? || params[:exhb_name].present? || params[:exhb_date].present?
+      @exhibitions = Exhibition.search_by(params).sort do |a,b|
         if !a.star.present?
           1
         elsif !b.star.present?

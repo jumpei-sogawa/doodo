@@ -1,28 +1,28 @@
 <section>
 	<%= form_with(url: exhibitions_path, method: :get, local: true) do |form| %>
 		<div class="row gtr-uniform">
-			<div class="col-1 col-2-xsmall">
+			<div class="col-1 col-3-xsmall">
 				<h3 class="align-center pt5">場所</h3>
 			</div>
-			<div class="col-5 col-4-xsmall">
-				<%= form.text_field :area, value: params[:area], placeholder: "例:東京" %>
+			<div class="col-5 col-9-xsmall">
+				<%= form.text_field :exhb_area, value: params[:exhb_area], placeholder: "例:東京" %>
 			</div>
-			<div class="col-1 col-2-xsmall">
+			<div class="col-1 col-3-xsmall">
 				<h3 class="align-center pt5">展名</h3>
 			</div>
-			<div class="col-5 col-4-xsmall">
-				<%= form.text_field :name, value: params[:name], placeholder: "例:モネ展" %>
+			<div class="col-5 col-9-xsmall">
+				<%= form.text_field :exhb_name, value: params[:exhb_name], placeholder: "例:モネ展" %>
 			</div>
 
-			<div class="col-1 col-2-xsmall">
+			<div class="col-1 col-3-xsmall">
 				<h3 class="align-center pt5">日時</h3>
 			</div>
-			<div class="col-5 col-6-xsmall">
-				<%= form.date_field :date, value: params[:date], placeholder: Date.today %>
+			<div class="col-5 col-9-xsmall">
+				<%= form.date_field :exhb_date, value: params[:exhb_date], placeholder: Date.today %>
 			</div>
 			<div class="col-12 col-12-xsmall">
 				<div class="row">
-					<div class="col-3 off-1-xsmall col-5-xsmall"><div id="exhb_form_reset" class="button w100">リセット</div></div>
+					<div class="col-3 off-1-xsmall col-5-xsmall"><div id="exhb_form_reset" class="button w100" tabindex="0">リセット</div></div>
 					<div class="col-3 col-5-xsmall"><input type="submit" value="検索" class="primary w100" /></div>
 				</div>
 			</div>
@@ -41,9 +41,9 @@
 <script type="text/javascript" language="javascript">
 	$(function() {
 		$('#exhb_form_reset').on('click', function(){
-			$('#name').val("");
-			$('#area').val("");
-			$('#date').val("");
+			$('#exhb_area').val("");
+			$('#exhb_name').val("");
+			$('#exhb_date').val("");
     });
 	});
 </script>

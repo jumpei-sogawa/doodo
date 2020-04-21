@@ -1,0 +1,42 @@
+<section>
+	<%= form_with(url: arts_path, method: :get, local: true) do |form| %>
+		<div class="row gtr-uniform">
+			<div class="col-1 col-3-xsmall">
+				<h3 class="align-center pt5">作品名</h3>
+			</div>
+			<div class="col-5 col-9-xsmall">
+				<%= form.text_field :art_name, value: params[:art_name], placeholder: "例:ひまわり" %>
+			</div>
+			<div class="col-1 col-3-xsmall">
+				<h3 class="align-center pt5">作者名</h3>
+			</div>
+			<div class="col-5 col-9-xsmall">
+				<%= form.text_field :artist_name, value: params[:artist_name], placeholder: "例:ゴッホ" %>
+			</div>
+
+			<div class="col-12 col-12-xsmall">
+				<div class="row">
+					<div class="col-3 off-1-xsmall col-5-xsmall"><div id="art_form_reset" class="button w100" tabindex="0">リセット</div></div>
+					<div class="col-3 col-5-xsmall"><input type="submit" value="検索" class="primary w100" /></div>
+				</div>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="row">
+		<% @arts.each do |art| %>
+			<div class="col-3 col-6-xsmall">
+				<%= render partial: "arts/show", locals: {art: art} %>
+			</div>
+		<% end %>
+	</div>
+</section>
+
+<script type="text/javascript" language="javascript">
+	$(function() {
+		$('#art_form_reset').on('click', function(){
+			$('#art_name').val("");
+			$('#artist_name').val("");
+    });
+	});
+</script>
