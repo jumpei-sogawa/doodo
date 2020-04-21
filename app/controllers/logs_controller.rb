@@ -35,14 +35,14 @@ class LogsController < ApplicationController
   # POST /logs.json
   def create
     @exhb_log = ExhbLog.new(exhb_log_params)
-    @exhb_log.user = current_user
-    @exhb_log.exhibition = @exhibition
+    @exhb_log.user_id = current_user.id
+    @exhb_log.exhibition_id = @exhibition.id
 
     @exhb_log.art_logs.each do |art_log|
       if (art_log.star == 0 || art_log.star.blank?) && (art_log.body.blank? && art_log.image.blank?)
         art_log.destroy
       else
-        art_log.user = current_user
+        art_log.user_id = current_user.id
       end
     end
 

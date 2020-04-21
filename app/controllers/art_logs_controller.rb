@@ -1,5 +1,7 @@
 class ArtLogsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_art_log, only: [:show, :edit, :update, :destroy]
+  before_action :set_art, only: [:new, :create]
 
   # GET /art_logs
   # GET /art_logs.json
@@ -21,7 +23,11 @@ class ArtLogsController < ApplicationController
 
   # GET /art_logs/new
   def new
-    @art_log = ArtLog.new
+    @title = "投稿ページ｜アート・展覧会の口コミなら【stART】"
+    @description = "アート・展覧会の口コミサイト「stART」の投稿ページです。ログインすることで、アート・絵画・美術館・展覧会・美術展の口コミを投稿することができます。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報もご案内。"
+    @headline = "ログ投稿"
+    @exhb_log = ExhbLog.new
+    @exhb_log.art_logs.build
   end
 
   # GET /art_logs/1/edit
@@ -31,16 +37,18 @@ class ArtLogsController < ApplicationController
   # POST /art_logs
   # POST /art_logs.json
   def create
-    @art_log = ArtLog.new(art_log_params)
+    @exhb_log = ExhbLog.new(exhb_log_params)
+    @exhb_log.user_id = current_user.id
+    @exhb_log.exhibition_id = 1
 
-    respond_to do |format|
-      if @art_log.save
-        format.html { redirect_to @art_log, notice: 'Art log was successfully created.' }
-        format.json { render :show, status: :created, location: @art_log }
-      else
-        format.html { render :new }
-        format.json { render json: @art_log.errors, status: :unprocessable_entity }
-      end
+    @art_log = @exhb_log.art_logs.first
+    @art_log.user_id = current_user.id
+
+    if @exhb_log.save
+      @art_log.art.update_star
+      redirect_to mypage_path
+    else
+      redirect_to new_art_art_log_path
     end
   end
 
@@ -74,8 +82,16 @@ class ArtLogsController < ApplicationController
       @art_log = ArtLog.find(params[:id])
     end
 
+    def set_art
+      @art = Art.find(params[:art_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def art_log_params
       params.fetch(:art_log, {})
+    end
+
+    def exhb_log_params
+      params.fetch(:exhb_log, {}).permit(art_logs_attributes: [:art_id, :star, :body])
     end
 end

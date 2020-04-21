@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     resources :exhb_clips, only: [:create, :destroy]
   end
 
-  resources :arts, only: [:index, :show]
+  resources :arts, only: [:index, :show] do
+    resources :art_logs, only: [:new, :create]
+  end
 
   resources :exhb_logs, only: [:show] do
     resources :exhb_log_likes, only: [:create, :destroy]

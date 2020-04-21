@@ -76,7 +76,7 @@
                       </h2>
                     </div>
 
-                    <%= art_log_fields.text_area :body, rows: 1, placeholder: "コメント..." %>
+                    <%= art_log_fields.text_area :body, rows: 1, placeholder: "感想..." %>
                   </div>
                 </div>
               <% end %>
@@ -94,120 +94,120 @@
 
 
 <script type="text/javascript" language="javascript">
-    var exhb_slider = $('#exhb_log_star')[0];
-    var exhb_star_count = $('#exhb_star')[0];
-    exhb_slider.oninput = function () {
-        exhb_star_count.textContent = Number(exhb_slider.value).toFixed(1);
-    };
+  var exhb_slider = $('#exhb_log_star')[0];
+  var exhb_star_count = $('#exhb_star')[0];
+  exhb_slider.oninput = function () {
+      exhb_star_count.textContent = Number(exhb_slider.value).toFixed(1);
+  };
 
-    <% @arts.each.with_index do |art, i| %>
-      $(function(){
-        $art<%= i %>_fileField = $('#exhb_log_art_logs_attributes_<%= i %>_image')
-        $art<%= i %>_preview = $("#art<%= i %>_img_field");
-        $art<%= i %>_img_upload_button = $("#art<%= i %>_img_upload_button");
+  <% @arts.each.with_index do |art, i| %>
+    $(function(){
+      $art<%= i %>_fileField = $('#exhb_log_art_logs_attributes_<%= i %>_image')
+      $art<%= i %>_preview = $("#art<%= i %>_img_field");
+      $art<%= i %>_img_upload_button = $("#art<%= i %>_img_upload_button");
 
-        // 選択された画像を取得し表示
-        $($art<%= i %>_fileField).on('change', $art<%= i %>_fileField, function(e) {
-          file = e.target.files[0];
-          reader = new FileReader();
+      // 選択された画像を取得し表示
+      $($art<%= i %>_fileField).on('change', $art<%= i %>_fileField, function(e) {
+        file = e.target.files[0];
+        reader = new FileReader();
 
-          if(file.type.indexOf('image') < 0){
-            return false;
+        if(file.type.indexOf('image') < 0){
+          return false;
+        };
+
+        reader.onload = (function(file) {
+          return function(e) {
+            $art<%= i %>_preview.empty();
+            $art<%= i %>_preview.append($('<img>').attr({
+              src: e.target.result,
+              width: "100%",
+              title: file.name
+            }));
+            $art<%= i %>_img_upload_button.text("画像を変更");
+            $art<%= i %>_img_upload_button.addClass("primary");
           };
-
-          reader.onload = (function(file) {
-            return function(e) {
-              $art<%= i %>_preview.empty();
-              $art<%= i %>_preview.append($('<img>').attr({
-                src: e.target.result,
-                width: "100%",
-                title: file.name
-              }));
-              $art<%= i %>_img_upload_button.text("画像を変更");
-              $art<%= i %>_img_upload_button.addClass("primary");
-            };
-          })(file);
-          reader.readAsDataURL(file);
-        });
+        })(file);
+        reader.readAsDataURL(file);
       });
+    });
 
-      var art<%= i %>_star1 = $('#art<%= i %>_star1')[0];
-      var art<%= i %>_star2 = $('#art<%= i %>_star2')[0];
-      var art<%= i %>_star3 = $('#art<%= i %>_star3')[0];
+    var art<%= i %>_star1 = $('#art<%= i %>_star1')[0];
+    var art<%= i %>_star2 = $('#art<%= i %>_star2')[0];
+    var art<%= i %>_star3 = $('#art<%= i %>_star3')[0];
 
-      function art<%= i %>_star0_func() {
-          $('#art<%= i %>_star1').removeClass('yellow');
-          $('#art<%= i %>_star1').addClass('light-gray');
-          $('#art<%= i %>_star2').removeClass('yellow');
-          $('#art<%= i %>_star2').addClass('light-gray');
-          $('#art<%= i %>_star3').removeClass('yellow');
-          $('#art<%= i %>_star3').addClass('light-gray');
-          $('#exhb_log_art_logs_attributes_<%= i %>_star').val(0);
-      }
+    function art<%= i %>_star0_func() {
+        $('#art<%= i %>_star1').removeClass('yellow');
+        $('#art<%= i %>_star1').addClass('light-gray');
+        $('#art<%= i %>_star2').removeClass('yellow');
+        $('#art<%= i %>_star2').addClass('light-gray');
+        $('#art<%= i %>_star3').removeClass('yellow');
+        $('#art<%= i %>_star3').addClass('light-gray');
+        $('#exhb_log_art_logs_attributes_<%= i %>_star').val(0);
+    }
 
-      function art<%= i %>_star1_func() {
-          $('#art<%= i %>_star1').removeClass('light-gray');
-          $('#art<%= i %>_star1').addClass('yellow');
-          $('#art<%= i %>_star2').removeClass('yellow');
-          $('#art<%= i %>_star2').addClass('light-gray');
-          $('#art<%= i %>_star3').removeClass('yellow');
-          $('#art<%= i %>_star3').addClass('light-gray');
-          $('#exhb_log_art_logs_attributes_<%= i %>_star').val(1);
-      }
+    function art<%= i %>_star1_func() {
+        $('#art<%= i %>_star1').removeClass('light-gray');
+        $('#art<%= i %>_star1').addClass('yellow');
+        $('#art<%= i %>_star2').removeClass('yellow');
+        $('#art<%= i %>_star2').addClass('light-gray');
+        $('#art<%= i %>_star3').removeClass('yellow');
+        $('#art<%= i %>_star3').addClass('light-gray');
+        $('#exhb_log_art_logs_attributes_<%= i %>_star').val(1);
+    }
 
-      function art<%= i %>_star2_func() {
-          $('#art<%= i %>_star1').removeClass('light-gray');
-          $('#art<%= i %>_star1').addClass('yellow');
-          $('#art<%= i %>_star2').removeClass('light-gray');
-          $('#art<%= i %>_star2').addClass('yellow');
-          $('#art<%= i %>_star3').removeClass('yellow');
-          $('#art<%= i %>_star3').addClass('light-gray');
-          $('#exhb_log_art_logs_attributes_<%= i %>_star').val(2);
-      }
+    function art<%= i %>_star2_func() {
+        $('#art<%= i %>_star1').removeClass('light-gray');
+        $('#art<%= i %>_star1').addClass('yellow');
+        $('#art<%= i %>_star2').removeClass('light-gray');
+        $('#art<%= i %>_star2').addClass('yellow');
+        $('#art<%= i %>_star3').removeClass('yellow');
+        $('#art<%= i %>_star3').addClass('light-gray');
+        $('#exhb_log_art_logs_attributes_<%= i %>_star').val(2);
+    }
 
-      function art<%= i %>_star3_func() {
-          $('#art<%= i %>_star1').removeClass('light-gray');
-          $('#art<%= i %>_star1').addClass('yellow');
-          $('#art<%= i %>_star2').removeClass('light-gray');
-          $('#art<%= i %>_star2').addClass('yellow');
-          $('#art<%= i %>_star3').removeClass('light-gray');
-          $('#art<%= i %>_star3').addClass('yellow');
-          $('#exhb_log_art_logs_attributes_<%= i %>_star').val(3);
-      }
+    function art<%= i %>_star3_func() {
+        $('#art<%= i %>_star1').removeClass('light-gray');
+        $('#art<%= i %>_star1').addClass('yellow');
+        $('#art<%= i %>_star2').removeClass('light-gray');
+        $('#art<%= i %>_star2').addClass('yellow');
+        $('#art<%= i %>_star3').removeClass('light-gray');
+        $('#art<%= i %>_star3').addClass('yellow');
+        $('#exhb_log_art_logs_attributes_<%= i %>_star').val(3);
+    }
 
-      art<%= i %>_star1.onclick = function () {
-          if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
-              art<%= i %>_star1_func();
-          } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
-              art<%= i %>_star0_func();
-          } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
-              art<%= i %>_star1_func();
-          } else {
-              art<%= i %>_star1_func();
-          }
-      };
-      art<%= i %>_star2.onclick = function () {
-          if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
-              art<%= i %>_star2_func();
-          } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
-              art<%= i %>_star2_func();
-          } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
-              art<%= i %>_star1_func();
-          } else {
-              art<%= i %>_star2_func();
-          }
-      };
-      art<%= i %>_star3.onclick = function () {
-          if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
-              art<%= i %>_star3_func();
-          } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
-              art<%= i %>_star3_func();
-          } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
-              art<%= i %>_star3_func();
-          } else {
-              art<%= i %>_star2_func();
-          }
-      };
-    <% end %>
+    art<%= i %>_star1.onclick = function () {
+        if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
+            art<%= i %>_star1_func();
+        } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
+            art<%= i %>_star0_func();
+        } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
+            art<%= i %>_star1_func();
+        } else {
+            art<%= i %>_star1_func();
+        }
+    };
+    art<%= i %>_star2.onclick = function () {
+        if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
+            art<%= i %>_star2_func();
+        } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
+            art<%= i %>_star2_func();
+        } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
+            art<%= i %>_star1_func();
+        } else {
+            art<%= i %>_star2_func();
+        }
+    };
+    art<%= i %>_star3.onclick = function () {
+        if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
+            art<%= i %>_star3_func();
+        } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
+            art<%= i %>_star3_func();
+        } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
+            art<%= i %>_star3_func();
+        } else {
+            art<%= i %>_star2_func();
+        }
+    };
+  <% end %>
 </script>
 
