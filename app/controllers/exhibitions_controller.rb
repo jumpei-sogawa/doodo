@@ -28,7 +28,10 @@ class ExhibitionsController < ApplicationController
       @exhibitions = Exhibition.order("star DESC NULLS LAST")
     end
     @exhibitions = @exhibitions.select { |exhb| exhb.id != 1 }
-    @title = "展覧会 #{@exhibitions.count}件"
+
+    @title = "展覧会検索ページ | アート・展覧会の口コミなら【stART】"
+    @description = "アート・展覧会の口コミサイト「stART」の展覧会検索ページです。stARTはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
+    @headline = "展覧会 #{@exhibitions.count}件"
   end
 
   # GET /exhibitions/1
@@ -37,7 +40,9 @@ class ExhibitionsController < ApplicationController
     if @exhibition.id == 1
       redirect_to exhibitions_path
     end
-    @title = "展覧会 詳細"
+    @title = @exhibition.title
+    @description = @exhibition.description
+    @headline = "展覧会 詳細"
     @arts = @exhibition.arts.where("star >= ?", 0).order("star DESC NULLS LAST")
     @exhb_logs = @exhibition.exhb_logs.order(id: "DESC").first(10)
     @exhb_log_comment = ExhbLogComment.new

@@ -10,7 +10,8 @@ class ExhbLogsController < ApplicationController
   # GET /exhb_logs/1
   # GET /exhb_logs/1.json
   def show
-    @title = "展覧会のログ"
+    @title = "アート・展覧会の口コミなら【stART】"
+    @headline = "展覧会のログ"
     @exhb_log_comment = ExhbLogComment.new
     @exhb_log_comments = @exhb_log.exhb_log_comments
     @exhibition = @exhb_log.exhibition

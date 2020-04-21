@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>stART</title>
+  <%= display_meta_tags(default_meta_tags) %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
@@ -23,7 +23,7 @@
       <header id="header">
         <span class="logo">
           <a href="/" class="logo"><%= image_tag "stART-logo.jpg", height: "15px" %></a>
-          <strong class="title ml10"><%= @title %></strong>
+          <strong class="title ml10"><%= @headline %></strong>
         </span>
       </header>
 

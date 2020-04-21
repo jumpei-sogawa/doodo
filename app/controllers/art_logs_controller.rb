@@ -10,7 +10,8 @@ class ArtLogsController < ApplicationController
   # GET /art_logs/1
   # GET /art_logs/1.json
   def show
-    @title = "作品のログ"
+    @title = "アート・展覧会の口コミなら【stART】"
+    @headline = "作品のログ"
     @art_log_comment = ArtLogComment.new
     @art_log_comments = @art_log.art_log_comments
     @art = @art_log.art

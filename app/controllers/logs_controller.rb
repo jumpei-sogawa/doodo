@@ -19,7 +19,9 @@ class LogsController < ApplicationController
     if @exhibition.id == 1
       redirect_to exhibitions_path
     end
-    @title = "ログ投稿"
+    @title = "投稿ページ｜アート・展覧会の口コミなら【stART】"
+    @description = "アート・展覧会の口コミサイト「stART」の投稿ページです。ログインすることで、アート・絵画・美術館・展覧会・美術展の口コミを投稿することができます。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報もご案内。"
+    @headline = "ログ投稿"
     @exhb_log = ExhbLog.new
     @exhb_log.art_logs.build
     @arts = @exhibition.arts

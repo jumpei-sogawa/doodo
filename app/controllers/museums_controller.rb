@@ -19,7 +19,10 @@ class MuseumsController < ApplicationController
       @museums = Museum.includes(:exhibitions).order("exhibitions.star DESC NULLS LAST")
     end
     @museums = @museums.select { |museum| museum.id != 1 }
-    @title = "美術館 #{@museums.count}件"
+
+    @title = "美術館検索ページ | アート・展覧会の口コミなら【stART】"
+    @description = "アート・展覧会の口コミサイト「stART」の美術館検索ページです。stARTはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
+    @headline = "美術館 #{@museums.count}件"
   end
 
   # GET /museums/1
@@ -28,7 +31,9 @@ class MuseumsController < ApplicationController
     if @museum.id == 1
       redirect_to museums_path
     end
-    @title = "美術館 詳細"
+    @title = @museum.title
+    @description = @museum.description
+    @headline = "美術館 詳細"
     @exhibitions = @museum.exhibitions
   end
 

@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    @title = "アカウント作成"
+    @headline = "アカウント作成"
     super
   end
 

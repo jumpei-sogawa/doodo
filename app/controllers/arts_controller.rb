@@ -10,7 +10,9 @@ class ArtsController < ApplicationController
   # GET /arts/1
   # GET /arts/1.json
   def show
-    @title = "作品詳細"
+    @title = @art.title
+    @description = @art.description
+    @headline = "作品詳細"
     @art_logs = @art.art_logs.order(id: "DESC")
     @art_log_comment = ArtLogComment.new
   end

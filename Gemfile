@@ -77,3 +77,5 @@ gem 'fog'
 gem 'jquery-rails'
 
 gem 'google-analytics-rails'
+
+gem 'meta-tags'

@@ -1,3 +1,5 @@
+<%- set_meta_tags title: @title, description: @description %>
+
 <section>
 	<%= form_with(url: museums_path, method: :get, local: true) do |form| %>
 		<div class="row gtr-uniform">
