@@ -36,15 +36,17 @@
 					</h2>
 				</div>
 				<div class="off-1 col-3 align-center">
-					<h2 class="mobile-fs3em"><a href="/arts/<%= @art.id %>/art_logs/new"><i class="fas fa-edit"></i></a></h2>
+					<h2 class="mobile-fs3em mb10"><a href="/arts/<%= @art.id %>/art_logs/new"><i class="fas fa-edit"></i></a></h2>
 				</div>
 			</div>
 
-			<strong><%= @art.name %></strong>
-			<div><%= @art.artist.name %>作</div>
-			<% if @art.year.present? %>
-				<div>（<%= @art.year %>年）</div>
-			<% end %>
+			<div class="align-center">
+				<strong><%= @art.name %></strong>
+				<div><%= @art.artist.name %>作</div>
+				<% if @art.year.present? %>
+					<div>（<%= @art.year %>年）</div>
+				<% end %>
+			</div>
 		</div>
 
 		<% if @art.exhibition_id != 1 %>

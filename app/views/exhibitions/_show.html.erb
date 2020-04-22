@@ -9,9 +9,9 @@
   <div class="image"></div>
 <% end %>
 <div class="content mt10 mb20">
-  <h3 class="mb10"><a href="/exhibitions/<%=exhb.id%>"><%= exhb.name %></a></h3>
+  <h4 class="align-center mb0"><a href="/exhibitions/<%=exhb.id%>"><%= exhb.name %></a></h4>
 
-  <h2 class="row mb10">
+  <h2 class="row mb0">
     <div class="col-8">
       <i class="fas fa-star yellow"></i>
       <% if exhb.star.present? %>
@@ -30,7 +30,7 @@
   </h2>
 
   <% if controller.controller_name != "museums" %>
-    <div><%= exhb.museum.name %></div>
+    <div class="align-center"><%= exhb.museum.name %></div>
   <% end %>
   <div class="row">
     <div class="col-12">

@@ -12,7 +12,7 @@
 <% end %>
 
 <div class="content mt10 mb20">
-  <h3 class="mb10"><a href="/arts/<%=art.id%>"><%= art.name %></a></h3>
+  <h3 class="align-center mb10"><a href="/arts/<%=art.id%>"><%= art.name %></a></h3>
   <h2 class="row mb10">
     <div class="off-1 col-8">
       <i class="fas fa-star yellow"></i>
@@ -27,14 +27,16 @@
       <a href="/arts/<%=art.id%>/art_logs/new"><i class="fas fa-edit"></i></a>
     </div>
   </h2>
-  <div><%= art.artist.name %>作</div>
-  <div class="mb10">
-    <% if art.year.present? %>
-      <span>（<%= art.year %>年）</span>
+  <div class="align-center">
+    <div><%= art.artist.name %>作</div>
+    <div class="mb10">
+      <% if art.year.present? %>
+        <span>（<%= art.year %>年）</span>
+      <% end %>
+    </div>
+    <% if controller.controller_name != "exhibitions" %>
+      <div><a href="/exhibitions/<%=art.exhibition.id%>" class="bb0 gray"><%= art.exhibition.name %></a></div>
     <% end %>
   </div>
-  <% if controller.controller_name != "exhibitions" %>
-    <div><a href="/exhibitions/<%=art.exhibition.id%>" class="bb0 gray"><%= art.exhibition.name %></a></div>
-  <% end %>
 </div>
 
