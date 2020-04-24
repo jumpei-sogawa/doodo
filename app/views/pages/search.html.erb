@@ -6,26 +6,17 @@
 			</header>
 
 			<%= form_with(url: museums_path, method: :get, local: true) do |form| %>
-				<div class="row gtr-uniform">
-					<div class="col-2 col-2-xsmall">
-						<h3 class="align-center pt5">場所</h3>
+				<div class="row mb10">
+					<div class="col-4 col-6-xsmall">
+						<%= form.text_field :museum_area, value: params[:museum_area], placeholder: "場所（例:東京）" %>
 					</div>
-					<div class="col-4 col-4-xsmall">
-						<%= form.text_field :museum_area, value: params[:museum_area], placeholder: "例:東京" %>
+					<div class="col-4 col-6-xsmall">
+						<%= form.text_field :museum_name, value: params[:museum_name], placeholder: "館名（例:国立西洋美術館）" %>
 					</div>
-					<div class="col-2 col-2-xsmall">
-						<h3 class="align-center pt5">館名</h3>
-					</div>
-					<div class="col-4 col-4-xsmall">
-						<%= form.text_field :museum_name, value: params[:museum_name], placeholder: "例:国立" %>
-					</div>
-					<!-- Break -->
-					<div class="col-12 col-12-xsmall">
-						<div class="row">
-							<div class="col-6 off-1-xsmall col-5-xsmall"><input type="reset" value="リセット" class="w100" /></div>
-							<div class="col-6 col-5-xsmall"><input type="submit" value="検索" class="w100 primary" /></div>
-						</div>
-					</div>
+				</div>
+				<div class="row mb10">
+					<div class="col-3 col-6-xsmall aln-center"><div id="museum_form_reset" class="w100 pink mt5" style="text-align:center;" tabindex="0">リセット</div></div>
+					<div class="col-3 col-6-xsmall align-center"><input type="submit" value="検索" class="primary" /></div>
 				</div>
 			<% end %>
 		</div>
@@ -36,33 +27,25 @@
 			</header>
 
 			<%= form_with(url: exhibitions_path, method: :get, local: true) do |form| %>
-				<div class="row gtr-uniform">
-					<div class="col-2 col-2-xsmall">
-						<h3 class="align-center pt5">場所</h3>
+				<div class="row mb10">
+					<div class="col-4 col-6-xsmall">
+						<%= form.text_field :exhb_area, value: params[:exhb_area], placeholder: "場所（例:東京）" %>
 					</div>
-					<div class="col-4 col-4-xsmall">
-						<%= form.text_field :exhb_area, value: params[:exhb_area], placeholder: "例:東京" %>
+					<div class="col-4 col-6-xsmall">
+						<%= form.text_field :exhb_name, value: params[:exhb_name], placeholder: "展名（例:モネ）" %>
 					</div>
-					<div class="col-2 col-2-xsmall">
-						<h3 class="align-center pt5">展名</h3>
-					</div>
-					<div class="col-4 col-4-xsmall">
-						<%= form.text_field :exhb_name, value: params[:exhb_name], placeholder: "例:モネ" %>
-					</div>
-
-					<div class="col-2 col-2-xsmall">
-						<h3 class="align-center pt5">日時</h3>
+				</div>
+				<div class="row mb10">
+					<div class="col-2 off-2-xsmall col-3-xsmall">
+						<h3 class="align-center mb0">開催日</h3>
 					</div>
 					<div class="col-6 col-6-xsmall">
 						<%= form.date_field :exhb_date, value: params[:exhb_date], placeholder: Date.today %>
 					</div>
-					<!-- Break -->
-					<div class="col-12 col-12-xsmall">
-						<div class="row">
-								<div class="col-6 off-1-xsmall col-5-xsmall"><input type="reset" value="リセット" class="w100" /></div>
-								<div class="col-6 col-5-xsmall"><input type="submit" value="検索" class="w100 primary" /></div>
-						</div>
-					</div>
+				</div>
+				<div class="row mb10">
+					<div class="col-3 col-6-xsmall aln-center"><div id="exhb_form_reset" class="w100 pink mt5" style="text-align:center;" tabindex="0">リセット</div></div>
+					<div class="col-3 col-6-xsmall align-center"><input type="submit" value="検索" class="primary" /></div>
 				</div>
 			<% end %>
 		</div>
@@ -73,26 +56,18 @@
 			</header>
 
 			<%= form_with(url: arts_path, method: :get, local: true) do |form| %>
-				<div class="row gtr-uniform">
-					<div class="col-2 col-3-xsmall">
-						<h3 class="align-center pt5">作品名</h3>
+				<div class="row mb10">
+					<div class="col-4 col-6-xsmall">
+						<%= form.text_field :art_name, value: params[:art_name], placeholder: "作品名（例:ひまわり）" %>
 					</div>
-					<div class="col-4 col-9-xsmall">
-						<%= form.text_field :art_name, value: params[:art_name], placeholder: "例:ひまわり" %>
+					<div class="col-4 col-6-xsmall">
+						<%= form.text_field :artist_name, value: params[:artist_name], placeholder: "作者名（例:ゴッホ）" %>
 					</div>
-					<div class="col-2 col-3-xsmall">
-						<h3 class="align-center pt5">作者名</h3>
-					</div>
-					<div class="col-4 col-9-xsmall">
-						<%= form.text_field :artist_name, value: params[:artist_name], placeholder: "例:ゴッホ" %>
-					</div>
-
-					<div class="col-12 col-12-xsmall">
-						<div class="row">
-							<div class="col-6 off-1-xsmall col-5-xsmall"><input type="reset" value="リセット" class="w100" /></div>
-							<div class="col-6 col-5-xsmall"><input type="submit" value="検索" class="primary w100" /></div>
-						</div>
-					</div>
+				</div>
+				<div class="row mb10">
+					<div class="col-3 col-6-xsmall aln-center"><div id="art_form_reset" class="w100 pink mt5" style="text-align:center;" tabindex="0">リセット</div></div>
+					<div class="col-3 col-6-xsmall align-center"><input type="submit" value="検索" class="primary" /></div>
+				</div>
 				</div>
 			<% end %>
 		</div>

@@ -4,7 +4,7 @@ class ArtsController < ApplicationController
   # GET /arts
   # GET /arts.json
   def index
-    arts = Art.search_by(params)
+    arts = Art.search_by(params).first(20)
     @arts = arts.sort do |a,b|
       if !a.star.present?
         1
