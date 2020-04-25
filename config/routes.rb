@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   root 'pages#home'
-  # get '/trend' => 'pages#trend'
+  get '/trend' => 'pages#trend'
   get '/search' => 'pages#search'
 
   resources :museums, only: [:index, :show]
 
+  resources :logs, only: [:new, :create]
+
   resources :exhibitions, only: [:index, :show] do
-    resources :logs, only: [:new, :create]
     resources :exhb_clips, only: [:create, :destroy]
   end
 

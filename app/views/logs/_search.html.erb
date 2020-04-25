@@ -1,3 +1,12 @@
+<div id="main">
+<div class="inner">
+
+<header id="header">
+  <span class="logo">
+    <a href="/" class="logo"><%= image_tag "stART-logo.jpg", height: "15px" %></a>
+  </span>
+</header>
+
 <section>
 	<div class="flex-container center baseline">
     <h3 class="mb0">
@@ -36,20 +45,18 @@
 		<% end %>
 
 		<div class="row">
-			<% @museums.each do |museum| %>
+			<% museums.each do |museum| %>
 				<div class="col-3 col-6-xsmall">
-					<%= link_to museum_path(museum) do %>
-						<header class="major align-center">
-							<h4 style="margin-bottom:1em;"><%= museum.name %></h4>
-						</header>
-					<% end %>
+          <header class="major align-center">
+            <h4 style="margin-bottom:1em;"><%= museum.name %></h4>
+          </header>
 
 					<% if museum.exhibitions.is_open.present? %>
 						<div class="align-center dark mb5">開催中の展覧会</div>
-						<%= render partial: "exhibitions/show", locals: { exhb: museum.exhibitions.is_open.last } %>
+						<%= render partial: "logs/exhb_search", locals: { exhb: museum.exhibitions.is_open.last } %>
 					<% else %>
 					<div class="align-center mb5">過去の展覧会</div>
-						<%= render partial: "exhibitions/show", locals: { exhb: museum.exhibitions.last } %>
+						<%= render partial: "logs/exhb_search", locals: { exhb: museum.exhibitions.last } %>
 					<% end %>
 				</div>
 			<% end %>
@@ -81,9 +88,9 @@
 		<% end %>
 
 		<div class="row">
-			<% @exhibitions.each do |exhb| %>
+			<% exhibitions.each do |exhb| %>
 				<div class="col-3 col-6-xsmall">
-					<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+					<%= render partial: "logs/exhb_search", locals: {exhb: exhb} %>
 				</div>
 			<% end %>
 		</div>
@@ -106,21 +113,17 @@
 		<% end %>
 
 		<div class="row">
-			<% @arts.each do |art| %>
+			<% arts.each do |art| %>
 				<div class="col-3 col-6-xsmall">
-					<%= render partial: "arts/show", locals: {art: art} %>
+					<%= render partial: "logs/art_search", locals: {art: art} %>
 				</div>
 			<% end %>
 		</div>
 	</div>
-
-
-
-
-
-
-
 </section>
+
+</div>
+</div>
 
 
 <script type="text/javascript" language="javascript">

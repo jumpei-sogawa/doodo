@@ -2,11 +2,11 @@
 <%= hidden_field_tag "username", @user.username %>
 
 <div class="overlay" style="display:none;">
-    <div class="crop_modal"></div>
-    <div class="buttons">
-      <div class="w50 button" id="close_btn">キャンセル</div>
-      <div class="w50 button primary" id="select_btn">決定</div>
-    </div>
+  <div class="crop_modal"></div>
+  <div class="buttons">
+    <div class="w50 button" id="close_btn">キャンセル</div>
+    <div class="w50 button primary" id="select_btn">決定</div>
+  </div>
 </div>
 
 <section>
@@ -218,7 +218,7 @@
     function usersVal(formData){
       name = $('#user_name').val();
       username = $('#user_username').val();
-      bio = $('#user_bio').val()
+      bio = $('#user_bio').val();
 
       if (blob != null){
         let time = Date.parse(new Date());
@@ -227,7 +227,7 @@
       }
       formData.append('user[name]', name);
       formData.append('user[username]', username);
-      formData.append('user[bio]', bio)
+      formData.append('user[bio]', bio);
       return formData
     }
 

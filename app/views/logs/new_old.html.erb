@@ -1,0 +1,233 @@
+<section>
+  <div class="row mb10">
+		<div class="off-3 col-2 off-1-xsmall col-4-xsmall">
+			<div class="align-center disabled w100">
+				<i class="fas fa-search light-gray"></i>
+				<div class="light-gray">展覧会を探す</div>
+			</div>
+		</div>
+		<div class="col-2 col-1-xsmall">
+			<h2 class="align-center w100 mt5">
+				<i class="fas fa-arrow-right"></i>
+			</h2>
+		</div>
+		<div class="col-2 off-0-xsmall col-5-xsmall">
+			<h3 class="align-center w100">
+				<i class="fas fa-edit dark"></i>
+				<div class="dark">感想を残す</div>
+			</h3>
+		</div>
+	</div>
+
+  <header class="major align-center">
+    <h2><%= @exhibition.name %></h2>
+  </header>
+
+  <%= form_for(@exhb_log, url: exhibition_logs_path) do |exhb_log_form| %>
+    <div class="row gtr-uniform">
+      <h1 class="col-12 row">
+        <div class="col-5 col-8-xsmall">
+          <input type="range" class="input-range" min="0.0" max="3.0" step="0.5" value="0.0" name="exhb_log[star]" id="exhb_log_star">
+        </div>
+        <div class="col-1">
+          <i class="fas fa-star yellow"></i>
+        </div>
+        <div class="col-2">
+          <span id="exhb_star">0.0</span>
+        </div>
+      </h1>
+
+      <div class="col-8 col-12-xsmall">
+        <%= exhb_log_form.text_area :body, size: "30x1", placeholder: "感想..." %>
+      </div>
+
+      <div class="col-4 col-12-xsmall">
+        <div class="w100 align-right">
+          <input type="submit" name="commit" value="保存" data-disable-with="保存中" class="w30 primary"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt20">
+      <% if @arts.present? %>
+        <header class="major align-center">
+          <h2>作品のログも残す</h2>
+        </header>
+
+        <div class="row">
+          <% @arts.each.with_index do |art, i| %>
+            <div class="col-6 col-12-xsmall">
+              <%= exhb_log_form.fields_for :art_logs do |art_log_fields| %>
+                <%= art_log_fields.hidden_field :art_id, value: art.id %>
+                <div class="row mb20">
+                  <div class="col-5">
+                    <div id="art<%=i%>_img_field" onclick="$('#exhb_log_art_logs_attributes_<%= i %>_image').click()">
+                      <% if art.image.present? %>
+                        <%= image_tag art.image, class: "image w100" %>
+                      <% else %>
+                        <div class="adjust-box box-16x9">
+                          <div class="inner-box align-center">
+                            <div class="icon fa-gem gray" style="font-size:3em;"></div>
+                          </div>
+                        </div>
+                        <div class="image"></div>
+                      <% end %>
+                    </div>
+
+                    <%= art_log_fields.file_field :image, style: "display:none;" %>
+                    <label for="exhb_log_art_logs_attributes_<%= i %>_image" class="mb0">
+                      <div class="button small w100" id="art<%= i %>_img_upload_button">画像をアップロード</div>
+                    </label>
+                  </div>
+
+                  <div class="col-7 b0">
+                    <strong><%= art.name %></strong>
+                    <div><%= art.artist.name %>作</div>
+                    <% if art.year.present? %>
+                      <div>（<%= art.year %>年）</div>
+                    <% end %>
+
+                    <%= art_log_fields.hidden_field :star, value: 0 %>
+                    <div class="col-4 col-5-xsmall">
+                      <h2 class="mobile-fs2em mt10 mb10">
+                        <span id="art<%= i %>_star1" class="star mb0 light-gray"><i class="fas fa-star"></i></span>
+                        <span id="art<%= i %>_star2" class="star mb0 light-gray"><i class="fas fa-star"></i></span>
+                        <span id="art<%= i %>_star3" class="star mb0 light-gray"><i class="fas fa-star"></i></span>
+                      </h2>
+                    </div>
+
+                    <%= art_log_fields.text_area :body, rows: 1, placeholder: "感想..." %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="w100 align-right">
+        <input type="submit" name="commit" value="すべて保存" data-disable-with="保存中" class="w30 primary"/>
+      </div>
+    </div>
+  <% end %>
+</section>
+
+
+<script type="text/javascript" language="javascript">
+  var exhb_slider = $('#exhb_log_star')[0];
+  var exhb_star_count = $('#exhb_star')[0];
+  exhb_slider.oninput = function () {
+      exhb_star_count.textContent = Number(exhb_slider.value).toFixed(1);
+  };
+
+  <% @arts.each.with_index do |art, i| %>
+    $(function(){
+      $art<%= i %>_fileField = $('#exhb_log_art_logs_attributes_<%= i %>_image')
+      $art<%= i %>_preview = $("#art<%= i %>_img_field");
+      $art<%= i %>_img_upload_button = $("#art<%= i %>_img_upload_button");
+
+      // 選択された画像を取得し表示
+      $($art<%= i %>_fileField).on('change', $art<%= i %>_fileField, function(e) {
+        file = e.target.files[0];
+        reader = new FileReader();
+
+        if(file.type.indexOf('image') < 0){
+          return false;
+        };
+
+        reader.onload = (function(file) {
+          return function(e) {
+            $art<%= i %>_preview.empty();
+            $art<%= i %>_preview.append($('<img>').attr({
+              src: e.target.result,
+              width: "100%",
+              title: file.name
+            }));
+            $art<%= i %>_img_upload_button.text("画像を変更");
+            $art<%= i %>_img_upload_button.addClass("primary");
+          };
+        })(file);
+        reader.readAsDataURL(file);
+      });
+    });
+
+    var art<%= i %>_star1 = $('#art<%= i %>_star1')[0];
+    var art<%= i %>_star2 = $('#art<%= i %>_star2')[0];
+    var art<%= i %>_star3 = $('#art<%= i %>_star3')[0];
+
+    function art<%= i %>_star0_func() {
+        $('#art<%= i %>_star1').removeClass('yellow');
+        $('#art<%= i %>_star1').addClass('light-gray');
+        $('#art<%= i %>_star2').removeClass('yellow');
+        $('#art<%= i %>_star2').addClass('light-gray');
+        $('#art<%= i %>_star3').removeClass('yellow');
+        $('#art<%= i %>_star3').addClass('light-gray');
+        $('#exhb_log_art_logs_attributes_<%= i %>_star').val(0);
+    }
+
+    function art<%= i %>_star1_func() {
+        $('#art<%= i %>_star1').removeClass('light-gray');
+        $('#art<%= i %>_star1').addClass('yellow');
+        $('#art<%= i %>_star2').removeClass('yellow');
+        $('#art<%= i %>_star2').addClass('light-gray');
+        $('#art<%= i %>_star3').removeClass('yellow');
+        $('#art<%= i %>_star3').addClass('light-gray');
+        $('#exhb_log_art_logs_attributes_<%= i %>_star').val(1);
+    }
+
+    function art<%= i %>_star2_func() {
+        $('#art<%= i %>_star1').removeClass('light-gray');
+        $('#art<%= i %>_star1').addClass('yellow');
+        $('#art<%= i %>_star2').removeClass('light-gray');
+        $('#art<%= i %>_star2').addClass('yellow');
+        $('#art<%= i %>_star3').removeClass('yellow');
+        $('#art<%= i %>_star3').addClass('light-gray');
+        $('#exhb_log_art_logs_attributes_<%= i %>_star').val(2);
+    }
+
+    function art<%= i %>_star3_func() {
+        $('#art<%= i %>_star1').removeClass('light-gray');
+        $('#art<%= i %>_star1').addClass('yellow');
+        $('#art<%= i %>_star2').removeClass('light-gray');
+        $('#art<%= i %>_star2').addClass('yellow');
+        $('#art<%= i %>_star3').removeClass('light-gray');
+        $('#art<%= i %>_star3').addClass('yellow');
+        $('#exhb_log_art_logs_attributes_<%= i %>_star').val(3);
+    }
+
+    art<%= i %>_star1.onclick = function () {
+        if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
+            art<%= i %>_star1_func();
+        } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
+            art<%= i %>_star0_func();
+        } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
+            art<%= i %>_star1_func();
+        } else {
+            art<%= i %>_star1_func();
+        }
+    };
+    art<%= i %>_star2.onclick = function () {
+        if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
+            art<%= i %>_star2_func();
+        } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
+            art<%= i %>_star2_func();
+        } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
+            art<%= i %>_star1_func();
+        } else {
+            art<%= i %>_star2_func();
+        }
+    };
+    art<%= i %>_star3.onclick = function () {
+        if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
+            art<%= i %>_star3_func();
+        } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
+            art<%= i %>_star3_func();
+        } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
+            art<%= i %>_star3_func();
+        } else {
+            art<%= i %>_star2_func();
+        }
+    };
+  <% end %>
+</script>
+

@@ -8,15 +8,17 @@ class PagesController < ApplicationController
   end
 
   def trend
-    # @headline = "トレンド"
-    # @exhibitions = Exhibition.is_open.order(star: "DESC").first(4)
-    # @arts = Art.order(star: "DESC").first(4)
+    @headline = "トレンド"
+    @exhibitions = Exhibition.is_open.order("star DESC NULLS LAST").first(12)
+    @arts = Art.order("star DESC NULLS LAST").first(12)
   end
 
   def search
     @title = "口コミ検索ページ | アート・展覧会の口コミなら【stART】"
     @description = "アート・展覧会の口コミサイト「stART」の口コミ検索ページです。stARTはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。上野美術館、国立新美術館、国立西洋美術館、六本木など、各地で開催されている展覧会の最新情報をご案内。"
     @headline = "検索"
-    @exhibitions = Exhibition.is_open.order("star DESC NULLS LAST")
+    @museums = Museum.includes(:exhibitions).order("exhibitions.star DESC NULLS LAST").first(20)
+    @exhibitions = Exhibition.is_open.order("star DESC NULLS LAST").first(20)
+    @arts = Art.order("star DESC NULLS LAST").first(20)
   end
 end

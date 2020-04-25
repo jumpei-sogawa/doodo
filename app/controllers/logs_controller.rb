@@ -1,7 +1,7 @@
 class LogsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_exhibition, only: [:create]
   before_action :set_log, only: [:show, :edit, :update, :destroy]
-  before_action :set_exhibition, only: [:new, :create]
 
   # GET /logs
   # GET /logs.json
@@ -16,15 +16,15 @@ class LogsController < ApplicationController
 
   # GET /logs/new
   def new
-    if @exhibition.id == 1
-      redirect_to exhibitions_path
-    end
     @title = "投稿ページ｜アート・展覧会の口コミなら【stART】"
     @description = "アート・展覧会の口コミサイト「stART」の投稿ページです。ログインすることで、アート・絵画・美術館・展覧会・美術展の口コミを投稿することができます。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報もご案内。"
-    @headline = "ログ投稿"
     @exhb_log = ExhbLog.new
     @exhb_log.art_logs.build
-    @arts = @exhibition.arts
+    @art = Art.new
+    @arts = Art.first(30)
+    @museums = Museum.includes(:exhibitions).order("exhibitions.star DESC NULLS LAST").first(20)
+    @exhibitions = Exhibition.is_open.order("star DESC NULLS LAST").first(20)
+    @arts = Art.order("star DESC NULLS LAST").first(20)
   end
 
   # GET /logs/1/edit

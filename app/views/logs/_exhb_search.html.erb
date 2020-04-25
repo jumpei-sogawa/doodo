@@ -1,0 +1,43 @@
+<% if exhb.image.present? %>
+  <div class="image w100 mr10"><a href="/logs/new/?e=<%=exhb.id%>"><%= image_tag exhb.image, class: "w100" %></a></div>
+<% else%>
+  <div class="adjust-box box-3x4">
+    <div class="inner-box align-center">
+      <a href="/logs/new/?e=<%=exhb.id%>" class="icon fa-gem gray" style="font-size:4em;"></a>
+    </div>
+  </div>
+  <div class="image"></div>
+<% end %>
+<div class="content mt10 mb20">
+  <h4 class="align-center mb0"><a href="/logs/new/?e=<%=exhb.id%>"><%= exhb.name %></a></h4>
+
+  <h2 class="row mb0">
+    <div class="col-8">
+      <i class="fas fa-star yellow"></i>
+      <% if exhb.star.present? %>
+        <span><%= exhb.star.round(2) %></span>
+      <% else %>
+        <span>&nbsp;-&nbsp;</span>
+      <% end %>
+      <span class="denominator">/3</span>
+    </div>
+    <div class="col-2 pl0 align-center">
+      <a href="/logs/new/?e=<%=exhb.id%>"><i class="fas fa-edit"></i></a>
+    </div>
+    <div id="exhb_clip_<%= exhb.id %>" class="col-2 pl0 align-center">
+      <%= render partial: "exhb_clips/button", locals: {exhb: exhb} %>
+    </div>
+  </h2>
+
+  <% if controller.controller_name != "museums" %>
+    <div class="align-center"><%= exhb.museum.name %></div>
+  <% end %>
+  <div class="row">
+    <div class="col-12">
+      <%= l exhb.start_date, format: :long %>
+    </div>
+    <div class="col-11 col-12-xsmall align-right">
+        〜 <%= l exhb.end_date, format: :long %>
+    </div>
+  </div>
+</div>

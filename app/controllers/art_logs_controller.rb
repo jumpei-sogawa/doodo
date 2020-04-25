@@ -37,6 +37,7 @@ class ArtLogsController < ApplicationController
   # POST /art_logs
   # POST /art_logs.json
   def create
+    binding.pry
     @exhb_log = ExhbLog.new(exhb_log_params)
     @exhb_log.user_id = current_user.id
     @exhb_log.exhibition_id = 1
