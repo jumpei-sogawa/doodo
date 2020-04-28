@@ -187,4 +187,26 @@
 		$('#art_content').addClass("non-active")
 	}
 
+	$(function() {
+		$('#museum_form_reset').on('click', function(){
+			$('#museum_area').val("");
+			$('#museum_name').val("");
+    });
+	});
+
+	$(function() {
+		$('#exhb_form_reset').on('click', function(){
+			$('#exhb_area').val("");
+			$('#exhb_name').val("");
+			$('#exhb_date').val("");
+    });
+	});
+
+	$(function() {
+		$('#art_form_reset').on('click', function(){
+			$('#art_name').val("");
+			$('#artist_name').val("");
+    });
+	});
+
 </script>
