@@ -108,9 +108,9 @@
   <% if params[:e].present? %>
     <% e = Exhibition.find(params[:e]) %>
     <div class="row">
-      <% e.arts.each do |art| %>
+      <% e.arts.each.with_index do |art, i| %>
         <div class="col-3 col-4-xsmall mb10">
-          <%= render partial: "art_logs/new", locals: {art: art} %>
+          <%= render partial: "art_logs/new", locals: {art: art, i: i} %>
         </div>
       <% end %>
     </div>
@@ -183,6 +183,12 @@
       formData.append('exhibition_id', e_id);
       formData.append('exhb_log[star]', star);
       formData.append('exhb_log[body]', body);
+
+      <% e = Exhibition.find(params[:e]) %>
+      <% e.arts.each.with_index do |art, i| %>
+        formData.append('exhb_log[art_logs_attributes][<%= i %>][art_id]', <%=art.id%>);
+        formData.append('exhb_log[art_logs_attributes][<%= i %>][star]', $('#exhb_log_art_logs_attributes_<%= i %>_star').val());
+      <% end %>
 
       // CSRF対策（独自のajax処理を行う場合、head内にあるcsrf-tokenを取得して送る必要がある）
       $.ajaxPrefilter(function(options, originalOptions, jqXHR){
