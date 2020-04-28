@@ -20,13 +20,13 @@
   </div>
 
 	<div id="museum_content" class="non-active">
-		<%= form_with(url: museums_path, method: :get, local: true) do |form| %>
+		<%= form_with(url: search_path, method: :get, local: true) do |museum_form| %>
 			<div class="row mb10">
 				<div class="off-2 col-4 off-0-xsmall col-6-xsmall">
-					<%= form.text_field :museum_area, value: params[:museum_area], placeholder: "場所（例:東京）" %>
+					<%= museum_form.text_field :museum_area, value: params[:museum_area], placeholder: "場所（例:東京）" %>
 				</div>
 				<div class="col-4 col-6-xsmall">
-					<%= form.text_field :museum_name, value: params[:museum_name], placeholder: "館名（例:国立新美術館）" %>
+					<%= museum_form.text_field :museum_name, value: params[:museum_name], placeholder: "館名（例:国立新美術館）" %>
 				</div>
 			</div>
 			<div class="row mb10">
@@ -48,7 +48,7 @@
 						<div class="align-center dark mb5">開催中の展覧会</div>
 						<%= render partial: "exhibitions/show", locals: { exhb: museum.exhibitions.is_open.last } %>
 					<% else %>
-					<div class="align-center mb5">過去の展覧会</div>
+						<div class="align-center mb5">過去の展覧会</div>
 						<%= render partial: "exhibitions/show", locals: { exhb: museum.exhibitions.last } %>
 					<% end %>
 				</div>
@@ -57,13 +57,13 @@
 	</div>
 
 	<div id="exhb_content">
-		<%= form_with(url: exhibitions_path, method: :get, local: true) do |form| %>
+		<%= form_with(url: search_path, method: :get, local: true) do |exhb_form| %>
 			<div class="row mb10">
 				<div class="off-2 col-4 off-0-xsmall col-6-xsmall">
-					<%= form.text_field :exhb_area, value: params[:exhb_area], placeholder: "場所（例:東京）" %>
+					<%= exhb_form.text_field :exhb_area, value: params[:exhb_area], placeholder: "場所（例:東京）" %>
 				</div>
 				<div class="col-4 col-6-xsmall">
-					<%= form.text_field :exhb_name, value: params[:exhb_name], placeholder: "展名（例:ゴッホ展）" %>
+					<%= exhb_form.text_field :exhb_name, value: params[:exhb_name], placeholder: "展名（例:ゴッホ展）" %>
 				</div>
 			</div>
 			<div class="row mb10">
@@ -71,7 +71,7 @@
 					<div class="align-right mt5 mb0">開催日</div>
 				</div>
 				<div class="col-6 col-6-xsmall">
-					<%= form.date_field :exhb_date, value: params[:exhb_date], placeholder: Date.today %>
+					<%= exhb_form.date_field :exhb_date, value: params[:exhb_date], placeholder: Date.today %>
 				</div>
 			</div>
 			<div class="row mb10">
@@ -90,13 +90,13 @@
 	</div>
 
 	<div id="art_content" class="non-active">
-		<%= form_with(url: arts_path, method: :get, local: true) do |form| %>
+		<%= form_with(url: search_path, method: :get, local: true) do |art_form| %>
 			<div class="row mb10">
 				<div class="off-2 col-4 off-0-xsmall col-6-xsmall">
-					<%= form.text_field :art_name, value: params[:art_name], placeholder: "作品名（例:ひまわり）" %>
+					<%= art_form.text_field :art_name, value: params[:art_name], placeholder: "作品名（例:ひまわり）" %>
 				</div>
 				<div class="col-4 col-6-xsmall">
-					<%= form.text_field :artist_name, value: params[:artist_name], placeholder: "作者名（例:ゴッホ）" %>
+					<%= art_form.text_field :artist_name, value: params[:artist_name], placeholder: "作者名（例:ゴッホ）" %>
 				</div>
 			</div>
 			<div class="row mb10">
@@ -114,16 +114,20 @@
 		</div>
 	</div>
 
-
-
-
-
-
-
 </section>
 
 
 <script type="text/javascript" language="javascript">
+	<% if params[:museum_area].present? || params[:museum_name].present? %>
+		deactivateExhibition();
+		deactivateArt();
+		activateMuseum();
+	<% elsif params[:art_name].present? || params[:artist_name].present? %>
+		deactivateMuseum();
+		deactivateExhibition();
+		activateArt();
+	<% end %>
+
 	$('#museum_tab')[0].onclick = function () {
 		deactivateExhibition();
 		deactivateArt();
