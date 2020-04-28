@@ -140,6 +140,22 @@
     $overlay.fadeIn();
   });
 
+  // 検索のパラメーターがあれば検索に飛ばす
+  <% if params[:museum_area].present? || params[:museum_name].present? %>
+    $overlay.removeClass("non-active");
+		deactivateExhibition();
+		deactivateArt();
+		activateMuseum();
+  <% elsif params[:exhb_area].present? || params[:exhb_name].present? %>
+    $overlay.removeClass("non-active");
+	<% elsif params[:art_name].present? || params[:artist_name].present? %>
+    $overlay.removeClass("non-active");
+		deactivateMuseum();
+		deactivateExhibition();
+		activateArt();
+	<% end %>
+
+
   // 検索から戻ってきたらimage-fieldのborder消す
   <% if params[:e].present? || params[:a].present? %>
     $('#image-field').removeClass("image-field")

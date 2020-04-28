@@ -70,6 +70,7 @@ class PagesController < ApplicationController
     else
       @arts = Art.order("star DESC NULLS LAST").first(20)
     end
+
   end
 
 end
