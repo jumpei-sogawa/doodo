@@ -41,27 +41,35 @@
 
           <div class="mb10">
             <% if params[:e].present? %>
-              <% if e.name.length > 13 %>
+              <% if e.name.length > 14 %>
                 <div>展：<%= e.name.first(13) %>...</div>
               <% else %>
                 <div>展：<%= e.name %></div>
               <% end %>
+
               <% if e.museum.name.present? %>
-                <div>館：<%= e.museum.name %></div>
+                <% if e.museum.name.length > 14 %>
+                  <div>館：<%= e.museum.name.first(13) %>...</div>
+                <% else %>
+                  <div>館：<%= e.museum.name %></div>
+                <% end %>
               <% end %>
+
             <% elsif params[:a].present? %>
-              <% if a.name.length > 13 %>
+              <% if a.name.length > 14 %>
                 <div>題：<%= a.name.first(13) %>...</div>
               <% else %>
                 <div>題：<%= a.name %></div>
               <% end %>
+
               <% if a.artist.name.present? %>
-                <% if a.artist.name.length > 13 %>
+                <% if a.artist.name.length > 14 %>
                   <div>作：<%= a.artist.name.first(13) %>...</div>
                 <% else %>
                   <div>作：<%= a.artist.name %></div>
                 <% end %>
               <% end %>
+
               <% if a.year.present? %>
                 <div>（<%= a.year %>）</div>
               <% end %>

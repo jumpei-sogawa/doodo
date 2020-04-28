@@ -47,7 +47,7 @@
 					</h2>
 				</div>
 				<div class="col-3 align-center">
-					<h2 class="mobile-fs3em"><a href="/exhibitions/<%=@exhibition.id%>/logs/new"><i class="fas fa-edit"></i></a></h2>
+					<h2 class="mobile-fs3em"><a href="/logs/new/?e=<%=@exhibition.id%>"><i class="fas fa-edit"></i></a></h2>
 				</div>
 				<div id="exhb_clip" class="col-2 align-center">
 					<h2 class="mobile-fs3em"><%= render partial: "exhb_clips/button", locals: {exhb: @exhibition} %></h2>

@@ -22,7 +22,7 @@
       <span class="denominator">/3</span>
     </div>
     <div class="col-2 pl0 align-center">
-      <a href="/exhibitions/<%=exhb.id%>/logs/new"><i class="fas fa-edit"></i></a>
+      <a href="/logs/new/?e=<%=exhb.id%>"><i class="fas fa-edit"></i></a>
     </div>
     <div class="exhb_clip_<%= exhb.id %> col-2 pl0 align-center">
       <%= render partial: "exhb_clips/button", locals: {exhb: exhb} %>
