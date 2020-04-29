@@ -48,8 +48,11 @@
   margin-left: 30px;
 }
 
+.header-ml {
+  margin-left: 10px;
+}
 @media screen and (max-width: 736px) {
-  .ml55 {
+  .header-ml {
     margin-left: 5.5em;
   }
 }

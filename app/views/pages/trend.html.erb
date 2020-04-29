@@ -13,29 +13,66 @@
     </div>
   </div>
 
-  <div id="content">
-    <%= render partial: "exhibitions/index", locals: {exhibitions: @exhibitions} %>
+  <%# 人気の展覧会 %>
+  <div id="exhb_container">
+    <div class="row">
+      <% @exhibitions.each do |exhb| %>
+        <div class="col-3 col-6-xsmall">
+          <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%# 人気の作品 %>
+  <div id="art_container" class="non-active">
+    <div class="row">
+      <% @arts.each do |art| %>
+        <div class="col-3 col-6-xsmall">
+          <%= render partial: "arts/show", locals: {art: art} %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </section>
 
 
 <script type="text/javascript" language="javascript">
   $('#exhb_tab')[0].onclick = function () {
-    $('#exhb_tab').addClass("major")
-    $('#exhb_tab_text').removeClass("gray")
-    $('#exhb_tab_text').addClass("dark")
-    $('#art_tab').removeClass("major")
-    $('#art_tab').removeClass("dark")
-    $('#art_tab_text').addClass("gray")
-    $("#content").html("<%= j(render partial: "exhibitions/index", locals: {exhibitions: @exhibitions}) %>");
+		deactivateArt();
+		activateExhibition();
   }
   $('#art_tab')[0].onclick = function () {
-    $('#exhb_tab').removeClass("major")
+		deactivateExhibition();
+		activateArt();
+	}
+
+	function activateExhibition() {
+		$('#exhb_tab').addClass("major")
+    $('#exhb_tab_text').removeClass("gray")
+		$('#exhb_tab_text').addClass("dark")
+		$('#exhb_container').removeClass("non-active")
+	}
+
+	function deactivateExhibition() {
+		$('#exhb_tab').removeClass("major")
     $('#exhb_tab_text').removeClass("dark")
-    $('#exhb_tab_text').addClass("gray")
-    $('#art_tab').addClass("major")
+		$('#exhb_tab_text').addClass("gray")
+		$('#exhb_container').addClass("non-active")
+	}
+
+	function activateArt() {
+		$('#art_tab').addClass("major")
     $('#art_tab_text').removeClass("gray")
-    $('#art_tab').addClass("dark")
-    $("#content").html("<%= j(render partial: "arts/index", locals: {arts: @arts}) %>");
-  }
+		$('#art_tab').addClass("dark")
+		$('#art_container').removeClass("non-active")
+
+	}
+
+	function deactivateArt() {
+		$('#art_tab').removeClass("major")
+    $('#art_tab').removeClass("dark")
+		$('#art_tab_text').addClass("gray")
+		$('#art_container').addClass("non-active")
+	}
 </script>
