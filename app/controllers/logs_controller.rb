@@ -33,7 +33,7 @@ class LogsController < ApplicationController
     else
       @museums = Museum.includes(:exhibitions).order("exhibitions.star DESC NULLS LAST")
     end
-    @museums = @museums.select { |museum| museum.id != 1 }.first(20)
+    @museums = @museums.select { |museum| museum.id != 1 }.first(24)
 
     if params[:any].present?
       @exhibitions = Exhibition.search_by_any(params).sort do |a,b|
@@ -58,10 +58,10 @@ class LogsController < ApplicationController
     else
       @exhibitions = Exhibition.order("star DESC NULLS LAST")
     end
-    @exhibitions = @exhibitions.select { |exhb| exhb.id != 1 }.first(20)
+    @exhibitions = @exhibitions.select { |exhb| exhb.id != 1 }.first(24)
 
     if params[:art_name].present? || params[:artist_name].present?
-      arts = Art.search_by(params).first(20)
+      arts = Art.search_by(params).first(24)
       @arts = arts.sort do |a,b|
         if !a.star.present?
           1
@@ -72,7 +72,7 @@ class LogsController < ApplicationController
         end
       end
     else
-      @arts = Art.order("star DESC NULLS LAST").first(20)
+      @arts = Art.order("star DESC NULLS LAST").first(24)
     end
 
   end

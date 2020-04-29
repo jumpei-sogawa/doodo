@@ -2,9 +2,7 @@
 <div class="inner">
 
 <header id="header">
-  <span class="logo">
-    <a href="/" class="logo"><%= image_tag "stART-logo.jpg", height: "15px" %></a>
-  </span>
+	<a href="/" class="mt5 logo"><%= image_tag "stART-logo.jpg", height: "15px" %></a>
 </header>
 
 <section>
@@ -33,7 +31,7 @@
 
 		<div class="row">
 			<% museums.each do |museum| %>
-				<div class="col-3 col-6-xsmall">
+				<div class="col-2 col-6-xsmall">
 					<%= render partial: "museums/show", locals: {museum: museum} %>
 				</div>
 			<% end %>
@@ -45,7 +43,7 @@
 
 		<div class="row">
 			<% exhibitions.each do |exhb| %>
-				<div class="col-3 col-6-xsmall">
+				<div class="col-2 col-6-xsmall">
 					<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
 				</div>
 			<% end %>
@@ -57,7 +55,7 @@
 
 		<div class="row">
 			<% arts.each do |art| %>
-				<div class="col-3 col-6-xsmall">
+				<div class="col-2 col-6-xsmall">
 					<%= render partial: "arts/show", locals: {art: art} %>
 				</div>
 			<% end %>
