@@ -12,7 +12,7 @@
     <% end %>
 
     <div class="align-center">
-      <strong><%= art.name %></strong>
+      <strong class="light-gray"><%= art.name %></strong>
       <div><%= art.artist.name %>作</div>
       <% if art.year.present? %>
         <div>（<%= art.year %>年）</div>
@@ -28,7 +28,7 @@
       <textarea rows="1" placeholder="感想..." name="exhb_log[art_logs_attributes][<%= i %>][body]" id="exhb_log_art_logs_attributes_<%= i %>_body" spellcheck="false"></textarea>
     </div>
     <div class="close_btn_<%= i %> w100 align-center mb20">
-      <div class="w30 button" tabindex="0">決定</div>
+      <div class="w30 button primary" tabindex="0">決定</div>
     </div>
   </div>
 </div>

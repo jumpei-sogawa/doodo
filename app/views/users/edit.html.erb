@@ -1,18 +1,10 @@
 <%# ajax処理で使う分のパラメータをhidden_fieldで持っておく %>
 <%= hidden_field_tag "username", @user.username %>
 
-<div class="overlay" style="display:none;">
-  <div class="crop_modal"></div>
-  <div class="buttons">
-    <div class="w50 button" id="close_btn">キャンセル</div>
-    <div class="w50 button primary" id="select_btn">決定</div>
-  </div>
-</div>
-
 <section>
   <%= form_with(model: @user, url: "/#{@user.username}") do |form| %>
     <div class="row">
-      <div class="off-2 col-2 off-3-xsmall col-6-xsmall">
+      <div class="off-2 col-2 off-4-xsmall col-4-xsmall">
         <div id="img_field" onClick="$('#user_image').click()">
           <% if @user.image.present? %>
             <%= image_tag @user.image_url, class: "w100 circle pointer" %>
@@ -61,11 +53,22 @@
     </div>
 
     <%# jsでajax送信するためのボタンを作成 %>
-    <div class="mt20">
-      <div id="submit_btn" class="button" tabindex="0">保存</div>
+    <div class="mt20 row">
+      <div class="col-6 col-12-xsmall align-center">
+        <div id="submit_btn" class="button" tabindex="0">保存</div>
+      </div>
     </div>
   <% end %>
 </section>
+
+<div class="overlay" style="display:none;">
+  <div class="crop_modal"></div>
+  <div class="buttons flex-container center">
+    <div class="button" id="close_btn">キャンセル</div>
+    <div class="button primary" id="select_btn">決定</div>
+  </div>
+</div>
+
 
 <%= stylesheet_link_tag    'cropper' %>
 <%= javascript_include_tag 'cropper' %>
@@ -92,7 +95,7 @@
       reader.onload = (function(file) {
         return function(e) {
           $overlay.fadeIn();
-          $('.crop_modal').height("350px");
+          $('.crop_modal').height("300px");
           $crop_modal.append($('<img>').attr({
             src: e.target.result,
             width: "100%",

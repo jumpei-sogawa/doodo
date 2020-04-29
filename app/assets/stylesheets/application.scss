@@ -28,6 +28,7 @@
   white-space: pre-wrap;
 }
 
+// borfer
 .b0 {
   bottom: 0;
 }
@@ -36,6 +37,12 @@
   border-bottom: 0px;
 }
 
+.circle {
+  border-radius: 50%;
+}
+
+
+// margin
 .ml5 {
   margin-left: 5px;
 }
@@ -97,6 +104,7 @@
   margin-top: 100px;
 }
 
+// padding
 .pt5 {
   padding-top: 5px;
 }
@@ -125,6 +133,7 @@
   padding-left: 150px;
 }
 
+// color
 .pink {
   color: #f56a6a;
 }
@@ -158,10 +167,7 @@ a.button.dark {
   box-shadow: inset 0 0 0 2px #3d4449;
 }
 
-span.denominator {
-  font-size: 0.5em;
-}
-
+// width
 .w20 {
   width: 20%;
 }
@@ -178,26 +184,49 @@ span.denominator {
   width: 100%;
 }
 
+// height
 .h100 {
   height: 100%;
 }
 
-.hidden {
-  display: none;
+// サイズ
+.adjust-box {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background: #FFF;
 }
 
-.star {
-  display: inline-block;
+.box-1x1:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
 }
 
-.circle {
-  border-radius: 50%;
+.box-16x9:before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
 }
 
-.pointer {
-  cursor: pointer;
+.box-3x4:before {
+  content: "";
+  display: block;
+  padding-top: 133.33%;
 }
 
+.inner-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// font-size
 @media screen and (max-width: 480px) {
   h2.mobile-fs3em {
     font-size: 3em;
@@ -207,6 +236,76 @@ span.denominator {
   }
 }
 
+// cursor
+.pointer {
+  cursor: pointer;
+}
+
+.cursor:hover {
+  cursor: pointer;
+}
+
+// display
+.hidden {
+  display: none;
+}
+
+.non-active {
+  display: none;
+}
+
+.star {
+  display: inline-block;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-container.center {
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.flex-container.baseline {
+  align-items: baseline;
+}
+
+.flex-container.stretch{
+  align-items: stretch;
+}
+
+
+// footer
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 12000;
+  background-color: #f5f6f7;
+  border-top: solid 1px #3d4449;
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu-icon-box {
+  text-align: center;
+  font-size: 20px;
+}
+
+.menu-icon {
+  vertical-align: middle;
+}
+
+// 星の分母
+span.denominator {
+  font-size: 0.5em;
+}
+
+// ログ投稿画面
 .input-range[type="range"] {
   -webkit-appearance: none;
   appearance: none;
@@ -235,9 +334,78 @@ span.denominator {
   }
 }
 
-// オーバーレイ
+.select-target-area {
+  border: solid 1px #cfd3d6;
+  border-radius: 5%;
+  text-align: center;
+}
+
+.save-btn {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  width: 60px;
+  text-align: center;
+}
+
+.bg-art-stars {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
+  background-color: #000;
+  opacity: 50%;
+}
+
+.art-stars {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 25%;
+  padding-top: 5px;
+}
+
+// ログ投稿画面 検索モーダル
+#overlay {
+  z-index: 11000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+#search_modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #fff;
+  overflow-y: scroll;
+}
+
+.modal_art {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #0008;
+  overflow-y: scroll;
+  padding-top: 65px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 40px;
+}
+
+
+// プロフィール画像編集
 .overlay {
-  z-index: 100;
+  z-index: 11000;
   position: fixed;
   display: none;
   top: 0;
@@ -292,170 +460,5 @@ span.denominator {
 .overlay .buttons {
   width: 100%;
   position: absolute;
-  bottom: 20px;
-  display: flex;
-}
-
-.adjust-box {
-  position: relative;
-  width: 100%;
-  height: auto;
-  background: #FFF;
-}
-
-.box-1x1:before {
-  content: "";
-  display: block;
-  padding-top: 100%;
-}
-
-.box-16x9:before {
-  content: "";
-  display: block;
-  padding-top: 56.25%;
-}
-
-.box-3x4:before {
-  content: "";
-  display: block;
-  padding-top: 133.33%;
-}
-
-.inner-box {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 40px;
-  z-index: 12000;
-  background-color: #f5f6f7;
-  border-top: solid 1px #3d4449;
-  display: flex;
-  justify-content: space-around;
-}
-
-.menu-icon-box {
-  text-align: center;
-  font-size: 20px;
-}
-
-.menu-icon {
-  vertical-align: middle;
-}
-
-.image-field {
-  border: solid 1px #cfd3d6;
-  border-radius: 5%;
-  text-align: center;
-}
-
-.flex-container {
-  display: flex;
-}
-
-.flex-container.center {
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.flex-container.baseline {
-  align-items: baseline;
-}
-
-.flex-container.stretch{
-  align-items: stretch;
-}
-
-.save-btn {
-  position: absolute;
-  top: 20px;
-  right: 10px;
-  width: 60px;
-  text-align: center;
-}
-
-.bg-art-stars {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 20%;
-  background-color: #000;
-  opacity: 50%;
-}
-
-.art-stars {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 25%;
-  padding-top: 5px;
-}
-
-.o60 {
-  opacity: 60%;
-}
-
-.cursor:hover {
-  cursor: pointer;
-}
-
-.non-active {
-  display: none;
-}
-
-#overlay {
-  z-index: 11000;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-}
-
-#search_modal {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  background: #fff;
-  overflow-y: scroll;
-}
-
-.overlay {
-  z-index: 100;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #fffd;
-}
-
-.modal_art {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  background: #fffd;
-  overflow-y: scroll;
-  padding-top: 65px;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-bottom: 40px;
+  bottom: 60px;
 }
