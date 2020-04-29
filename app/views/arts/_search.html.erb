@@ -1,0 +1,14 @@
+<%= form_with(url: search_path, method: :get, local: true) do |art_form| %>
+  <div class="row mb10">
+    <div class="off-2 col-4 off-0-xsmall col-6-xsmall">
+      <%= art_form.text_field :art_name, value: params[:art_name], placeholder: "作品名（例:ひまわり）" %>
+    </div>
+    <div class="col-4 col-6-xsmall">
+      <%= art_form.text_field :artist_name, value: params[:artist_name], placeholder: "作者名（例:ゴッホ）" %>
+    </div>
+  </div>
+  <div class="row mb10">
+    <div class="off-2 col-4 off-0-xsmall col-6-xsmall aln-center"><div id="art_form_reset" class="w100 pink mt5" style="text-align:center;" tabindex="0">リセット</div></div>
+    <div class="col-4 col-6-xsmall align-center"><input type="submit" value="検索" class="primary" /></div>
+  </div>
+<% end %>
