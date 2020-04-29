@@ -1,18 +1,24 @@
+<% if params[:controller] == "logs" %>
+  <% url = "/logs/new/?a=#{art.id}" %>
+<% else %>
+  <% url = "/arts/#{art.id}" %>
+<% end %>
+
 <% if art.image.present? %>
-  <div class="image mr10 w100"><a href="/arts/<%=art.id%>" class=""><%= image_tag art.image, class: "w100" %></a></div>
+  <div class="image mr10 w100"><a href="<%= url %>" class=""><%= image_tag art.image, class: "w100" %></a></div>
 <% elsif art.liked_image.present? %>
-  <div class="image mr10 w100"><a href="/arts/<%=art.id%>" class=""><%= image_tag art.liked_image.to_s, class: "w100" %></a></div>
+  <div class="image mr10 w100"><a href="<%= url %>" class=""><%= image_tag art.liked_image.to_s, class: "w100" %></a></div>
 <% else %>
   <div class="adjust-box box-1x1">
     <div class="inner-box align-center">
-      <a href="/arts/<%=art.id%>" class="icon fa-gem gray" style="font-size:4em;"></a>
+      <a href="<%= url %>" class="icon fa-gem gray" style="font-size:4em;"></a>
     </div>
   </div>
   <div class="image"></div>
 <% end %>
 
 <div class="content mt10 mb20">
-  <h3 class="align-center mb10"><a href="/arts/<%=art.id%>"><%= art.name %></a></h3>
+  <h3 class="align-center mb10"><a href="<%= url %>"><%= art.name %></a></h3>
   <h2 class="row mb10">
     <div class="off-1 col-8">
       <i class="fas fa-star yellow"></i>

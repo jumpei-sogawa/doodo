@@ -1,15 +1,21 @@
+<% if params[:controller] == "logs" %>
+  <% url = "/logs/new/?e=#{exhb.id}" %>
+<% else %>
+  <% url = "/exhibitions/#{exhb.id}" %>
+<% end %>
+
 <% if exhb.image.present? %>
-  <div class="image w100 mr10"><a href="/exhibitions/<%=exhb.id%>"><%= image_tag exhb.image, class: "w100" %></a></div>
+  <div class="image w100 mr10"><a href="<%= url %>"><%= image_tag exhb.image, class: "w100" %></a></div>
 <% else%>
   <div class="adjust-box box-3x4">
     <div class="inner-box align-center">
-      <a href="/exhibitions/<%=exhb.id%>" class="icon fa-gem gray" style="font-size:4em;"></a>
+      <a href="<%= url %>" class="icon fa-gem gray" style="font-size:4em;"></a>
     </div>
   </div>
   <div class="image"></div>
 <% end %>
 <div class="content mt10 mb20">
-  <h4 class="align-center mb0"><a href="/exhibitions/<%=exhb.id%>"><%= exhb.name %></a></h4>
+  <h4 class="align-center mb0"><a href="<%= url %>"><%= exhb.name %></a></h4>
 
   <h2 class="row mb0">
     <div class="col-8">

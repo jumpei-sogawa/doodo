@@ -1,7 +1,13 @@
-<%= link_to museum_path(museum) do %>
+<% if params[:controller] == "logs" && params[:action] == "new" %>
   <header class="major align-center">
     <h4 style="margin-bottom:1em;"><%= museum.name %></h4>
   </header>
+<% else %>
+  <%= link_to museum_path(museum) do %>
+    <header class="major align-center">
+      <h4 style="margin-bottom:1em;"><%= museum.name %></h4>
+    </header>
+  <% end %>
 <% end %>
 
 <% if museum.exhibitions.is_open.present? %>

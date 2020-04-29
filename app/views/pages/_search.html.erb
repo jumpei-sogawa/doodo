@@ -1,3 +1,12 @@
+<div id="main">
+<div class="inner">
+
+<header id="header">
+  <span class="logo">
+    <a href="/" class="logo"><%= image_tag "stART-logo.jpg", height: "15px" %></a>
+  </span>
+</header>
+
 <section>
 	<div class="flex-container center baseline">
     <h3 class="mb0">
@@ -20,10 +29,10 @@
   </div>
 
 	<div id="museum_container" class="non-active">
-		<%= render partial: "museums/search", locals: {path: search_path} %>
+		<%= render partial: "museums/search", locals: {path: new_log_path} %>
 
 		<div class="row">
-			<% @museums.each do |museum| %>
+			<% museums.each do |museum| %>
 				<div class="col-3 col-6-xsmall">
 					<%= render partial: "museums/show", locals: {museum: museum} %>
 				</div>
@@ -35,7 +44,7 @@
 		<%= render partial: "exhibitions/search", locals: {path: search_path} %>
 
 		<div class="row">
-			<% @exhibitions.each do |exhb| %>
+			<% exhibitions.each do |exhb| %>
 				<div class="col-3 col-6-xsmall">
 					<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
 				</div>
@@ -47,28 +56,20 @@
 		<%= render partial: "arts/search", locals: {path: search_path} %>
 
 		<div class="row">
-			<% @arts.each do |art| %>
+			<% arts.each do |art| %>
 				<div class="col-3 col-6-xsmall">
 					<%= render partial: "arts/show", locals: {art: art} %>
 				</div>
 			<% end %>
 		</div>
 	</div>
-
 </section>
+
+</div>
+</div>
 
 
 <script type="text/javascript" language="javascript">
-	<% if params[:museum_area].present? || params[:museum_name].present? %>
-		deactivateExhibition();
-		deactivateArt();
-		activateMuseum();
-	<% elsif params[:art_name].present? || params[:artist_name].present? %>
-		deactivateMuseum();
-		deactivateExhibition();
-		activateArt();
-	<% end %>
-
 	$('#museum_tab')[0].onclick = function () {
 		deactivateExhibition();
 		deactivateArt();
