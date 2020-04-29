@@ -158,14 +158,7 @@
 
 
 <script type="text/javascript" language="javascript">
-  // スライダーの値を反映させる
-  $star_slider = $('#main_star_slider')[0];
-  $star_count = $('#main_star_count')[0];
-  $star_slider.oninput = function () {
-      $star_count.textContent = Number($star_slider.value).toFixed(1);
-  };
-
-  // image-field クリックしたら検索に飛ぶ
+  // select-field クリックしたら検索に飛ぶ
   $overlay = $('#overlay')
   $('#select-target-area').on('click', function(){
     $overlay.removeClass("non-active");
@@ -175,50 +168,46 @@
   // 検索のパラメーターがあれば検索に飛ばす
   <% if params[:museum_area].present? || params[:museum_name].present? %>
     $overlay.removeClass("non-active");
-		deactivateExhibition();
-		deactivateArt();
-		activateMuseum();
+    deactivateExhibition();
+    deactivateArt();
+    activateMuseum();
   <% elsif params[:exhb_area].present? || params[:exhb_name].present? %>
     $overlay.removeClass("non-active");
-	<% elsif params[:art_name].present? || params[:artist_name].present? %>
+  <% elsif params[:art_name].present? || params[:artist_name].present? %>
     $overlay.removeClass("non-active");
-		deactivateMuseum();
-		deactivateExhibition();
-		activateArt();
-	<% end %>
+    deactivateMuseum();
+    deactivateExhibition();
+    activateArt();
+  <% end %>
 
-  // 検索から戻ってきたらimage-fieldのborder消す
+  // 検索から戻ってきたらselect-target-areaのborder消す
   <% if params[:e].present? || params[:a].present? %>
     $('#select-target-area').removeClass("image-field")
   <% end %>
 
-  // 作品画像クリックで詳細表示
+  // スライダーの値を反映させる
+  $star_slider = $('#main_star_slider')[0];
+  $star_count = $('#main_star_count')[0];
+  $star_slider.oninput = function () {
+      $star_count.textContent = Number($star_slider.value).toFixed(1);
+  };
+
   <% if params[:e].present? %>
     <% e = Exhibition.find(params[:e]) %>
     <% e.arts.each.with_index do |art, i| %>
+      // 作品画像クリックで詳細表示
       $('#art_log_<%= i %>').on('click', function(){
         $('#overlay_art_<%= i %>').removeClass("non-active");
         $('#overlay_art_<%= i %>').fadeIn();
       });
-    <% end %>
-  <% end %>
 
-  // 作品の詳細表示閉じる
-  <% if params[:e].present? %>
-    <% e = Exhibition.find(params[:e]) %>
-    <% e.arts.each.with_index do |art, i| %>
+      // 作品の詳細表示閉じる
       $('.close_btn_<%= i %>').on('click', function(){
         $('#overlay_art_<%= i %>').addClass("non-active");
         $('#overlay_art_<%= i %>').fadeOut();
       });
-    <% end %>
-  <% end %>
 
-  // 作品星評価
-  <% if params[:e].present? %>
-    <% e = Exhibition.find(params[:e]) %>
-    <% e.arts.each.with_index do |art, i| %>
-
+      // 作品星評価
       function art<%= i %>_star0_func() {
           $('.art<%= i %>_star1').removeClass('yellow');
           $('.art<%= i %>_star1').addClass('light-gray');
@@ -292,11 +281,13 @@
               art<%= i %>_star2_func();
           }
       });
+
     <% end %>
   <% end %>
 
 
   // 保存ボタンで保存する
+  // 展覧会ログ保存
   <% if params[:e].present? %>
     $('#save_btn').on('click', function(){
       var formData = new FormData();
@@ -325,6 +316,7 @@
           };
         };
       });
+      // formData送信
       $.ajax({
         url: '/logs',
         datatype: 'json',
@@ -334,6 +326,7 @@
         contentType: false,
       });
     });
+  // 作品ログだけ保存
   <% elsif params[:a].present? %>
     $('#save_btn').on('click', function(){
       var formData = new FormData();
@@ -356,6 +349,7 @@
           };
         };
       });
+      // formData送信
       $.ajax({
         url: '/arts/' + a_id + '/art_logs',
         datatype: 'json',
@@ -366,4 +360,5 @@
       });
     });
   <% end %>
+
 </script>

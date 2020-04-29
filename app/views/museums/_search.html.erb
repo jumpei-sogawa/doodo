@@ -12,3 +12,14 @@
     <div class="col-4 col-6-xsmall align-center"><input type="submit" value="検索" class="primary" /></div>
   </div>
 <% end %>
+
+
+<script type="text/javascript" language="javascript">
+  // 検索フォームリセット
+	$(function() {
+		$('#museum_form_reset').on('click', function(){
+			$('#museum_area').val("");
+			$('#museum_name').val("");
+    });
+  });
+</script>

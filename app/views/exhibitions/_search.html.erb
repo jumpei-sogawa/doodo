@@ -20,3 +20,15 @@
     <div class="col-4 col-6-xsmall align-center"><input type="submit" value="検索" class="primary" /></div>
   </div>
 <% end %>
+
+
+<script type="text/javascript" language="javascript">
+  // 検索フォームリセット
+	$(function() {
+		$('#exhb_form_reset').on('click', function(){
+			$('#exhb_area').val("");
+			$('#exhb_name').val("");
+			$('#exhb_date').val("");
+    });
+	});
+</script>

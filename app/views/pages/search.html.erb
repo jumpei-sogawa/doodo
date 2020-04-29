@@ -59,6 +59,7 @@
 
 
 <script type="text/javascript" language="javascript">
+	// タブ切り替え
 	<% if params[:museum_area].present? || params[:museum_name].present? %>
 		deactivateExhibition();
 		deactivateArt();
@@ -127,27 +128,5 @@
 		$('#art_tab_text').addClass("gray")
 		$('#art_container').addClass("non-active")
 	}
-
-	$(function() {
-		$('#museum_form_reset').on('click', function(){
-			$('#museum_area').val("");
-			$('#museum_name').val("");
-    });
-	});
-
-	$(function() {
-		$('#exhb_form_reset').on('click', function(){
-			$('#exhb_area').val("");
-			$('#exhb_name').val("");
-			$('#exhb_date').val("");
-    });
-	});
-
-	$(function() {
-		$('#art_form_reset').on('click', function(){
-			$('#art_name').val("");
-			$('#artist_name').val("");
-    });
-	});
 
 </script>
