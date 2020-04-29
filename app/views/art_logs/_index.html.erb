@@ -1,8 +1,0 @@
-<div class="row">
-	<% art_logs.each do |art_log| %>
-		<div class="col-6 col-12-xsmall mb10">
-			<%= render partial: "users/show", locals: {user: art_log.user, body: art_log} %>
-			<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
-		</div>
-	<% end %>
-</div>

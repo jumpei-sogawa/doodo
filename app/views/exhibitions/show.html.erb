@@ -49,9 +49,9 @@
 				<div class="col-3 align-center">
 					<h2 class="mobile-fs3em"><a href="/logs/new/?e=<%=@exhibition.id%>"><i class="fas fa-edit"></i></a></h2>
 				</div>
-				<div id="exhb_clip" class="col-2 align-center">
-					<h2 class="mobile-fs3em"><%= render partial: "exhb_clips/button", locals: {exhb: @exhibition} %></h2>
-				</div>
+				<h2 class="exhb_clip_<%= @exhibition.id %> col-2 align-center mobile-fs3em pl0 mb0">
+            <%= render partial: "exhb_clips/button", locals: {exhb: @exhibition} %>
+          </h2>
 			</div>
 		</div>
 
@@ -150,7 +150,15 @@
 			<header class="major align-center">
 				<h2>この展覧会のログ</h2>
 			</header>
-			<%= render partial: "exhb_logs/index", locals: {exhb_logs: @exhb_logs} %>
+			<div class="row">
+				<% @exhb_logs.each do |exhb_log| %>
+					<div class="col-6 col-12-xsmall mb10">
+						<%= render partial: "users/show", locals: {user: exhb_log.user, body: exhb_log} %>
+						<%= render partial: "exhb_logs/show", locals: {exhb_log: exhb_log} %>
+					</div>
+				<% end %>
+			</div>
+
 		<% end %>
 	</div>
 </section>

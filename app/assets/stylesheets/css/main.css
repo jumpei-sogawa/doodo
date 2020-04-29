@@ -1837,7 +1837,8 @@ button,
   -webkit-flex-direction: row-reverse;
   -ms-flex-direction: row-reverse;
   flex-direction: row-reverse;
-  min-height: 100vh; }
+  min-height: 100vh;
+  background-color: #f5f6f7; }
 
 /* Main */
 #main {

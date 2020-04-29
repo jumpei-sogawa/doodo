@@ -1,0 +1,118 @@
+<% user = exhb_log.user %>
+<% exhibition = exhb_log.exhibition %>
+<% museum = exhibition.museum %>
+<% art_logs = exhb_log.art_logs %>
+
+
+
+<div class="row">
+  <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
+    <div class="log-container">
+      <header class="user-info">
+        <a href="/<%=user.username%>" class="image circle ml5 mr5">
+          <% if user.image.present? %>
+            <%= image_tag user.image.to_s, height: "30px" %>
+          <% else %>
+            <%= image_tag "default-profile-image.png", height: "30px" %>
+          <% end %>
+        </a>
+        <a href="/<%=user.username%>" class="dark bb0">
+          <strong><%= user.username %></strong>
+        </a>
+      </header>
+
+      <div class="row mb5">
+        <div class="col-8 pt5">
+          <% if exhibition.name.length > 13 %>
+            <div class="dark">展：<%= exhibition.name.first(12) %>...</div>
+          <% else %>
+            <div class="dark">展：<%= exhibition.name %></div>
+          <% end %>
+
+          <% if museum.name.length > 13 %>
+            <div class="dark">館：<%= museum.name.first(12) %>...</div>
+          <% else %>
+            <div class="dark">館：<%= museum.name %></div>
+          <% end %>
+
+          <h2 class="mb0">
+            <span><i class="fas fa-star yellow"></i></span>
+            <span><%= exhb_log.star %></span>
+            <span>/3</span>
+          </h2>
+
+          <div class="dark"><%= exhb_log.body %></div>
+          <div style="font-size:0.8em;"><%= l exhb_log.created_at, format: :short_date %></div>
+
+          <div class="flex-container center row">
+            <div class="col-5 pl0">
+              <div id="exhb_log_like_<%= exhb_log.id %>">
+                <%= render partial: "exhb_log_likes/button", locals: {exhb_log: exhb_log} %>
+              </div>
+              <div id="exhb_log_likes_count_<%= exhb_log.id %>">
+                <%= render partial: "exhb_log_likes/count", locals: {exhb_log: exhb_log} %>
+              </div>
+            </div>
+
+            <div class="col-7 pl0">
+              <% if controller.controller_name != "exhb_logs" %>
+                <% if exhb_log.body.present? %>
+                  <a href="/exhb_logs/<%=exhb_log.id%>" class="button gray">コメントする</a>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 pt5">
+          <%= link_to exhibition_path(exhibition) do %>
+            <% if exhibition.image.present? %>
+              <div>
+                <%= image_tag exhibition.image, class: "image w100" %>
+              </div>
+            <% else %>
+              <div class="adjust-box box-1x1">
+                <div class="inner-box align-center">
+                  <span class="icon fa-gem gray" style="font-size:4em;"></span>
+                </div>
+              </div>
+              <div class="image"></div>
+            <% end %>
+          <% end %>
+          <div class="flex-container center">
+            <h1 class="gray mb0"><a href="/logs/new/?e=<%=exhibition.id%>"><i class="fas fa-edit"></i></a></h1>
+            <h1 class="exhb_clip_<%= exhibition.id %> gray mb0">
+              <%= render partial: "exhb_clips/button", locals: {exhb: exhibition} %>
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-container center mb5">
+        <% art_logs.each do |art_log| %>
+          <% art = art_log.art %>
+          <div class="w30">
+            <div class="adjust-box box-1x1">
+              <div class="inner-box align-center">
+                <% if art.image.present? %>
+                  <%= image_tag art.image, class: "w100 h100 image", style: "object-fit: cover;" %>
+                <% else %>
+                  <i class="far fa-gem" id="art_log_<%= i %>"></i>
+                <% end %>
+
+                <div class="bg-art-stars"></div>
+                <div class="flex-container center art-stars">
+                  <h3 class="mb0">
+                    <% art_log.star.times do %>
+                      <span class="yellow"><i class="fas fa-star"></i></span>
+                    <% end %>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

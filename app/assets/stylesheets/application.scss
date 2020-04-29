@@ -64,6 +64,10 @@
   }
 }
 
+.mr5 {
+  margin-right: 5px;
+}
+
 .mr10 {
   margin-right: 10px;
 }
@@ -117,6 +121,10 @@
   padding-bottom: 0;
 }
 
+.pb5 {
+  padding-bottom: 5px;
+}
+
 .pr10 {
   padding-right: 10px;
 }
@@ -165,6 +173,16 @@
 a.button.dark {
   color: #3d4449 !important;
   box-shadow: inset 0 0 0 2px #3d4449;
+}
+
+a.button.gray {
+  color: #7f888f !important;
+  box-shadow: inset 0 0 0 2px #7f888f;
+}
+
+a.button.light-gray {
+  color: #cfd3d6 !important;
+  box-shadow: inset 0 0 0 2px #cfd3d6;
 }
 
 // width
@@ -304,6 +322,25 @@ a.button.dark {
 span.denominator {
   font-size: 0.5em;
 }
+
+// ホーム
+.log-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 0 5px 5px 5px;
+  margin: 5px 0 5px 0;
+}
+
+.user-info {
+  width: 100%;
+  // border-top: solid 1px #cfd3d6;
+  // border-bottom: solid 1px #cfd3d6;
+  // background-color: #f5f6f7;
+  padding: 5px 0 5px 0px;
+  display: flex;
+  align-items: center;
+}
+
 
 // ログ投稿画面
 .input-range[type="range"] {

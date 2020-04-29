@@ -68,7 +68,15 @@
 			<header class="mt20 major align-center">
 				<h2>この作品のログ</h2>
 			</header>
-			<%= render partial: "art_logs/index", locals: {art_logs: @art_logs} %>
+			<div class="row">
+				<% @art_logs.each do |art_log| %>
+					<div class="col-6 col-12-xsmall mb10">
+						<%= render partial: "users/show", locals: {user: art_log.user, body: art_log} %>
+						<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
+					</div>
+				<% end %>
+			</div>
+
 		<% end %>
 	</div>
 </section>

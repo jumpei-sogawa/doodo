@@ -1,35 +1,7 @@
-<section>
-  <div class="row mt10 mb20">
-    <div class="off-2 col-4 off-0-xsmall col-6-xsmall align-center">
-      <%= link_to exhibitions_path do %>
-        <h3>
-          <div><i class="fas fa-edit dark"></i></div>
-          <div class="dark">展覧会の感想を残す</div>
-        </h3>
-      <% end %>
-    </div>
-    <div class="col-4 col-6-xsmall align-center">
-      <%= link_to arts_path do %>
-        <h3>
-          <div><i class="fas fa-edit dark"></i></div>
-          <div class="dark">作品の感想を残す</div>
-        </h3>
-      <% end %>
-    </div>
+<% @exhb_logs.each do |exhb_log| %>
+  <% if exhb_log.exhibition.id == 1 %>
 
-    <div class="mt10 col-12 align-center">
-      <%= form_with(url: exhibitions_path, method: :get, local: true) do |form| %>
-        <div class="row">
-          <div class="off-2 col-6 off-0-xsmall col-8-xsmall">
-            <%= form.text_field :any, value: params[:exhb_name], placeholder: "展覧会を探す" %>
-          </div>
-          <div class="col-2 col-4-xsmall">
-            <input type="submit" value="検索" class="w100 primary" />
-          </div>
-				</div>
-			<% end %>
-    </div>
-  </div>
-
-  <%= render partial: "trend", locals: { exhibitions: @exhibitions, arts: @arts } %>
-</section>
+  <% else %>
+    <%= render partial: "logs/show", locals: {exhb_log: exhb_log} %>
+  <% end %>
+<% end %>
