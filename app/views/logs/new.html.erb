@@ -109,8 +109,51 @@
     <% e = Exhibition.find(params[:e]) %>
     <div class="row">
       <% e.arts.each.with_index do |art, i| %>
+        <input value="0" type="hidden" name="exhb_log[art_logs_attributes][<%= i %>][star]" id="exhb_log_art_logs_attributes_<%= i %>_star">
         <div class="col-3 col-4-xsmall mb10">
           <%= render partial: "art_logs/new", locals: {art: art, i: i} %>
+        </div>
+
+        <div id="overlay_art_<%= i %>" class="overlay non-active">
+          <div class="modal_art">
+            <div class="row">
+
+              <div class="off-4 col-4 off-0-xsmall col-12-xsmall">
+                <% if art.image.present? %>
+                  <%= image_tag art.image, class: "image w100" %>
+                <% else %>
+                  <div class="adjust-box box-16x9">
+                    <div class="inner-box align-center">
+                      <div class="icon fa-gem gray" style="font-size:3em;"></div>
+                    </div>
+                  </div>
+                  <div class="image"></div>
+                <% end %>
+
+                <div class="align-center">
+                  <strong><%= art.name %></strong>
+                  <div><%= art.artist.name %>作</div>
+                  <% if art.year.present? %>
+                    <div>（<%= art.year %>年）</div>
+                  <% end %>
+                </div>
+
+                <h1 class="align-center mb10">
+                  <span class="art<%= i %>_star1 star mb0 light-gray"><i class="fas fa-star"></i></span>
+                  <span class="art<%= i %>_star2 star mb0 light-gray"><i class="fas fa-star"></i></span>
+                  <span class="art<%= i %>_star3 star mb0 light-gray"><i class="fas fa-star"></i></span>
+                </h1>
+                <div class="mb10">
+                  <textarea rows="1" placeholder="感想..." name="exhb_log[art_logs_attributes][<%= i %>][body]" id="exhb_log_art_logs_attributes_<%= i %>_body" spellcheck="false"></textarea>
+                </div>
+                <div class="close_btn_<%= i %> w100 align-center mb20">
+                  <div class="w30 button" tabindex="0">決定</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="close_btn_<%= i %> close_btn"></div>
         </div>
       <% end %>
     </div>
@@ -163,15 +206,114 @@
 		activateArt();
 	<% end %>
 
-
   // 検索から戻ってきたらimage-fieldのborder消す
   <% if params[:e].present? || params[:a].present? %>
     $('#image-field').removeClass("image-field")
   <% end %>
 
-  // 星ボタンで作品評価
-
   // 作品画像クリックで詳細表示
+  <% if params[:e].present? %>
+    <% e = Exhibition.find(params[:e]) %>
+    <% e.arts.each.with_index do |art, i| %>
+      $('#art_log_<%= i %>').on('click', function(){
+        $('#overlay_art_<%= i %>').removeClass("non-active");
+        $('#overlay_art_<%= i %>').fadeIn();
+      });
+    <% end %>
+  <% end %>
+
+  // 作品の詳細表示閉じる
+  <% if params[:e].present? %>
+    <% e = Exhibition.find(params[:e]) %>
+    <% e.arts.each.with_index do |art, i| %>
+      $('.close_btn_<%= i %>').on('click', function(){
+        $('#overlay_art_<%= i %>').addClass("non-active");
+        $('#overlay_art_<%= i %>').fadeOut();
+      });
+    <% end %>
+  <% end %>
+
+  // 作品星評価
+  <% if params[:e].present? %>
+    <% e = Exhibition.find(params[:e]) %>
+    <% e.arts.each.with_index do |art, i| %>
+
+      function art<%= i %>_star0_func() {
+          $('.art<%= i %>_star1').removeClass('yellow');
+          $('.art<%= i %>_star1').addClass('light-gray');
+          $('.art<%= i %>_star2').removeClass('yellow');
+          $('.art<%= i %>_star2').addClass('light-gray');
+          $('.art<%= i %>_star3').removeClass('yellow');
+          $('.art<%= i %>_star3').addClass('light-gray');
+          $('#exhb_log_art_logs_attributes_<%= i %>_star').val(0);
+      }
+
+      function art<%= i %>_star1_func() {
+          $('.art<%= i %>_star1').removeClass('light-gray');
+          $('.art<%= i %>_star1').addClass('yellow');
+          $('.art<%= i %>_star2').removeClass('yellow');
+          $('.art<%= i %>_star2').addClass('light-gray');
+          $('.art<%= i %>_star3').removeClass('yellow');
+          $('.art<%= i %>_star3').addClass('light-gray');
+          $('#exhb_log_art_logs_attributes_<%= i %>_star').val(1);
+      }
+
+      function art<%= i %>_star2_func() {
+          $('.art<%= i %>_star1').removeClass('light-gray');
+          $('.art<%= i %>_star1').addClass('yellow');
+          $('.art<%= i %>_star2').removeClass('light-gray');
+          $('.art<%= i %>_star2').addClass('yellow');
+          $('.art<%= i %>_star3').removeClass('yellow');
+          $('.art<%= i %>_star3').addClass('light-gray');
+          $('#exhb_log_art_logs_attributes_<%= i %>_star').val(2);
+      }
+
+      function art<%= i %>_star3_func() {
+          $('.art<%= i %>_star1').removeClass('light-gray');
+          $('.art<%= i %>_star1').addClass('yellow');
+          $('.art<%= i %>_star2').removeClass('light-gray');
+          $('.art<%= i %>_star2').addClass('yellow');
+          $('.art<%= i %>_star3').removeClass('light-gray');
+          $('.art<%= i %>_star3').addClass('yellow');
+          $('#exhb_log_art_logs_attributes_<%= i %>_star').val(3);
+      }
+
+      $('.art<%= i %>_star1').on('click', function(){
+          if (!($('.art<%= i %>_star1').hasClass('yellow'))) {
+              art<%= i %>_star1_func();
+          } else if (!($('.art<%= i %>_star2').hasClass('yellow'))) {
+              art<%= i %>_star0_func();
+          } else if (!($('.art<%= i %>_star3').hasClass('yellow'))) {
+              art<%= i %>_star1_func();
+          } else {
+              art<%= i %>_star1_func();
+          }
+      });
+      $('.art<%= i %>_star2').on('click', function(){
+          if (!($('.art<%= i %>_star1').hasClass('yellow'))) {
+              art<%= i %>_star2_func();
+          } else if (!($('.art<%= i %>_star2').hasClass('yellow'))) {
+              art<%= i %>_star2_func();
+          } else if (!($('.art<%= i %>_star3').hasClass('yellow'))) {
+              art<%= i %>_star1_func();
+          } else {
+              art<%= i %>_star2_func();
+          }
+      });
+      $('.art<%= i %>_star3').on('click', function(){
+          if (!($('.art<%= i %>_star1').hasClass('yellow'))) {
+              art<%= i %>_star3_func();
+          } else if (!($('.art<%= i %>_star2').hasClass('yellow'))) {
+              art<%= i %>_star3_func();
+          } else if (!($('.art<%= i %>_star3').hasClass('yellow'))) {
+              art<%= i %>_star3_func();
+          } else {
+              art<%= i %>_star2_func();
+          }
+      });
+    <% end %>
+  <% end %>
+
 
   // 保存ボタンで保存する
   <% if params[:e].present? %>
@@ -188,6 +330,7 @@
       <% e.arts.each.with_index do |art, i| %>
         formData.append('exhb_log[art_logs_attributes][<%= i %>][art_id]', <%=art.id%>);
         formData.append('exhb_log[art_logs_attributes][<%= i %>][star]', $('#exhb_log_art_logs_attributes_<%= i %>_star').val());
+        formData.append('exhb_log[art_logs_attributes][<%= i %>][body]', $('#exhb_log_art_logs_attributes_<%= i %>_body').val());
       <% end %>
 
       // CSRF対策（独自のajax処理を行う場合、head内にあるcsrf-tokenを取得して送る必要がある）

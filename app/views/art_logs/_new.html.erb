@@ -1,102 +1,21 @@
 <div class="adjust-box box-1x1">
   <div class="inner-box align-center">
     <% if art.image.present? %>
-      <%= image_tag art.image, class: "w100 h100 image", style: "object-fit: cover;" %>
+      <%= image_tag art.image, id: "art_log_#{i}", class: "w100 h100 image", style: "object-fit: cover;" %>
     <% else %>
-      <i class="far fa-gem"></i>
+      <i class="far fa-gem" id="art_log_<%= i %>"></i>
     <% end %>
 
-    <input value="0" type="hidden" name="exhb_log[art_logs_attributes][<%= i %>][star]" id="exhb_log_art_logs_attributes_<%= i %>_star">
+
     <div class="bg-art-stars"></div>
     <div class="flex-container center art-stars">
       <h3 class="mb0">
-        <span id="art<%= i %>_star1" class="star mb0 light-gray"><i class="fas fa-star"></i></span>
-        <span id="art<%= i %>_star2" class="star mb0 light-gray"><i class="fas fa-star"></i></span>
-        <span id="art<%= i %>_star3" class="star mb0 light-gray"><i class="fas fa-star"></i></span>
+        <span class="art<%= i %>_star1 star mb0 light-gray"><i class="fas fa-star"></i></span>
+        <span class="art<%= i %>_star2 star mb0 light-gray"><i class="fas fa-star"></i></span>
+        <span class="art<%= i %>_star3 star mb0 light-gray"><i class="fas fa-star"></i></span>
       </h3>
     </div>
   </div>
 </div>
 
 <div class="align-center dark"><%= art.name.first(6) %><% if art.name.length > 6 %>...<% end %></div>
-
-<script type="text/javascript" language="javascript">
-  var art<%= i %>_star1 = $('#art<%= i %>_star1')[0];
-  var art<%= i %>_star2 = $('#art<%= i %>_star2')[0];
-  var art<%= i %>_star3 = $('#art<%= i %>_star3')[0];
-
-  function art<%= i %>_star0_func() {
-      $('#art<%= i %>_star1').removeClass('yellow');
-      $('#art<%= i %>_star1').addClass('light-gray');
-      $('#art<%= i %>_star2').removeClass('yellow');
-      $('#art<%= i %>_star2').addClass('light-gray');
-      $('#art<%= i %>_star3').removeClass('yellow');
-      $('#art<%= i %>_star3').addClass('light-gray');
-      $('#exhb_log_art_logs_attributes_<%= i %>_star').val(0);
-  }
-
-  function art<%= i %>_star1_func() {
-      $('#art<%= i %>_star1').removeClass('light-gray');
-      $('#art<%= i %>_star1').addClass('yellow');
-      $('#art<%= i %>_star2').removeClass('yellow');
-      $('#art<%= i %>_star2').addClass('light-gray');
-      $('#art<%= i %>_star3').removeClass('yellow');
-      $('#art<%= i %>_star3').addClass('light-gray');
-      $('#exhb_log_art_logs_attributes_<%= i %>_star').val(1);
-  }
-
-  function art<%= i %>_star2_func() {
-      $('#art<%= i %>_star1').removeClass('light-gray');
-      $('#art<%= i %>_star1').addClass('yellow');
-      $('#art<%= i %>_star2').removeClass('light-gray');
-      $('#art<%= i %>_star2').addClass('yellow');
-      $('#art<%= i %>_star3').removeClass('yellow');
-      $('#art<%= i %>_star3').addClass('light-gray');
-      $('#exhb_log_art_logs_attributes_<%= i %>_star').val(2);
-  }
-
-  function art<%= i %>_star3_func() {
-      $('#art<%= i %>_star1').removeClass('light-gray');
-      $('#art<%= i %>_star1').addClass('yellow');
-      $('#art<%= i %>_star2').removeClass('light-gray');
-      $('#art<%= i %>_star2').addClass('yellow');
-      $('#art<%= i %>_star3').removeClass('light-gray');
-      $('#art<%= i %>_star3').addClass('yellow');
-      $('#exhb_log_art_logs_attributes_<%= i %>_star').val(3);
-  }
-
-  art<%= i %>_star1.onclick = function () {
-      if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
-          art<%= i %>_star1_func();
-      } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
-          art<%= i %>_star0_func();
-      } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
-          art<%= i %>_star1_func();
-      } else {
-          art<%= i %>_star1_func();
-      }
-  };
-  art<%= i %>_star2.onclick = function () {
-      if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
-          art<%= i %>_star2_func();
-      } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
-          art<%= i %>_star2_func();
-      } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
-          art<%= i %>_star1_func();
-      } else {
-          art<%= i %>_star2_func();
-      }
-  };
-  art<%= i %>_star3.onclick = function () {
-      if (!($('#art<%= i %>_star1').hasClass('yellow'))) {
-          art<%= i %>_star3_func();
-      } else if (!($('#art<%= i %>_star2').hasClass('yellow'))) {
-          art<%= i %>_star3_func();
-      } else if (!($('#art<%= i %>_star3').hasClass('yellow'))) {
-          art<%= i %>_star3_func();
-      } else {
-          art<%= i %>_star2_func();
-      }
-  };
-
-</script>

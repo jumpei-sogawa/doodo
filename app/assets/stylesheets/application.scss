@@ -261,7 +261,7 @@ span.denominator {
   content: "";
   width: 1px;
   height: 36px;
-  background-color: #fff;
+  background-color: #f56a6a;
   transform: rotate(45deg);
   position: absolute;
   top: 8px;
@@ -272,7 +272,7 @@ span.denominator {
   content: "";
   width: 1px;
   height: 36px;
-  background-color: #fff;
+  background-color: #f56a6a;
   transform: rotate(-45deg);
   position: absolute;
   top: 8px;
@@ -382,7 +382,7 @@ span.denominator {
   bottom: 0;
   width: 100%;
   height: 20%;
-  background-color: #FFF;
+  background-color: #000;
   opacity: 50%;
 }
 
@@ -413,7 +413,7 @@ span.denominator {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #FFF;
+  background-color: #fff;
 }
 
 #search_modal {
@@ -425,4 +425,28 @@ span.denominator {
   transform: translate(-50%,-50%);
   background: #fff;
   overflow-y: scroll;
+}
+
+.overlay {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fffd;
+}
+
+.modal_art {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #fffd;
+  overflow-y: scroll;
+  padding-top: 65px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 40px;
 }
