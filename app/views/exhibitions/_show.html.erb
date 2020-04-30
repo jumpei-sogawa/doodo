@@ -4,6 +4,7 @@
   <% url = "/exhibitions/#{exhb.id}" %>
 <% end %>
 
+
 <% if exhb.image.present? %>
   <div class="image w100 mr10"><a href="<%= url %>"><%= image_tag exhb.image, class: "w100" %></a></div>
 <% else%>
@@ -14,7 +15,7 @@
   </div>
   <div class="image"></div>
 <% end %>
-<div class="content mt10 mb20">
+<div class="content mt10 mb0">
   <h4 class="align-center mb0"><a href="<%= url %>"><%= exhb.name %></a></h4>
 
   <h2 class="row mb0">

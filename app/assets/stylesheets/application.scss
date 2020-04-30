@@ -333,14 +333,46 @@ span.denominator {
 
 .user-info {
   width: 100%;
-  // border-top: solid 1px #cfd3d6;
-  // border-bottom: solid 1px #cfd3d6;
-  // background-color: #f5f6f7;
   padding: 5px 0 5px 0px;
   display: flex;
   align-items: center;
 }
 
+// 検索タブ
+.tab-container {
+  border-radius: 15px 15px 0 0;
+  background-color: white;
+  padding: 10px 0 0 0;
+  margin: 5px 0 0 0;
+}
+
+.search-field {
+  border-radius: 0 0 15px 15px;
+  background-color: white;
+  padding: 0 5px 10px 5px;
+  margin: 0 0 5px 0;
+}
+
+.museum-container {
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px 5px 5px 5px;
+  margin: 0 0 10px 0;
+}
+
+.exhb-container {
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px 5px 5px 5px;
+  margin: 5px 0 5px 0;
+}
+
+.art-container {
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px 5px 5px 5px;
+  margin: 5px 0 5px 0;
+}
 
 // ログ投稿画面
 .input-range[type="range"] {
