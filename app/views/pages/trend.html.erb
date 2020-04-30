@@ -1,4 +1,4 @@
-<section>
+<div class="trend-tab-container">
   <div class="row">
     <div class="col-6">
       <header id="exhb_tab" class="major align-center cursor">
@@ -12,29 +12,35 @@
       </header>
     </div>
   </div>
+</div>
 
-  <%# 人気の展覧会 %>
-  <div id="exhb_container">
-    <div class="row">
-      <% @exhibitions.each do |exhb| %>
-        <div class="col-3 col-6-xsmall">
+
+<%# 人気の展覧会 %>
+<div id="exhb_container">
+  <div class="row">
+    <% @exhibitions.each do |exhb| %>
+      <div class="col-3 col-6-xsmall">
+        <div class="exhb-container">
           <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
+</div>
 
-  <%# 人気の作品 %>
-  <div id="art_container" class="non-active">
-    <div class="row">
-      <% @arts.each do |art| %>
-        <div class="col-3 col-6-xsmall">
+<%# 人気の作品 %>
+<div id="art_container" class="non-active">
+  <div class="row">
+    <% @arts.each do |art| %>
+      <div class="col-3 col-6-xsmall">
+        <div class="art-container">
           <%= render partial: "arts/show", locals: {art: art} %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
-</section>
+</div>
+
 
 
 <script type="text/javascript" language="javascript">
