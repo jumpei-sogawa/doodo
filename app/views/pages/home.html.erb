@@ -1,7 +1,13 @@
-<% @exhb_logs.each do |exhb_log| %>
-  <% if exhb_log.exhibition.id == 1 %>
 
-  <% else %>
-    <%= render partial: "logs/show", locals: {exhb_log: exhb_log} %>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
+    <% @exhb_logs.each do |exhb_log| %>
+      <% if exhb_log.exhibition.id == 1 %>
+        <% art_log = exhb_log.art_logs.first %>
+        <%= render partial: "logs/show_art_log", locals: {art_log: art_log} %>
+      <% else %>
+        <%= render partial: "logs/show", locals: {exhb_log: exhb_log} %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -137,6 +137,10 @@
   padding-left: 10px;
 }
 
+.pl20 {
+  padding-left: 20px;
+}
+
 .pl150 {
   padding-left: 150px;
 }
@@ -339,7 +343,7 @@ a.button.light-gray {
 
 // 星の分母
 span.denominator {
-  font-size: 0.5em;
+  font-size: 0.6em;
 }
 
 // ホーム
@@ -347,7 +351,7 @@ span.denominator {
   border-radius: 15px;
   background-color: white;
   padding: 0 5px 5px 5px;
-  margin: 5px 0 5px 0;
+  margin: 5px 0 10px 0;
 }
 
 .user-info {
@@ -355,6 +359,18 @@ span.denominator {
   padding: 5px 0 5px 0px;
   display: flex;
   align-items: center;
+}
+
+.log-body-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.reaction-buttons {
+  position: absolute;
+  bottom: 0;
+  padding-left: 10px;
 }
 
 // 検索タブ
