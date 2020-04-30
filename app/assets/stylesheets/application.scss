@@ -190,6 +190,10 @@ a.button.light-gray {
   width: 20%;
 }
 
+.w25 {
+  width: 25%;
+}
+
 .w30 {
   width: 30%;
 }
@@ -272,6 +276,10 @@ a.button.light-gray {
   display: none;
 }
 
+.block {
+  display: block;
+}
+
 .star {
   display: inline-block;
 }
@@ -280,8 +288,19 @@ a.button.light-gray {
   display: flex;
 }
 
-.flex-container.center {
+.flex-container.space-between {
+  justify-content: space-between;
+}
+
+.flex-container.space-around {
+  justify-content: space-around;
+}
+
+.flex-container.space-evenly {
   justify-content: space-evenly;
+}
+
+.flex-container.center {
   align-items: center;
 }
 
@@ -475,6 +494,21 @@ span.denominator {
 // トレンド
 .trend-tab-container {
   height: 80%;
+  border-radius: 15px 15px 15px 15px;
+  background-color: white;
+  padding: 10px 0 0 0;
+  margin: 5px 0 5px 0;
+}
+
+// マイページ
+.mypage-user-info {
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px 10px 10px 10px;
+  margin: 5px 0 5px 0;
+}
+
+.mypage-tab-container {
   border-radius: 15px 15px 15px 15px;
   background-color: white;
   padding: 10px 0 0 0;

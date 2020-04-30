@@ -43,7 +43,7 @@
           <div class="dark"><%= exhb_log.body %></div>
           <div style="font-size:0.8em;"><%= l exhb_log.created_at, format: :short_date %></div>
 
-          <div class="flex-container center row">
+          <div class="flex-container space-evenly center row">
             <div class="col-5 pl0">
               <div id="exhb_log_like_<%= exhb_log.id %>">
                 <%= render partial: "exhb_log_likes/button", locals: {exhb_log: exhb_log} %>
@@ -78,7 +78,7 @@
               <div class="image"></div>
             <% end %>
           <% end %>
-          <div class="flex-container center">
+          <div class="flex-container space-evenly center">
             <h1 class="gray mb0"><a href="/logs/new/?e=<%=exhibition.id%>"><i class="fas fa-edit"></i></a></h1>
             <h1 class="exhb_clip_<%= exhibition.id %> gray mb0">
               <%= render partial: "exhb_clips/button", locals: {exhb: exhibition} %>
@@ -87,7 +87,7 @@
         </div>
       </div>
 
-      <div class="flex-container center mb5">
+      <div class="flex-container space-evenly center mb5">
         <% art_logs.each do |art_log| %>
           <% art = art_log.art %>
           <div class="w30">
@@ -100,7 +100,7 @@
                 <% end %>
 
                 <div class="bg-art-stars"></div>
-                <div class="flex-container center art-stars">
+                <div class="flex-container space-evenly center art-stars">
                   <h3 class="mb0">
                     <% art_log.star.times do %>
                       <span class="yellow"><i class="fas fa-star"></i></span>

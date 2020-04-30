@@ -1,66 +1,169 @@
-<section>
-  <div class="row mb20">
-    <div class="col-3 col-3-xsmall">
-      <% if @user.image.present? %>
-        <%= image_tag @user.image_url, class: "w100 circle" %>
-      <% else %>
-        <%= image_tag "default-profile-image.png", class: "w100 circle" %>
-      <% end %>
-    </div>
+<div class="row">
+  <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
+    <div class="mypage-user-info">
+      <div class="flex-container space-between center">
+        <div class="w20">
+          <% if @user.image.present? %>
+            <%= image_tag @user.image_url, class: "w100 circle" %>
+          <% else %>
+            <%= image_tag "default-profile-image.png", class: "w100 circle" %>
+          <% end %>
+        </div>
 
-    <div class="col-9 col-9-xsmall">
-    </div>
+        <div class="w20 align-center">
+          <h1 class="mb0"><%= @user.exhb_logs.count %></h1>
+          <div class="dark">投稿</div>
+        </div>
+        <div class="w20 align-center">
+          <h1 class="mb0"><%= @user.exhb_logs.select{|el| (el.exhibition.id != 1)}.count %></h1>
+          <div class="dark">行った</div>
+        </div>
+        <div class="w20 align-center">
+          <h1 class="mb0"><%= @user.exhb_clips.count %></h1>
+          <div class="dark">ピン</div>
+        </div>
+      </div>
 
-    <div class="col-6 col-12-xsmall">
       <h3 class="dark mb0"><%= @user.name %></h3>
       <div class="dark mb0"><%= @user.username %></div>
-      <p class="dark mb20">
+      <p class="dark mb10">
         <%= @user.bio %>
       </p>
       <% if @user == current_user %>
         <div class="w100">
-          <a href="/<%=@user.username%>/edit" class="w100 button dark">プロフィール編集</a>
+          <a href="/<%=@user.username%>/edit" class="w100 button gray small">プロフィール編集</a>
         </div>
       <% end %>
     </div>
   </div>
-</section>
+</div>
 
-<section>
+<div class="mypage-tab-container">
+	<div class="flex-container space-evenly baseline">
+		<h3 class="mb0">
+      <header id="log_tab" class="major align-center cursor">
+        <div id="log_tab_text">投稿</div>
+      </header>
+		</h3>
+
+    <h3 class="mb0">
+      <header id="visited_tab" class="align-center cursor">
+        <div id="visited_tab_text" class="gray">行った展覧会</div>
+      </header>
+		</h3>
+
+    <h3 class="mb0">
+      <header id="pinned_tab" class="align-center cursor">
+        <div id="pinned_tab_text" class="gray">ピンした展覧会</div>
+      </header>
+		</h3>
+	</div>
+</div>
+
+
+<div id="log_container">
+  <% if @exhb_logs.present? %>
+    <% @exhb_logs.each do |exhb_log| %>
+      <% if exhb_log.exhibition.id == 1 %>
+
+      <% else %>
+        <%= render partial: "logs/show", locals: {exhb_log: exhb_log} %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+
+<div id="visited_container" class="non-active">
   <% if @visited_exhibitions.present? %>
-    <header class="major align-center">
-      <h2>行った展覧会</h2>
-    </header>
     <div class="row">
       <% @visited_exhibitions.each do |exhb| %>
         <div class="col-3 col-6-xsmall">
-          <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+          <div class="exhb-container">
+            <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+          </div>
         </div>
       <% end %>
     </div>
   <% end %>
-</section>
+</div>
 
-<section>
+
+<div id="pinned_container" class="non-active">
   <% if @clipped_exhibitions.present? %>
-    <header class="major align-center">
-      <h2>ピン留めした展覧会</h2>
-    </header>
     <div class="row">
       <% @clipped_exhibitions.each do |exhb| %>
         <div class="col-3 col-6-xsmall">
-          <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+          <div class="exhb-container">
+            <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+          </div>
         </div>
       <% end %>
     </div>
   <% end %>
-</section>
+</div>
 
-<section>
-  <% if @exhb_logs.present? %>
-    <header class="major align-center">
-      <h2>すべてのログ</h2>
-    </header>
-    <%= render partial: "logs/index", locals: {exhb_logs: @exhb_logs} %>
-  <% end %>
-</section>
+
+<script type="text/javascript" language="javascript">
+	// タブ切り替え
+
+	$('#log_tab')[0].onclick = function () {
+		deactivateVisitedTab();
+		deactivatePinnedTab();
+		activateLogTab();
+  }
+	$('#visited_tab')[0].onclick = function () {
+		deactivatePinnedTab();
+		deactivateLogTab();
+		activateVisitedTab();
+  }
+  $('#pinned_tab')[0].onclick = function () {
+		deactivateLogTab();
+		deactivateVisitedTab();
+		activatePinnedTab();
+	}
+
+	function activateLogTab() {
+		$('#log_tab').addClass("major")
+    $('#log_tab_text').removeClass("gray")
+		$('#log_tab_text').addClass("dark")
+		$('#log_container').removeClass("non-active")
+	}
+
+	function deactivateLogTab() {
+		$('#log_tab').removeClass("major")
+    $('#log_tab_text').removeClass("dark")
+		$('#log_tab_text').addClass("gray")
+		$('#log_container').addClass("non-active")
+	}
+
+	function activateVisitedTab() {
+		$('#visited_tab').addClass("major")
+    $('#visited_tab_text').removeClass("gray")
+		$('#visited_tab_text').addClass("dark")
+		$('#visited_container').removeClass("non-active")
+	}
+
+	function deactivateVisitedTab() {
+		$('#visited_tab').removeClass("major")
+    $('#visited_tab_text').removeClass("dark")
+		$('#visited_tab_text').addClass("gray")
+		$('#visited_container').addClass("non-active")
+	}
+
+	function activatePinnedTab() {
+		$('#pinned_tab').addClass("major")
+    $('#pinned_tab_text').removeClass("gray")
+		$('#pinned_tab').addClass("dark")
+		$('#pinned_container').removeClass("non-active")
+
+	}
+
+	function deactivatePinnedTab() {
+		$('#pinned_tab').removeClass("major")
+    $('#pinned_tab').removeClass("dark")
+		$('#pinned_tab_text').addClass("gray")
+		$('#pinned_container').addClass("non-active")
+	}
+
+</script>
