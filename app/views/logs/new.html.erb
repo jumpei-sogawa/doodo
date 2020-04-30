@@ -8,111 +8,112 @@
 <% end %>
 
 <%= form_with(url: logs_path) do |form| %>
-  <div class="row mt20">
+  <div class="row">
     <div class="off-2 col-8 off-0-xsmall col-12-xsmall">
-      <div class="row mb20">
+      <div class="new-log-container">
+        <div class="row">
 
-        <div class="col-8">
-          <div class="row">
-            <%# User icon %>
-            <div class="col-2 col-3-xsmall">
-              <% if current_user.image.present? %>
-                <%= image_tag current_user.image.to_s, class: "w100 image circle" %>
-              <% else %>
-                <%= image_tag "default-profile-image.png", class: "w100 image circle" %>
-              <% end %>
+          <div class="col-8">
+            <div class="row">
+              <%# User icon %>
+              <div class="col-2 col-3-xsmall">
+                <% if current_user.image.present? %>
+                  <%= image_tag current_user.image.to_s, class: "w100 image circle" %>
+                <% else %>
+                  <%= image_tag "default-profile-image.png", class: "w100 image circle" %>
+                <% end %>
+              </div>
+              <%# Slider %>
+              <div class="col-5" style="padding-top:7px">
+                <% if params[:e].present? %>
+                  <input type="range" class="input-range" min="0.0" max="3.0" step="0.5" value="0.0" name="main_star" id="main_star_slider">
+                <% elsif params[:a].present? %>
+                  <input type="range" class="input-range" min="0.0" max="3.0" step="1.0" value="0.0" name="main_star" id="main_star_slider">
+                <% else %>
+                  <input type="range" class="input-range" min="0.0" max="3.0" step="0.5" value="0.0" name="main_star" id="main_star_slider">
+                <% end %>
+              </div>
+              <%# Star count %>
+              <div class="col-4 flex-container baseline pt5">
+                <h2>
+                  <i class="fas fa-star yellow"></i>
+                </h2>
+                <h2 id="main_star_count">0.0</h2>
+                <span>/3</span>
+              </div>
             </div>
-            <%# Slider %>
-            <span class="col-5">
+
+            <%# ターゲット情報 %>
+            <div class="mb10">
+              <%# 展覧会情報 %>
               <% if params[:e].present? %>
-                <input type="range" class="input-range" min="0.0" max="3.0" step="0.5" value="0.0" name="main_star" id="main_star_slider">
+                <% if e.name.length > 14 %>
+                  <div>展：<%= e.name.first(13) %>...</div>
+                <% else %>
+                  <div>展：<%= e.name %></div>
+                <% end %>
+
+                <% if e.museum.name.present? %>
+                  <% if e.museum.name.length > 14 %>
+                    <div>館：<%= e.museum.name.first(13) %>...</div>
+                  <% else %>
+                    <div>館：<%= e.museum.name %></div>
+                  <% end %>
+                <% end %>
+
+              <%# 作品情報 %>
               <% elsif params[:a].present? %>
-                <input type="range" class="input-range" min="0.0" max="3.0" step="1.0" value="0.0" name="main_star" id="main_star_slider">
-              <% else %>
-                <input type="range" class="input-range" min="0.0" max="3.0" step="0.5" value="0.0" name="main_star" id="main_star_slider">
+                <% if a.name.length > 14 %>
+                  <div>題：<%= a.name.first(13) %>...</div>
+                <% else %>
+                  <div>題：<%= a.name %></div>
+                <% end %>
+
+                <% if a.artist.name.present? %>
+                  <% if a.artist.name.length > 14 %>
+                    <div>作：<%= a.artist.name.first(13) %>...</div>
+                  <% else %>
+                    <div>作：<%= a.artist.name %></div>
+                  <% end %>
+                <% end %>
+
+                <% if a.year.present? %>
+                  <div>（<%= a.year %>）</div>
+                <% end %>
               <% end %>
-            </span>
-            <%# Star count %>
-            <div class="col-4 flex-container baseline">
-              <h2>
-                <i class="fas fa-star yellow"></i>
-              </h2>
-              <h2 id="main_star_count">0.0</h2>
-              <span>/3</span>
             </div>
+
+            <%# Body form %>
+            <%= form.text_area :body, rows: "2", placeholder: "感想..." %>
           </div>
 
-          <%# ターゲット情報 %>
-          <div class="mb10">
-            <%# 展覧会情報 %>
+          <%# ターゲット選択エリア %>
+          <div class="col-4">
+            <%# 展覧会画像表示 %>
             <% if params[:e].present? %>
-              <% if e.name.length > 14 %>
-                <div>展：<%= e.name.first(13) %>...</div>
-              <% else %>
-                <div>展：<%= e.name %></div>
-              <% end %>
-
-              <% if e.museum.name.present? %>
-                <% if e.museum.name.length > 14 %>
-                  <div>館：<%= e.museum.name.first(13) %>...</div>
-                <% else %>
-                  <div>館：<%= e.museum.name %></div>
-                <% end %>
-              <% end %>
-
-            <%# 作品情報 %>
+              <div id="select-target-area" class="adjust-box box-3x4 cursor image-field">
+                <h2 class="inner-box align-center">
+                  <%= image_tag e.image, class: "image w100" %>
+                </h2>
+              </div>
+            <%# 作品画像表示 %>
             <% elsif params[:a].present? %>
-              <% if a.name.length > 14 %>
-                <div>題：<%= a.name.first(13) %>...</div>
-              <% else %>
-                <div>題：<%= a.name %></div>
-              <% end %>
-
-              <% if a.artist.name.present? %>
-                <% if a.artist.name.length > 14 %>
-                  <div>作：<%= a.artist.name.first(13) %>...</div>
-                <% else %>
-                  <div>作：<%= a.artist.name %></div>
-                <% end %>
-              <% end %>
-
-              <% if a.year.present? %>
-                <div>（<%= a.year %>）</div>
-              <% end %>
+              <div id="select-target-area" class="adjust-box box-3x4 cursor image-field">
+                <h2 class="inner-box align-center">
+                  <%= image_tag a.image, class: "image w100" %>
+                </h2>
+              </div>
+            <%# ターゲット選択ボタン %>
+            <% else %>
+              <div id="select-target-area" class="adjust-box box-3x4 cursor select-target-area">
+                <h2 class="inner-box align-center">
+                  <i class="fas fa-plus dark"></i>
+                </h2>
+              </div>
             <% end %>
           </div>
-
-          <%# Body form %>
-          <%= form.text_area :body, rows: "2", placeholder: "感想..." %>
-        </div>
-
-        <%# ターゲット選択エリア %>
-        <div class="col-4">
-          <%# 展覧会画像表示 %>
-          <% if params[:e].present? %>
-            <div id="select-target-area" class="adjust-box box-3x4 cursor image-field">
-              <h2 class="inner-box align-center">
-                <%= image_tag e.image, class: "image w100" %>
-              </h2>
-            </div>
-          <%# 作品画像表示 %>
-          <% elsif params[:a].present? %>
-            <div id="select-target-area" class="adjust-box box-3x4 cursor image-field">
-              <h2 class="inner-box align-center">
-                <%= image_tag a.image, class: "image w100" %>
-              </h2>
-            </div>
-          <%# ターゲット選択ボタン %>
-          <% else %>
-            <div id="select-target-area" class="adjust-box box-3x4 cursor select-target-area">
-              <h2 class="inner-box align-center">
-                <i class="fas fa-plus dark"></i>
-              </h2>
-            </div>
-          <% end %>
         </div>
       </div>
-
     </div>
   </div>
 
