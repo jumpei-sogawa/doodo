@@ -1,27 +1,27 @@
-<section>
+<div class="art-header-container">
 	<header class="major align-center">
 		<h2><%= @art.name %></h2>
 	</header>
+</div>
 
-	<div class="row">
-		<% if @art.exhibition_id == 1 %>
-			<div class="col-4 col-12-xsmall"></div>
-		<% end %>
-		<div class="col-4 col-12-xsmall">
-			<div>
-				<% if @art.image.present? %>
-					<%= image_tag @art.image.to_s, class: "image", width: "100%" %>
-				<% elsif @art.liked_image.present? %>
-					<%= image_tag @art.liked_image.to_s, class: "image", width: "100%" %>
-				<% else %>
-					<div class="adjust-box box-16x9">
-						<div class="inner-box align-center">
-							<div class="icon fa-gem gray" style="font-size:4em;"></div>
-						</div>
+<div class="row">
+	<% if @art.exhibition_id == 1 %>
+		<div class="col-4 col-12-xsmall"></div>
+	<% end %>
+	<div class="col-4 col-12-xsmall">
+		<div class="art-info-container">
+			<% if @art.image.present? %>
+				<%= image_tag @art.image.to_s, class: "image", width: "100%" %>
+			<% elsif @art.liked_image.present? %>
+				<%= image_tag @art.liked_image.to_s, class: "image", width: "100%" %>
+			<% else %>
+				<div class="adjust-box box-16x9">
+					<div class="inner-box align-center">
+						<div class="icon fa-gem gray" style="font-size:4em;"></div>
 					</div>
-					<div class="image"></div>
-				<% end %>
-			</div>
+				</div>
+				<div class="image"></div>
+			<% end %>
 
 			<div class="row">
 				<div class="col-7 ml10">
@@ -48,9 +48,12 @@
 				<% end %>
 			</div>
 		</div>
+	</div>
 
-		<% if @art.exhibition_id != 1 %>
-			<div class="mt20 col-8 col-12-xsmall">
+
+	<% if @art.exhibition_id != 1 %>
+		<div class="col-8 col-12-xsmall">
+			<div class="exhibition-info-container">
 				<header class="major align-center">
 					<h2>この作品を展示している展覧会</h2>
 				</header>
@@ -60,23 +63,22 @@
 					</div>
 				</div>
 			</div>
-		<% end %>
-	</div>
+		</div>
+	<% end %>
+</div>
 
-	<div>
-		<% if @art_logs.present? %>
-			<header class="mt20 major align-center">
-				<h2>この作品のログ</h2>
-			</header>
-			<div class="row">
-				<% @art_logs.each do |art_log| %>
-					<div class="col-6 col-12-xsmall mb10">
-						<%= render partial: "users/show", locals: {user: art_log.user, body: art_log} %>
-						<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
-					</div>
-				<% end %>
-			</div>
-
-		<% end %>
-	</div>
-</section>
+<div class="art-logs-container">
+	<% if @art_logs.present? %>
+		<header class="major align-center">
+			<h2>この作品のログ</h2>
+		</header>
+		<div class="row">
+			<% @art_logs.each do |art_log| %>
+				<div class="col-6 col-12-xsmall mb10">
+					<%= render partial: "users/show", locals: {user: art_log.user, body: art_log} %>
+					<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>
