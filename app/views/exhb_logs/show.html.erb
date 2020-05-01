@@ -1,6 +1,6 @@
-<section>
-  <div class="row">
-    <div class="col-6 col-12-xsmall">
+<div class="row">
+  <div class="col-6 col-12-xsmall">
+    <div class="exhb_logs-container">
       <div class="mb10">
         <%= render partial: "users/show", locals: {user: @exhb_log.user, body: @exhb_log} %>
         <%= render partial: "exhb_logs/show", locals: {exhb_log: @exhb_log} %>
@@ -26,8 +26,10 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="col-6 col-12-xsmall">
+  <div class="col-6 col-12-xsmall">
+    <div class="exhb_log-exhibition-info-container">
       <header class="major align-center">
         <h2>
           <%= @exhibition.name %>
@@ -57,17 +59,17 @@
         <a href="/museums/<%=@museum.id%>" class="bb0"><%= @museum.name %></a>
       </div>
 
-			<div class="align-center">
-				<% if @exhibition.start_date.year == @exhibition.end_date.year %>
-					<strong><%= l @exhibition.start_date, format: :long %></strong>
-					<strong> 〜 </strong>
-					<strong><%= l @exhibition.end_date, format: :short %></strong>
-				<% else %>
-					<strong><%= l @exhibition.start_date, format: :short %></strong>
-					<strong> 〜 </strong>
-					<strong><%= l @exhibition.end_date, format: :long %></strong>
-				<% end %>
-			</div>
+      <div class="align-center">
+        <% if @exhibition.start_date.year == @exhibition.end_date.year %>
+          <strong><%= l @exhibition.start_date, format: :long %></strong>
+          <strong> 〜 </strong>
+          <strong><%= l @exhibition.end_date, format: :short %></strong>
+        <% else %>
+          <strong><%= l @exhibition.start_date, format: :short %></strong>
+          <strong> 〜 </strong>
+          <strong><%= l @exhibition.end_date, format: :long %></strong>
+        <% end %>
+      </div>
     </div>
   </div>
-</section>
+</div>

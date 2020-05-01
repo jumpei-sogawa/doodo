@@ -611,7 +611,7 @@ span.denominator {
   margin: 10px 0 5px 0;
 }
 
-.exhibition-info-container{
+.exhibition-info-container {
   border-radius: 15px;
   background-color: white;
   padding: 10px 10px 10px 10px;
@@ -666,4 +666,19 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 10px 10px;
   margin: 5px 0 10px 0;
+}
+
+// 展覧会ログ詳細ページ
+.exhb_logs-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0 0 0;
+}
+
+.exhb_log-exhibition-info-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0 10px 0;
 }
