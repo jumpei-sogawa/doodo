@@ -11,19 +11,19 @@
 <div class="tab-container">
 	<div class="flex-container space-evenly baseline">
 		<h3 class="mb0">
-			<header id="museum_tab" class="align-center cursor">
+			<header id="museum_tab" class="header-tab align-center cursor">
 				<div id="museum_tab_text" class="gray">美術館</div>
 			</header>
 		</h3>
 
 		<h3 class="mb0">
-			<header id="exhb_tab" class="major align-center cursor">
+			<header id="exhb_tab" class="header-tab highlight align-center cursor">
 				<div id="exhb_tab_text">展覧会</div>
 			</header>
 		</h3>
 
 		<h3 class="mb0">
-			<header id="art_tab" class="align-center cursor">
+			<header id="art_tab" class="header-tab align-center cursor">
 				<div id="art_tab_text" class="gray">作品・作者</div>
 			</header>
 		</h3>
@@ -101,35 +101,35 @@
 	}
 
 	function activateMuseum() {
-		$('#museum_tab').addClass("major")
+		$('#museum_tab').addClass("highlight")
     $('#museum_tab_text').removeClass("gray")
 		$('#museum_tab_text').addClass("dark")
 		$('#museum_container').removeClass("non-active")
 	}
 
 	function deactivateMuseum() {
-		$('#museum_tab').removeClass("major")
+		$('#museum_tab').removeClass("highlight")
     $('#museum_tab_text').removeClass("dark")
 		$('#museum_tab_text').addClass("gray")
 		$('#museum_container').addClass("non-active")
 	}
 
 	function activateExhibition() {
-		$('#exhb_tab').addClass("major")
+		$('#exhb_tab').addClass("highlight")
     $('#exhb_tab_text').removeClass("gray")
 		$('#exhb_tab_text').addClass("dark")
 		$('#exhb_container').removeClass("non-active")
 	}
 
 	function deactivateExhibition() {
-		$('#exhb_tab').removeClass("major")
+		$('#exhb_tab').removeClass("highlight")
     $('#exhb_tab_text').removeClass("dark")
 		$('#exhb_tab_text').addClass("gray")
 		$('#exhb_container').addClass("non-active")
 	}
 
 	function activateArt() {
-		$('#art_tab').addClass("major")
+		$('#art_tab').addClass("highlight")
     $('#art_tab_text').removeClass("gray")
 		$('#art_tab').addClass("dark")
 		$('#art_container').removeClass("non-active")
@@ -137,7 +137,7 @@
 	}
 
 	function deactivateArt() {
-		$('#art_tab').removeClass("major")
+		$('#art_tab').removeClass("highlight")
     $('#art_tab').removeClass("dark")
 		$('#art_tab_text').addClass("gray")
 		$('#art_container').addClass("non-active")

@@ -41,7 +41,6 @@
   border-radius: 50%;
 }
 
-
 // margin
 .ml5 {
   margin-left: 5px;
@@ -351,7 +350,7 @@ span.denominator {
   border-radius: 15px;
   background-color: white;
   padding: 0 5px 5px 5px;
-  margin: 10px 0 10px 0;
+  margin: 10px 0 0 0;
 }
 
 .user-info {
@@ -380,6 +379,15 @@ span.denominator {
   background-color: white;
   padding: 10px 0 0 0;
   margin: 10px 0 0 0;
+}
+
+.header-tab {
+  border-bottom: solid 3px white;
+  margin: 0 0 1em 0;
+  padding: 0 0.75em 0.5em 0.75em;
+}
+.highlight {
+  border-bottom: solid 3px #f56a6a;
 }
 
 .search-field {
@@ -534,14 +542,14 @@ span.denominator {
   border-radius: 15px;
   background-color: white;
   padding: 5px 10px 10px 10px;
-  margin: 10px 0 5px 0;
+  margin: 10px 0 0 0;
 }
 
 .mypage-tab-container {
   border-radius: 15px;
   background-color: white;
   padding: 10px 10px 0 0;
-  margin: 5px 0 10px 0;
+  margin: 10px 0 0 0;
 }
 
 // プロフィール画像編集

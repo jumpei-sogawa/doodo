@@ -91,16 +91,16 @@
           <div class="col-4">
             <%# 展覧会画像表示 %>
             <% if params[:e].present? %>
-              <div id="select-target-area" class="adjust-box box-3x4 cursor image-field">
+              <div id="select-target-area" class="adjust-box box-3x4 cursor">
                 <h2 class="inner-box align-center">
-                  <%= image_tag e.image, class: "image w100" %>
+                  <%= image_tag e.image, class: "image w100 mt10" %>
                 </h2>
               </div>
             <%# 作品画像表示 %>
             <% elsif params[:a].present? %>
-              <div id="select-target-area" class="adjust-box box-3x4 cursor image-field">
+              <div id="select-target-area" class="adjust-box box-3x4 cursor">
                 <h2 class="inner-box align-center">
-                  <%= image_tag a.image, class: "image w100" %>
+                  <%= image_tag a.image, class: "image w100 mt10" %>
                 </h2>
               </div>
             <%# ターゲット選択ボタン %>
