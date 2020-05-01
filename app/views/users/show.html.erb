@@ -1,6 +1,6 @@
-<div class="row">
-  <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
-    <div class="mypage-user-info-container">
+<div class="mypage-user-info-container">
+  <div class="row">
+    <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
       <div class="flex-container space-between center">
         <div class="w20">
           <% if @user.image.present? %>
@@ -62,16 +62,22 @@
 
 
 <div id="log_container">
-  <% if @exhb_logs.present? %>
-    <% @exhb_logs.each do |exhb_log| %>
-      <% if exhb_log.exhibition.id == 1 %>
-        <% art_log = exhb_log.art_logs.first %>
-        <%= render partial: "logs/show_art_log", locals: {art_log: art_log} %>
-      <% else %>
-        <%= render partial: "logs/show", locals: {exhb_log: exhb_log} %>
+  <div class="row">
+    <% if @exhb_logs.present? %>
+      <% @exhb_logs.each do |exhb_log| %>
+        <% if exhb_log.exhibition.id == 1 %>
+          <% art_log = exhb_log.art_logs.first %>
+          <div class="col-6 col-12-xsmall">
+            <%= render partial: "logs/show_art_log", locals: {art_log: art_log} %>
+          </div>
+        <% else %>
+          <div class="col-6 col-12-xsmall">
+            <%= render partial: "logs/show", locals: {exhb_log: exhb_log} %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
 
 

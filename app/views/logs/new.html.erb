@@ -373,7 +373,9 @@
       formData.append('exhb_log[art_logs_attributes][0][art_id]', a_id);
       formData.append('exhb_log[art_logs_attributes][0][star]', star);
       formData.append('exhb_log[art_logs_attributes][0][body]', body);
-      formData.append('exhb_log[art_logs_attributes][0][image]', file);
+      if (typeof(file) !== 'undefined') {
+        formData.append('exhb_log[art_logs_attributes][0][image]', file);
+      }
       formData.append('art_id', a_id);
 
       // CSRF対策（独自のajax処理を行う場合、head内にあるcsrf-tokenを取得して送る必要がある）

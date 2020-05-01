@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     end
     @clipped_exhibitions = @user.clipped_exhibitions.distinct.select { |exhb| exhb.id != 1}
     @visited_exhibitions = @user.visited_exhibitions.distinct.select { |exhb| exhb.id != 1}
-    @exhb_logs = @user.exhb_logs.order(id: "DESC")
+    @exhb_logs = @user.exhb_logs.order(id: "DESC").first(24)
   end
 
   def edit

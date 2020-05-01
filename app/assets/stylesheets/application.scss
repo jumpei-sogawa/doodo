@@ -365,6 +365,7 @@ span.denominator {
   width: 100%;
   height: 100%;
   position: relative;
+  margin-bottom: 50px;
 }
 
 .reaction-buttons {
@@ -410,8 +411,8 @@ span.denominator {
 }
 
 // ログ投稿画面
-.new-log-container{
-  border-radius: 5px;
+.new-log-container {
+  border-radius: 15px;
   background-color: white;
   padding: 5px 5px 5px 5px;
   margin: 10px 0 15px 0;
@@ -447,7 +448,7 @@ span.denominator {
 
 .select-target-area {
   border: solid 1px #cfd3d6;
-  border-radius: 5%;
+  border-radius: 10px;
   text-align: center;
 }
 
@@ -530,7 +531,7 @@ span.denominator {
 
 // マイページ
 .mypage-user-info-container {
-  border-radius: 5px;
+  border-radius: 15px;
   background-color: white;
   padding: 5px 10px 10px 10px;
   margin: 10px 0 5px 0;
