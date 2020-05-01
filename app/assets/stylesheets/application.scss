@@ -351,7 +351,7 @@ span.denominator {
   border-radius: 15px;
   background-color: white;
   padding: 0 5px 5px 5px;
-  margin: 5px 0 10px 0;
+  margin: 10px 0 10px 0;
 }
 
 .user-info {
@@ -378,7 +378,7 @@ span.denominator {
   border-radius: 15px 15px 0 0;
   background-color: white;
   padding: 10px 0 0 0;
-  margin: 5px 0 0 0;
+  margin: 10px 0 0 0;
 }
 
 .search-field {
@@ -414,7 +414,7 @@ span.denominator {
   border-radius: 5px;
   background-color: white;
   padding: 5px 5px 5px 5px;
-  margin: 5px 0 15px 0;
+  margin: 10px 0 15px 0;
 }
 
 .input-range[type="range"] {
@@ -522,25 +522,25 @@ span.denominator {
 // トレンド
 .trend-tab-container {
   height: 80%;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 15px;
   background-color: white;
   padding: 10px 0 0 0;
-  margin: 5px 0 5px 0;
+  margin: 10px 0 5px 0;
 }
 
 // マイページ
-.mypage-user-info {
+.mypage-user-info-container {
   border-radius: 5px;
   background-color: white;
   padding: 5px 10px 10px 10px;
-  margin: 5px 0 5px 0;
+  margin: 10px 0 5px 0;
 }
 
 .mypage-tab-container {
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 15px;
   background-color: white;
   padding: 10px 10px 0 0;
-  margin: 5px 0 5px 0;
+  margin: 5px 0 10px 0;
 }
 
 // プロフィール画像編集
@@ -601,4 +601,47 @@ span.denominator {
   width: 100%;
   position: absolute;
   bottom: 60px;
+}
+
+// 展覧会詳細ページ
+.exhibition-header-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 0 10px;
+  margin: 10px 0 5px 0;
+}
+
+.exhibition-info-container{
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 0 5px 0;
+}
+
+.highlight-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 0 5px 0;
+}
+
+.arts-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 0 10px;
+  margin: 5px 0 10px 0;
+}
+
+.exhibition-outline-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0 10px 0;
+}
+
+.exhibition-logs-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0 10px 0;
 }
