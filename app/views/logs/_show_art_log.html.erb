@@ -69,7 +69,7 @@
       <%= link_to art_path(art) do %>
         <% if art_log.image.present? %>
           <div>
-            <%= image_tag art_log.image, class: "image w100" %>
+            <%= image_tag art_log.image.to_s, class: "image w100" %>
           </div>
         <% elsif art.image.present? %>
           <div>
