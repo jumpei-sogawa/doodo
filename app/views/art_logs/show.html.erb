@@ -1,6 +1,6 @@
-<section>
-  <div class="row">
-    <div class="col-6 col-12-xsmall">
+<div class="row">
+  <div class="col-6 col-12-xsmall">
+    <div class="logs-container">
       <div class="mb10">
         <%= render partial: "users/show", locals: {user: @art_log.user, body: @art_log} %>
         <%= render partial: "art_logs/show", locals: {art_log: @art_log} %>
@@ -26,9 +26,11 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="col-6 col-12-xsmall">
-      <% if @exhibition.id != 1%>
+  <div class="col-6 col-12-xsmall">
+    <% if @exhibition.id != 1%>
+      <div class="log-exhibition-info-container">
         <header class="major align-center">
           <h2>この作品が展示された展覧会</h2>
         </header>
@@ -71,7 +73,9 @@
             <strong><%= l @exhibition.end_date, format: :long %></strong>
           <% end %>
         </div>
-      <% else %>
+      </div>
+    <% else %>
+      <div class="log-exhibition-info-container">
         <%= link_to art_path(@art) do %>
           <div class="row">
             <% if @art.image.present? %>
@@ -90,7 +94,7 @@
             <% end %>
           </div>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
-</section>
+</div>

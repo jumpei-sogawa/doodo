@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-6 col-12-xsmall">
-    <div class="exhb_logs-container">
+    <div class="logs-container">
       <div class="mb10">
         <%= render partial: "users/show", locals: {user: @exhb_log.user, body: @exhb_log} %>
         <%= render partial: "exhb_logs/show", locals: {exhb_log: @exhb_log} %>
@@ -29,7 +29,7 @@
   </div>
 
   <div class="col-6 col-12-xsmall">
-    <div class="exhb_log-exhibition-info-container">
+    <div class="log-exhibition-info-container">
       <header class="major align-center">
         <h2>
           <%= @exhibition.name %>
