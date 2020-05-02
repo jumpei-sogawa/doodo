@@ -31,10 +31,12 @@
           <span class="denominator">/3</span>
         </h2>
 
-        <% if art.name.length > 13 %>
-          <div class="dark">題：<%= art.name.first(12) %>...</div>
-        <% else %>
-          <div class="dark">題：<%= art.name %></div>
+        <%= link_to art_path(art) do %>
+          <% if art.name.length > 13 %>
+            <div class="dark">題：<%= art.name.first(12) %>...</div>
+          <% else %>
+            <div class="dark">題：<%= art.name %></div>
+          <% end %>
         <% end %>
 
         <% if artist.name.length > 13 %>
@@ -66,16 +68,20 @@
     </div>
 
     <div class="col-4 pt5">
-      <%= link_to art_path(art) do %>
-        <% if art_log.image.present? %>
+      <% if art_log.image.present? %>
+        <%= link_to art_log_path(art_log) do %>
           <div>
             <%= image_tag art_log.image.to_s, class: "image w100" %>
           </div>
-        <% elsif art.image.present? %>
+        <% end %>
+      <% elsif art.image.present? %>
+        <%= link_to art_path(art) do %>
           <div>
             <%= image_tag art.image, class: "image w100" %>
           </div>
-        <% else %>
+        <% end %>
+      <% else %>
+        <%= link_to art_path(art) do %>
           <div class="adjust-box box-1x1">
             <div class="inner-box align-center">
               <span class="icon fa-gem gray" style="font-size:4em;"></span>
@@ -84,6 +90,7 @@
           <div class="image"></div>
         <% end %>
       <% end %>
+
       <div class="flex-container space-evenly center">
         <h1 class="gray mb0"><a href="/logs/new/?a=<%=art.id%>"><i class="fas fa-edit"></i></a></h1>
       </div>
