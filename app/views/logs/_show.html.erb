@@ -101,10 +101,10 @@
     </div>
   </div>
 
-  <div class="flex-container space-evenly center mb5">
+  <div class="flex-container flex-start center wrap">
     <% art_logs.each do |art_log| %>
       <% art = art_log.art %>
-      <div class="w30">
+      <div class="w30 mr5per mb10">
         <% if art_log.image.present? %>
           <%= link_to art_log_path(art_log) do %>
             <div class="adjust-box box-1x1">

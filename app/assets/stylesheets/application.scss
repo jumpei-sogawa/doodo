@@ -75,6 +75,13 @@
   margin-right: 10px;
 }
 
+.w30.mr5per {
+  margin-right: 5%;
+}
+.w30.mr5per:nth-child(3n) {
+  margin-right: 0;
+}
+
 .mb0 {
   margin-bottom: 0px;
 }
@@ -306,6 +313,10 @@ a.button.light-gray {
   justify-content: space-evenly;
 }
 
+.flex-container.flex-start {
+  justify-content: flex-start;
+}
+
 .flex-container.center {
   align-items: center;
 }
@@ -316,6 +327,10 @@ a.button.light-gray {
 
 .flex-container.stretch{
   align-items: stretch;
+}
+
+.flex-container.wrap {
+  flex-wrap: wrap;
 }
 
 
