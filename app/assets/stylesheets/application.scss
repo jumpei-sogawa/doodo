@@ -459,9 +459,21 @@ span.denominator {
 }
 
 .select-target-area {
-  border: solid 1px #cfd3d6;
+  border: dashed 1px #cfd3d6;
   border-radius: 10px;
   text-align: center;
+}
+
+.select-target-area-inner-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .save-btn {
