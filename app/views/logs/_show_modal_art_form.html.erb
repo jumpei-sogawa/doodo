@@ -68,6 +68,7 @@
         $art_image_upload_button_<%= i %>.text("画像を変更");
         $art_image_upload_button_<%= i %>.removeClass("primary")
         $art_log_img_preview_<%= i %>.attr('src', e.target.result);
+        $('#camera_icon_<%= i %>').removeClass('non-active');
       };
     })(file_<%= i %>);
     reader.readAsDataURL(file_<%= i %>);

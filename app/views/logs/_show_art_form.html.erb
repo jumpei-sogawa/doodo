@@ -7,13 +7,22 @@
     <% end %>
 
     <div class="bg-art-stars"></div>
-    <div class="flex-container space-evenly center art-stars">
-      <h3 class="mb0">
-        <span class="art<%= i %>_star1 star mb0 light-gray"><i class="fas fa-star"></i></span>
-        <span class="art<%= i %>_star2 star mb0 light-gray"><i class="fas fa-star"></i></span>
-        <span class="art<%= i %>_star3 star mb0 light-gray"><i class="fas fa-star"></i></span>
-      </h3>
+    <div id="comment_icon_<%= i %>" class="comment-icon non-active">
+      <div class="flex-container space-evenly center w100 h100">
+        <i class="fas fa-comment-dots white"></i>
+      </div>
     </div>
+    <div class="art-stars">
+      <span class="art<%= i %>_star1 star w20 pb5 mb0 light-gray"><i class="fas fa-star"></i></span>
+      <span class="art<%= i %>_star2 star w20 pb5 mb0 light-gray"><i class="fas fa-star"></i></span>
+      <span class="art<%= i %>_star3 star w20 pb5 mb0 light-gray"><i class="fas fa-star"></i></span>
+    </div>
+    <div id="camera_icon_<%= i %>" class="camera-icon non-active">
+      <div class="flex-container space-evenly center w100 h100">
+        <i class="fas fa-camera white"></i>
+      </div>
+    </div>
+
   </div>
 </div>
 

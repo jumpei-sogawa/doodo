@@ -210,8 +210,11 @@
         $('#overlay_art_<%= i %>').fadeIn();
       });
 
-      // 作品の詳細表示閉じる
+      // 作品の詳細表示モーダル閉じる
       $('.close_btn_<%= i %>').on('click', function(){
+        if ( $('#exhb_log_art_logs_attributes_<%= i %>_body').val() != "" ) {
+          $('#comment_icon_<%= i %>').removeClass('non-active');
+        };
         $('#overlay_art_<%= i %>').addClass("non-active");
         $('#overlay_art_<%= i %>').fadeOut();
       });
