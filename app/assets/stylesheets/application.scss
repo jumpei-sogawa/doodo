@@ -223,7 +223,6 @@ a.button.light-gray {
   position: relative;
   width: 100%;
   height: auto;
-  background: #FFF;
 }
 
 .box-1x1:before {
@@ -534,6 +533,12 @@ span.denominator {
   height: 20px;
   background-color: #0008;
   border-radius: 5px;
+}
+
+.art_image_preview {
+  background-color: #f5f6f7;
+  border: dashed 2px #cfd3d6;
+  border-radius: 5%;
 }
 
 // ログ投稿画面 検索モーダル
