@@ -316,11 +316,11 @@
           title: file.name
         }));
         $art_image_upload_button.text("画像を変更");
+        $art_image_upload_button.removeClass("primary")
       };
     })(file);
     reader.readAsDataURL(file);
   });
-
 
 
   // 保存ボタンで保存する
@@ -340,6 +340,9 @@
         formData.append('exhb_log[art_logs_attributes][<%= i %>][art_id]', <%=art.id%>);
         formData.append('exhb_log[art_logs_attributes][<%= i %>][star]', $('#exhb_log_art_logs_attributes_<%= i %>_star').val());
         formData.append('exhb_log[art_logs_attributes][<%= i %>][body]', $('#exhb_log_art_logs_attributes_<%= i %>_body').val());
+        if (typeof(file_<%= i %>) !== 'undefined') {
+          formData.append('exhb_log[art_logs_attributes][<%= i %>][image]', file_<%= i %>);
+        }
       <% end %>
 
       // CSRF対策（独自のajax処理を行う場合、head内にあるcsrf-tokenを取得して送る必要がある）

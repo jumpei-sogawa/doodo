@@ -109,9 +109,7 @@
           <%= link_to art_log_path(art_log) do %>
             <div class="adjust-box box-1x1">
               <div class="inner-box align-center">
-                <%= image_tag art_log.image, class: "w100 h100 image", style: "object-fit: cover;" %>
-                <%= image_tag art.image, class: "w100 h100 image", style: "object-fit: cover;" %>
-                <i class="far fa-gem" id="art_log_<%= i %>"></i>
+                <%= image_tag art_log.image.to_s, class: "w100 h100 image", style: "object-fit: cover;" %>
 
                 <div class="bg-art-stars"></div>
                 <div class="flex-container space-evenly center art-stars">
