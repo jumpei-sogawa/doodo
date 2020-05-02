@@ -36,7 +36,7 @@
     </div>
   </h2>
 
-  <% if controller.controller_name != "museums" %>
+  <% if params[:controller] != "museums" %>
     <div class="align-center"><%= exhb.museum.name %></div>
   <% end %>
   <div class="row">

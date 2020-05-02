@@ -40,7 +40,7 @@
         <span>（<%= art.year %>年）</span>
       <% end %>
     </div>
-    <% if controller.controller_name != "exhibitions" %>
+    <% if params[:controller] != "exhibitions" %>
       <div><a href="/exhibitions/<%=art.exhibition.id%>" class="bb0 gray"><%= art.exhibition.name %></a></div>
     <% end %>
   </div>
