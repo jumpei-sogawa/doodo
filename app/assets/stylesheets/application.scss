@@ -465,11 +465,12 @@ span.denominator {
 }
 
 .save-btn {
-  position: absolute;
-  top: 20px;
-  right: 10px;
-  width: 60px;
+  position: fixed;
+  top: 10px;
+  right: 15px;
+  width: auto;
   text-align: center;
+  z-index: 10000;
 }
 
 .bg-art-stars {
