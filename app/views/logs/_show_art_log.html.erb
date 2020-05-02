@@ -70,8 +70,13 @@
     <div class="col-4 pt5">
       <% if art_log.image.present? %>
         <%= link_to art_log_path(art_log) do %>
-          <div>
+          <div style="position:relative;">
             <%= image_tag art_log.image.to_s, class: "image w100" %>
+            <div class="bg-art-log">
+              <div class="flex-container space-evenly center w100 h100">
+                <i class="fas fa-camera white"></i>
+              </div>
+            </div>
           </div>
         <% end %>
       <% elsif art.image.present? %>

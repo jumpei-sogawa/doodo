@@ -487,6 +487,7 @@ span.denominator {
   width: 100%;
   height: 20%;
   background-color: #0008;
+  border-radius: 5px;
 }
 
 .art-stars {
@@ -511,6 +512,16 @@ span.denominator {
 .art-name-container {
   border-radius: 0 0 5px 5px;
   background-color: white;
+}
+
+.bg-art-log {
+  position: absolute;
+  bottom: 6px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #0008;
+  border-radius: 5px;
 }
 
 // ログ投稿画面 検索モーダル
