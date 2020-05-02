@@ -112,12 +112,22 @@
                 <%= image_tag art_log.image.to_s, class: "w100 h100 image", style: "object-fit: cover;" %>
 
                 <div class="bg-art-stars"></div>
-                <div class="flex-container space-evenly center art-stars">
-                  <h3 class="mb0">
-                    <% art_log.star.times do %>
-                      <span class="yellow"><i class="fas fa-star"></i></span>
-                    <% end %>
-                  </h3>
+                <% if art_log.body.present? %>
+                  <div class="comment-icon">
+                    <div class="flex-container space-evenly center w100 h100">
+                      <i class="fas fa-comment-dots white"></i>
+                    </div>
+                  </div>
+                <% end %>
+                <div class="art-stars">
+                  <% art_log.star.times do %>
+                    <span class="star w20 pb5 mb0 yellow"><i class="fas fa-star"></i></span>
+                  <% end %>
+                </div>
+                <div class="camera-icon">
+                  <div class="flex-container space-evenly center w100 h100">
+                    <i class="fas fa-camera white"></i>
+                  </div>
                 </div>
               </div>
             </div>
@@ -133,12 +143,17 @@
                 <% end %>
 
                 <div class="bg-art-stars"></div>
-                <div class="flex-container space-evenly center art-stars">
-                  <h3 class="mb0">
-                    <% art_log.star.times do %>
-                      <span class="yellow"><i class="fas fa-star"></i></span>
-                    <% end %>
-                  </h3>
+                <% if art_log.body.present? %>
+                  <div class="comment-icon">
+                    <div class="flex-container space-evenly center w100 h100">
+                      <i class="fas fa-comment-dots white"></i>
+                    </div>
+                  </div>
+                <% end %>
+                <div class="art-stars">
+                  <% art_log.star.times do %>
+                    <span class="star w20 pb5 mb0 yellow"><i class="fas fa-star"></i></span>
+                  <% end %>
                 </div>
               </div>
             </div>

@@ -25,7 +25,7 @@
 	// Stops animations/transitions until the page has ...
 
 		// ... loaded.
-			$window.on('load', function() {
+			$window.on('load page:load', function() {
 				window.setTimeout(function() {
 					$body.removeClass('is-preload');
 				}, 100);

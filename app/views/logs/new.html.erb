@@ -368,6 +368,9 @@
         processData: false,
         contentType: false,
       });
+      setTimeout(function() {
+          location.href='/mypage';
+      }, 500);
     });
   // 作品ログだけ保存
   <% elsif params[:a].present? %>
@@ -404,6 +407,9 @@
         processData: false,
         contentType: false,
       });
+      setTimeout(function() {
+          location.href='/mypage';
+      }, 500);
     });
   <% end %>
 
