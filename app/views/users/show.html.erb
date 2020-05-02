@@ -10,16 +10,16 @@
           <% end %>
         </div>
 
-        <div class="w20 align-center">
+        <div id="log_count" class="w20 align-center">
           <h1 class="mb0"><%= @user.exhb_logs.count %></h1>
           <div class="dark">投稿</div>
         </div>
-        <div class="w20 align-center">
-          <h1 class="mb0"><%= @user.exhb_logs.select{|el| (el.exhibition.id != 1)}.count %></h1>
+        <div id="visited_count" class="w20 align-center">
+          <h1 class="mb0"><%= @visited_exhibitions.count %></h1>
           <div class="dark">行った</div>
         </div>
-        <div class="w20 align-center">
-          <h1 class="mb0"><%= @user.exhb_clips.count %></h1>
+        <div id="pinned_count" class="w20 align-center">
+          <h1 class="mb0"><%= @clipped_exhibitions.count %></h1>
           <div class="dark">ピンした</div>
         </div>
       </div>
@@ -113,6 +113,22 @@
 
 <script type="text/javascript" language="javascript">
 	// タブ切り替え
+
+  $('#log_count')[0].onclick = function () {
+		deactivateVisitedTab();
+		deactivatePinnedTab();
+		activateLogTab();
+  }
+	$('#visited_count')[0].onclick = function () {
+		deactivatePinnedTab();
+		deactivateLogTab();
+		activateVisitedTab();
+  }
+  $('#pinned_count')[0].onclick = function () {
+		deactivateLogTab();
+		deactivateVisitedTab();
+		activatePinnedTab();
+  }
 
 	$('#log_tab')[0].onclick = function () {
 		deactivateVisitedTab();

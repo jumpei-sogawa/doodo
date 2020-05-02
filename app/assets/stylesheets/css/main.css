@@ -1874,7 +1874,7 @@ button,
         padding: 2em 0 2em 0 ; } }
   @media screen and (max-width: 736px) {
     #main > .inner {
-      padding: 3em 1em 0.1em 1em ; }
+      padding: 3em 0.5em 0.1em 0.5em ; }
       #main > .inner > section {
         padding: 1em 0 1em 0 ; } }
 
