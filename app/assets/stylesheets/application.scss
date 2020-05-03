@@ -332,13 +332,12 @@ a.button.light-gray {
 }
 
 .swiper-container {
-  width: calc(100% - 60px);	/* ☆前・次ページボタンの幅をそれぞれ50pxとして、その分を引く */
-	padding-bottom: 30px;		/* ★ページネーション・スクロールバー分の余白50pxを下に取る */
+  width: calc(100% - 60px);	/* ☆前・次ページボタンの幅をそれぞれ30pxとして、その分を引く */
 	box-sizing: content-box;
 }
 
 .swiper-button-prev, .swiper-button-next {
-	top: calc((100% - 30px) * 0.5);	/* ☆★ページネーション・スクロールバー（30px）を除く縦位置の中央（＝スライドの高さの中央）に一旦配置 */
+	top: calc((100% - 19px) * 0.5);	/* ☆★ページネーション・スクロールバー（30px）を除く縦位置の中央（＝スライドの高さの中央）に一旦配置 */
 	margin-top: -11px;			/* ★ボタンの高さ（44px）の半分のネガティブマージンで上に少しずらす */
 }
 

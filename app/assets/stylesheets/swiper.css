@@ -211,7 +211,8 @@
   */
 }
 .swiper-pagination {
-  position: absolute;
+  /* position: absolute; */
+  position: relative;
   text-align: center;
   transition: 300ms opacity;
   transform: translate3d(0, 0, 0);
@@ -224,8 +225,8 @@
 .swiper-pagination-fraction,
 .swiper-pagination-custom,
 .swiper-container-horizontal > .swiper-pagination-bullets {
-  bottom: 10px;
-  left: 0;
+  /* bottom: 10px; */
+  /* left: 0; */
   width: 100%;
 }
 /* Bullets */
