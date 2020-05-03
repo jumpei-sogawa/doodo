@@ -28,6 +28,7 @@
   white-space: pre-wrap;
 }
 
+// borfer
 .b0 {
   bottom: 0;
 }
@@ -36,6 +37,11 @@
   border-bottom: 0px;
 }
 
+.circle {
+  border-radius: 50%;
+}
+
+// margin
 .ml5 {
   margin-left: 5px;
 }
@@ -46,6 +52,23 @@
 
 .ml30 {
   margin-left: 30px;
+}
+
+.header-bg{
+  background-color: white;
+}
+
+.header-ml {
+  margin-left: 60px;
+}
+@media screen and (max-width: 736px) {
+  .header-ml {
+    margin-left: 40px;
+  }
+}
+
+.mr5 {
+  margin-right: 5px;
 }
 
 .mr10 {
@@ -88,6 +111,7 @@
   margin-top: 100px;
 }
 
+// padding
 .pt5 {
   padding-top: 5px;
 }
@@ -98,6 +122,10 @@
 
 .pb0 {
   padding-bottom: 0;
+}
+
+.pb5 {
+  padding-bottom: 5px;
 }
 
 .pr10 {
@@ -112,10 +140,15 @@
   padding-left: 10px;
 }
 
+.pl20 {
+  padding-left: 20px;
+}
+
 .pl150 {
   padding-left: 150px;
 }
 
+// color
 .pink {
   color: #f56a6a;
 }
@@ -140,13 +173,32 @@
   color: rgba(245, 106, 106, 0.15);
 }
 
+.white {
+  color: white;
+}
+
 a.button.dark {
   color: #3d4449 !important;
   box-shadow: inset 0 0 0 2px #3d4449;
 }
 
-span.denominator {
-  font-size: 0.5em;
+a.button.gray {
+  color: #7f888f !important;
+  box-shadow: inset 0 0 0 2px #7f888f;
+}
+
+a.button.light-gray {
+  color: #cfd3d6 !important;
+  box-shadow: inset 0 0 0 2px #cfd3d6;
+}
+
+// width
+.w20 {
+  width: 20%;
+}
+
+.w25 {
+  width: 25%;
 }
 
 .w30 {
@@ -161,22 +213,48 @@ span.denominator {
   width: 100%;
 }
 
-.hidden {
-  display: none;
+// height
+.h100 {
+  height: 100%;
 }
 
-.star {
-  display: inline-block;
+// サイズ
+.adjust-box {
+  position: relative;
+  width: 100%;
+  height: auto;
 }
 
-.circle {
-  border-radius: 50%;
+.box-1x1:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
 }
 
-.pointer {
-  cursor: pointer;
+.box-16x9:before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
 }
 
+.box-3x4:before {
+  content: "";
+  display: block;
+  padding-top: 133.33%;
+}
+
+.inner-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// font-size
 @media screen and (max-width: 480px) {
   h2.mobile-fs3em {
     font-size: 3em;
@@ -184,6 +262,194 @@ span.denominator {
   h2.mobile-fs2em {
     font-size: 2em;
   }
+}
+
+// cursor
+.pointer {
+  cursor: pointer;
+}
+
+.cursor:hover {
+  cursor: pointer;
+}
+
+// display
+.hidden {
+  display: none;
+}
+
+.non-active {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.star {
+  display: inline-block;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-container.space-between {
+  justify-content: space-between;
+}
+
+.flex-container.space-around {
+  justify-content: space-around;
+}
+
+.flex-container.space-evenly {
+  justify-content: space-evenly;
+}
+
+.flex-container.flex-start {
+  justify-content: flex-start;
+}
+
+.flex-container.center {
+  align-items: center;
+}
+
+.flex-container.baseline {
+  align-items: baseline;
+}
+
+.flex-container.stretch{
+  align-items: stretch;
+}
+
+.flex-container.wrap {
+  flex-wrap: wrap;
+}
+
+// swiper
+.swiper-parent {
+  position: relative;
+}
+
+.swiper-container {
+  width: calc(100% - 60px);	/* ☆前・次ページボタンの幅をそれぞれ30pxとして、その分を引く */
+	box-sizing: content-box;
+}
+
+.swiper-button-prev, .swiper-button-next {
+	top: calc((100% - 19px) * 0.5);	/* ☆★ページネーション・スクロールバー（30px）を除く縦位置の中央（＝スライドの高さの中央）に一旦配置 */
+	margin-top: -11px;			/* ★ボタンの高さ（44px）の半分のネガティブマージンで上に少しずらす */
+}
+
+
+// footer
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 12000;
+  background-color: #f5f6f7;
+  border-top: solid 1px #3d4449;
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu-icon-box {
+  text-align: center;
+  font-size: 20px;
+}
+
+.menu-icon {
+  vertical-align: middle;
+}
+
+// 星の分母
+span.denominator {
+  font-size: 0.6em;
+}
+
+// ホーム
+.log-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 0 5px 5px 5px;
+  margin: 10px 0 0 0;
+}
+
+.user-info {
+  width: 100%;
+  padding: 5px 0 5px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.log-body-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.reaction-buttons {
+  position: absolute;
+  bottom: 0;
+  padding-left: 10px;
+}
+
+// 検索タブ
+.tab-container {
+  border-radius: 15px 15px 0 0;
+  background-color: white;
+  padding: 10px 0 0 0;
+  margin: 10px 0 0 0;
+}
+
+.header-tab {
+  border-bottom: solid 3px white;
+  margin: 0 0 1em 0;
+  padding: 0 0.75em 0.5em 0.75em;
+}
+.highlight {
+  border-bottom: solid 3px #f56a6a;
+}
+
+.search-field {
+  border-radius: 0 0 15px 15px;
+  background-color: white;
+  padding: 0 5px 10px 5px;
+  margin: 0 0 5px 0;
+}
+
+.museum-container {
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px 5px 5px 5px;
+  margin: 5px 0 5px 0;
+}
+
+.exhb-container {
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px 5px 5px 5px;
+  margin: 5px 0 5px 0;
+}
+
+.art-container {
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px 5px 5px 5px;
+  margin: 5px 0 5px 0;
+}
+
+// ログ投稿画面
+.new-log-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 5px 5px 5px 5px;
+  margin: 10px 0 15px 0;
 }
 
 .input-range[type="range"] {
@@ -214,9 +480,155 @@ span.denominator {
   }
 }
 
-// オーバーレイ
+.select-target-area {
+  border: dashed 2px #cfd3d6;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.select-target-area-inner-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.save-btn {
+  position: fixed;
+  top: 10px;
+  right: 15px;
+  width: auto;
+  text-align: center;
+  z-index: 10000;
+}
+
+.comment-icon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 20%;
+  height: 18%;
+}
+
+.bg-art-stars {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
+  background-color: #0008;
+  border-radius: 5px;
+}
+
+.art-stars {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
+  padding-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  height: 18%;
+}
+
+.art-name-container {
+  border-radius: 0 0 5px 5px;
+  background-color: white;
+}
+
+.bg-art-log {
+  position: absolute;
+  bottom: 6px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #0008;
+  border-radius: 5px;
+}
+
+.art_image_preview {
+  background-color: #f5f6f7;
+  border: dashed 2px #cfd3d6;
+  border-radius: 5%;
+}
+
+// ログ投稿画面 検索モーダル
+#overlay {
+  z-index: 8000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f6f7;
+}
+
+#search_modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #f5f6f7;
+  overflow-y: scroll;
+}
+
+.modal_art {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #0008;
+  overflow-y: scroll;
+  padding-top: 65px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 40px;
+}
+
+
+// トレンド
+.trend-tab-container {
+  height: 80%;
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 0 0 0;
+  margin: 10px 0 5px 0;
+}
+
+// マイページ
+.mypage-user-info-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 5px 10px 10px 10px;
+  margin: 10px 0 0 0;
+}
+
+.mypage-tab-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 0 0;
+  margin: 10px 0 0 0;
+}
+
+// プロフィール画像編集
 .overlay {
-  z-index: 100;
+  z-index: 11000;
   position: fixed;
   display: none;
   top: 0;
@@ -249,7 +661,7 @@ span.denominator {
   content: "";
   width: 1px;
   height: 36px;
-  background-color: #fff;
+  background-color: #f56a6a;
   transform: rotate(45deg);
   position: absolute;
   top: 8px;
@@ -260,7 +672,7 @@ span.denominator {
   content: "";
   width: 1px;
   height: 36px;
-  background-color: #fff;
+  background-color: #f56a6a;
   transform: rotate(-45deg);
   position: absolute;
   top: 8px;
@@ -271,42 +683,86 @@ span.denominator {
 .overlay .buttons {
   width: 100%;
   position: absolute;
-  bottom: 20px;
-  display: flex;
+  bottom: 60px;
 }
 
-.adjust-box {
-  position: relative;
-  width: 100%;
-  height: auto;
-  background: #FFF;
+// 展覧会詳細ページ
+.exhibition-header-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 0 10px;
+  margin: 10px 0 5px 0;
 }
 
-.box-1x1:before {
-  content: "";
-  display: block;
-  padding-top: 100%;
+.exhibition-info-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 0 5px 0;
 }
 
-.box-16x9:before {
-  content: "";
-  display: block;
-  padding-top: 56.25%;
+.highlight-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 0 5px 0;
 }
 
-.box-3x4:before {
-  content: "";
-  display: block;
-  padding-top: 133.33%;
+.arts-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 0 10px;
+  margin: 5px 0 10px 0;
 }
 
-.inner-box {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.exhibition-outline-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0 10px 0;
+}
+
+.exhibition-logs-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0 10px 0;
+}
+
+// 作品詳細ページ
+.art-header-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 0 10px;
+  margin: 10px 0 5px 0;
+}
+
+.art-info-container{
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 0 5px 0;
+}
+
+.art-logs-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 0 10px 0;
+}
+
+// 展覧会ログ詳細ページ
+// 作品ログ詳細
+.logs-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0 0 0;
+}
+
+.log-exhibition-info-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0 10px 0;
 }

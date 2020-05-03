@@ -1,0 +1,34 @@
+<%= form_with(url: path, method: :get, local: true, class: "mb0") do |exhb_form| %>
+  <div class="row mb10">
+    <div class="off-2 col-4 off-0-xsmall col-6-xsmall">
+      <%= exhb_form.text_field :exhb_area, value: params[:exhb_area], placeholder: "場所（例:東京）" %>
+    </div>
+    <div class="col-4 col-6-xsmall">
+      <%= exhb_form.text_field :exhb_name, value: params[:exhb_name], placeholder: "展名（例:ゴッホ展）" %>
+    </div>
+  </div>
+  <div class="row mb10">
+    <div class="off-2 col-4 off-0-xsmall col-4-xsmall align-center">
+      <div class="align-right mt5 mb0">開催日</div>
+    </div>
+    <div class="col-6 col-6-xsmall">
+      <%= exhb_form.date_field :exhb_date, value: params[:exhb_date], placeholder: Date.today %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="off-2 col-4 off-0-xsmall col-6-xsmall aln-center"><div id="exhb_form_reset" class="w100 pink mt5" style="text-align:center;" tabindex="0">リセット</div></div>
+    <div class="col-4 col-6-xsmall align-center"><input type="submit" value="検索" class="primary" /></div>
+  </div>
+<% end %>
+
+
+<script type="text/javascript" language="javascript">
+  // 検索フォームリセット
+	$(function() {
+		$('#exhb_form_reset').on('click', function(){
+			$('#exhb_area').val("");
+			$('#exhb_name').val("");
+			$('#exhb_date').val("");
+    });
+	});
+</script>

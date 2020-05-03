@@ -1,5 +1,19 @@
-<% if museum.image.present? %>
-  <div class="image w100 mr10"><a href="/museums/<%=museum.id%>"><%= image_tag museum.image, class: "w100" %></a></div>
-<% else%>
-  <span class="image w100 mr10 mb0"><a href="/museums/<%=museum.id%>" class="icon fa-gem mr10 mb0"></a></span>
+<% if params[:controller] == "logs" && params[:action] == "new" %>
+  <header class="major align-center">
+    <h4 style="margin-bottom:1em;"><%= museum.name %></h4>
+  </header>
+<% else %>
+  <%= link_to museum_path(museum) do %>
+    <header class="major align-center">
+      <h4 style="margin-bottom:1em;"><%= museum.name %></h4>
+    </header>
+  <% end %>
+<% end %>
+
+<% if museum.exhibitions.is_open.present? %>
+  <div class="align-center dark mb5">開催中の展覧会</div>
+  <%= render partial: "exhibitions/show", locals: { exhb: museum.exhibitions.is_open.last } %>
+<% else %>
+  <div class="align-center mb5">過去の展覧会</div>
+  <%= render partial: "exhibitions/show", locals: { exhb: museum.exhibitions.last } %>
 <% end %>

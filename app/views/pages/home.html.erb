@@ -1,35 +1,45 @@
-<section>
-  <div class="row mt10 mb20">
-    <div class="off-2 col-4 off-0-xsmall col-6-xsmall align-center">
-      <%= link_to exhibitions_path do %>
-        <h3>
-          <div><i class="fas fa-edit dark"></i></div>
-          <div class="dark">展覧会の感想を残す</div>
-        </h3>
+<div class="row mb10">
+  <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
+    <% @exhb_logs.each do |exhb_log| %>
+      <% if exhb_log.exhibition.id == 1 %>
+        <% art_log = exhb_log.art_logs.first %>
+        <%= render partial: "logs/show_art_log", locals: {art_log: art_log} %>
+      <% else %>
+        <%= render partial: "logs/show", locals: {exhb_log: exhb_log} %>
       <% end %>
-    </div>
-    <div class="col-4 col-6-xsmall align-center">
-      <%= link_to arts_path do %>
-        <h3>
-          <div><i class="fas fa-edit dark"></i></div>
-          <div class="dark">作品の感想を残す</div>
-        </h3>
-      <% end %>
-    </div>
-
-    <div class="mt10 col-12 align-center">
-      <%= form_with(url: exhibitions_path, method: :get, local: true) do |form| %>
-        <div class="row">
-          <div class="off-2 col-6 off-0-xsmall col-8-xsmall">
-            <%= form.text_field :any, value: params[:exhb_name], placeholder: "展覧会を探す" %>
-          </div>
-          <div class="col-2 col-4-xsmall">
-            <input type="submit" value="検索" class="w100 primary" />
-          </div>
-				</div>
-			<% end %>
-    </div>
+    <% end %>
   </div>
+</div>
 
-  <%= render partial: "trend", locals: { exhibitions: @exhibitions, arts: @arts } %>
-</section>
+<%= javascript_include_tag 'swiper.js' %>
+
+<script type="text/javascript" language="javascript">
+  <% @exhb_logs.each do |exhb_log| %>
+    swiperWidth = $('.swiper<%= exhb_log.id %>').width();
+    var sliderCount = 3;
+    var slideOffset = 0;
+    <% if exhb_log.art_logs.count == 1 %>
+      sliderCount = 1;
+      slideOffset = swiperWidth / 3 + 10 / 3;
+    <% elsif exhb_log.art_logs.count == 2 %>
+      sliderCount = 2;
+      slideOffset = swiperWidth / 6 + 10 / 6;
+    <% end %>
+
+    var mySwiper<%= exhb_log.id %> = new Swiper('.swiper<%= exhb_log.id %>', {
+      navigation: {
+        prevEl: '.prev<%= exhb_log.id %>',
+        nextEl: '.next<%= exhb_log.id %>',
+      },
+      slidesPerView: 3,
+      slidesOffsetBefore: slideOffset,
+      spaceBetween: 10,
+      initialSlide: 0,
+      pagination: {
+        el: '.page<%= exhb_log.id %>',
+        type: 'bullets',
+        clickable: true,
+      },
+    });
+  <% end %>
+</script>

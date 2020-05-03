@@ -16,3 +16,4 @@ class ApplicationController < ActionController::Base
     session[:previous_url] = request.fullpath
   end
 end
+

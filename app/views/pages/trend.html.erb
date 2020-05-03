@@ -1,1 +1,84 @@
-<%# <%= render partial: "trend", locals: { exhibitions: @exhibitions, arts: @arts } \%\> %>
+<div class="trend-tab-container">
+  <div class="row">
+    <div class="col-6">
+      <header id="exhb_tab" class="major align-center cursor">
+        <h2 id="exhb_tab_text">人気の展覧会</h2>
+      </header>
+    </div>
+
+    <div class="col-6">
+      <header id="art_tab" class="align-center cursor">
+        <h2 id="art_tab_text" class="gray">人気の作品</h2>
+      </header>
+    </div>
+  </div>
+</div>
+
+
+<%# 人気の展覧会 %>
+<div id="exhb_container">
+  <div class="row">
+    <% @exhibitions.each do |exhb| %>
+      <div class="col-3 col-6-xsmall">
+        <div class="exhb-container">
+          <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%# 人気の作品 %>
+<div id="art_container" class="non-active">
+  <div class="row">
+    <% @arts.each do |art| %>
+      <div class="col-3 col-6-xsmall">
+        <div class="art-container">
+          <%= render partial: "arts/show", locals: {art: art} %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+<script type="text/javascript" language="javascript">
+  $('#exhb_tab')[0].onclick = function () {
+		deactivateArt();
+		activateExhibition();
+  }
+  $('#art_tab')[0].onclick = function () {
+		deactivateExhibition();
+		activateArt();
+	}
+
+	function activateExhibition() {
+		$('#exhb_tab').addClass("major")
+    $('#exhb_tab_text').removeClass("gray")
+		$('#exhb_tab_text').addClass("dark")
+		$('#exhb_container').removeClass("non-active")
+	}
+
+	function deactivateExhibition() {
+		$('#exhb_tab').removeClass("major")
+    $('#exhb_tab_text').removeClass("dark")
+		$('#exhb_tab_text').addClass("gray")
+		$('#exhb_container').addClass("non-active")
+	}
+
+	function activateArt() {
+		$('#art_tab').addClass("major")
+    $('#art_tab_text').removeClass("gray")
+		$('#art_tab').addClass("dark")
+		$('#art_container').removeClass("non-active")
+
+	}
+
+	function deactivateArt() {
+		$('#art_tab').removeClass("major")
+    $('#art_tab').removeClass("dark")
+		$('#art_tab_text').addClass("gray")
+		$('#art_container').addClass("non-active")
+	}
+</script>

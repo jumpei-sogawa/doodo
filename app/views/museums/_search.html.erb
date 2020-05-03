@@ -1,0 +1,25 @@
+<%= form_with(url: path, method: :get, local: true, class: "mb0") do |museum_form| %>
+  <div class="row mb10">
+    <div class="off-2 col-4 off-0-xsmall col-6-xsmall">
+      <%= museum_form.text_field :museum_area, value: params[:museum_area], placeholder: "場所（例:東京）" %>
+    </div>
+    <div class="col-4 col-6-xsmall">
+      <%= museum_form.text_field :museum_name, value: params[:museum_name], placeholder: "館名（例:国立新美術館）" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="off-2 col-4 off-0-xsmall col-6-xsmall aln-center"><div id="museum_form_reset" class="w100 pink mt5" style="text-align:center;" tabindex="0">リセット</div></div>
+    <div class="col-4 col-6-xsmall align-center"><input type="submit" value="検索" class="primary" /></div>
+  </div>
+<% end %>
+
+
+<script type="text/javascript" language="javascript">
+  // 検索フォームリセット
+	$(function() {
+		$('#museum_form_reset').on('click', function(){
+			$('#museum_area').val("");
+			$('#museum_name').val("");
+    });
+  });
+</script>

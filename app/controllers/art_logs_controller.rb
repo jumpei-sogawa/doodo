@@ -92,6 +92,6 @@ class ArtLogsController < ApplicationController
     end
 
     def exhb_log_params
-      params.fetch(:exhb_log, {}).permit(art_logs_attributes: [:art_id, :star, :body])
+      params.fetch(:exhb_log, {}).permit(art_logs_attributes: [:art_id, :star, :body, :image])
     end
 end

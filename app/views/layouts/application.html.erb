@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application' %>
   <%= analytics_init if Rails.env.production? %>
 </head>
 
@@ -16,16 +16,17 @@
 <div id="wrapper">
 
   <!-- Main -->
-  <div id="main">
-    <div class="inner">
+  <div id="main" style="margin-bottom:40px;">
+    <!-- Header -->
+    <header id="header" class="header-bg">
+      <h2 class="header-ml">
+        <a href="/" class="dark bb0 non-active" style="font-family: &quot;Courier New&quot;, monospace;">DooDoo</a>
+        <a href="/" class="dark bb0" style="font-family: &quot;Open Sans&quot;, san-selif;">DooDoo</a>
+        <a href="/" class="dark bb0 non-active" style="font-family: &quot;Roboto Slab&quot;, serif;">DooDoo</a>
+      </h2>
+    </header>
 
-      <!-- Header -->
-      <header id="header">
-        <span class="logo">
-          <a href="/" class="logo"><%= image_tag "stART-logo.jpg", height: "15px" %></a>
-          <span style="font-size:10px;">アート・展覧会の口コミサイト</span>
-        </span>
-      </header>
+    <div class="inner">
 
       <%= yield %>
 
@@ -38,7 +39,7 @@
 
       <!-- Search -->
       <section>
-        <%= form_with(url: exhibitions_path, method: :get, local: true) do |form| %>
+        <%= form_with(url: search_path, method: :get, local: true) do |form| %>
           <div class="row">
             <div class="col-8">
               <%= form.text_field :any, placeholder: "例:東京、モネ展" %>
@@ -63,21 +64,21 @@
             <% end %>
           </li>
           <li>
-            <%= link_to exhibitions_path do %>
-              <i class="fas fa-edit"></i>
-              展覧会の感想を残す
-            <% end %>
-          </li>
-          <li>
-            <%= link_to arts_path do %>
-              <i class="fas fa-edit"></i>
-              作品の感想を残す
-            <% end %>
-          </li>
-          <li>
             <%= link_to search_path do %>
               <i class="fas fa-search"></i>
-              条件を指定して検索
+              検索
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_log_path do %>
+              <i class="fas fa-edit"></i>
+              新規投稿
+            <% end %>
+          </li>
+          <li>
+            <%= link_to trend_path do %>
+              <i class="fas fa-chart-line"></i>
+              トレンド
             <% end %>
           </li>
           <% if user_signed_in? %>
@@ -118,8 +119,49 @@
     </div>
   </div>
 
-</div>
+  <div class="footer">
+    <div class="menu-icon-box">
+      <% if params[:action] == "home" %>
+        <a href="/" class="bb0"><i class="fas fa-home menu-icon pink"></i></a>
+      <% else %>
+        <a href="/" class="bb0"><i class="fas fa-home menu-icon dark"></i></a>
+      <% end %>
+    </div>
+    <div class="menu-icon-box">
+      <% if params[:action] == "search" %>
+        <a href="/search" class="bb0"><i class="fas fa-search menu-icon pink"></i></a>
+      <% else %>
+        <a href="/search" class="bb0"><i class="fas fa-search menu-icon dark"></i></a>
+      <% end %>
+    </div>
+    <div class="menu-icon-box">
+      <% if params[:controller] == "logs" && params[:action] == "new" %>
+        <a href="/logs/new" class="bb0"><i class="fas fa-plus menu-icon pink"></i></a>
+      <% else %>
+        <a href="/logs/new" class="bb0"><i class="fas fa-plus menu-icon dark"></i></a>
+      <% end %>
+    </div>
+    <div class="menu-icon-box">
+      <% if params[:action] == "trend" %>
+        <a href="/trend" class="bb0"><i class="fas fa-chart-line menu-icon pink"></i></a>
+      <% else %>
+        <a href="/trend" class="bb0"><i class="fas fa-chart-line menu-icon dark"></i></a>
+      <% end %>
+    </div>
+    <div class="menu-icon-box">
+      <% if user_signed_in? %>
+        <% if params[:username] == current_user.username%>
+          <a href="/mypage" class="bb0"><i class="fas fa-user menu-icon pink"></i></a>
+        <% else %>
+          <a href="/mypage" class="bb0"><i class="fas fa-user menu-icon dark"></i></a>
+        <% end %>
+      <% else %>
+        <a href="/mypage" class="bb0"><i class="fas fa-user menu-icon dark"></i></a>
+      <% end %>
+    </div>
+  </div>
 
+</div>
 
 <!-- Scripts -->
 <%= javascript_include_tag 'jquery.min.js' %>

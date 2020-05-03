@@ -1,0 +1,104 @@
+<% user = art_log.user %>
+<% art = art_log.art %>
+<% artist = art.artist %>
+
+
+<div class="log-container">
+  <header class="user-info">
+    <a href="/<%=user.username%>" class="image circle ml5 mr5">
+      <% if user.image.present? %>
+        <%= image_tag user.image.to_s, height: "30px" %>
+      <% else %>
+        <%= image_tag "default-profile-image.png", height: "30px" %>
+      <% end %>
+    </a>
+    <a href="/<%=user.username%>" class="dark bb0">
+      <strong><%= user.username %></strong>
+    </a>
+  </header>
+
+  <div class="row mb5">
+    <div class="col-8">
+      <div class="log-body-container">
+        <h2 class="ml10 mb0">
+          <% art_log.star.times do %>
+            <span><i class="fas fa-star yellow"></i></span>
+          <% end %>
+          <% (3 - art_log.star).times do %>
+            <span><i class="fas fa-star light-gray"></i></span>
+          <% end %>
+          <span class="ml10"><%= art_log.star.to_f %></span>
+          <span class="denominator">/3</span>
+        </h2>
+
+        <%= link_to art_path(art) do %>
+          <% if art.name.length > 13 %>
+            <div class="dark">題：<%= art.name.first(12) %>...</div>
+          <% else %>
+            <div class="dark">題：<%= art.name %></div>
+          <% end %>
+        <% end %>
+
+        <% if artist.name.length > 13 %>
+          <div class="dark">作：<%= artist.name.first(12) %>...</div>
+        <% else %>
+          <div class="dark">作：<%= artist.name %></div>
+        <% end %>
+
+        <div class="dark"><%= art_log.body %></div>
+        <div style="font-size:0.8em;"><%= l art_log.created_at, format: :short_date %></div>
+
+        <div class="reaction-buttons flex-container center">
+          <div class="pl0">
+            <div id="art_log_like_<%= art_log.id %>">
+              <%= render partial: "art_log_likes/button", locals: {art_log: art_log} %>
+            </div>
+            <div id="art_log_likes_count_<%= art_log.id %>">
+              <%= render partial: "art_log_likes/count", locals: {art_log: art_log} %>
+            </div>
+          </div>
+
+          <div class="pl20">
+            <% if art_log.body.present? %>
+              <a href="/art_logs/<%=art_log.id%>" class="button gray">コメントする</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4 pt5">
+      <% if art_log.image.present? %>
+        <%= link_to art_log_path(art_log) do %>
+          <div style="position:relative;">
+            <%= image_tag art_log.image.to_s, class: "image w100" %>
+            <div class="bg-art-log">
+              <div class="flex-container space-evenly center w100 h100">
+                <i class="fas fa-camera white"></i>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% elsif art.image.present? %>
+        <%= link_to art_path(art) do %>
+          <div>
+            <%= image_tag art.image, class: "image w100" %>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to art_path(art) do %>
+          <div class="adjust-box box-1x1">
+            <div class="inner-box align-center">
+              <span class="icon fa-gem gray" style="font-size:4em;"></span>
+            </div>
+          </div>
+          <div class="image"></div>
+        <% end %>
+      <% end %>
+
+      <div class="flex-container space-evenly center">
+        <h1 class="gray mb0"><a href="/logs/new/?a=<%=art.id%>"><i class="fas fa-edit"></i></a></h1>
+      </div>
+    </div>
+  </div>
+</div>

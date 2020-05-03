@@ -44,7 +44,7 @@ class ExhibitionsController < ApplicationController
     @description = @exhibition.description
     @headline = "展覧会 詳細"
     @arts = @exhibition.arts.where("star >= ?", 0).order("star DESC NULLS LAST")
-    @exhb_logs = @exhibition.exhb_logs.order(id: "DESC").first(10)
+    @exhb_logs = @exhibition.exhb_logs.order(id: "DESC").select{|el| el.body.present? }.first(10)
     @exhb_log_comment = ExhbLogComment.new
   end
 

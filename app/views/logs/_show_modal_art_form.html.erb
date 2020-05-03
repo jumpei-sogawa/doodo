@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="off-4 col-4 off-0-xsmall col-12-xsmall">
+    <div class="art_image_preview_<%= i %> mt20" onclick="$('#exhb_log_art_logs_attributes_<%= i %>_image').click()">
+      <% if art.image.present? %>
+        <%= image_tag art.image, class: "image w100" %>
+      <% else %>
+        <div class="adjust-box box-16x9">
+          <div class="inner-box align-center">
+            <div class="icon fa-gem gray" style="font-size:3em;"></div>
+          </div>
+        </div>
+        <div class="image"></div>
+      <% end %>
+    </div>
+
+    <div class="align-center">
+      <strong class="light-gray"><%= art.name %></strong>
+      <div><%= art.artist.name %>作</div>
+      <% if art.year.present? %>
+        <div>（<%= art.year %>年）</div>
+      <% end %>
+    </div>
+
+    <h1 class="align-center mb10">
+      <span class="art<%= i %>_star1 star mb0 light-gray"><i class="fas fa-star"></i></span>
+      <span class="art<%= i %>_star2 star mb0 light-gray"><i class="fas fa-star"></i></span>
+      <span class="art<%= i %>_star3 star mb0 light-gray"><i class="fas fa-star"></i></span>
+    </h1>
+    <div class="mb10">
+      <textarea rows="1" placeholder="感想..." name="exhb_log[art_logs_attributes][<%= i %>][body]" id="exhb_log_art_logs_attributes_<%= i %>_body" spellcheck="false"></textarea>
+    </div>
+    <div class="mb10">
+      <input type="file" name="exhb_log[art_logs_attributes][<%= i %>][image]" id="exhb_log_art_logs_attributes_<%= i %>_image" style="display:none">
+      <label for="exhb_log_art_logs_attributes_<%= i %>_image" class="mb0">
+        <div class="button primary small w100" id="art_image_upload_button_<%= i %>">画像をアップロード</div>
+      </label>
+    </div>
+    <div class="close_btn_<%= i %> w100 align-center mb20">
+      <div class="w30 button primary" tabindex="0">決定</div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript" language="javascript">
+  $art_image_field_<%= i %> = $('#exhb_log_art_logs_attributes_<%= i %>_image');
+  $art_image_preview_<%= i %> = $('.art_image_preview_<%= i %>');
+  $art_image_upload_button_<%= i %> = $('#art_image_upload_button_<%= i %>');
+  $art_log_img_preview_<%= i %> = $('#art_log_<%= i %>');
+
+  $($art_image_field_<%= i %>).on('change', $art_image_field_<%= i %>, function(e) {
+    file_<%= i %> = e.target.files[0];
+    reader = new FileReader();
+
+    if(file_<%= i %>.type.indexOf('image') < 0){
+      return false;
+    };
+
+    reader.onload = (function(file_<%= i %>) {
+      return function(e) {
+        $art_image_preview_<%= i %>.empty();
+        $art_image_preview_<%= i %>.append($('<img>').attr({
+          src: e.target.result,
+          width: "100%",
+          class: "image",
+          title: file_<%= i %>.name
+        }));
+        $art_image_upload_button_<%= i %>.text("画像を変更");
+        $art_image_upload_button_<%= i %>.removeClass("primary")
+        $art_log_img_preview_<%= i %>.attr('src', e.target.result);
+        $('#camera_icon_<%= i %>').removeClass('non-active');
+      };
+    })(file_<%= i %>);
+    reader.readAsDataURL(file_<%= i %>);
+  });
+</script>

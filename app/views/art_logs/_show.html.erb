@@ -42,7 +42,7 @@
 
     <div class="row">
       <div class="col-7">
-        <% if controller.controller_name != "art_logs" %>
+        <% if params[:controller] != "art_logs" %>
           <% if art_log.body.present? %>
             <a href="/art_logs/<%=art_log.id%>" class="button dark">コメントする</a>
           <% end %>
