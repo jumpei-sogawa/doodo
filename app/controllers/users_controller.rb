@@ -8,12 +8,12 @@ class UsersController < ApplicationController
 
   def show
     if user_signed_in? && @user.id == current_user.id
-      @title = "マイページ | アート・展覧会の口コミなら【stART】"
-      @description = "アート・展覧会の口コミサイト「stART」のマイページです。マイページにログインすることで、アート・絵画・美術館・展覧会・美術展の口コミを投稿することができます。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報もご案内。"
+      @title = "マイページ | アート・展覧会の口コミなら【DooDoo】"
+      @description = "アート・展覧会の口コミサイト「DooDoo」のマイページです。マイページにログインすることで、アート・絵画・美術館・展覧会・美術展の口コミを投稿することができます。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報もご案内。"
       @headline = "マイページ"
     else
-      @title = "#{@user.username}のページ | アート・展覧会の口コミなら【stART】"
-      @description = "アート・展覧会の口コミサイト「stART」のユーザーページです。stARTはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
+      @title = "#{@user.username}のページ | アート・展覧会の口コミなら【DooDoo】"
+      @description = "アート・展覧会の口コミサイト「DooDoo」のユーザーページです。DooDooはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
       @headline = "ユーザーページ"
     end
     @visited_exhibitions = @user.visited_exhibitions.distinct.select { |exhb| exhb.id != 1}
