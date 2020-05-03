@@ -22,14 +22,14 @@
       sliderCount = 2;
     <% end %>
 
-var mySwiper<%= exhb_log.id %> = new Swiper('.swiper<%= exhb_log.id %>', {
+    var mySwiper<%= exhb_log.id %> = new Swiper('.swiper<%= exhb_log.id %>', {
       navigation: {
         prevEl: '.prev<%= exhb_log.id %>',
         nextEl: '.next<%= exhb_log.id %>',
       },
+      slidesPerView: sliderCount,
       spaceBetween: 10,
       initialSlide: 0,
-      slidesPerView: sliderCount,
       pagination: {
         el: '.page<%= exhb_log.id %>',
         type: 'bullets',
