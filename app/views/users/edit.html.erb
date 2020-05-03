@@ -2,63 +2,67 @@
 <%= hidden_field_tag "username", @user.username %>
 
 <section>
-  <%= form_with(model: @user, url: "/#{@user.username}") do |form| %>
-    <div class="row">
-      <div class="off-2 col-2 off-4-xsmall col-4-xsmall">
-        <div id="img_field" onClick="$('#user_image').click()">
-          <% if @user.image.present? %>
-            <%= image_tag @user.image_url, class: "w100 circle pointer" %>
-          <% else %>
-            <%= image_tag "default-profile-image.png", class: "w100 circle" %>
-          <% end %>
+  <div class="row">
+    <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
+      <%= form_with(model: @user, url: "/#{@user.username}") do |form| %>
+        <div class="row">
+          <div class="off-4 col-4">
+            <div id="img_field" onClick="$('#user_image').click()">
+              <% if @user.image.present? %>
+                <%= image_tag @user.image_url, class: "w100 circle pointer" %>
+              <% else %>
+                <%= image_tag "default-profile-image.png", class: "w100 circle" %>
+              <% end %>
+            </div>
+            <%= form.file_field :image, style: "display:none;" %>
+          </div>
         </div>
-        <%= form.file_field :image, style: "display:none;" %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="off-1 col-4 off-2-xsmall col-8-xsmall">
-        <label for="user_image"><div class="button small w100 align-center" tabindex="0">プロフィール写真を変更</div></label>
-      </div>
-    </div>
+        <div class="row">
+          <div class="off-2 col-8">
+            <label for="user_image"><div class="button small w100 align-center" tabindex="0">プロフィール写真を変更</div></label>
+          </div>
+        </div>
 
-    <div class="mt10 row">
-      <div class="col-2 col-12-xsmall mt10">
-        名前
-      </div>
-      <div class="col-4 col-12-xsmall">
-        <%= form.text_field :name, autofocus: true, value: @user.name, placeholder: "名前（20字以内）" %>
-      </div>
-    </div>
+        <div class="mt10 row">
+          <div class="col-12 ml10 mt10 mb5">
+            名前
+          </div>
+          <div class="col-12">
+            <%= form.text_field :name, autofocus: true, value: @user.name, placeholder: "名前（20字以内）" %>
+          </div>
+        </div>
 
-    <div class="mt10 row">
-      <div class="col-2 col-12-xsmall mt10">
-        ユーザーネーム
-      </div>
-      <div class="col-4 col-12-xsmall">
-        <%= form.text_field :username,
-                              autofocus: true,
-                              autocomplete: "username",
-                              value: @user.username,
-                              placeholder: "ユーザーネーム（半角英小文字/数字 4〜20字）" %>
-      </div>
-    </div>
+        <div class="mt10 row">
+          <div class="col-12 ml10 mt10 mb5">
+            ユーザーネーム
+          </div>
+          <div class="col-12">
+            <%= form.text_field :username,
+                                  autofocus: true,
+                                  autocomplete: "username",
+                                  value: @user.username,
+                                  placeholder: "ユーザーネーム（半角英小文字/数字 4〜20字）" %>
+          </div>
+        </div>
 
-    <div class="mt10 row">
-      <div class="col-2 col-12-xsmall mt10">
-        自己紹介
-      </div>
-      <div class="col-4  col-12-xsmall">
-        <%= form.text_area :bio, value: @user.bio, placeholder: "自己紹介（150字以内）", maxlength: 150 %>
-      </div>
-    </div>
+        <div class="mt10 row">
+          <div class="col-12 ml10 mt10 mb5">
+            自己紹介
+          </div>
+          <div class="col-12">
+            <%= form.text_area :bio, value: @user.bio, placeholder: "自己紹介（150字以内）", maxlength: 150 %>
+          </div>
+        </div>
 
-    <%# jsでajax送信するためのボタンを作成 %>
-    <div class="mt20 row">
-      <div class="col-6 col-12-xsmall align-center">
-        <div id="submit_btn" class="button" tabindex="0">保存</div>
-      </div>
+        <%# jsでajax送信するためのボタンを作成 %>
+        <div class="mt20 row">
+          <div class="col-12 align-center">
+            <div id="submit_btn" class="button primary" tabindex="0">保存</div>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </section>
 
 <div class="overlay" style="display:none;">
@@ -215,6 +219,10 @@
         processData: false,
         contentType: false,
       });
+
+      setTimeout(function() {
+          location.href='/mypage';
+      }, 500);
     };
 
     // 入力されたformデータ（textやradioなど）を取得する関数作成
