@@ -1,10 +1,10 @@
 <%# ajax処理で使う分のパラメータをhidden_fieldで持っておく %>
 <%= hidden_field_tag "username", @user.username %>
 
-<section>
-  <div class="row">
-    <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
-      <%= form_with(model: @user, url: "/#{@user.username}") do |form| %>
+<div class="row">
+  <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
+    <div class="edit-bg">
+      <%= form_with(model: @user, url: "/#{@user.username}", class: "mb0") do |form| %>
         <div class="row">
           <div class="off-4 col-4">
             <div id="img_field" onClick="$('#user_image').click()">
@@ -63,7 +63,7 @@
       <% end %>
     </div>
   </div>
-</section>
+</div>
 
 <div class="overlay" style="display:none;">
   <div class="crop_modal"></div>
