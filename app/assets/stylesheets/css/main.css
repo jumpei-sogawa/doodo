@@ -1854,7 +1854,7 @@ button,
   flex-shrink: 1;
   width: 100%; }
   #main > .inner {
-    padding: 5em 6em 0.1em 6em ;
+    padding: 5em 6em 0.1em 30em ;
     margin: 0 auto;
     max-width: 110em; }
     #main > .inner > section {
@@ -1864,7 +1864,7 @@ button,
         border-top: 0 !important; }
   @media screen and (max-width: 1680px) {
     #main > .inner {
-      padding: 5em 5em 0.1em 5em ; }
+      padding: 5em 5em 0.1em 28em ; }
       #main > .inner > section {
         padding: 2em 0 3em 0 ; } }
   @media screen and (max-width: 1280px) {
@@ -1927,9 +1927,12 @@ button,
   -webkit-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
   -ms-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
   transition: margin-left 0.5s ease, box-shadow 0.5s ease;
-  background-color: #f5f6f7;
   font-size: 0.9em;
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 300;
+  background-color: #f5f6f7;
   width: 26em; }
   #sidebar h2 {
     font-size: 1.38889em; }
@@ -1973,7 +1976,7 @@ button,
     white-space: nowrap;
     top: 0;
     width: 6em;
-    z-index: 10000; }
+    z-index: 200; }
     #sidebar .toggle:before {
       -moz-osx-font-smoothing: grayscale;
       -webkit-font-smoothing: antialiased;
@@ -2001,6 +2004,7 @@ button,
     #sidebar {
       width: 24em; }
       #sidebar > .inner {
+        background-color: #f5f6f7;
         padding: 1.66667em 1.66667em 1.33333em 1.66667em ;
         width: 24em; }
         #sidebar > .inner > .alt {
@@ -2021,11 +2025,7 @@ button,
   @media screen and (max-width: 1280px) {
     #sidebar {
       box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0.175);
-      height: 100%;
-      left: 0;
-      position: fixed;
-      top: 0;
-      z-index: 10000; }
+      height: 100%; }
       #sidebar.inactive {
         box-shadow: none; }
       #sidebar > .inner {
@@ -2084,7 +2084,7 @@ button,
   border-bottom: solid 5px #f56a6a;
   padding: 6em 0 1em 0;
   position: fixed;
-  z-index: 9000; }
+  z-index: 100; }
   #header > * {
     -moz-flex: 1;
     -webkit-flex: 1;
