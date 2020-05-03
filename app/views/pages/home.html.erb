@@ -10,3 +10,36 @@
     <% end %>
   </div>
 </div>
+
+<%= javascript_include_tag 'swiper.js' %>
+
+<script type="text/javascript" language="javascript">
+  <% @exhb_logs.each do |exhb_log| %>
+    swiperWidth = $('.swiper<%= exhb_log.id %>').width();
+    var sliderCount = 3;
+    var slideOffset = 0;
+    <% if exhb_log.art_logs.count == 1 %>
+      sliderCount = 1;
+      slideOffset = swiperWidth / 3 + 10 / 3;
+    <% elsif exhb_log.art_logs.count == 2 %>
+      sliderCount = 2;
+      slideOffset = swiperWidth / 6 + 10 / 6;
+    <% end %>
+
+    var mySwiper<%= exhb_log.id %> = new Swiper('.swiper<%= exhb_log.id %>', {
+      navigation: {
+        prevEl: '.prev<%= exhb_log.id %>',
+        nextEl: '.next<%= exhb_log.id %>',
+      },
+      slidesPerView: 3,
+      slidesOffsetBefore: slideOffset,
+      spaceBetween: 10,
+      initialSlide: 0,
+      pagination: {
+        el: '.page<%= exhb_log.id %>',
+        type: 'bullets',
+        clickable: true,
+      },
+    });
+  <% end %>
+</script>
