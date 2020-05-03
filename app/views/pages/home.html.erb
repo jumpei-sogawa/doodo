@@ -10,3 +10,32 @@
     <% end %>
   </div>
 </div>
+
+<%= javascript_include_tag 'swiper.js' %>
+
+<script type="text/javascript" language="javascript">
+  <% @exhb_logs.each do |exhb_log| %>
+    var sliderCount = 3;
+    <% if exhb_log.art_logs.count == 1 %>
+      sliderCount = 1;
+    <% elsif exhb_log.art_logs.count == 2 %>
+      sliderCount = 2;
+    <% end %>
+
+var mySwiper<%= exhb_log.id %> = new Swiper('.swiper<%= exhb_log.id %>', {
+      navigation: {
+        prevEl: '.prev<%= exhb_log.id %>',
+        nextEl: '.next<%= exhb_log.id %>',
+      },
+      spaceBetween: 10,
+      initialSlide: 0,
+      slidesPerView: sliderCount,
+      pagination: {
+        el: '.page<%= exhb_log.id %>',
+        type: 'bullets',
+        clickable: true,
+      },
+    });
+  <% end %>
+</script>
+

@@ -101,65 +101,79 @@
     </div>
   </div>
 
-  <div class="flex-container flex-start center wrap">
-    <% art_logs.each do |art_log| %>
-      <% art = art_log.art %>
-      <div class="w30 mr5per mb10">
-        <% if art_log.image.present? %>
-          <%= link_to art_log_path(art_log) do %>
-            <div class="adjust-box box-1x1">
-              <div class="inner-box align-center">
-                <%= image_tag art_log.image.to_s, class: "w100 h100 image", style: "object-fit: cover;" %>
+  <% if art_logs.present? %>
+    <div class="swiper-parent">
+      <div class="swiper-container swiper<%= exhb_log.id %>">
+        <div class="swiper-wrapper">
+          <% art_logs.each do |art_log| %>
+            <% art = art_log.art %>
+            <div class="swiper-slide">
+              <% if art_log.image.present? %>
+                <%= link_to art_log_path(art_log) do %>
+                  <div class="adjust-box box-1x1">
+                    <div class="inner-box align-center">
+                      <%= image_tag art_log.image.to_s, class: "w100 h100 image", style: "object-fit: cover;" %>
 
-                <div class="bg-art-stars"></div>
-                <% if art_log.body.present? %>
-                  <div class="comment-icon">
-                    <div class="flex-container space-evenly center w100 h100">
-                      <i class="fas fa-comment-dots white"></i>
+                      <div class="bg-art-stars"></div>
+                      <% if art_log.body.present? %>
+                        <div class="comment-icon">
+                          <div class="flex-container space-evenly center w100 h100">
+                            <i class="fas fa-comment-dots white"></i>
+                          </div>
+                        </div>
+                      <% end %>
+                      <div class="art-stars">
+                        <% art_log.star.times do %>
+                          <span class="star w20 pb5 mb0 yellow"><i class="fas fa-star"></i></span>
+                        <% end %>
+                      </div>
+                      <div class="camera-icon">
+                        <div class="flex-container space-evenly center w100 h100">
+                          <i class="fas fa-camera white"></i>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 <% end %>
-                <div class="art-stars">
-                  <% art_log.star.times do %>
-                    <span class="star w20 pb5 mb0 yellow"><i class="fas fa-star"></i></span>
-                  <% end %>
-                </div>
-                <div class="camera-icon">
-                  <div class="flex-container space-evenly center w100 h100">
-                    <i class="fas fa-camera white"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <%= link_to art_path(art) do %>
-            <div class="adjust-box box-1x1">
-              <div class="inner-box align-center">
-                <% if art.image.present? %>
-                  <%= image_tag art.image, class: "w100 h100 image", style: "object-fit: cover;" %>
-                <% else %>
-                  <i class="far fa-gem" id="art_log_<%= i %>"></i>
-                <% end %>
+              <% else %>
+                <%= link_to art_path(art) do %>
+                  <div class="adjust-box box-1x1">
+                    <div class="inner-box align-center">
+                      <% if art.image.present? %>
+                        <%= image_tag art.image, class: "w100 h100 image", style: "object-fit: cover;" %>
+                      <% else %>
+                        <i class="far fa-gem" id="art_log_<%= i %>"></i>
+                      <% end %>
 
-                <div class="bg-art-stars"></div>
-                <% if art_log.body.present? %>
-                  <div class="comment-icon">
-                    <div class="flex-container space-evenly center w100 h100">
-                      <i class="fas fa-comment-dots white"></i>
+                      <div class="bg-art-stars"></div>
+                      <% if art_log.body.present? %>
+                        <div class="comment-icon">
+                          <div class="flex-container space-evenly center w100 h100">
+                            <i class="fas fa-comment-dots white"></i>
+                          </div>
+                        </div>
+                      <% end %>
+                      <div class="art-stars">
+                        <% art_log.star.times do %>
+                          <span class="star w20 pb5 mb0 yellow"><i class="fas fa-star"></i></span>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 <% end %>
-                <div class="art-stars">
-                  <% art_log.star.times do %>
-                    <span class="star w20 pb5 mb0 yellow"><i class="fas fa-star"></i></span>
-                  <% end %>
-                </div>
-              </div>
+              <% end %>
             </div>
           <% end %>
+        </div>
+        <% if art_logs.count > 3 %>
+          <div class="swiper-pagination page<%= exhb_log.id %> swiper-pagination-pink"></div>
         <% end %>
       </div>
-    <% end %>
-  </div>
+      <% if art_logs.count > 3 %>
+        <div class="swiper-button-prev prev<%= exhb_log.id %> swiper-button-dark"></div>
+        <div class="swiper-button-next next<%= exhb_log.id %> swiper-button-dark"></div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
+

@@ -75,13 +75,6 @@
   margin-right: 10px;
 }
 
-.w30.mr5per {
-  margin-right: 5%;
-}
-.w30.mr5per:nth-child(3n) {
-  margin-right: 0;
-}
-
 .mb0 {
   margin-bottom: 0px;
 }
@@ -331,6 +324,22 @@ a.button.light-gray {
 
 .flex-container.wrap {
   flex-wrap: wrap;
+}
+
+// swiper
+.swiper-parent {
+  position: relative;
+}
+
+.swiper-container {
+  width: calc(100% - 100px);	/* ☆前・次ページボタンの幅をそれぞれ50pxとして、その分を引く */
+	padding-bottom: 50px;		/* ★ページネーション・スクロールバー分の余白50pxを下に取る */
+	box-sizing: content-box;
+}
+
+.swiper-button-prev, .swiper-button-next {
+	top: calc((100% - 50px) * 0.5);	/* ☆★ページネーション・スクロールバー（50px）を除く縦位置の中央（＝スライドの高さの中央）に一旦配置 */
+	margin-top: -22px;			/* ★ボタンの高さ（44px）の半分のネガティブマージンで上に少しずらす */
 }
 
 

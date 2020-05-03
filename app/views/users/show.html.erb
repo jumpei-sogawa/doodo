@@ -110,6 +110,7 @@
   <% end %>
 </div>
 
+<%= javascript_include_tag 'swiper.js' %>
 
 <script type="text/javascript" language="javascript">
 	// タブ切り替え
@@ -189,4 +190,22 @@
 		$('#pinned_container').addClass("non-active")
 	}
 
+  // Swiper
+  <% @exhb_logs.each do |exhb_log| %>
+    var mySwiper<%= exhb_log.id %> = new Swiper('.swiper<%= exhb_log.id %>', {
+    navigation: {
+      prevEl: '.prev<%= exhb_log.id %>',
+      nextEl: '.next<%= exhb_log.id %>',
+    },
+    slidesPerView: 3,
+    spaceBetween: 10,
+    initialSlide: 0,
+    centeredSlides : true,
+    pagination: {
+        el: '.page<%= exhb_log.id %>',
+        type: 'bullets',
+        clickable: true,
+      },
+    });
+  <% end %>
 </script>
