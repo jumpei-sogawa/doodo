@@ -1,4 +1,4 @@
-class ExhbClip < ApplicationRecord
+class ExhbPin < ApplicationRecord
   belongs_to :user
   belongs_to :exhibition
 end

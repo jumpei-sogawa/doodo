@@ -71,15 +71,6 @@ ActiveRecord::Schema.define(version: 2020_04_01_104635) do
     t.index ["exhibition_id"], name: "index_arts_on_exhibition_id"
   end
 
-  create_table "exhb_clips", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "exhibition_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["exhibition_id"], name: "index_exhb_clips_on_exhibition_id"
-    t.index ["user_id"], name: "index_exhb_clips_on_user_id"
-  end
-
   create_table "exhb_log_comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "exhb_log_id"
@@ -108,6 +99,15 @@ ActiveRecord::Schema.define(version: 2020_04_01_104635) do
     t.datetime "updated_at", null: false
     t.index ["exhibition_id"], name: "index_exhb_logs_on_exhibition_id"
     t.index ["user_id"], name: "index_exhb_logs_on_user_id"
+  end
+
+  create_table "exhb_pins", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "exhibition_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhibition_id"], name: "index_exhb_pins_on_exhibition_id"
+    t.index ["user_id"], name: "index_exhb_pins_on_user_id"
   end
 
   create_table "exhibitions", force: :cascade do |t|

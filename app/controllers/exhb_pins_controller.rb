@@ -1,13 +1,13 @@
-class ExhbClipsController < ApplicationController
+class ExhbPinsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_exhibition
 
   def create
-    ExhbClip.create(user_id: current_user.id, exhibition_id: params[:exhibition_id])
+    ExhbPin.create(user_id: current_user.id, exhibition_id: params[:exhibition_id])
   end
 
   def destroy
-    ExhbClip.find(params[:id]).destroy
+    ExhbPin.find(params[:id]).destroy
   end
 
   private

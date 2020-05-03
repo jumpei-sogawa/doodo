@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :exhb_clips, dependent: :destroy
-  has_many :clipped_exhibitions, through: :exhb_clips, source: :exhibition
+  has_many :exhb_pins, dependent: :destroy
+  has_many :clipped_exhibitions, through: :exhb_pins, source: :exhibition
   has_many :exhb_logs, dependent: :destroy
   has_many :visited_exhibitions, through: :exhb_logs, source: :exhibition
   has_many :exhb_log_likes, dependent: :destroy

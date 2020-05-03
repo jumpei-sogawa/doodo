@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :logs, only: [:new, :create]
 
   resources :exhibitions, only: [:index, :show] do
-    resources :exhb_clips, only: [:create, :destroy]
+    resources :exhb_pins, only: [:create, :destroy]
   end
 
   resources :arts, only: [:index, :show] do

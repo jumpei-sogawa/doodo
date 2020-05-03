@@ -2,7 +2,7 @@ class Exhibition < ApplicationRecord
   belongs_to :museum
   has_many :arts, dependent: :destroy
   has_many :exhb_logs, dependent: :destroy
-  has_many :exhb_clips, dependent: :destroy
+  has_many :exhb_pins, dependent: :destroy
 
   def self.search_by_any(params)
     exhibitions_by_area = []

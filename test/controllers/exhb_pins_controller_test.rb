@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ExhbClipTest < ActiveSupport::TestCase
+class ExhbPinsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

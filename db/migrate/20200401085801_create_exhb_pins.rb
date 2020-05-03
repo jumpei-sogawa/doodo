@@ -1,6 +1,6 @@
-class CreateExhbClips < ActiveRecord::Migration[5.2]
+class CreateExhbPins < ActiveRecord::Migration[5.2]
   def change
-    create_table :exhb_clips do |t|
+    create_table :exhb_pins do |t|
       t.references :user, foreign_key: true
       t.references :exhibition, foreign_key: true
 
