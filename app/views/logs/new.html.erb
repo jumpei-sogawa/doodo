@@ -84,24 +84,22 @@
             </div>
 
             <%# Body form %>
-            <%= form.text_area :body, rows: "2", placeholder: "感想..." %>
+            <div class="mb5">
+              <%= form.text_area :body, rows: "2", placeholder: "感想..." %>
+            </div>
           </div>
 
           <%# ターゲット選択エリア %>
           <div class="col-4">
             <%# 展覧会画像表示 %>
             <% if params[:e].present? %>
-              <div id="select-target-area" class="adjust-box box-3x4 cursor">
-                <h2 class="inner-box align-center">
-                  <%= image_tag e.image, class: "image w100 mt10" %>
-                </h2>
+              <div id="select-target-area" class="cursor">
+                <%= image_tag e.image, class: "image w100" %>
               </div>
             <%# 作品画像表示 %>
             <% elsif params[:a].present? %>
-              <div id="select-target-area" class="adjust-box box-3x4 cursor">
-                <h2 class="inner-box align-center">
-                  <%= image_tag a.image, class: "image w100 mt10" %>
-                </h2>
+              <div id="select-target-area" class="cursor">
+                <%= image_tag a.image, class: "image w100" %>
               </div>
             <%# ターゲット選択ボタン %>
             <% else %>
@@ -194,7 +192,7 @@
 
   // 検索から戻ってきたらselect-target-areaのborder消す
   <% if params[:e].present? || params[:a].present? %>
-    $('#select-target-area').removeClass("image-field")
+    $('#select-target-area').removeClass("select-target-area")
   <% end %>
 
   // スライダーの値を反映させる
