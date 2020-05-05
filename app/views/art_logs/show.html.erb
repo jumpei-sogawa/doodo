@@ -12,7 +12,7 @@
             <% @art_log_comments.each do |art_log_comment| %>
               <%= render partial: "users/show", locals: {user: art_log_comment.user, body: art_log_comment} %>
               <div class="row mb10">
-                <div class="off-3 col-9 off-2-xsmall col-10">
+                <div class="off-3 col-9 off-2-xsmall col-10 is-text">
                   <%= art_log_comment.body %>
                 </div>
               </div>
