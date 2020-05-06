@@ -59,7 +59,8 @@
 }
 
 .header-ml {
-  margin-left: 16.5em;
+  margin-left: 420px;
+  position: relative;
 }
 @media screen and (max-width: 1280px) {
   .header-ml {
@@ -69,6 +70,20 @@
 @media screen and (max-width: 736px) {
   .header-ml {
     margin-left: 40px;
+  }
+}
+
+.header-nav-container {
+  position: absolute;
+  height: 100%;
+  top: 50%;
+  right: 0;
+  transform: translate(0%,-50%);
+  display: flex;
+  align-items: center;
+
+  .item {
+    margin-right: 10px;
   }
 }
 

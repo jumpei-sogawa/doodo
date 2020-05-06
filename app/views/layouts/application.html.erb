@@ -19,9 +19,34 @@
   <div id="main" style="margin-bottom:40px;">
     <!-- Header -->
     <header id="header" class="header-bg">
-      <h2 class="header-ml">
-        <a href="/" class="dark bb0" style="font-family: &quot;Open Sans&quot;, san-selif;">DooDoo</a>
-      </h2>
+      <div class="header-ml">
+        <h2 class="mb0">
+          <a href="/" class="dark bb0" style="font-family: &quot;Open Sans&quot;, san-selif;">DooDoo</a>
+        </h2>
+        <div class="header-nav-container">
+          <% if user_signed_in? %>
+            <div class="item">
+              <%= link_to destroy_user_session_path, class: "bb0", method: :delete do %>
+                <i class="fas fa-sign-out-alt gray"></i>
+                <span class="gray">ログアウト</span>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="item">
+              <%= link_to new_user_session_path, class: "bb0" do %>
+                <i class="fas fa-sign-in-alt gray"></i>
+                <span class="gray">ログイン</span>
+              <% end %>
+            </div>
+            <div class="item">
+              <%= link_to new_user_registration_path, class: "bb0" do %>
+                <i class="fas fa-user-plus gray"></i>
+                <span class="gray">アカウント作成</span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </header>
 
     <div class="inner">
@@ -51,9 +76,6 @@
 
       <!-- Menu -->
       <nav id="menu">
-        <header class="major">
-          <h2>メニュー</h2>
-        </header>
         <ul>
           <li>
             <%= link_to root_path do %>
@@ -86,29 +108,11 @@
                 マイページ
               <% end %>
             </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fas fa-sign-out-alt"></i>
-                ログアウト
-              <% end %>
-            </li>
           <% else %>
             <li>
               <%= link_to mypage_path do %>
                 <i class="fas fa-user"></i>
                 マイページ
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_user_session_path do %>
-                <i class="fas fa-sign-in-alt"></i>
-                ログイン
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_user_registration_path do %>
-                <i class="fas fa-user-plus"></i>
-                アカウント作成
               <% end %>
             </li>
           <% end %>
