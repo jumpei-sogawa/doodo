@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-6 col-12-xsmall">
+    <%= form_with(model: article, local: true) do |form| %>
+      <% if article.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+          <ul>
+          <% article.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.label :image %>
+        <%= form.file_field :image %>
+      </div>
+
+      <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+      </div>
+
+      <div class="field">
+        <%= form.label :body %>
+        <%= form.text_area :body, rows: "30" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit class: "primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-6 col-12-xsmall">
+    <div id="preview_image">
+      <%= image_tag @article.image.to_s, class: "image w100" %>
+    </div>
+    <h1 id="preview-title"></h1>
+    <div id="preview-body"></div>
+  </div>
+</div>
+
+
+<%= javascript_include_tag 'marked.js' %>
+
+<script type="text/javascript" language="javascript">
+  marked.setOptions({breaks : true});
+
+  $articleImage = $('#article_image');
+  $articleTitle = $('#article_title');
+  $articleBody = $('#article_body');
+  $previewTitle = $('#preview-title');
+  $previewImage = $('#preview_image');
+  $previewBody = $('#preview-body');
+
+  $previewTitle.html(
+    marked($articleTitle.val())
+  );
+
+  $previewBody.html(
+    marked($articleBody.val())
+  );
+
+  $($articleImage).on('change', $articleImage, function(e) {
+    file = e.target.files[0];
+    reader = new FileReader();
+
+    if(file.type.indexOf('image') < 0){
+      return false;
+    };
+
+    reader.onload = (function(file) {
+      return function(e) {
+        $previewImage.empty();
+        $previewImage.append($('<img>').attr({
+          src: e.target.result,
+          width: "100%",
+          class: "image",
+          title: file.name
+        }));
+      };
+    })(file);
+    reader.readAsDataURL(file);
+  });
+
+  $articleTitle.on('input', function() {
+    $previewTitle.html(
+      marked($articleTitle.val())
+    );
+  });
+
+  $articleBody.on('input', function() {
+    $previewBody.html(
+      marked($articleBody.val())
+    );
+  });
+</script>

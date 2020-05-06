@@ -1,0 +1,38 @@
+<%= hidden_field_tag "articleTitle", @article.title %>
+<%= hidden_field_tag "articleBody", @article.body %>
+
+<div class="row mt10 mb10">
+  <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
+    <%= image_tag @article.image.to_s, class: "image w100" %>
+    <h1 id="preview-title"></h1>
+    <div id="preview-body"></div>
+
+    <%= link_to '一覧へ戻る', articles_path, class: "button bb0" %>
+
+    <% if user_signed_in? %>
+      <% if current_user.id == 1 %>
+        <%= link_to '編集する', edit_article_path(@article), class: "button primary" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+
+<%= javascript_include_tag 'marked.js' %>
+
+<script type="text/javascript" language="javascript">
+  $previewTitle = $('#preview-title');
+  $previewBody = $('#preview-body');
+
+  marked.setOptions({breaks : true});
+
+  $previewTitle.html(
+    marked(articleTitle.value)
+  );
+
+  $previewBody.html(
+    marked(articleBody.value)
+  );
+
+</script>

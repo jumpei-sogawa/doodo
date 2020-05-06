@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_104635) do
+ActiveRecord::Schema.define(version: 2020_05_06_093302) do
 
   create_table "art_log_comments", force: :cascade do |t|
     t.integer "user_id"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2020_04_01_104635) do
     t.index ["art_id"], name: "index_art_logs_on_art_id"
     t.index ["exhb_log_id"], name: "index_art_logs_on_exhb_log_id"
     t.index ["user_id"], name: "index_art_logs_on_user_id"
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "image"
+    t.string "title"
+    t.text "body"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "artists", force: :cascade do |t|
