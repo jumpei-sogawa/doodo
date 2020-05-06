@@ -182,11 +182,15 @@
 
 <div id="overlay<%= exhb_log.id %>" class="overlay bg-transp-dark non-active">
   <div class="submenu-modal">
-    <div class="container mb10">
-      <%= link_to "exhb_logs/#{exhb_log.id}", method: :delete do %>
-        <div class="item delete">削除する</div>
+    <% if user_signed_in? %>
+      <% if user.id == current_user.id %>
+        <div class="container mb10">
+          <%= link_to "exhb_logs/#{exhb_log.id}", method: :delete do %>
+            <div class="item delete">削除する</div>
+          <% end %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
     <div class="container">
       <div class="item">キャンセル</div>
     </div>

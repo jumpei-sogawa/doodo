@@ -60,6 +60,12 @@ class ExhbLogsController < ApplicationController
   # DELETE /exhb_logs/1
   # DELETE /exhb_logs/1.json
   def destroy
+    unless user_signed_in?
+      redirect_to session[:previous_url]
+    end
+    if @exhb_log.user.id != current_user.id
+      redirect_to session[:previous_url]
+    end
     @exhb_log.destroy
     redirect_to root_path
   end
