@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_05_06_093302) do
     t.string "title"
     t.text "body"
     t.text "description"
+    t.boolean "published"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
