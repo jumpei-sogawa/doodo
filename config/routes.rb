@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions'
   }
 
+  resources :articles
+
   get '/mypage' => 'users#mypage'
   get '/:username' => 'users#show'
   get '/:username/edit' => 'users#edit'
