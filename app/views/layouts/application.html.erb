@@ -24,26 +24,34 @@
           <a href="/" class="dark bb0" style="font-family: &quot;Open Sans&quot;, san-selif;">DooDoo</a>
         </h2>
         <div class="header-nav-container">
-          <% if user_signed_in? %>
-            <div class="item">
-              <%= link_to destroy_user_session_path, class: "bb0", method: :delete do %>
-                <i class="fas fa-sign-out-alt gray"></i>
-                <span class="gray">ログアウト</span>
-              <% end %>
-            </div>
+          <%# 投稿保存ボタン %>
+          <% if params[:controller] == "logs" && params[:action] == "new" %>
+            <% if params[:e].present? || params[:a].present? %>
+              <h3 id="save_btn" class="mb0 item pink">保存</h3>
+            <% end %>
           <% else %>
-            <div class="item">
-              <%= link_to new_user_session_path, class: "bb0" do %>
-                <i class="fas fa-sign-in-alt gray"></i>
-                <span class="gray">ログイン</span>
-              <% end %>
-            </div>
-            <div class="item">
-              <%= link_to new_user_registration_path, class: "bb0" do %>
-                <i class="fas fa-user-plus gray"></i>
-                <span class="gray">アカウント作成</span>
-              <% end %>
-            </div>
+            <%# sign up in out buttons %>
+            <% if user_signed_in? %>
+              <div class="item">
+                <%= link_to destroy_user_session_path, class: "bb0", method: :delete do %>
+                  <i class="fas fa-sign-out-alt gray"></i>
+                  <span class="gray">ログアウト</span>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="item">
+                <%= link_to new_user_session_path, class: "bb0" do %>
+                  <i class="fas fa-sign-in-alt gray"></i>
+                  <span class="gray">ログイン</span>
+                <% end %>
+              </div>
+              <div class="item">
+                <%= link_to new_user_registration_path, class: "bb0" do %>
+                  <i class="fas fa-user-plus gray"></i>
+                  <span class="gray">アカウント作成</span>
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
