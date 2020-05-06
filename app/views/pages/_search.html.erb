@@ -37,7 +37,7 @@
 
 	<div class="row">
 		<% museums.each do |museum| %>
-			<div class="col-2 col-6-xsmall">
+			<div class="col-3 col-6-xsmall">
 				<div class="museum-container">
 					<%= render partial: "museums/show", locals: {museum: museum} %>
 				</div>
@@ -53,7 +53,7 @@
 
 	<div class="row">
 		<% exhibitions.each do |exhb| %>
-			<div class="col-2 col-6-xsmall">
+			<div class="col-3 col-6-xsmall">
 				<div class="exhb-container">
 					<%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
 				</div>
@@ -69,7 +69,7 @@
 
 	<div class="row">
 		<% arts.each do |art| %>
-			<div class="col-2 col-6-xsmall">
+			<div class="col-3 col-6-xsmall">
 				<div class="art-container">
 					<%= render partial: "arts/show", locals: {art: art} %>
 				</div>
