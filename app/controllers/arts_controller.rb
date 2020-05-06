@@ -26,7 +26,7 @@ class ArtsController < ApplicationController
     @title = @art.title
     @description = @art.description
     @headline = "作品詳細"
-    @art_logs = @art.art_logs.order(id: "DESC").select{|el| el.body.present? }.first(10)
+    @art_logs = @art.art_logs.order(id: "DESC").select{|el| (el.body.present? || el.image.present? ) }.first(10)
     @art_log_comment = ArtLogComment.new
   end
 

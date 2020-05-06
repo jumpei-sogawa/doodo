@@ -66,9 +66,8 @@
     <% if @exhb_logs.present? %>
       <% @exhb_logs.each do |exhb_log| %>
         <% if exhb_log.exhibition.id == 1 %>
-          <% art_log = exhb_log.art_logs.first %>
           <div class="col-6 col-12-xsmall">
-            <%= render partial: "logs/show_art_log", locals: {art_log: art_log} %>
+            <%= render partial: "logs/show_art_log", locals: {exhb_log: exhb_log} %>
           </div>
         <% else %>
           <div class="col-6 col-12-xsmall">
@@ -190,8 +189,21 @@
 		$('#pinned_container').addClass("non-active")
 	}
 
-  // Swiper
   <% @exhb_logs.each do |exhb_log| %>
+    // Ellipsis Button
+    $ellipsisButton = $('#ellipsis<%= exhb_log.id %>');
+    $overlay<%= exhb_log.id %> = $('#overlay<%= exhb_log.id %>');
+    $ellipsisButton.on('click', function() {
+      $overlay<%= exhb_log.id %>.fadeIn();
+      $overlay<%= exhb_log.id %>.removeClass('non-active');
+    });
+
+    $overlay<%= exhb_log.id %>.on('click', function() {
+      $overlay<%= exhb_log.id %>.addClass('non-active');
+      $overlay<%= exhb_log.id %>.fadeOut();
+    });
+
+    // Swiper
     swiperWidth = $('.swiper<%= exhb_log.id %>').width();
     var sliderCount = 3;
     var slideOffset = 0;

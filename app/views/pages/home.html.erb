@@ -18,8 +18,8 @@
     $ellipsisButton = $('#ellipsis<%= exhb_log.id %>');
     $overlay<%= exhb_log.id %> = $('#overlay<%= exhb_log.id %>');
     $ellipsisButton.on('click', function() {
-      $overlay<%= exhb_log.id %>.removeClass('non-active');
       $overlay<%= exhb_log.id %>.fadeIn();
+      $overlay<%= exhb_log.id %>.removeClass('non-active');
     });
 
     $overlay<%= exhb_log.id %>.on('click', function() {

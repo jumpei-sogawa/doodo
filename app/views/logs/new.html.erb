@@ -115,7 +115,7 @@
         </div>
       </div>
 
-      <%# 作品ログフォーム表示 %>
+      <%# 作品一覧 %>
       <% if params[:e].present? %>
         <div class="row mt20">
           <% e.arts.each.with_index do |art, i| %>
@@ -200,8 +200,8 @@
     <% e.arts.each.with_index do |art, i| %>
       // 作品画像クリックで詳細表示
       $('#art_log_<%= i %>').on('click', function(){
-        $('#overlay_art_<%= i %>').removeClass("non-active");
         $('#overlay_art_<%= i %>').fadeIn();
+        $('#overlay_art_<%= i %>').removeClass("non-active");
       });
 
       // 作品の詳細表示モーダル閉じる
