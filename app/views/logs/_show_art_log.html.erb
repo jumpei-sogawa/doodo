@@ -1,3 +1,4 @@
+<% art_log = exhb_log.art_logs.first %>
 <% user = art_log.user %>
 <% art = art_log.art %>
 <% artist = art.artist %>
@@ -15,6 +16,9 @@
     <a href="/<%=user.username%>" class="dark bb0">
       <strong><%= user.username %></strong>
     </a>
+    <div id="ellipsis<%= exhb_log.id %>" class="ellipsis">
+      <i class="fas fa-ellipsis-v"></i>
+    </div>
   </header>
 
   <div class="row mb5">
@@ -99,6 +103,19 @@
       <div class="flex-container space-evenly center">
         <h1 class="gray mb0"><a href="/logs/new/?a=<%=art.id%>"><i class="fas fa-edit"></i></a></h1>
       </div>
+    </div>
+  </div>
+</div>
+
+<div id="overlay<%= exhb_log.id %>" class="overlay bg-transp-dark non-active">
+  <div class="submenu-modal">
+    <div class="container mb10">
+      <%= link_to "exhb_logs/#{exhb_log.id}", method: :delete do %>
+        <div class="item delete">削除する</div>
+      <% end %>
+    </div>
+    <div class="container">
+      <div class="item">キャンセル</div>
     </div>
   </div>
 </div>

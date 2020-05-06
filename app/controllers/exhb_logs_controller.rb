@@ -61,10 +61,7 @@ class ExhbLogsController < ApplicationController
   # DELETE /exhb_logs/1.json
   def destroy
     @exhb_log.destroy
-    respond_to do |format|
-      format.html { redirect_to exhb_logs_url, notice: 'Exhb log was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to root_path
   end
 
   private

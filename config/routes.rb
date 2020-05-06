@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :art_logs, only: [:new, :create]
   end
 
-  resources :exhb_logs, only: [:show] do
+  resources :exhb_logs, only: [:show, :destroy] do
     resources :exhb_log_likes, only: [:create, :destroy]
     resources :exhb_log_comments, only: [:create]
   end

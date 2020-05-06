@@ -128,7 +128,7 @@
         </div>
 
         <%# 作品ログフォームモーダル %>
-        <div id="overlay_art_<%= i %>" class="overlay non-active">
+        <div id="overlay_art_<%= i %>" class="overlay bg-transp-black non-active">
           <div class="modal_art">
             <%= render partial: "logs/show_modal_art_form", locals: {art: art, i: i} %>
           </div>
@@ -159,7 +159,7 @@
 <% end %>
 
 <%# 検索モーダル %>
-<div id="overlay" class="non-active">
+<div id="overlay" class="overlay bg-white non-active">
   <div id="search_modal">
     <%= render partial: "pages/search", locals: {museums: @museums, exhibitions: @exhibitions, arts: @arts} %>
   </div>

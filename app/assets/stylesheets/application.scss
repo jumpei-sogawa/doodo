@@ -28,7 +28,7 @@
   white-space: pre-wrap;
 }
 
-// borfer
+// border
 .b0 {
   bottom: 0;
 }
@@ -331,6 +331,30 @@ a.button.light-gray {
   flex-wrap: wrap;
 }
 
+// overlay
+.overlay {
+  z-index: 500;
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay.bg-white {
+  background-color: #f5f6f7;
+}
+
+.overlay.bg-transp-dark {
+  background-color: #0004;
+}
+
+.overlay.bg-transp-black {
+  background-color: rgba(0,0,0,0.85);
+}
+
+
 // swiper
 .swiper-parent {
   position: relative;
@@ -389,7 +413,41 @@ span.denominator {
   padding: 5px 0 5px 0px;
   display: flex;
   align-items: center;
+  position: relative;
 }
+
+.ellipsis {
+  position: absolute;
+  right: 1em;
+  cursor: pointer;
+}
+
+.submenu-modal {
+  position: fixed;
+  width: 60%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: transparent;
+  overflow-y: scroll;
+
+  .container {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f5f6f7;
+    text-align: center;
+
+    .item {
+      font-size: 1.5em;
+      background-color: transparent;
+    }
+
+    .item.delete {
+      color: #f56a6a;
+    }
+  }
+}
+
 
 .log-body-container {
   width: 100%;
@@ -571,16 +629,6 @@ span.denominator {
 }
 
 // ログ投稿画面 検索モーダル
-#overlay {
-  z-index: 500;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #f5f6f7;
-}
-
 #search_modal {
   position: fixed;
   width: 100%;
@@ -641,17 +689,6 @@ span.denominator {
 }
 
 // プロフィール画像編集
-.overlay {
-  z-index: 500;
-  position: fixed;
-  display: none;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.85);
-}
-
 // トリミング部の親要素
 .crop_modal {
   width: 100%;
