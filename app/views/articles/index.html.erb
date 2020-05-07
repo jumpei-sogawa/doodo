@@ -3,13 +3,18 @@
     <% @articles.each do |article| %>
       <%= link_to article_path(article) do %>
         <div class="article-container">
-          <div class="article-image">
-            <%= image_tag article.image.to_s, class: "image w100"%>
+          <div class="adjust-box box-16x9">
+            <div class="inner-box align-center">
+              <%= image_tag article.image.to_s, class: "image w100 h100", style: "object-fit: cover;" %>
+            </div>
           </div>
-          <h2 class="article-title mt10 mb10">
+
+          <h2 class="article-title mt10 mb5">
             <%= article.title %>
           </h2>
-          <div id="preview_body<%= article.id %>" class="article-body mb0 dark">
+
+          <div class="gray">
+            <%= l article.updated_at, format: :short_date %>
           </div>
         </div>
       <% end %>

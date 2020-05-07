@@ -73,6 +73,7 @@
   $previewImage = $('#preview_image');
   $previewBody = $('#preview-body');
 
+  // ロード時
   $previewTitle.html(
     marked($articleTitle.val())
   );
@@ -81,14 +82,15 @@
     marked($articleBody.val())
   );
 
-  if ($articlePublishedTrue.val()) {
-    $('#temp_save_button').removeClass("non-active");
-    $('#publish_button').addClass("non-active");
-  } else {
+  if ($articlePublishedTrue[0].checked) {
     $('#temp_save_button').addClass("non-active");
     $('#publish_button').removeClass("non-active");
+  } else {
+    $('#temp_save_button').removeClass("non-active");
+    $('#publish_button').addClass("non-active");
   }
 
+  // 編集時
   $($articleImage).on('change', $articleImage, function(e) {
     file = e.target.files[0];
     reader = new FileReader();

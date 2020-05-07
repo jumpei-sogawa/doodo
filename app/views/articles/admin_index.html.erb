@@ -2,7 +2,10 @@
   <div class="off-2 col-8 off-0-xsmall col-12-xsmall">
     <div class="row mt10">
       <div class="col-6 align-center">
-        <%= link_to '新規投稿', new_article_path, class: "button primary" %>
+        <%= link_to new_article_path, class: "button primary" do %>
+          <i class="fas fa-edit"></i>
+          新規投稿
+        <% end %>
       </div>
       <div class="col-6 align-center">
         <%= link_to '公開中の記事一覧へ', articles_path, class: "button"%>
@@ -12,32 +15,66 @@
     <% @articles.each do |article| %>
       <%= link_to article_path(article) do %>
         <div class="article-container">
-          <div class="article-image">
-            <%= image_tag article.image.to_s, class: "image w100"%>
-          </div>
-          <h2 class="article-title mt10 mb10">
+          <% if article.image.present? %>
+            <div class="adjust-box box-16x9">
+              <div class="inner-box align-center">
+                <%= image_tag article.image.to_s, class: "image w100 h100", style: "object-fit: cover;" %>
+              </div>
+            </div>
+          <% end %>
+
+          <h2 class="article-title mt10 mb5">
             <%= article.title %>
           </h2>
-          <div id="preview_body<%= article.id %>" class="article-body mb0 dark">
+
+          <div class="gray mb5">
+            <%= l article.updated_at, format: :short_date %>
           </div>
 
           <div class="bb0">
             <% if article.published? %>
               <div class="mb10">
                 <span class="dark">ステータス：</span>
+                <i class="fas fa-cloud dark"></i>
                 <span class="bold dark">公開</span>
               </div>
-              <%= link_to '非公開にする', "/articles/#{article.id}/unpublish", method: :patch, data: { confirm: 'ほんとに非公開にしちゃうの？' }, class: "button dark" %>
-              <%= link_to '編集する', edit_article_path(article), class: "button dark" %>
-              <%= link_to '削除する', article, method: :delete, data: { confirm: 'Are you sure?' }, class: "button" %>
+
+              <div>
+                <%= link_to "/articles/#{article.id}/unpublish", method: :patch, data: { confirm: 'ほんとに非公開にしちゃうの？' }, class: "mb5 button dark" do %>
+                  <i class="fas fa-pause"></i>
+                  非公開にする
+                <% end %>
+                <%= link_to edit_article_path(article), class: "mb5 button dark" do %>
+                  <i class="fas fa-edit"></i>
+                  編集する
+                <% end %>
+                <%= link_to article, method: :delete, data: { confirm: 'Are you sure?' }, class: "mb5 button" do %>
+                  <i class="far fa-trash-alt"></i>
+                  削除する
+                <% end %>
+              </div>
+
             <% else %>
               <div class="mb10">
                 <span class="dark">ステータス：</span>
+                <i class="fas fa-pause pink"></i>
                 <span class="pink">非公開</span>
               </div>
-              <%= link_to '公開する', "/articles/#{article.id}/publish", method: :patch, data: { confirm: 'ほんとに公開する？' }, class: "button dark" %>
-              <%= link_to '編集する', edit_article_path(article), class: "button dark" %>
-              <%= link_to '削除する', article, method: :delete, data: { confirm: 'Are you sure?' }, class: "button" %>
+
+              <div>
+                <%= link_to "/articles/#{article.id}/publish", method: :patch, data: { confirm: 'ほんとに公開する？' }, class: "mb5 button dark" do %>
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  公開する
+                <% end %>
+                <%= link_to edit_article_path(article), class: "mb5 button dark" do %>
+                  <i class="fas fa-edit"></i>
+                  編集する
+                <% end %>
+                <%= link_to article, method: :delete, data: { confirm: 'Are you sure?' }, class: "mb5 button" do %>
+                  <i class="far fa-trash-alt"></i>
+                  削除する
+                <% end %>
+              </div>
             <% end %>
           </div>
         </div>

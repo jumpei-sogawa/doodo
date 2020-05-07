@@ -12,8 +12,14 @@
     <%= link_to '一覧へ戻る', articles_path, class: "button bb0" %>
 
     <% if is_admin? %>
-      <%= link_to '編集する', edit_article_path(@article), class: "button dark" %>
-      <%= link_to '削除する', @article, method: :delete, data: { confirm: '本当に削除する？' }, class: "button primary" %>
+      <%= link_to edit_article_path(@article), class: "button dark" do %>
+        <i class="fas fa-edit"></i>
+        編集する
+      <% end %>
+      <%= link_to @article, method: :delete, data: { confirm: '本当に削除する？' }, class: "button primary" do %>
+        <i class="far fa-trash-alt"></i>
+        削除する
+      <% end %>
     <% end %>
   </div>
 </div>
