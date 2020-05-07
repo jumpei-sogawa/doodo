@@ -831,3 +831,16 @@ span.denominator {
   padding: 10px 10px 10px 10px;
   margin: 10px 0 10px 0;
 }
+
+// Articles
+.article-container {
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0 20px 0;
+}
+
+.article-submit-buttons {
+  display: flex;
+  justify-content: space-around;
+}

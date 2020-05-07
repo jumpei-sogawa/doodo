@@ -8,6 +8,13 @@ module ApplicationHelper
     }
   end
 
+  def is_admin?
+    if user_signed_in?
+      return current_user.email == "admin@doodoo.jp"
+    end
+    return false
+  end
+
   private
 
   def defalut_og

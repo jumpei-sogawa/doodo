@@ -2,17 +2,18 @@
 <%= hidden_field_tag "articleBody", @article.body %>
 
 <div class="row mt10 mb10">
-  <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
-    <%= image_tag @article.image.to_s, class: "image w100" %>
-    <h1 id="preview-title"></h1>
-    <div id="preview-body"></div>
+  <div class="off-2 col-8 off-0-xsmall col-12-xsmall">
+    <div class="article-container">
+      <%= image_tag @article.image.to_s, class: "image w100" %>
+      <div id="preview-title" class="bold dark mb10" style="font-size:1.8em"></div>
+      <div id="preview-body"></div>
+    </div>
 
     <%= link_to '一覧へ戻る', articles_path, class: "button bb0" %>
 
-    <% if user_signed_in? %>
-      <% if current_user.id == 1 %>
-        <%= link_to '編集する', edit_article_path(@article), class: "button primary" %>
-      <% end %>
+    <% if is_admin? %>
+      <%= link_to '編集する', edit_article_path(@article), class: "button dark" %>
+      <%= link_to '削除する', @article, method: :delete, data: { confirm: '本当に削除する？' }, class: "button primary" %>
     <% end %>
   </div>
 </div>
@@ -28,7 +29,7 @@
   marked.setOptions({breaks : true});
 
   $previewTitle.html(
-    marked(articleTitle.value)
+    articleTitle.value
   );
 
   $previewBody.html(

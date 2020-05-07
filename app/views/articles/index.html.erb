@@ -1,32 +1,18 @@
-<h1>Articles</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="row">
+  <div class="off-2 col-8 off-0-xsmall col-12-xsmall">
     <% @articles.each do |article| %>
-      <tr>
-        <td><%= link_to article.title, article_path(article) %></td>
-         <% if user_signed_in? %>
-          <% if current_user.id == 1 %>
-            <td><%= link_to 'Edit', edit_article_path(article), class: "button" %></td>
-            <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }, class: "button" %></td>
-          <% end %>
-        <% end %>
-      </tr>
+      <%= link_to article_path(article) do %>
+        <div class="article-container">
+          <div class="article-image">
+            <%= image_tag article.image.to_s, class: "image w100"%>
+          </div>
+          <h2 class="article-title mt10 mb10">
+            <%= article.title %>
+          </h2>
+          <div id="preview_body<%= article.id %>" class="article-body mb0 dark">
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<% if user_signed_in? %>
-  <% if current_user.id == 1 %>
-    <%= link_to 'New Article', new_article_path, class: "button" %>
-  <% end %>
-<% end %>
+  </div>
+</div>

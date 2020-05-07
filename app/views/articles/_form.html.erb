@@ -13,28 +13,38 @@
         </div>
       <% end %>
 
-      <div class="field">
-        <%= form.label :image %>
-        <%= form.file_field :image %>
+      <div class="article-form mb10">
+        <%= form.file_field :image, class: "non-active" %>
+        <div id="upload_image_button" class="button" onclick="$('#article_image').click()">サムネ画像をアップロード</div>
       </div>
 
-      <div class="field">
-        <%= form.label :title %>
-        <%= form.text_field :title %>
+      <div class="article-form mb10">
+        <%= form.text_field :title, placeholder: "タイトル" %>
       </div>
 
-      <div class="field">
-        <%= form.label :body %>
-        <%= form.text_area :body, rows: "30" %>
+      <div class="article-form mb10">
+        <%= form.text_area :body, rows: "30", placeholder: "本文" %>
       </div>
 
-      <div class="field">
-        <%= form.label :description %>
-        <%= form.text_area :description %>
+      <div class="article-form mb10">
+        <%= form.text_area :description, placeholder: "ディスクリプション" %>
       </div>
 
-      <div class="actions">
-        <%= form.submit class: "primary" %>
+      <div class="article-form align-center mb10">
+        <%= form.radio_button :published, :false, checked: true %>
+        <%= form.label :published, "公開しない", {value: :false, style: "display: inline-block;"} %>
+        <%= form.radio_button :published, :true %>
+        <%= form.label :published, "公開する", {value: :true, style: "display: inline-block;"} %>
+      </div>
+
+      <div class="article-submit-buttons">
+        <%= link_to 'キャンセル', articles_admin_path, data: { confirm: "変更を破棄しますか？" }, class: "button" %>
+        <div id="temp_save_button">
+          <%= form.submit "一時保存する" %>
+        </div>
+        <div id="publish_button">
+          <%= form.submit "　公開する　", data: { confirm: "本当に公開しますか？" }, class: "primary" %>
+        </div>
       </div>
     <% end %>
   </div>
@@ -57,6 +67,8 @@
   $articleImage = $('#article_image');
   $articleTitle = $('#article_title');
   $articleBody = $('#article_body');
+  $articlePublishedFalse = $('#article_published_false');
+  $articlePublishedTrue = $('#article_published_true');
   $previewTitle = $('#preview-title');
   $previewImage = $('#preview_image');
   $previewBody = $('#preview-body');
@@ -68,6 +80,14 @@
   $previewBody.html(
     marked($articleBody.val())
   );
+
+  if ($articlePublishedTrue.val()) {
+    $('#temp_save_button').removeClass("non-active");
+    $('#publish_button').addClass("non-active");
+  } else {
+    $('#temp_save_button').addClass("non-active");
+    $('#publish_button').removeClass("non-active");
+  }
 
   $($articleImage).on('change', $articleImage, function(e) {
     file = e.target.files[0];
@@ -101,5 +121,14 @@
     $previewBody.html(
       marked($articleBody.val())
     );
+  });
+
+  $articlePublishedFalse.on('click', function() {
+    $('#temp_save_button').removeClass("non-active");
+    $('#publish_button').addClass("non-active");
+  });
+  $articlePublishedTrue.on('click', function() {
+    $('#temp_save_button').addClass("non-active");
+    $('#publish_button').removeClass("non-active");
   });
 </script>

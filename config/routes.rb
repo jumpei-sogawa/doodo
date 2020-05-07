@@ -38,6 +38,11 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions'
   }
 
+  get 'articles/admin' => 'articles#admin_index'
+  patch 'articles/:id/publish' => "articles#publish"
+  put 'articles/:id/publish' => "articles#publish"
+  patch 'articles/:id/unpublish' => "articles#unpublish"
+  put 'articles/:id/unpublish' => "articles#unpublish"
   resources :articles
 
   get '/mypage' => 'users#mypage'
