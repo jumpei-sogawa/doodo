@@ -7,20 +7,44 @@
       <%= image_tag @article.image.to_s, class: "image w100" %>
       <div id="preview-title" class="bold dark mb10" style="font-size:1.8em"></div>
       <div id="preview-body"></div>
+
+      <%= link_to '一覧へ戻る', articles_path, class: "mb5 button bb0" %>
+
+      <% if is_admin? %>
+        <div>
+          <% if @article.published %>
+            <div class="mb10">
+                <span class="dark">ステータス：</span>
+                <i class="fas fa-cloud dark"></i>
+                <span class="bold dark">公開</span>
+              </div>
+            <%= link_to "/articles/#{@article.id}/unpublish", method: :patch, data: { confirm: 'ほんとに非公開にしちゃうの？' }, class: "mb5 button dark" do %>
+              <i class="fas fa-pause"></i>
+              非公開にする
+            <% end %>
+          <% else %>
+            <div class="mb10">
+              <span class="dark">ステータス：</span>
+              <i class="fas fa-pause pink"></i>
+              <span class="pink">非公開</span>
+            </div>
+            <%= link_to "/articles/#{@article.id}/publish", method: :patch, data: { confirm: 'ほんとに公開する？' }, class: "mb5 button dark" do %>
+              <i class="fas fa-cloud-upload-alt"></i>
+              公開する
+            <% end %>
+          <% end %>
+          <%= link_to edit_article_path(@article), class: "button dark" do %>
+            <i class="fas fa-edit"></i>
+            編集する
+          <% end %>
+          <%= link_to '管理画面へ戻る', articles_admin_path, class: "mb5 button dark bb0" %>
+          <%= link_to @article, method: :delete, data: { confirm: '本当に削除する？' }, class: "button primary" do %>
+            <i class="far fa-trash-alt"></i>
+            削除する
+          <% end %>
+        </div>
+      <% end %>
     </div>
-
-    <%= link_to '一覧へ戻る', articles_path, class: "button bb0" %>
-
-    <% if is_admin? %>
-      <%= link_to edit_article_path(@article), class: "button dark" do %>
-        <i class="fas fa-edit"></i>
-        編集する
-      <% end %>
-      <%= link_to @article, method: :delete, data: { confirm: '本当に削除する？' }, class: "button primary" do %>
-        <i class="far fa-trash-alt"></i>
-        削除する
-      <% end %>
-    <% end %>
   </div>
 </div>
 

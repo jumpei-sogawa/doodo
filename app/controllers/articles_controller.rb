@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy, :publish, :unpublish]
-  before_action :is_admin?, except: [:index, :show]
+  before_action :auth_admin, except: [:index, :show]
 
   # GET /articles
   # GET /articles.json
@@ -15,6 +15,11 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+    if !user_signed_in? || (user_signed_in? && current_user.email != "admin@doodoo.jp")
+      if !@article.published
+        redirect_to articles_path
+      end
+    end
   end
 
   # GET /articles/new
@@ -57,12 +62,12 @@ class ArticlesController < ApplicationController
 
   def publish
     @article.update(published: true)
-    redirect_to articles_admin_path
+    redirect_to session[:previous_url]
   end
 
   def unpublish
     @article.update(published: false)
-    redirect_to articles_admin_path
+    redirect_to session[:previous_url]
   end
 
   private
@@ -76,7 +81,7 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:image, :title, :body, :description, :published)
     end
 
-    def is_admin?
+    def auth_admin
       if !user_signed_in? || current_user.email != "admin@doodoo.jp"
         redirect_to articles_path
       end
