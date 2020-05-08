@@ -18,12 +18,18 @@
       <div id="recommend_sub_tab_container" class="row">
         <div class="off-1 col-5">
           <header id="exhb_tab" class="align-center cursor">
-            <h4 id="exhb_tab_text">人気の展覧会</h4>
+            <h4 id="exhb_tab_text">
+              <span id="exhb_tab_arrow" class="pink"><i class="fas fa-chevron-right"></i></span>
+              展覧会
+            </h4>
           </header>
         </div>
         <div class="col-5">
           <header id="art_tab" class="align-center cursor">
-            <h4 id="art_tab_text" class="gray">人気の作品</h4>
+            <h4 id="art_tab_text" class="gray">
+              <span id="art_tab_arrow"><i class="fas fa-chevron-right"></i></span>
+              作品
+            </h4>
           </header>
         </div>
       </div>
@@ -114,27 +120,30 @@
   $('#exhb_tab')[0].onclick = function () {
 		deactivateArt();
 		activateExhibition();
-  }
+  };
   $('#art_tab')[0].onclick = function () {
 		deactivateExhibition();
 		activateArt();
-	}
+	};
 
   function activateExhibition() {
     $('#exhb_tab_text').removeClass("gray");
 		$('#exhb_tab_text').addClass("dark");
+		$('#exhb_tab_arrow').addClass("pink");
 		$('#exhb_container').removeClass("non-active");
 	};
 
 	function deactivateExhibition() {
     $('#exhb_tab_text').removeClass("dark");
 		$('#exhb_tab_text').addClass("gray");
+    $('#exhb_tab_arrow').removeClass("pink");
 		$('#exhb_container').addClass("non-active");
 	};
 
 	function activateArt() {
     $('#art_tab_text').removeClass("gray");
 		$('#art_tab').addClass("dark");
+    $('#art_tab_arrow').addClass("pink");
 		$('#art_container').removeClass("non-active");
 
 	};
@@ -142,6 +151,7 @@
 	function deactivateArt() {
     $('#art_tab').removeClass("dark");
 		$('#art_tab_text').addClass("gray");
+    $('#art_tab_arrow').removeClass("pink");
 		$('#art_container').addClass("non-active");
 	};
 
