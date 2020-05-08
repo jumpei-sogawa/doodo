@@ -3,12 +3,15 @@
     <div class="row mt10">
       <div class="col-6 align-center">
         <%= link_to new_article_path, class: "button primary" do %>
-          <i class="fas fa-edit"></i>
+          <i class="fas fa-feather-alt"></i>
           新規投稿
         <% end %>
       </div>
       <div class="col-6 align-center">
-        <%= link_to '公開中の記事一覧へ', articles_path, class: "button"%>
+        <%= link_to articles_path, class: "button" do %>
+          <i class="fas fa-feather-alt"></i>
+          公開中の記事一覧へ
+        <% end %>
       </div>
     </div>
 
@@ -41,11 +44,11 @@
 
               <div>
                 <%= link_to "/articles/#{article.id}/unpublish", method: :patch, data: { confirm: 'ほんとに非公開にしちゃうの？' }, class: "mb5 button dark" do %>
-                  <i class="fas fa-pause"></i>
+                  <i class="fas fa-pause pink"></i>
                   非公開にする
                 <% end %>
                 <%= link_to edit_article_path(article), class: "mb5 button dark" do %>
-                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-edit pink"></i>
                   編集する
                 <% end %>
                 <%= link_to article, method: :delete, data: { confirm: 'Are you sure?' }, class: "mb5 button" do %>
@@ -58,16 +61,16 @@
               <div class="mb10">
                 <span class="dark">ステータス：</span>
                 <i class="fas fa-pause pink"></i>
-                <span class="pink">非公開</span>
+                <span class="bold pink">非公開</span>
               </div>
 
               <div>
                 <%= link_to "/articles/#{article.id}/publish", method: :patch, data: { confirm: 'ほんとに公開する？' }, class: "mb5 button dark" do %>
-                  <i class="fas fa-cloud-upload-alt"></i>
+                  <i class="fas fa-cloud-upload-alt pink"></i>
                   公開する
                 <% end %>
                 <%= link_to edit_article_path(article), class: "mb5 button dark" do %>
-                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-edit pink"></i>
                   編集する
                 <% end %>
                 <%= link_to article, method: :delete, data: { confirm: 'Are you sure?' }, class: "mb5 button" do %>

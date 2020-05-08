@@ -8,7 +8,10 @@
       <div id="preview-title" class="bold dark mb10" style="font-size:1.8em"></div>
       <div id="preview-body"></div>
 
-      <%= link_to '一覧へ戻る', articles_path, class: "mb5 button bb0" %>
+      <%= link_to articles_path, class: "mb5 button bb0" do %>
+        <i class="fas fa-feather-alt"></i>
+        一覧へ戻る
+      <% end %>
 
       <% if is_admin? %>
         <div>
@@ -19,7 +22,7 @@
                 <span class="bold dark">公開</span>
               </div>
             <%= link_to "/articles/#{@article.id}/unpublish", method: :patch, data: { confirm: 'ほんとに非公開にしちゃうの？' }, class: "mb5 button dark" do %>
-              <i class="fas fa-pause"></i>
+              <i class="fas fa-pause pink"></i>
               非公開にする
             <% end %>
           <% else %>
@@ -29,16 +32,20 @@
               <span class="pink">非公開</span>
             </div>
             <%= link_to "/articles/#{@article.id}/publish", method: :patch, data: { confirm: 'ほんとに公開する？' }, class: "mb5 button dark" do %>
-              <i class="fas fa-cloud-upload-alt"></i>
+              <i class="fas fa-cloud-upload-alt pink"></i>
               公開する
             <% end %>
           <% end %>
           <%= link_to edit_article_path(@article), class: "button dark" do %>
-            <i class="fas fa-edit"></i>
+            <i class="fas fa-edit pink"></i>
             編集する
           <% end %>
-          <%= link_to '管理画面へ戻る', articles_admin_path, class: "mb5 button dark bb0" %>
-          <%= link_to @article, method: :delete, data: { confirm: '本当に削除する？' }, class: "button primary" do %>
+          <%= link_to articles_admin_path, class: "mb5 button dark bb0" do %>
+            <i class="fas fa-hammer pink"></i>
+            管理画面へ戻る
+          <% end %>
+
+          <%= link_to @article, method: :delete, data: { confirm: '本当に削除する？' }, class: "button" do %>
             <i class="far fa-trash-alt"></i>
             削除する
           <% end %>
@@ -47,7 +54,6 @@
     </div>
   </div>
 </div>
-
 
 
 <%= javascript_include_tag 'marked.js' %>

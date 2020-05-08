@@ -1,18 +1,150 @@
 <div class="row mb10">
   <div class="off-3 col-6 off-0-xsmall col-12-xsmall">
-    <% @exhb_logs.each do |exhb_log| %>
-      <% if exhb_log.exhibition.id == 1 %>
-        <%= render partial: "logs/show_art_log", locals: {exhb_log: exhb_log} %>
-      <% else %>
-        <%= render partial: "logs/show", locals: {exhb_log: exhb_log} %>
+    <div class="home-tab-container">
+      <div class="row">
+        <div class="col-6">
+          <header id="recommend_tab" class="major align-center cursor">
+            <h3 id="recommend_tab_text">おすすめ</h3>
+          </header>
+        </div>
+
+        <div class="col-6">
+          <header id="timeline_tab" class="align-center cursor">
+            <h3 id="timeline_tab_text" class="gray">タイムライン</h3>
+          </header>
+        </div>
+      </div>
+
+      <div id="recommend_sub_tab_container" class="row">
+        <div class="off-1 col-5">
+          <header id="exhb_tab" class="align-center cursor">
+            <h4 id="exhb_tab_text">人気の展覧会</h4>
+          </header>
+        </div>
+        <div class="col-5">
+          <header id="art_tab" class="align-center cursor">
+            <h4 id="art_tab_text" class="gray">人気の作品</h4>
+          </header>
+        </div>
+      </div>
+    </div>
+
+    <div id="recommend_container">
+      <%# 人気の展覧会 %>
+      <div id="exhb_container">
+        <div class="row">
+          <% @exhibitions.each do |exhb| %>
+            <div class="col-6">
+              <div class="exhb-container">
+                <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <%# 人気の作品 %>
+      <div id="art_container" class="non-active">
+        <div class="row">
+          <% @arts.each do |art| %>
+            <div class="col-6">
+              <div class="art-container">
+                <%= render partial: "arts/show", locals: {art: art} %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div id="timeline_container" class="non-active">
+      <% @exhb_logs.each do |exhb_log| %>
+        <% if exhb_log.exhibition.id == 1 %>
+          <%= render partial: "logs/show_art_log", locals: {exhb_log: exhb_log} %>
+        <% else %>
+          <%= render partial: "logs/show", locals: {exhb_log: exhb_log} %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
 
 <%= javascript_include_tag 'swiper.js' %>
 
 <script type="text/javascript" language="javascript">
+  $('#recommend_tab')[0].onclick = function () {
+		deactivateTimeline();
+		activateRecomend();
+  };
+  $('#timeline_tab')[0].onclick = function () {
+		deactivateRecomend();
+		activateTimeline();
+	};
+
+	function activateRecomend() {
+		$('#recommend_tab').addClass("major");
+		$('#recommend_tab_text').addClass("dark");
+    $('#recommend_tab_text').removeClass("gray");
+    $('#recommend_sub_tab_container').removeClass("non-active");
+		$('#recommend_container').removeClass("non-active");
+	};
+
+	function deactivateRecomend() {
+		$('#recommend_tab').removeClass("major");
+    $('#recommend_tab_text').removeClass("dark");
+		$('#recommend_tab_text').addClass("gray");
+    $('#recommend_sub_tab_container').addClass("non-active");
+		$('#recommend_container').addClass("non-active");
+	};
+
+	function activateTimeline() {
+		$('#timeline_tab').addClass("major");
+		$('#timeline_tab_text').addClass("dark");
+    $('#timeline_tab_text').removeClass("gray");
+		$('#timeline_container').removeClass("non-active");
+	};
+
+	function deactivateTimeline() {
+		$('#timeline_tab').removeClass("major");
+    $('#timeline_tab_text').removeClass("dark");
+		$('#timeline_tab_text').addClass("gray");
+		$('#timeline_container').addClass("non-active");
+	};
+
+  $('#exhb_tab')[0].onclick = function () {
+		deactivateArt();
+		activateExhibition();
+  }
+  $('#art_tab')[0].onclick = function () {
+		deactivateExhibition();
+		activateArt();
+	}
+
+  function activateExhibition() {
+    $('#exhb_tab_text').removeClass("gray");
+		$('#exhb_tab_text').addClass("dark");
+		$('#exhb_container').removeClass("non-active");
+	};
+
+	function deactivateExhibition() {
+    $('#exhb_tab_text').removeClass("dark");
+		$('#exhb_tab_text').addClass("gray");
+		$('#exhb_container').addClass("non-active");
+	};
+
+	function activateArt() {
+    $('#art_tab_text').removeClass("gray");
+		$('#art_tab').addClass("dark");
+		$('#art_container').removeClass("non-active");
+
+	};
+
+	function deactivateArt() {
+    $('#art_tab').removeClass("dark");
+		$('#art_tab_text').addClass("gray");
+		$('#art_container').addClass("non-active");
+	};
+
   <% @exhb_logs.each do |exhb_log| %>
     // Ellipsis Button
     $ellipsisButton = $('#ellipsis<%= exhb_log.id %>');

@@ -104,9 +104,9 @@
             <% end %>
           </li>
           <li>
-            <%= link_to trend_path do %>
-              <i class="fas fa-chart-line"></i>
-              トレンド
+            <%= link_to articles_path do %>
+              <i class="fas fa-feather-alt"></i>
+              記事一覧
             <% end %>
           </li>
           <% if user_signed_in? %>
@@ -152,10 +152,10 @@
       <% end %>
     </div>
     <div class="menu-icon-box">
-      <% if params[:action] == "trend" %>
-        <a href="/trend" class="bb0"><i class="fas fa-chart-line menu-icon pink"></i></a>
+      <% if params[:controller] == "articles" %>
+        <a href="/articles" class="bb0"><i class="fas fa-feather-alt pink"></i></a>
       <% else %>
-        <a href="/trend" class="bb0"><i class="fas fa-chart-line menu-icon dark"></i></a>
+        <a href="/articles" class="bb0"><i class="fas fa-feather-alt dark"></i></a>
       <% end %>
     </div>
     <div class="menu-icon-box">
