@@ -1,27 +1,55 @@
-<%= hidden_field_tag "articleTitle", @article.title %>
 <%= hidden_field_tag "articleBody", @article.body %>
 
 <div class="row mt10 mb10">
   <div class="off-2 col-8 off-0-xsmall col-12-xsmall">
     <div class="article-container">
-      <%= image_tag @article.image.to_s, class: "image w100" %>
-      <div id="preview-title" class="bold dark mb10" style="font-size:1.8em"></div>
+      <div class="adjust-box box-16x9">
+        <div class="inner-box align-center">
+          <%= image_tag @article.image.to_s, class: "image w100 h100", style: "object-fit: cover;" %>
+        </div>
+      </div>
+      <div class="bold dark mb0" style="font-size:1.8em"><%= @article.title %></div>
+      <div class="mb20 gray"><%= l @article.updated_at, format: :short_date %></div>
       <div id="preview-body"></div>
 
-      <%= link_to articles_path, class: "mb5 button bb0" do %>
-        <i class="fas fa-feather-alt"></i>
-        一覧へ戻る
-      <% end %>
+      <div class="w100 align-center mb20">
+        <%= link_to articles_path, class: "button" do %>
+          <i class="fas fa-feather-alt"></i>
+          一覧へ戻る
+        <% end %>
+      </div>
+
+      <div class="w100 align-center mb20">
+        <div class="button primary">DooDooホームへ</div>
+      </div>
+      <h2 class="align-center">
+        <div>アート作品を学ぶなら</div>
+        <div>DooDoo(ドゥードゥー)におまかせ</div>
+      </h2>
+      <div class="align-center mb20">
+        <div class="align-center mb5">
+          <div><strong>DooDoo</strong>では、</div>
+          <div>他にも<span class="pink">有名なアーティストの作品</span>を</div>
+          <div>たくさん学ぶことができます！</div>
+        </div>
+        <div class="align-center mb5">
+          <div>お互いに<span class="pink">感想をシェア</span>して、</div>
+          <div>新しいアートの楽しみ方を見つけてみませんか？</div>
+        </div>
+        <div class="align-center mb5">
+          <div>あとから自分の感想を<span class="pink">振り返る</span>のも楽しいですよ！</div>
+        </div>
+      </div>
 
       <% if is_admin? %>
         <div>
           <% if @article.published %>
             <div class="mb10">
-                <span class="dark">ステータス：</span>
-                <i class="fas fa-cloud dark"></i>
-                <span class="bold dark">公開</span>
-              </div>
-            <%= link_to "/articles/#{@article.id}/unpublish", method: :patch, data: { confirm: 'ほんとに非公開にしちゃうの？' }, class: "mb5 button dark" do %>
+              <span class="dark">ステータス：</span>
+              <i class="fas fa-cloud dark"></i>
+              <span class="bold dark">公開</span>
+            </div>
+            <%= link_to "/articles/#{@article.id}/unpublish", method: :patch, data: {confirm: 'ほんとに非公開にしちゃうの？'}, class: "mb5 button dark" do %>
               <i class="fas fa-pause pink"></i>
               非公開にする
             <% end %>
@@ -31,7 +59,7 @@
               <i class="fas fa-pause pink"></i>
               <span class="pink">非公開</span>
             </div>
-            <%= link_to "/articles/#{@article.id}/publish", method: :patch, data: { confirm: 'ほんとに公開する？' }, class: "mb5 button dark" do %>
+            <%= link_to "/articles/#{@article.id}/publish", method: :patch, data: {confirm: 'ほんとに公開する？'}, class: "mb5 button dark" do %>
               <i class="fas fa-cloud-upload-alt pink"></i>
               公開する
             <% end %>
@@ -45,7 +73,7 @@
             管理画面へ戻る
           <% end %>
 
-          <%= link_to @article, method: :delete, data: { confirm: '本当に削除する？' }, class: "button" do %>
+          <%= link_to @article, method: :delete, data: {confirm: '本当に削除する？'}, class: "button" do %>
             <i class="far fa-trash-alt"></i>
             削除する
           <% end %>
@@ -59,17 +87,9 @@
 <%= javascript_include_tag 'marked.js' %>
 
 <script type="text/javascript" language="javascript">
-  $previewTitle = $('#preview-title');
-  $previewBody = $('#preview-body');
+    marked.setOptions({breaks: true});
 
-  marked.setOptions({breaks : true});
-
-  $previewTitle.html(
-    articleTitle.value
-  );
-
-  $previewBody.html(
-    marked(articleBody.value)
-  );
-
+    $('#preview-body').html(
+        marked(articleBody.value)
+    );
 </script>

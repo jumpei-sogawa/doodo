@@ -50,10 +50,12 @@
   </div>
 
   <div class="col-6 col-12-xsmall">
-    <div id="preview_image">
-      <%= image_tag @article.image.to_s, class: "image w100" %>
+    <div class="adjust-box box-16x9">
+      <div class="inner-box align-center">
+        <%= image_tag @article.image.to_s, id: "preview_image", class: "image w100 h100", style: "object-fit: cover;" %>
+      </div>
     </div>
-    <h1 id="preview-title"></h1>
+    <h2 id="preview-title"></h2>
     <div id="preview-body"></div>
   </div>
 </div>
