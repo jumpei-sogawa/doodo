@@ -34,7 +34,7 @@ class MuseumsController < ApplicationController
     @title = @museum.title
     @description = @museum.description
     @headline = "美術館 詳細"
-    @exhibitions = @museum.exhibitions
+    @exhibitions = @museum.exhibitions.order(start_date: "DESC")
   end
 
   # GET /museums/new

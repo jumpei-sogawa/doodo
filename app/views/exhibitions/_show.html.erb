@@ -8,12 +8,16 @@
 <% if exhb.image.present? %>
   <div class="image w100 mr10"><a href="<%= url %>"><%= image_tag exhb.image, class: "w100" %></a></div>
 <% else%>
-  <div class="adjust-box box-3x4">
-    <div class="inner-box align-center">
-      <a href="<%= url %>" class="icon fa-gem gray" style="font-size:4em;"></a>
+  <a href="<%= url %>" class="bb0">
+    <div class="adjust-box box-3x4">
+      <div class="inner-box align-center" style="background-color:#f5f6f7;">
+        <div class="flex-container vertical">
+          <h3 class="gray mb0"><i class="fas fa-camera"></i></h3>
+          <div class="gray">NO IMAGE</div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="image"></div>
+  </a>
 <% end %>
 <div class="content mt10 mb0">
   <h4 class="align-center mb0"><a href="<%= url %>"><%= exhb.name %></a></h4>

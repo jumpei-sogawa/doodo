@@ -346,6 +346,10 @@ a.button.light-gray {
   flex-wrap: wrap;
 }
 
+.flex-container.vertical {
+  flex-direction: column;
+}
+
 // overlay
 .overlay {
   z-index: 500;

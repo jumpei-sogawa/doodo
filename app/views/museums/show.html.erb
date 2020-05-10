@@ -39,15 +39,19 @@
   <div class="col-6 col-12-xsmall">
     <div class="exhibitions-container">
       <div class="row">
-        <% displayed_past = false %>
+        <% displayed_in_session = false %>
+        <% displayed_past_session = false %>
         <% @exhibitions.each do |exhb| %>
           <div class=" off-3 col-6 off-3-xsmall col-6-xsmall">
             <% if exhb.is_open? %>
-              <header class="mt20 align-center">
-                <h2>開催中の展覧会</h2>
-              </header>
+              <% unless displayed_in_session %>
+                <header class="mt20 align-center">
+                  <h2>開催中の展覧会</h2>
+                </header>
+                <% displayed_in_session = true %>
+              <% end %>
             <% else %>
-              <% unless displayed_past %>
+              <% unless displayed_past_session %>
                 <header class="mt20 align-center">
                   <h2>過去の展覧会</h2>
                 </header>
