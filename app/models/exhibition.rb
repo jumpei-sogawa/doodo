@@ -75,4 +75,8 @@ class Exhibition < ApplicationRecord
   def self.is_open
     self.where("start_date <= ? AND end_date >= ?", Date.today, Date.today)
   end
+
+  def is_open?
+    self.start_date <= Date.today && self.end_date >= Date.today
+  end
 end

@@ -8,8 +8,10 @@
 	<div class="col-4 col-12-xsmall">
 		<div class="exhibition-info-container">
 			<% if @exhibition.image.present? %>
-				<div>
-					<%= image_tag @exhibition.image, class: "image w100" %>
+				<div class="row">
+          <div class="col-12 off-3-xsmall col-6-xsmall">
+					  <%= image_tag @exhibition.image, class: "image w100" %>
+          </div>
 				</div>
 			<% else %>
 				<div class="adjust-box box-1x1">
@@ -36,25 +38,29 @@
 				<% end %>
 			</h3>
 
-			<div class="row">
-				<div class="col-7">
-					<h2 class="mobile-fs3em mb0">
-						<i class="fas fa-star yellow"></i>
-						<% if @exhibition.star.present? %>
-							<span><%= @exhibition.star.round(2) %></span>
-						<% else %>
-							<span>&nbsp;-&nbsp;</span>
-						<% end %>
-						<span class="denominator">/3</span>
-					</h2>
-				</div>
-				<div class="col-3 align-center">
-					<h2 class="mobile-fs3em mb0"><a href="/logs/new/?e=<%=@exhibition.id%>"><i class="fas fa-edit"></i></a></h2>
-				</div>
-				<h2 class="exhb_pin_<%= @exhibition.id %> col-2 align-center mobile-fs3em pl0 mb0">
-					<%= render partial: "exhb_pins/button", locals: {exhb: @exhibition} %>
-				</h2>
-			</div>
+      <div class="row">
+        <div class="col-12 off-2-xsmall col-8-xsmall">
+          <div class="row">
+            <div class="col-7">
+              <h2 class="mb0">
+                <i class="fas fa-star yellow"></i>
+                <% if @exhibition.star.present? %>
+                  <span><%= @exhibition.star.round(2) %></span>
+                <% else %>
+                  <span>&nbsp;-&nbsp;</span>
+                <% end %>
+                <span class="denominator">/3</span>
+              </h2>
+            </div>
+            <div class="col-3 align-center">
+              <h2 class="mb0"><a href="/logs/new/?e=<%=@exhibition.id%>"><i class="fas fa-edit"></i></a></h2>
+            </div>
+            <h2 class="exhb_pin_<%= @exhibition.id %> col-2 align-center pl0 mb0">
+              <%= render partial: "exhb_pins/button", locals: {exhb: @exhibition} %>
+            </h2>
+          </div>
+        </div>
+      </div>
 		</div>
 	</div>
 

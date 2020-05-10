@@ -509,7 +509,7 @@ span.denominator {
 .museum-container {
   border-radius: 5px;
   background-color: white;
-  padding: 5px 5px 5px 5px;
+  padding: 10px 5px 5px 5px;
   margin: 5px 0 5px 0;
 }
 
@@ -755,6 +755,26 @@ span.denominator {
   width: 100%;
   position: absolute;
   bottom: 60px;
+}
+
+// 美術館詳細ページ
+.museum-header-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 0 10px;
+  margin: 10px 0 5px 0;
+}
+
+.museum-info {
+  padding: 10px 10px 0 10px;
+  margin: 10px 0 5px 0;
+}
+
+.exhibitions-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 0 10px;
+  margin: 5px 0 10px 0;
 }
 
 // 展覧会詳細ページ
