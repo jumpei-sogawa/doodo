@@ -52,7 +52,9 @@
   <div class="col-6 col-12-xsmall">
     <div class="adjust-box box-16x9">
       <div class="inner-box align-center">
-        <%= image_tag @article.image.to_s, id: "preview_image", class: "image w100 h100", style: "object-fit: cover;" %>
+        <div id="preview_image" class="w100 h100">
+          <%= image_tag @article.image.to_s, class: "image w100 h100", style: "object-fit:cover;" %>
+        </div>
       </div>
     </div>
     <h2 id="preview-title"></h2>
@@ -107,7 +109,9 @@
         $previewImage.append($('<img>').attr({
           src: e.target.result,
           width: "100%",
+          height: "100%",
           class: "image",
+          style: "object-fit:cover;",
           title: file.name
         }));
       };
