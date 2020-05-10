@@ -8,7 +8,7 @@
           <%= image_tag @article.image.to_s, class: "image w100 h100", style: "object-fit: cover;" %>
         </div>
       </div>
-      <div class="bold dark mb0" style="font-size:1.8em"><%= @article.title %></div>
+      <div class="bold dark mt10 mb0" style="font-size:1.8em"><%= @article.title %></div>
       <div class="mb20 gray"><%= l @article.updated_at, format: :short_date %></div>
       <div id="preview-body"></div>
 
