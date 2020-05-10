@@ -20,6 +20,8 @@ class ArticlesController < ApplicationController
         redirect_to articles_path
       end
     end
+    @title = "#{@article.title}｜アートの口コミサイト【DooDoo】"
+    @description = @article.description
   end
 
   # GET /articles/new
