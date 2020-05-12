@@ -289,7 +289,7 @@ a.button.light-gray {
   cursor: pointer;
 }
 
-.cursor:hover {
+.pointer:hover {
   cursor: pointer;
 }
 
@@ -457,7 +457,6 @@ span.denominator {
   overflow-y: scroll;
 
   .container {
-    padding: 10px;
     border-radius: 10px;
     background-color: #f5f6f7;
     text-align: center;
@@ -465,10 +464,15 @@ span.denominator {
     .item {
       font-size: 1.5em;
       background-color: transparent;
+      padding: 5px 0;
     }
 
     .item.delete {
       color: #f56a6a;
+    }
+
+    .item.edit {
+      color: #7f888f;
     }
   }
 }

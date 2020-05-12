@@ -1,3 +1,4 @@
+<!--params: exhb_log-->
 <% user = exhb_log.user %>
 <% exhibition = exhb_log.exhibition %>
 <% museum = exhibition.museum %>
@@ -5,21 +6,12 @@
 
 
 <div class="log-container">
-  <header class="user-info">
-    <a href="/<%=user.username%>" class="image circle ml5 mr5">
-      <% if user.image.present? %>
-        <%= image_tag user.image.to_s, height: "30px" %>
-      <% else %>
-        <%= image_tag "default-profile-image.png", height: "30px" %>
-      <% end %>
-    </a>
-    <a href="/<%=user.username%>" class="dark bb0">
-      <strong><%= user.username %></strong>
-    </a>
-    <div id="ellipsis<%= exhb_log.id %>" class="ellipsis">
-      <i class="fas fa-ellipsis-v"></i>
-    </div>
-  </header>
+  <%= render partial: "users/show",
+             locals: {
+                 item: exhb_log,
+                 item_id: "exhb_log#{exhb_log.id}",
+                 destroy_url: "/exhb_logs/#{exhb_log.id}"
+             } %>
 
   <div class="row mb5">
     <div class="col-8">
@@ -192,7 +184,7 @@
       <% end %>
     <% end %>
     <div class="container">
-      <div class="item">キャンセル</div>
+      <div class="item pointer">キャンセル</div>
     </div>
   </div>
 </div>
