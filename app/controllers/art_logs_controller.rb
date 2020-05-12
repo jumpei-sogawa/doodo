@@ -86,7 +86,9 @@ class ArtLogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_art_log
-      @art_log = ArtLog.find(params[:id])
+      unless @art_log = ArtLog.find_by(id: params[:id])
+        redirect_to "#{search_path}?t=art"
+      end
     end
 
     def set_art

@@ -100,7 +100,9 @@ class ExhibitionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_exhibition
-      @exhibition = Exhibition.find(params[:id])
+      unless @exhibition = Exhibition.find_by(id: params[:id])
+        redirect_to search_path
+      end
     end
 
     # Only allow a list of trusted parameters through.

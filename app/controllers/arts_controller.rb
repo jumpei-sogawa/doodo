@@ -82,7 +82,9 @@ class ArtsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_art
-      @art = Art.find(params[:id])
+      unless @art = Art.find_by(id: params[:id])
+        redirect_to "#{search_path}?t=art"
+      end
     end
 
     # Only allow a list of trusted parameters through.

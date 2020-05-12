@@ -89,7 +89,9 @@ class MuseumsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_museum
-      @museum = Museum.find(params[:id])
+      unless @museum = Museum.find_by(id: params[:id])
+        redirect_to "#{search_path}?t=museum"
+      end
     end
 
     # Only allow a list of trusted parameters through.

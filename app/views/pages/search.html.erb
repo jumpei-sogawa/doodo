@@ -72,11 +72,11 @@
 
 <script type="text/javascript" language="javascript">
 	// タブ切り替え
-	<% if params[:museum_area].present? || params[:museum_name].present? %>
+	<% if params[:t] == "museum" || params[:museum_area].present? || params[:museum_name].present? %>
 		deactivateExhibition();
 		deactivateArt();
 		activateMuseum();
-	<% elsif params[:art_name].present? || params[:artist_name].present? %>
+	<% elsif params[:t] == "art" || params[:art_name].present? || params[:artist_name].present? %>
 		deactivateMuseum();
 		deactivateExhibition();
 		activateArt();

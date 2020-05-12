@@ -73,7 +73,9 @@ class ExhbLogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_exhb_log
-      @exhb_log = ExhbLog.find(params[:id])
+      unless @exhb_log = ExhbLog.find_by(id: params[:id])
+        redirect_to search_path
+      end
     end
 
     # Only allow a list of trusted parameters through.
