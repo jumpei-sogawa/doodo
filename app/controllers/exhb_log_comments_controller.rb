@@ -19,6 +19,18 @@ class ExhbLogCommentsController < ApplicationController
     end
   end
 
+  def destroy
+    exhb_log_comment = ExhbLogComment.find(params[:id])
+    unless user_signed_in?
+      redirect_to session[:previous_url]
+    end
+    if exhb_log_comment.user.id != current_user.id
+      redirect_to session[:previous_url]
+    end
+    exhb_log_comment.destroy
+    redirect_to exhb_log_path(params[:exhb_log_id])
+  end
+
   private
     def exhb_log_comment_params
       params.fetch(:exhb_log_comment, {}).permit(:body)

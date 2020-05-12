@@ -2,7 +2,12 @@
   <div class="col-6 col-12-xsmall">
     <div class="logs-container">
       <div class="mb10">
-        <%= render partial: "users/show", locals: {user: @art_log.user, body: @art_log} %>
+        <%= render partial: "users/show",
+                   locals: {
+                       item: @art_log,
+                       item_id: "art_log#{@art_log.id}",
+                       destroy_url: "/art_logs/#{@art_log.id}"
+                   } %>
         <%= render partial: "art_logs/show", locals: {art_log: @art_log} %>
       </div>
 
@@ -10,7 +15,12 @@
         <div class="off-1 col-10">
           <div class="mb10">
             <% @art_log_comments.each do |art_log_comment| %>
-              <%= render partial: "users/show", locals: {user: art_log_comment.user, body: art_log_comment} %>
+              <%= render partial: "users/show",
+                         locals: {
+                             item: art_log_comment,
+                             item_id: "art_log_comment#{art_log_comment.id}",
+                             destroy_url: "/art_logs/#{@art_log.id}/art_log_comments/#{art_log_comment.id}"
+                         } %>
               <div class="row mb10">
                 <div class="off-3 col-9 off-2-xsmall col-10 is-text">
                   <%= art_log_comment.body %>

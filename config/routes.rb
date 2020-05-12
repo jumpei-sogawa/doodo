@@ -11,20 +11,20 @@ Rails.application.routes.draw do
     resources :exhb_pins, only: [:create, :destroy]
   end
 
-  resources :arts, only: [:index, :show] do
-    resources :art_logs, only: [:new, :create]
-  end
-
   resources :exhb_logs, only: [:show, :destroy] do
     resources :exhb_log_likes, only: [:create, :destroy]
-    resources :exhb_log_comments, only: [:create]
+    resources :exhb_log_comments, only: [:create, :destroy]
   end
 
   get 'exhb_logs/:id/exhb_log_comments' => 'exhb_logs#show'
 
-  resources :art_logs, only: [:show] do
+  resources :arts, only: [:index, :show] do
+    resources :art_logs, only: [:new, :create]
+  end
+
+  resources :art_logs, only: [:show, :destroy] do
     resources :art_log_likes, only: [:create, :destroy]
-    resources :art_log_comments, only: [:create]
+    resources :art_log_comments, only: [:create, :destroy]
   end
 
   get 'art_logs/:id/art_log_comments' => 'art_logs#show'

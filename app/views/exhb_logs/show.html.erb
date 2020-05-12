@@ -2,7 +2,12 @@
   <div class="col-6 col-12-xsmall">
     <div class="logs-container">
       <div class="mb10">
-        <%= render partial: "users/show", locals: {user: @exhb_log.user, body: @exhb_log} %>
+        <%= render partial: "users/show",
+                   locals: {
+                       item: @exhb_log,
+                       item_id: "exhb_log#{@exhb_log.id}",
+                       destroy_url: "/exhb_logs/#{@exhb_log.id}"
+                   } %>
         <%= render partial: "exhb_logs/show", locals: {exhb_log: @exhb_log} %>
       </div>
 
@@ -10,7 +15,12 @@
         <div class="off-1 col-10">
           <div class="mb10">
             <% @exhb_log_comments.each do |exhb_log_comment| %>
-              <%= render partial: "users/show", locals: {user: exhb_log_comment.user, body: exhb_log_comment} %>
+              <%= render partial: "users/show",
+                         locals: {
+                             item: exhb_log_comment,
+                             item_id: "exhb_log_comment#{exhb_log_comment.id}",
+                             destroy_url: "/exhb_logs/#{@exhb_log.id}/exhb_log_comments/#{exhb_log_comment.id}"
+                         } %>
               <div class="row mb10">
                 <div class="off-3 col-9 off-2-xsmall col-10 is-text">
                   <%= exhb_log_comment.body %>
@@ -56,7 +66,7 @@
       <% end %>
 
       <div class="align-center">
-        <a href="/museums/<%=@museum.id%>" class="bb0"><%= @museum.name %></a>
+        <a href="/museums/<%= @museum.id %>" class="bb0"><%= @museum.name %></a>
       </div>
 
       <div class="align-center">

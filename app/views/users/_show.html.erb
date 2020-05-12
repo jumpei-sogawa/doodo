@@ -1,25 +1,51 @@
-<div class="row">
-  <span class="col-3 col-2-xsmall pb0">
-    <a href="/<%=user.username%>" class="image circle">
-      <% if user.image.present? %>
-        <%= image_tag user.image.to_s, height: "30px" %>
-      <% else %>
-        <%= image_tag "default-profile-image.png", height: "30px" %>
-      <% end %>
-    </a>
-  </span>
+<!--params: item, item_id, destroy_url-->
+<% user = item.user %>
 
-  <div class="col-5 col-5-xsmall pt5">
-    <strong>
-      <a href="/<%=user.username%>" class="dark bb0">
-        <%= user.username %>
-      </a>
-    </strong>
+<header class="user-info">
+  <a href="/<%=user.username%>" class="image circle ml5 mr5">
+    <% if user.image.present? %>
+      <%= image_tag user.image.to_s, height: "30px" %>
+    <% else %>
+      <%= image_tag "default-profile-image.png", height: "30px" %>
+    <% end %>
+  </a>
+  <a href="/<%=user.username%>" class="dark bb0">
+    <strong><%= user.username %></strong>
+  </a>
+  <div id="ellipsis<%= item_id %>" class="ellipsis">
+    <i class="fas fa-ellipsis-v"></i>
   </div>
+</header>
 
-  <% if body.present? %>
-    <div class="col-4 col-5-xsmall mt5 align-right">
-      <%= l body.created_at, format: :short_date %>
+<div id="overlay_<%= item_id %>" class="overlay bg-transp-dark non-active">
+  <div class="submenu-modal">
+    <% if user_signed_in? %>
+      <% if user.id == current_user.id %>
+        <div class="container mb10">
+          <%= link_to destroy_url, method: :delete do %>
+            <div class="item delete">削除する</div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="container">
+      <div class="item">キャンセル</div>
     </div>
-  <% end %>
+  </div>
 </div>
+
+
+<script type="text/javascript" language="javascript">
+    // Ellipsis Button
+    $ellipsisButton = $('#ellipsis<%= item_id %>');
+    $overlay<%= item_id %> = $('#overlay_<%= item_id %>');
+    $ellipsisButton.on('click', function () {
+        $overlay<%= item_id %>.fadeIn();
+        $overlay<%= item_id %>.removeClass('non-active');
+    });
+
+    $overlay<%= item_id %>.on('click', function () {
+        $overlay<%= item_id %>.addClass('non-active');
+        $overlay<%= item_id %>.fadeOut();
+    });
+</script>

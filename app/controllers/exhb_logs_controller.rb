@@ -67,7 +67,7 @@ class ExhbLogsController < ApplicationController
       redirect_to session[:previous_url]
     end
     @exhb_log.destroy
-    redirect_to root_path
+    redirect_to session[:previous_url]
   end
 
   private

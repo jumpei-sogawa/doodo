@@ -63,6 +63,7 @@
       </div>
     </div>
 
+    <%# 最新の投稿 %>
     <div id="timeline_container" class="non-active">
       <% @exhb_logs.each do |exhb_log| %>
         <% if exhb_log.exhibition.id == 1 %>
@@ -78,123 +79,126 @@
 <%= javascript_include_tag 'swiper.js' %>
 
 <script type="text/javascript" language="javascript">
-  $('#recommend_tab')[0].onclick = function () {
-		deactivateTimeline();
-		activateRecomend();
-  };
-  $('#timeline_tab')[0].onclick = function () {
-		deactivateRecomend();
-		activateTimeline();
-	};
+    $('#recommend_tab')[0].onclick = function () {
+        deactivateTimeline();
+        activateRecomend();
+    };
+    $('#timeline_tab')[0].onclick = function () {
+        deactivateRecomend();
+        activateTimeline();
+    };
 
-	function activateRecomend() {
-		$('#recommend_tab').addClass("major");
-		$('#recommend_tab_text').addClass("dark");
-    $('#recommend_tab_text').removeClass("gray");
-    $('#recommend_sub_tab_container').removeClass("non-active");
-		$('#recommend_container').removeClass("non-active");
-	};
+    function activateRecomend() {
+        $('#recommend_tab').addClass("major");
+        $('#recommend_tab_text').addClass("dark");
+        $('#recommend_tab_text').removeClass("gray");
+        $('#recommend_sub_tab_container').removeClass("non-active");
+        $('#recommend_container').removeClass("non-active");
+    };
 
-	function deactivateRecomend() {
-		$('#recommend_tab').removeClass("major");
-    $('#recommend_tab_text').removeClass("dark");
-		$('#recommend_tab_text').addClass("gray");
-    $('#recommend_sub_tab_container').addClass("non-active");
-		$('#recommend_container').addClass("non-active");
-	};
+    function deactivateRecomend() {
+        $('#recommend_tab').removeClass("major");
+        $('#recommend_tab_text').removeClass("dark");
+        $('#recommend_tab_text').addClass("gray");
+        $('#recommend_sub_tab_container').addClass("non-active");
+        $('#recommend_container').addClass("non-active");
+    };
 
-	function activateTimeline() {
-		$('#timeline_tab').addClass("major");
-		$('#timeline_tab_text').addClass("dark");
-    $('#timeline_tab_text').removeClass("gray");
-		$('#timeline_container').removeClass("non-active");
-	};
+    function activateTimeline() {
+        $('#timeline_tab').addClass("major");
+        $('#timeline_tab_text').addClass("dark");
+        $('#timeline_tab_text').removeClass("gray");
+        $('#timeline_container').removeClass("non-active");
+        activateLogs();
+    };
 
-	function deactivateTimeline() {
-		$('#timeline_tab').removeClass("major");
-    $('#timeline_tab_text').removeClass("dark");
-		$('#timeline_tab_text').addClass("gray");
-		$('#timeline_container').addClass("non-active");
-	};
+    function deactivateTimeline() {
+        $('#timeline_tab').removeClass("major");
+        $('#timeline_tab_text').removeClass("dark");
+        $('#timeline_tab_text').addClass("gray");
+        $('#timeline_container').addClass("non-active");
+    };
 
-  $('#exhb_tab')[0].onclick = function () {
-		deactivateArt();
-		activateExhibition();
-  };
-  $('#art_tab')[0].onclick = function () {
-		deactivateExhibition();
-		activateArt();
-	};
+    $('#exhb_tab')[0].onclick = function () {
+        deactivateArt();
+        activateExhibition();
+    };
+    $('#art_tab')[0].onclick = function () {
+        deactivateExhibition();
+        activateArt();
+    };
 
-  function activateExhibition() {
-    $('#exhb_tab_text').removeClass("gray");
-		$('#exhb_tab_text').addClass("dark");
-		$('#exhb_tab_arrow').addClass("pink");
-		$('#exhb_container').removeClass("non-active");
-	};
+    function activateExhibition() {
+        $('#exhb_tab_text').removeClass("gray");
+        $('#exhb_tab_text').addClass("dark");
+        $('#exhb_tab_arrow').addClass("pink");
+        $('#exhb_container').removeClass("non-active");
+    };
 
-	function deactivateExhibition() {
-    $('#exhb_tab_text').removeClass("dark");
-		$('#exhb_tab_text').addClass("gray");
-    $('#exhb_tab_arrow').removeClass("pink");
-		$('#exhb_container').addClass("non-active");
-	};
+    function deactivateExhibition() {
+        $('#exhb_tab_text').removeClass("dark");
+        $('#exhb_tab_text').addClass("gray");
+        $('#exhb_tab_arrow').removeClass("pink");
+        $('#exhb_container').addClass("non-active");
+    };
 
-	function activateArt() {
-    $('#art_tab_text').removeClass("gray");
-		$('#art_tab').addClass("dark");
-    $('#art_tab_arrow').addClass("pink");
-		$('#art_container').removeClass("non-active");
+    function activateArt() {
+        $('#art_tab_text').removeClass("gray");
+        $('#art_tab').addClass("dark");
+        $('#art_tab_arrow').addClass("pink");
+        $('#art_container').removeClass("non-active");
 
-	};
+    };
 
-	function deactivateArt() {
-    $('#art_tab').removeClass("dark");
-		$('#art_tab_text').addClass("gray");
-    $('#art_tab_arrow').removeClass("pink");
-		$('#art_container').addClass("non-active");
-	};
+    function deactivateArt() {
+        $('#art_tab').removeClass("dark");
+        $('#art_tab_text').addClass("gray");
+        $('#art_tab_arrow').removeClass("pink");
+        $('#art_container').addClass("non-active");
+    };
 
-  <% @exhb_logs.each do |exhb_log| %>
-    // Ellipsis Button
-    $ellipsisButton = $('#ellipsis<%= exhb_log.id %>');
-    $overlay<%= exhb_log.id %> = $('#overlay<%= exhb_log.id %>');
-    $ellipsisButton.on('click', function() {
-      $overlay<%= exhb_log.id %>.fadeIn();
-      $overlay<%= exhb_log.id %>.removeClass('non-active');
-    });
+    function activateLogs() {
+        <% @exhb_logs.each do |exhb_log| %>
+            // Ellipsis Button
+            $ellipsisButton = $('#ellipsis<%= exhb_log.id %>');
+            $overlay<%= exhb_log.id %> = $('#overlay<%= exhb_log.id %>');
+            $ellipsisButton.on('click', function () {
+                $overlay<%= exhb_log.id %>.fadeIn();
+                $overlay<%= exhb_log.id %>.removeClass('non-active');
+            });
 
-    $overlay<%= exhb_log.id %>.on('click', function() {
-      $overlay<%= exhb_log.id %>.addClass('non-active');
-      $overlay<%= exhb_log.id %>.fadeOut();
-    });
+            $overlay<%= exhb_log.id %>.on('click', function () {
+                $overlay<%= exhb_log.id %>.addClass('non-active');
+                $overlay<%= exhb_log.id %>.fadeOut();
+            });
 
-    // Swiper
-    swiperWidth = $('.swiper<%= exhb_log.id %>').width();
-    var sliderCount = 3;
-    var slideOffset = 0;
-    <% if exhb_log.art_logs.count == 1 %>
-      sliderCount = 1;
-      slideOffset = swiperWidth / 3 + 10 / 3;
-    <% elsif exhb_log.art_logs.count == 2 %>
-      sliderCount = 2;
-      slideOffset = swiperWidth / 6 + 10 / 6;
-    <% end %>
+            // Swiper
+            swiperWidth = $('.swiper<%= exhb_log.id %>').width();
+            var sliderCount = 3;
+            var slideOffset = 0;
+            <% if exhb_log.art_logs.count == 1 %>
+                sliderCount = 1;
+                slideOffset = swiperWidth / 3 + 10 / 3;
+            <% elsif exhb_log.art_logs.count == 2 %>
+                sliderCount = 2;
+                slideOffset = swiperWidth / 6 + 10 / 6;
+            <% end %>
 
-    var mySwiper<%= exhb_log.id %> = new Swiper('.swiper<%= exhb_log.id %>', {
-      navigation: {
-        prevEl: '.prev<%= exhb_log.id %>',
-        nextEl: '.next<%= exhb_log.id %>',
-      },
-      slidesPerView: 3,
-      slidesOffsetBefore: slideOffset,
-      spaceBetween: 10,
-      initialSlide: 0,
-      pagination: {
-        el: '.page<%= exhb_log.id %>',
-        type: 'bullets',
-        clickable: true,
-      },
-    });
-  <% end %>
+            var mySwiper<%= exhb_log.id %> = new Swiper('.swiper<%= exhb_log.id %>', {
+                navigation: {
+                    prevEl: '.prev<%= exhb_log.id %>',
+                    nextEl: '.next<%= exhb_log.id %>',
+                },
+                slidesPerView: 3,
+                slidesOffsetBefore: slideOffset,
+                spaceBetween: 10,
+                initialSlide: 0,
+                pagination: {
+                    el: '.page<%= exhb_log.id %>',
+                    type: 'bullets',
+                    clickable: true,
+                },
+            });
+        <% end %>
+    }
 </script>

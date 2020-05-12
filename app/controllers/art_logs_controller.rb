@@ -69,11 +69,18 @@ class ArtLogsController < ApplicationController
   # DELETE /art_logs/1
   # DELETE /art_logs/1.json
   def destroy
-    @art_log.destroy
-    respond_to do |format|
-      format.html { redirect_to art_logs_url, notice: 'Art log was successfully destroyed.' }
-      format.json { head :no_content }
+    unless user_signed_in?
+      redirect_to session[:previous_url]
     end
+    if @art_log.user.id != current_user.id
+      redirect_to session[:previous_url]
+    end
+    if @art_log.exhb_log.exhibition.id == 1
+      @art_log.exhb_log.destroy
+    else
+      @art_log.destroy
+    end
+    redirect_to session[:previous_url]
   end
 
   private

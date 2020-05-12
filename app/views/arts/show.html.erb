@@ -68,14 +68,19 @@
 </div>
 
 <div class="art-logs-container">
-	<% if @art_logs.present? %>
-		<header class="major align-center">
-			<h2>この作品のログ</h2>
-		</header>
-		<div class="row">
+  <header class="major align-center">
+    <h2>この作品のログ</h2>
+  </header>
+  <% if @art_logs.present? %>
+    <div class="row">
 			<% @art_logs.each do |art_log| %>
 				<div class="col-6 col-12-xsmall mb10">
-					<%= render partial: "users/show", locals: {user: art_log.user, body: art_log} %>
+					<%= render partial: "users/show",
+                     locals: {
+                         item: art_log,
+                         item_id: "art_log#{art_log.id}",
+                         destroy_url: "/art_logs/#{art_log.id}"
+                     } %>
 					<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
 				</div>
 			<% end %>
