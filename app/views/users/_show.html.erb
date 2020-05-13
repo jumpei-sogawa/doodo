@@ -26,13 +26,13 @@
             <div class="item delete">削除する</div>
           <% end %>
           <% if item_name == "exhb_log" || item_name == "art_log" %>
-            <div id="edit_button<%= item.id %>" class="item edit pointer">編集する</div>
+            <div id="edit_<%= item_name %><%= item.id %>" class="item edit pointer">編集する</div>
           <% end %>
         </div>
       <% end %>
     <% end %>
     <div class="container">
-      <div id="cancel_button<%= item.id %>" class="item pointer">キャンセル</div>
+      <div id="cancel_<%= item_name %><%= item.id %>" class="item pointer">キャンセル</div>
     </div>
   </div>
 </div>
@@ -52,13 +52,13 @@
         $overlay_<%= item_name %><%= item.id %>.fadeOut();
     });
 
-    $('#edit_button<%= item.id %>').on('click', function () {
-        $('#item_body<%= item.id %>').addClass('non-active');
-        $('#item_form<%= item.id %>').removeClass('non-active')
+    $('#edit_<%= item_name %><%= item.id %>').on('click', function () {
+        $('#<%= item_name %><%= item.id %>_body').addClass('non-active');
+        $('#<%= item_name %><%= item.id %>_form').removeClass('non-active')
     });
 
-    $('#cancel_button<%= item.id %>').on('click', function () {
-        $('#item_body<%= item.id %>').removeClass('non-active');
-        $('#item_form<%= item.id %>').addClass('non-active')
+    $('#cancel_<%= item_name %><%= item.id %>').on('click', function () {
+        $('#<%= item_name %><%= item.id %>_body').removeClass('non-active');
+        $('#<%= item_name %><%= item.id %>_form').addClass('non-active')
     });
 </script>

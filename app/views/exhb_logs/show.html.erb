@@ -31,7 +31,7 @@
 
           <%= form_with(model: @exhb_log_comment, url: exhb_log_exhb_log_comments_path(@exhb_log)) do |form| %>
             <div class="mb10"><%= form.text_area :body, rows: 1, value: session[:exhb_log_comment_body], placeholder: "コメント..." %></div>
-            <div class="align-right"><%= form.submit "送信" %></div>
+            <div class="align-right"><%= form.submit "送信", id: "submit_comment_button" %></div>
           <% end %>
         </div>
       </div>
@@ -83,3 +83,11 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript" language="javascript">
+    $('#submit_comment_button').on('click', function () {
+        setTimeout(function() {
+            location.reload();
+        }, 500);
+    });
+</script>

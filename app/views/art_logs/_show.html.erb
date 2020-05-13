@@ -37,13 +37,13 @@
       <% end %>
     <% end %>
     <%= link_to art_log_path(art_log) do %>
-      <div id="item_body<%= art_log.id %>" class="dark is-text mt5 mb10"><%= art_log.body %></div>
+      <div id="art_log<%= art_log.id %>_body" class="dark is-text mt5 mb10"><%= art_log.body %></div>
     <% end %>
-    <%= form_with(model: art_log, url: "/logs/#{art_log.id}", method: "PATCH", id: "item_form#{art_log.id}", class: "non-active mb5") do |form| %>
+    <%= form_with(model: art_log, url: "/art_logs/#{art_log.id}", method: "PATCH", id: "art_log#{art_log.id}_form", class: "non-active mb5") do |form| %>
       <%= form.text_area :body, value: art_log.body %>
       <div class="flex-container space-between">
-        <div id="cancel_edit<%= art_log.id %>" class="button mt5">キャンセル</div>
-        <%= form.submit "保存", class: "primary mt5" %>
+        <div id="cancel_edit_art_log<%= art_log.id %>" class="button mt5">キャンセル</div>
+        <%= form.submit "保存", id: "submit_art_log#{art_log.id}", class: "primary mt5" %>
       </div>
     <% end %>
     <div style="font-size:0.8em;"><%= l art_log.created_at, format: :short_date %></div>
@@ -71,8 +71,14 @@
 
 
 <script type="text/javascript" language="javascript">
-    $('#cancel_edit<%= art_log.id %>').on('click', function () {
-        $('#item_body<%= art_log.id %>').removeClass('non-active');
-        $('#item_form<%= art_log.id %>').addClass('non-active')
+    $('#cancel_edit_art_log<%= art_log.id %>').on('click', function () {
+        $('#art_log<%= art_log.id %>_body').removeClass('non-active');
+        $('#art_log<%= art_log.id %>_form').addClass('non-active')
+    });
+
+    $('#submit_art_log<%= art_log.id %>').on('click', function () {
+        setTimeout(function () {
+            location.reload();
+        }, 500);
     });
 </script>

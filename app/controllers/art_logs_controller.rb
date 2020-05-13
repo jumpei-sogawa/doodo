@@ -55,15 +55,8 @@ class ArtLogsController < ApplicationController
   # PATCH/PUT /art_logs/1
   # PATCH/PUT /art_logs/1.json
   def update
-    respond_to do |format|
-      if @art_log.update(art_log_params)
-        format.html { redirect_to @art_log, notice: 'Art log was successfully updated.' }
-        format.json { render :show, status: :ok, location: @art_log }
-      else
-        format.html { render :edit }
-        format.json { render json: @art_log.errors, status: :unprocessable_entity }
-      end
-    end
+    @art_log.update(body: art_log_params[:body])
+    redirect_to session[:previous_url]
   end
 
   # DELETE /art_logs/1

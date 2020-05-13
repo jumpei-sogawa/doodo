@@ -8,9 +8,9 @@
 <div class="log-container">
   <%= render partial: "users/show",
              locals: {
-                 item: exhb_log,
-                 item_name: "exhb_log",
-                 destroy_url: "/exhb_logs/#{exhb_log.id}"
+                 item: art_log,
+                 item_name: "art_log",
+                 destroy_url: "/art_log/#{art_log.id}"
              } %>
 
   <div class="row mb5">
@@ -41,7 +41,14 @@
           <div class="dark">作：<%= artist.name %></div>
         <% end %>
 
-        <div class="dark is-text"><%= art_log.body %></div>
+        <div id="art_log<%= art_log.id %>_body" class="dark is-text"><%= art_log.body %></div>
+        <%= form_with(model: art_log, url: "/art_logs/#{art_log.id}", method: "PATCH", id: "art_log#{art_log.id}_form", class: "non-active mb5") do |form| %>
+          <%= form.text_area :body, value: art_log.body %>
+          <div class="flex-container space-between">
+            <div id="cancel_edit_art_log<%= art_log.id %>" class="button mt5">キャンセル</div>
+            <%= form.submit "保存", id: "submit_art_log#{art_log.id}", class: "primary mt5" %>
+          </div>
+        <% end %>
         <div style="font-size:0.8em;"><%= l art_log.created_at, format: :short_date %></div>
 
         <div class="reaction-buttons flex-container center">
@@ -99,19 +106,16 @@
   </div>
 </div>
 
-<div id="overlay<%= exhb_log.id %>" class="overlay bg-transp-dark non-active">
-  <div class="submenu-modal">
-    <% if user_signed_in? %>
-      <% if user.id == current_user.id %>
-        <div class="container mb10">
-          <%= link_to "exhb_logs/#{exhb_log.id}", method: :delete do %>
-            <div class="item delete">削除する</div>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
-    <div class="container">
-      <div class="item">キャンセル</div>
-    </div>
-  </div>
-</div>
+
+<script type="text/javascript" language="javascript">
+    $('#cancel_edit_art_log<%= art_log.id %>').on('click', function () {
+        $('#art_log<%= art_log.id %>_body').removeClass('non-active');
+        $('#art_log<%= art_log.id %>_form').addClass('non-active')
+    });
+
+    $('#submit_art_log<%= art_log.id %>').on('click', function () {
+        setTimeout(function () {
+            location.reload();
+        }, 500);
+    });
+</script>

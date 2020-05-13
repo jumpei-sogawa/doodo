@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :museums, only: [:index, :show]
 
   resources :logs, only: [:new, :create, :edit, :update]
+  resources :art_logs, only: [:edit, :update]
 
   resources :exhibitions, only: [:index, :show] do
     resources :exhb_pins, only: [:create, :destroy]
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
   get 'exhb_logs/:id/exhb_log_comments' => 'exhb_logs#show'
 
   resources :arts, only: [:index, :show] do
-    resources :art_logs, only: [:new, :create, :edit, :update]
+    resources :art_logs, only: [:new, :create]
   end
 
   resources :art_logs, only: [:show, :destroy] do
