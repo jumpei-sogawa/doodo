@@ -5,7 +5,7 @@
         <%= render partial: "users/show",
                    locals: {
                        item: @exhb_log,
-                       item_id: "exhb_log#{@exhb_log.id}",
+                       item_name: "exhb_log",
                        destroy_url: "/exhb_logs/#{@exhb_log.id}"
                    } %>
         <%= render partial: "exhb_logs/show", locals: {exhb_log: @exhb_log} %>
@@ -18,7 +18,7 @@
               <%= render partial: "users/show",
                          locals: {
                              item: exhb_log_comment,
-                             item_id: "exhb_log_comment#{exhb_log_comment.id}",
+                             item_name: "exhb_log_comment",
                              destroy_url: "/exhb_logs/#{@exhb_log.id}/exhb_log_comments/#{exhb_log_comment.id}"
                          } %>
               <div class="row mb10">

@@ -67,6 +67,8 @@ class ExhbLogsController < ApplicationController
       redirect_to session[:previous_url]
     end
     @exhb_log.destroy
+    Exhibition.update_star_by(@exhb_log)
+    Art.update_stars_by(@exhb_log.art_logs)
     redirect_to session[:previous_url]
   end
 

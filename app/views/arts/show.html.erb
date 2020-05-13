@@ -78,7 +78,7 @@
 					<%= render partial: "users/show",
                      locals: {
                          item: art_log,
-                         item_id: "art_log#{art_log.id}",
+                         item_name: "art_log",
                          destroy_url: "/art_logs/#{art_log.id}"
                      } %>
 					<%= render partial: "art_logs/show", locals: {art_log: art_log} %>

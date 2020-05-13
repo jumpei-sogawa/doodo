@@ -79,6 +79,7 @@ class LogsController < ApplicationController
 
   # GET /logs/1/edit
   def edit
+
   end
 
   # POST /logs
@@ -108,15 +109,8 @@ class LogsController < ApplicationController
   # PATCH/PUT /logs/1
   # PATCH/PUT /logs/1.json
   def update
-    respond_to do |format|
-      if @log.update(log_params)
-        format.html { redirect_to @log, notice: 'Log was successfully updated.' }
-        format.json { render :show, status: :ok, location: @log }
-      else
-        format.html { render :edit }
-        format.json { render json: @log.errors, status: :unprocessable_entity }
-      end
-    end
+    @log.update(body: exhb_log_params[:body])
+    redirect_to session[:previous_url]
   end
 
   # DELETE /logs/1
@@ -132,7 +126,7 @@ class LogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_log
-      @log = Log.find(params[:id])
+      @log = ExhbLog.find(params[:id])
     end
 
     def set_exhibition

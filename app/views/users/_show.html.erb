@@ -1,23 +1,23 @@
-<!--params: item, item_id, destroy_url-->
+<!--params: item, item_name, destroy_url-->
 <% user = item.user %>
 
 <header class="user-info">
-  <a href="/<%=user.username%>" class="image circle ml5 mr5">
+  <a href="/<%= user.username %>" class="image circle ml5 mr5">
     <% if user.image.present? %>
       <%= image_tag user.image.to_s, height: "30px" %>
     <% else %>
       <%= image_tag "default-profile-image.png", height: "30px" %>
     <% end %>
   </a>
-  <a href="/<%=user.username%>" class="dark bb0">
+  <a href="/<%= user.username %>" class="dark bb0">
     <strong><%= user.username %></strong>
   </a>
-  <div id="ellipsis<%= item_id %>" class="ellipsis">
+  <div id="ellipsis_<%= item_name %><%= item.id %>" class="ellipsis">
     <i class="fas fa-ellipsis-v"></i>
   </div>
 </header>
 
-<div id="overlay_<%= item_id %>" class="overlay bg-transp-dark non-active">
+<div id="overlay_<%= item_name %><%= item.id %>" class="overlay bg-transp-dark non-active">
   <div class="submenu-modal">
     <% if user_signed_in? %>
       <% if user.id == current_user.id %>
@@ -25,11 +25,14 @@
           <%= link_to destroy_url, method: :delete do %>
             <div class="item delete">削除する</div>
           <% end %>
+          <% if item_name == "exhb_log" || item_name == "art_log" %>
+            <div id="edit_button<%= item.id %>" class="item edit pointer">編集する</div>
+          <% end %>
         </div>
       <% end %>
     <% end %>
     <div class="container">
-      <div class="item">キャンセル</div>
+      <div id="cancel_button<%= item.id %>" class="item pointer">キャンセル</div>
     </div>
   </div>
 </div>
@@ -37,15 +40,25 @@
 
 <script type="text/javascript" language="javascript">
     // Ellipsis Button
-    $ellipsisButton = $('#ellipsis<%= item_id %>');
-    $overlay<%= item_id %> = $('#overlay_<%= item_id %>');
+    $ellipsisButton = $('#ellipsis_<%= item_name %><%= item.id %>');
+    $overlay_<%= item_name %><%= item.id %> = $('#overlay_<%= item_name %><%= item.id %>');
     $ellipsisButton.on('click', function () {
-        $overlay<%= item_id %>.fadeIn();
-        $overlay<%= item_id %>.removeClass('non-active');
+        $overlay_<%= item_name %><%= item.id %>.fadeIn();
+        $overlay_<%= item_name %><%= item.id %>.removeClass('non-active');
     });
 
-    $overlay<%= item_id %>.on('click', function () {
-        $overlay<%= item_id %>.addClass('non-active');
-        $overlay<%= item_id %>.fadeOut();
+    $overlay_<%= item_name %><%= item.id %>.on('click', function () {
+        $overlay_<%= item_name %><%= item.id %>.addClass('non-active');
+        $overlay_<%= item_name %><%= item.id %>.fadeOut();
+    });
+
+    $('#edit_button<%= item.id %>').on('click', function () {
+        $('#item_body<%= item.id %>').addClass('non-active');
+        $('#item_form<%= item.id %>').removeClass('non-active')
+    });
+
+    $('#cancel_button<%= item.id %>').on('click', function () {
+        $('#item_body<%= item.id %>').removeClass('non-active');
+        $('#item_form<%= item.id %>').addClass('non-active')
     });
 </script>

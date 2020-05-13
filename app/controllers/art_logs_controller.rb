@@ -77,8 +77,10 @@ class ArtLogsController < ApplicationController
     end
     if @art_log.exhb_log.exhibition.id == 1
       @art_log.exhb_log.destroy
+      @art_log.art.update_star
     else
       @art_log.destroy
+      @art_log.art.update_star
     end
     redirect_to session[:previous_url]
   end
