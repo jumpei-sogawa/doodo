@@ -3,19 +3,19 @@
     <div class="home-tab-container">
       <div class="row">
         <div class="col-6">
-          <header id="recommend_tab" class="major align-center pointer">
-            <h3 id="recommend_tab_text">おすすめ</h3>
+          <header id="ranking_tab" class="major align-center pointer">
+            <h3 id="ranking_tab_text">ランキング</h3>
           </header>
         </div>
 
         <div class="col-6">
-          <header id="timeline_tab" class="align-center pointer">
-            <h3 id="timeline_tab_text" class="gray">タイムライン</h3>
+          <header id="new_post_tab" class="align-center pointer">
+            <h3 id="new_post_tab_text" class="gray">最新の投稿</h3>
           </header>
         </div>
       </div>
 
-      <div id="recommend_sub_tab_container" class="row">
+      <div id="ranking_sub_tab_container" class="row">
         <div class="off-1 col-5">
           <header id="exhb_tab" class="align-center pointer">
             <h4 id="exhb_tab_text">
@@ -35,14 +35,22 @@
       </div>
     </div>
 
-    <div id="recommend_container">
+    <div id="ranking_container">
       <%# 人気の展覧会 %>
       <div id="exhb_container">
         <div class="row">
-          <% @exhibitions.each do |exhb| %>
+          <% @exhibitions.each.with_index do |exhb, i| %>
             <div class="col-6">
               <div class="exhb-container">
                 <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+                <% if i < 3 %>
+                  <div class="rank-box">
+                    <div class="outer">
+                      <div class="rank-star align-center"><i class="fas fa-star yellow"></i></div>
+                      <div class="rank-number align-center"><%= i + 1 %></div>
+                    </div>
+                  </div>
+                <% end %>
               </div>
             </div>
           <% end %>
@@ -64,7 +72,7 @@
     </div>
 
     <%# 最新の投稿 %>
-    <div id="timeline_container" class="non-active">
+    <div id="new_post_container" class="non-active">
       <% @exhb_logs.each do |exhb_log| %>
         <% if exhb_log.exhibition.id == 1 %>
           <%= render partial: "logs/show_art_log", locals: {exhb_log: exhb_log} %>
@@ -79,44 +87,44 @@
 <%= javascript_include_tag 'swiper.js' %>
 
 <script type="text/javascript" language="javascript">
-    $('#recommend_tab')[0].onclick = function () {
-        deactivateTimeline();
-        activateRecomend();
+    $('#ranking_tab')[0].onclick = function () {
+        deactivateNewPost();
+        activateRanking();
     };
-    $('#timeline_tab')[0].onclick = function () {
-        deactivateRecomend();
-        activateTimeline();
-    };
-
-    function activateRecomend() {
-        $('#recommend_tab').addClass("major");
-        $('#recommend_tab_text').addClass("dark");
-        $('#recommend_tab_text').removeClass("gray");
-        $('#recommend_sub_tab_container').removeClass("non-active");
-        $('#recommend_container').removeClass("non-active");
+    $('#new_post_tab')[0].onclick = function () {
+        deactivateRanking();
+        activateNewPost();
     };
 
-    function deactivateRecomend() {
-        $('#recommend_tab').removeClass("major");
-        $('#recommend_tab_text').removeClass("dark");
-        $('#recommend_tab_text').addClass("gray");
-        $('#recommend_sub_tab_container').addClass("non-active");
-        $('#recommend_container').addClass("non-active");
+    function activateRanking() {
+        $('#ranking_tab').addClass("major");
+        $('#ranking_tab_text').addClass("dark");
+        $('#ranking_tab_text').removeClass("gray");
+        $('#ranking_sub_tab_container').removeClass("non-active");
+        $('#ranking_container').removeClass("non-active");
     };
 
-    function activateTimeline() {
-        $('#timeline_tab').addClass("major");
-        $('#timeline_tab_text').addClass("dark");
-        $('#timeline_tab_text').removeClass("gray");
-        $('#timeline_container').removeClass("non-active");
+    function deactivateRanking() {
+        $('#ranking_tab').removeClass("major");
+        $('#ranking_tab_text').removeClass("dark");
+        $('#ranking_tab_text').addClass("gray");
+        $('#ranking_sub_tab_container').addClass("non-active");
+        $('#ranking_container').addClass("non-active");
+    };
+
+    function activateNewPost() {
+        $('#new_post_tab').addClass("major");
+        $('#new_post_tab_text').addClass("dark");
+        $('#new_post_tab_text').removeClass("gray");
+        $('#new_post_container').removeClass("non-active");
         activateLogs();
     };
 
-    function deactivateTimeline() {
-        $('#timeline_tab').removeClass("major");
-        $('#timeline_tab_text').removeClass("dark");
-        $('#timeline_tab_text').addClass("gray");
-        $('#timeline_container').addClass("non-active");
+    function deactivateNewPost() {
+        $('#new_post_tab').removeClass("major");
+        $('#new_post_tab_text').removeClass("dark");
+        $('#new_post_tab_text').addClass("gray");
+        $('#new_post_container').addClass("non-active");
     };
 
     $('#exhb_tab')[0].onclick = function () {

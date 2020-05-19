@@ -444,7 +444,33 @@ span.denominator {
   background-color: white;
   padding: 10px 0 0 0;
   margin: 10px 0 5px 0;
-  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
+}
+
+.rank-box {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  width: 25%;
+}
+
+.rank-star {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 2.5em;
+  text-align: center;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.6));
+}
+
+.rank-number {
+  position: absolute;
+  top: 0.8em;
+  left: 0;
+  width: 100%;
+  font-size: 1.4em;
+  color: #3d4449;
 }
 
 .log-container {
@@ -452,7 +478,7 @@ span.denominator {
   background-color: white;
   padding: 0 5px 5px 5px;
   margin: 10px 0 0 0;
-  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .user-info {
@@ -541,7 +567,7 @@ span.denominator {
   background-color: white;
   padding: 10px 5px 5px 5px;
   margin: 5px 0 5px 0;
-  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .exhb-container {
@@ -549,7 +575,7 @@ span.denominator {
   background-color: white;
   padding: 5px 5px 5px 5px;
   margin: 5px 0 5px 0;
-  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .art-container {
@@ -557,7 +583,7 @@ span.denominator {
   background-color: white;
   padding: 5px 5px 5px 5px;
   margin: 5px 0 5px 0;
-  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 // ログ投稿画面
@@ -724,7 +750,7 @@ span.denominator {
   background-color: white;
   padding: 5px 10px 10px 10px;
   margin: 10px 0 0 0;
-  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .mypage-tab-container {
@@ -732,7 +758,7 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 0 0;
   margin: 10px 0 0 0;
-  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 // プロフィール編集

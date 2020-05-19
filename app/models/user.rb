@@ -17,7 +17,7 @@ class User < ApplicationRecord
     # presence: true,
     # length: { minimum: 4, maximum: 20 },
     uniqueness: { case_sensitive: :false },
-    format: { with: /\A[a-z0-9]+\z/, message: "は半角英小文字/数字で入力してください"}
+    format: { with: /\A[a-z0-9]+\z/, message: "は半角アルファベット小文字a-zまたは数字で入力してください"}
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
@@ -31,7 +31,7 @@ class User < ApplicationRecord
 
   def username_validate
     if username.blank? || username.length < 4 || username.length >20
-      errors.add(:username, "を4~20字で入力してください")
+      errors.add(:username, "は4~20字で入力してください")
     end
   end
 
