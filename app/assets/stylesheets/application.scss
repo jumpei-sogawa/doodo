@@ -293,6 +293,26 @@ a.button.light-gray {
   cursor: pointer;
 }
 
+// wrap
+.wrap_3 {
+  overflow: hidden;
+  height: 3em;
+}
+
+// centering
+.outer {
+  position: relative;
+}
+
+.outer > .inner {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+}
+
 // display
 .hidden {
   display: none;
@@ -431,6 +451,7 @@ span.denominator {
   background-color: white;
   padding: 0 5px 5px 5px;
   margin: 10px 0 0 0;
+  //filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.4));
 }
 
 .user-info {
