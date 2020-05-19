@@ -1,8 +1,8 @@
 <% if params[:controller] == "logs" && params[:action] == "new" %>
   <header class="major align-center">
     <h4 style="margin-bottom:1em;">
-      <% if museum.name.length > 11 %>
-        <%= museum.name.first(10) %>...
+      <% if museum.name.length > 9 %>
+        <%= museum.name.first(8) %>...
       <% else %>
         <%= museum.name %>
       <% end %>
@@ -12,8 +12,8 @@
   <%= link_to museum_path(museum) do %>
     <header class="major align-center">
       <h4 style="margin-bottom:1em;">
-        <% if museum.name.length > 11 %>
-          <%= museum.name.first(10) %>...
+        <% if museum.name.length > 9 %>
+          <%= museum.name.first(8) %>...
         <% else %>
           <%= museum.name %>
         <% end %>

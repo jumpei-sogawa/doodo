@@ -45,8 +45,8 @@
   </h2>
   <div class="align-center">
     <div>作：
-      <% if art.artist.name.length > 11 %>
-        <%= art.artist.name.first(10) %>...
+      <% if art.artist.name.length > 9 %>
+        <%= art.artist.name.first(8) %>...
       <% else %>
         <%= art.artist.name %>
       <% end %>
@@ -60,8 +60,8 @@
       <% if art.exhibition.name.present? %>
         <div>展：
           <a href="/exhibitions/<%=art.exhibition.id%>" class="bb0 gray">
-            <% if art.exhibition.name.length > 11 %>
-              <%= art.exhibition.name.first(10) %>...
+            <% if art.exhibition.name.length > 9 %>
+              <%= art.exhibition.name.first(8) %>...
             <% else %>
               <%= art.exhibition.name %>
             <% end %>
