@@ -460,13 +460,12 @@ span.denominator {
   left: 0;
   width: 100%;
   font-size: 2.5em;
-  text-align: center;
   filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.6));
 }
 
 .rank-number {
   position: absolute;
-  top: 0.6em;
+  top: 0.65em;
   left: 0;
   width: 100%;
   font-size: 1.5em;
@@ -571,6 +570,7 @@ span.denominator {
 }
 
 .exhb-container {
+  position: relative;
   border-radius: 5px;
   background-color: white;
   padding: 5px 5px 5px 5px;
