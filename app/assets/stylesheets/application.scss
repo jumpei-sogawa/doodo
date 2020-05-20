@@ -824,6 +824,7 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 0 10px;
   margin: 10px 0 5px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .museum-info {
@@ -834,8 +835,9 @@ span.denominator {
 .exhibitions-container {
   border-radius: 15px;
   background-color: white;
-  padding: 10px 10px 0 10px;
+  padding: 10px 10px 10px 10px;
   margin: 5px 0 10px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 // 展覧会詳細ページ
@@ -844,6 +846,7 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 0 10px;
   margin: 10px 0 5px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .exhibition-info-container {
@@ -851,6 +854,7 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 10px 10px;
   margin: 5px 0 5px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .highlight-container {
@@ -858,13 +862,15 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 10px 10px;
   margin: 5px 0 5px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .arts-container {
   border-radius: 15px;
   background-color: white;
-  padding: 10px 10px 0 10px;
+  padding: 10px 10px 5px 10px;
   margin: 5px 0 10px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .exhibition-outline-container {
@@ -872,6 +878,7 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 10px 10px;
   margin: 10px 0 10px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .exhibition-logs-container {
@@ -879,6 +886,7 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 10px 10px;
   margin: 10px 0 10px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 // 作品詳細ページ
@@ -887,6 +895,7 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 0 10px;
   margin: 10px 0 5px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .art-info-container{
@@ -894,6 +903,7 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 10px 10px;
   margin: 5px 0 5px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .art-logs-container {
@@ -901,6 +911,7 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 10px 10px;
   margin: 5px 0 10px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 // 展覧会ログ詳細ページ
@@ -909,7 +920,8 @@ span.denominator {
   border-radius: 15px;
   background-color: white;
   padding: 5px 10px 5px 10px;
-  margin: 10px 0 0 0;
+  margin: 10px 0 10px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .log-exhibition-info-container {
@@ -917,6 +929,7 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 10px 10px;
   margin: 10px 0 10px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 // Articles
@@ -925,6 +938,7 @@ span.denominator {
   background-color: white;
   padding: 10px 10px 10px 10px;
   margin: 10px 0 20px 0;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 .article-submit-buttons {
