@@ -51,9 +51,11 @@
         <%= art.artist.name %>
       <% end %>
     </div>
-    <div class="mb10">
+    <div class="mb0">
       <% if art.year.present? %>
         <span>（<%= art.year %>年）</span>
+      <% else %>
+        <br>
       <% end %>
     </div>
     <% if params[:controller] != "exhibitions" %>
@@ -68,7 +70,7 @@
           </a>
         </div>
       <% else %>
-        <div>　</div>
+        <br>
       <% end %>
     <% end %>
   </div>
