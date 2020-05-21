@@ -44,18 +44,29 @@ class PagesController < ApplicationController
       end
     elsif params[:exhb_area].present? || params[:exhb_name].present? || params[:exhb_date].present?
       @exhibitions = Exhibition.search_by(params).sort do |a,b|
-        if !a.star.present?
+        if a.blank?
           1
-        elsif !b.star.present?
+        elsif b.blank?
           -1
         else
-          b <=> a
+          if a.star.blank?
+            1
+          elsif b.star.blank?
+            -1
+          else
+            b <=> a
+          end
         end
       end
     else
       @exhibitions = Exhibition.order("star DESC NULLS LAST")
     end
-    @exhibitions = @exhibitions.select { |exhb| exhb.id != 1 }.first(20)
+    @exhibitions = @exhibitions.select do |exhb|
+      if exhb.present?
+        exhb.id != 1
+      end
+    end
+    @exhibitions = @exhibitions.first(20)
 
     if params[:art_name].present? || params[:artist_name].present?
       arts = Art.search_by(params).first(20)
@@ -71,7 +82,5 @@ class PagesController < ApplicationController
     else
       @arts = Art.order("star DESC NULLS LAST").first(20)
     end
-
   end
-
 end
