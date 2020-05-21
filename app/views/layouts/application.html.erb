@@ -32,12 +32,16 @@
           <% else %>
             <%# sign up in out buttons %>
             <% if user_signed_in? %>
-              <div class="item">
-                <%= link_to destroy_user_session_path, class: "bb0", method: :delete do %>
-                  <i class="fas fa-sign-out-alt gray"></i>
-                  <span class="gray">ログアウト</span>
+              <% if params[:controller] == "users" %>
+                <% if params[:username] == current_user.username %>
+                  <div class="item">
+                    <%= link_to destroy_user_session_path, class: "bb0", method: :delete do %>
+                      <i class="fas fa-sign-out-alt gray"></i>
+                      <span class="gray">ログアウト</span>
+                    <% end %>
+                  </div>
                 <% end %>
-              </div>
+              <% end %>
             <% else %>
               <div class="item">
                 <%= link_to new_user_session_path, class: "bb0" do %>
