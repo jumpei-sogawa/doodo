@@ -22,13 +22,13 @@
 </a>
 
 <div class="content mt10 mb0">
-  <h3 class="align-center mb10 wrap_3 outer"><div class="inner"><a href="<%= url %>">
-    <% if art.name.length > 27 %>
-      <%= art.name.first(26) %>...
+  <h4 class="align-center mb10 wrap_3 outer"><div class="inner"><a href="<%= url %>">
+    <% if art.name.length > 22 %>
+      <%= art.name.first(21) %>...
     <% else %>
       <%= art.name %>
     <% end %>
-  </a></div></h3>
+  </a></div></h4>
   <h2 class="row mb10">
     <div class="off-1 col-8">
       <i class="fas fa-star yellow"></i>
@@ -45,7 +45,7 @@
   </h2>
   <div class="align-center">
     <div>作：
-      <% if art.artist.name.length > 9 %>
+      <% if art.artist.name.length > 8 %>
         <%= art.artist.name.first(8) %>...
       <% else %>
         <%= art.artist.name %>
@@ -60,7 +60,7 @@
       <% if art.exhibition.name.present? %>
         <div>展：
           <a href="/exhibitions/<%=art.exhibition.id%>" class="bb0 gray">
-            <% if art.exhibition.name.length > 9 %>
+            <% if art.exhibition.name.length > 8 %>
               <%= art.exhibition.name.first(8) %>...
             <% else %>
               <%= art.exhibition.name %>
