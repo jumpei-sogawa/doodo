@@ -76,6 +76,10 @@
 		deactivateExhibition();
 		deactivateArt();
 		activateMuseum();
+  <% elsif params[:t] == "exhibition" || params[:exhb_area].present? || params[:exhb_name].present? %>
+    deactivateArt();
+    deactivateMuseum();
+    activateExhibition();
 	<% elsif params[:t] == "art" || params[:art_name].present? || params[:artist_name].present? %>
 		deactivateMuseum();
 		deactivateExhibition();
@@ -99,46 +103,51 @@
 	}
 
 	function activateMuseum() {
-		$('#museum_tab').addClass("highlight")
-    $('#museum_tab_text').removeClass("gray")
-		$('#museum_tab_text').addClass("dark")
-		$('#museum_container').removeClass("non-active")
+		$('#museum_tab').addClass("highlight");
+    $('#museum_tab_text').removeClass("gray");
+		$('#museum_tab_text').addClass("dark");
+		$('#museum_container').removeClass("non-active");
+    $('#header_guide-search_museum').removeClass("non-active");
 	}
 
 	function deactivateMuseum() {
-		$('#museum_tab').removeClass("highlight")
-    $('#museum_tab_text').removeClass("dark")
-		$('#museum_tab_text').addClass("gray")
-		$('#museum_container').addClass("non-active")
+		$('#museum_tab').removeClass("highlight");
+    $('#museum_tab_text').removeClass("dark");
+		$('#museum_tab_text').addClass("gray");
+		$('#museum_container').addClass("non-active");
+    $('#header_guide-search_museum').addClass("non-active");
 	}
 
 	function activateExhibition() {
-		$('#exhb_tab').addClass("highlight")
-    $('#exhb_tab_text').removeClass("gray")
-		$('#exhb_tab_text').addClass("dark")
-		$('#exhb_container').removeClass("non-active")
+		$('#exhb_tab').addClass("highlight");
+    $('#exhb_tab_text').removeClass("gray");
+		$('#exhb_tab_text').addClass("dark");
+		$('#exhb_container').removeClass("non-active");
+    $('#header_guide-search_exhb').removeClass("non-active");
 	}
 
 	function deactivateExhibition() {
-		$('#exhb_tab').removeClass("highlight")
-    $('#exhb_tab_text').removeClass("dark")
-		$('#exhb_tab_text').addClass("gray")
-		$('#exhb_container').addClass("non-active")
+		$('#exhb_tab').removeClass("highlight");
+    $('#exhb_tab_text').removeClass("dark");
+		$('#exhb_tab_text').addClass("gray");
+		$('#exhb_container').addClass("non-active");
+    $('#header_guide-search_exhb').addClass("non-active");
 	}
 
 	function activateArt() {
-		$('#art_tab').addClass("highlight")
-    $('#art_tab_text').removeClass("gray")
-		$('#art_tab').addClass("dark")
-		$('#art_container').removeClass("non-active")
-
+		$('#art_tab').addClass("highlight");
+    $('#art_tab_text').removeClass("gray");
+		$('#art_tab').addClass("dark");
+		$('#art_container').removeClass("non-active");
+    $('#header_guide-search_art').removeClass("non-active");
 	}
 
 	function deactivateArt() {
-		$('#art_tab').removeClass("highlight")
-    $('#art_tab').removeClass("dark")
-		$('#art_tab_text').addClass("gray")
-		$('#art_container').addClass("non-active")
+		$('#art_tab').removeClass("highlight");
+    $('#art_tab').removeClass("dark");
+		$('#art_tab_text').addClass("gray");
+		$('#art_container').addClass("non-active");
+    $('#header_guide-search_art').addClass("non-active");
 	}
 
 </script>

@@ -54,39 +54,6 @@
   margin-left: 30px;
 }
 
-.header-bg{
-  background-color: white;
-}
-
-.header-ml {
-  margin-left: 420px;
-  position: relative;
-}
-@media screen and (max-width: 1280px) {
-  .header-ml {
-    margin-left: 60px;
-  }
-}
-@media screen and (max-width: 736px) {
-  .header-ml {
-    margin-left: 40px;
-  }
-}
-
-.header-nav-container {
-  position: absolute;
-  height: 100%;
-  top: 50%;
-  right: 0;
-  transform: translate(0%,-50%);
-  display: flex;
-  align-items: center;
-
-  .item {
-    margin-right: 10px;
-  }
-}
-
 .mr5 {
   margin-right: 5px;
 }
@@ -406,6 +373,51 @@ a.button.light-gray {
 .swiper-button-prev, .swiper-button-next {
 	top: calc((100% - 19px) * 0.5);	/* ☆★ページネーション・スクロールバー（30px）を除く縦位置の中央（＝スライドの高さの中央）に一旦配置 */
 	margin-top: -11px;			/* ★ボタンの高さ（44px）の半分のネガティブマージンで上に少しずらす */
+}
+
+// header
+.header-bg{
+  background-color: white;
+}
+
+.header-ml {
+  margin-left: 420px;
+  position: relative;
+}
+@media screen and (max-width: 1280px) {
+  .header-ml {
+    margin-left: 60px;
+  }
+}
+@media screen and (max-width: 736px) {
+  .header-ml {
+    margin-left: 40px;
+  }
+}
+
+.header-nav-container {
+  position: absolute;
+  height: 100%;
+  top: 50%;
+  right: 0;
+  transform: translate(0%,-50%);
+  display: flex;
+  align-items: center;
+
+  .item {
+    margin-right: 10px;
+  }
+}
+
+.header-guide-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.header-guide {
+  color: #7f888f;
+  margin-right: 5px;
 }
 
 

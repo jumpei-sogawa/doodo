@@ -118,76 +118,82 @@
 		deactivateVisitedTab();
 		deactivatePinnedTab();
 		activateLogTab();
-  }
+  };
 	$('#visited_count')[0].onclick = function () {
 		deactivatePinnedTab();
 		deactivateLogTab();
 		activateVisitedTab();
-  }
+  };
   $('#pinned_count')[0].onclick = function () {
 		deactivateLogTab();
 		deactivateVisitedTab();
 		activatePinnedTab();
-  }
+  };
 
 	$('#log_tab')[0].onclick = function () {
 		deactivateVisitedTab();
 		deactivatePinnedTab();
 		activateLogTab();
-  }
+  };
 	$('#visited_tab')[0].onclick = function () {
 		deactivatePinnedTab();
 		deactivateLogTab();
 		activateVisitedTab();
-  }
+  };
   $('#pinned_tab')[0].onclick = function () {
 		deactivateLogTab();
 		deactivateVisitedTab();
 		activatePinnedTab();
-	}
+	};
 
 	function activateLogTab() {
-		$('#log_tab').addClass("major")
-    $('#log_tab_text').removeClass("gray")
-		$('#log_tab_text').addClass("dark")
-		$('#log_container').removeClass("non-active")
-	}
+		$('#log_tab').addClass("major");
+    $('#log_tab_text').removeClass("gray");
+		$('#log_tab_text').addClass("dark");
+		$('#log_container').removeClass("non-active");
+    $('#header_guide-user_page_log').removeClass("non-active");
+	};
 
 	function deactivateLogTab() {
-		$('#log_tab').removeClass("major")
-    $('#log_tab_text').removeClass("dark")
-		$('#log_tab_text').addClass("gray")
-		$('#log_container').addClass("non-active")
-	}
+		$('#log_tab').removeClass("major");
+    $('#log_tab_text').removeClass("dark");
+		$('#log_tab_text').addClass("gray");
+		$('#log_container').addClass("non-active");
+    $('#header_guide-user_page_log').addClass("non-active");
+	};
 
 	function activateVisitedTab() {
-		$('#visited_tab').addClass("major")
-    $('#visited_tab_text').removeClass("gray")
-		$('#visited_tab_text').addClass("dark")
-		$('#visited_container').removeClass("non-active")
-	}
+		$('#visited_tab').addClass("major");
+    $('#visited_tab_text').removeClass("gray");
+		$('#visited_tab_text').addClass("dark");
+		$('#visited_container').removeClass("non-active");
+    $('#header_guide-user_page_visited').removeClass("non-active");
+	};
 
 	function deactivateVisitedTab() {
-		$('#visited_tab').removeClass("major")
-    $('#visited_tab_text').removeClass("dark")
-		$('#visited_tab_text').addClass("gray")
-		$('#visited_container').addClass("non-active")
-	}
+		$('#visited_tab').removeClass("major");
+    $('#visited_tab_text').removeClass("dark");
+		$('#visited_tab_text').addClass("gray");
+		$('#visited_container').addClass("non-active");
+    $('#header_guide-user_page_visited').addClass("non-active");
+	};
 
 	function activatePinnedTab() {
-		$('#pinned_tab').addClass("major")
-    $('#pinned_tab_text').removeClass("gray")
-		$('#pinned_tab').addClass("dark")
-		$('#pinned_container').removeClass("non-active")
+		$('#pinned_tab').addClass("major");
+    $('#pinned_tab_text').removeClass("gray");
+		$('#pinned_tab').addClass("dark");
+		$('#pinned_container').removeClass("non-active");
+    $('#header_guide-user_page_pinned').removeClass("non-active");
 
-	}
+	};
 
 	function deactivatePinnedTab() {
-		$('#pinned_tab').removeClass("major")
-    $('#pinned_tab').removeClass("dark")
-		$('#pinned_tab_text').addClass("gray")
-		$('#pinned_container').addClass("non-active")
-	}
+		$('#pinned_tab').removeClass("major");
+    $('#pinned_tab').removeClass("dark");
+		$('#pinned_tab_text').addClass("gray");
+		$('#pinned_container').addClass("non-active");
+    $('#header_guide-user_page_pinned').addClass("non-active");
+	};
 
   <% @exhb_logs.each do |exhb_log| %>
     // Swiper

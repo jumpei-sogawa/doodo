@@ -59,6 +59,170 @@
           <% end %>
         </div>
       </div>
+      <div class="header-ml">
+        <div class="header-guide-container mb0 pb0">
+          <a href="/" class="bb0"><span class="header-guide">DooDoo</span></a>
+          <% if params[:controller] == "pages" && params[:action] == "home" %>
+            <span id="header_guide-ranking">
+              <span class="mr5"><i class="fas fa-angle-right"></i></span>
+              <a href="/?t=ranking" class="bb0"><span class="header-guide">ランキング</span></a>
+              <span id="header_guide-ranking_exhb">
+                <span class="mr5"><i class="fas fa-angle-right"></i></span>
+                <span class="header-guide">展覧会</span>
+              </span>
+              <span id="header_guide-ranking_art" class="non-active">
+                <span class="mr5"><i class="fas fa-angle-right"></i></span>
+                <span class="header-guide">作品</span>
+              </span>
+            </span>
+            <span id="header_guide-new_post" class="non-active">
+              <span class="mr5"><i class="fas fa-angle-right"></i></span>
+              <span class="header-guide">最新の投稿</span>
+            </span>
+          <% elsif params[:controller] == "pages" && params[:action] == "search" %>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/search" class="bb0"><span class="header-guide">検索</span></a>
+            <span id="header_guide-search_museum" class="non-active">
+              <span class="mr5"><i class="fas fa-angle-right"></i></span>
+              <span class="header-guide">美術館</span>
+            </span>
+            <span id="header_guide-search_exhb">
+              <span class="mr5"><i class="fas fa-angle-right"></i></span>
+              <span class="header-guide">展覧会</span>
+            </span>
+            <span id="header_guide-search_art" class="non-active">
+              <span class="mr5"><i class="fas fa-angle-right"></i></span>
+              <span class="header-guide">作品</span>
+            </span>
+          <% elsif params[:controller] == "logs" && params[:action] == "new" %>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/logs/new" class="bb0"><span class="header-guide">新規投稿</span></a>
+            <% if params[:e].present? %>
+              <span class="mr5"><i class="fas fa-angle-right"></i></span>
+              <span class="header-guide">展覧会</span>
+            <% elsif params[:a].present? %>
+              <span class="mr5"><i class="fas fa-angle-right"></i></span>
+              <span class="header-guide">作品</span>
+            <% end %>
+          <% elsif params[:controller] == "articles" %>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/articles" class="bb0"><span class="header-guide">記事</span></a>
+            <% if params[:action] == "show" %>
+              <span class="mr5"><i class="fas fa-angle-right"></i></span>
+              <span class="header-guide">
+                <% if @article.title.length > 14 %>
+                  <%= @article.title.first(14) %>...
+                <% else %>
+                  <%= @article.title %>
+                <% end %>
+              </span>
+            <% end %>
+          <% elsif params[:controller] == "users" && params[:action] == "show" %>
+            <% if user_signed_in? %>
+              <% if params[:username] == current_user.username %>
+                <span class="mr5"><i class="fas fa-angle-right"></i></span>
+                <a href="/mypage" class="bb0"><span class="header-guide">マイページ</span></a>
+              <% else %>
+                <span class="mr5"><i class="fas fa-angle-right"></i></span>
+                <a href="/<%= @user.username %>" class="bb0"><span class="header-guide"><%= @user.username %></span></a>
+                <span class="header-guide">のページ</span>
+              <% end %>
+            <% else %>
+              <span class="mr5"><i class="fas fa-angle-right"></i></span>
+              <a href="/<%= @user.username %>" class="bb0"><span class="header-guide"><%= @user.username %></span></a>
+              <span class="header-guide">のページ</span>
+            <% end %>
+            <span id="header_guide-user_page_log">
+              <span class="mr5"><i class="fas fa-angle-right"></i></span>
+              <span class="header-guide">ログ</span>
+            </span>
+            <span id="header_guide-user_page_visited" class="non-active">
+              <span class="mr5"><i class="fas fa-angle-right"></i></span>
+              <span class="header-guide">行った展覧会</span>
+            </span>
+            <span id="header_guide-user_page_pinned" class="non-active">
+              <span class="mr5"><i class="fas fa-angle-right"></i></span>
+              <span class="header-guide">ピンした展覧会</span>
+            </span>
+          <% elsif params[:controller] == "users" && params[:action] == "edit" %>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/mypage" class="bb0"><span class="header-guide">マイページ</span></a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <span class="header-guide">プロフィール編集</span>
+          <% elsif params[:controller] == "museums" && params[:action] == "show" %>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/search" class="bb0"><span class="header-guide">検索</span></a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/search?t=museum" class="bb0"><span class="header-guide">美術館</span></a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <span class="header-guide">
+              <% if @museum.name.length > 8 %>
+                <%= @museum.name.first(8) %>...
+              <% else %>
+                <%= @museum.name %>
+              <% end %>
+            </span>
+          <% elsif params[:controller] == "exhibitions" && params[:action] == "show" %>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/search" class="bb0"><span class="header-guide">検索</span></a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/search?t=exhibition" class="bb0"><span class="header-guide">展覧会</span></a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <span class="header-guide">
+              <% if @exhibition.name.length > 8 %>
+                <%= @exhibition.name.first(8) %>...
+              <% else %>
+                <%= @exhibition.name %>
+              <% end %>
+            </span>
+          <% elsif params[:controller] == "arts" && params[:action] == "show" %>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/search" class="bb0"><span class="header-guide">検索</span></a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/search?t=art" class="bb0"><span class="header-guide">作品</span></a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <span class="header-guide">
+              <% if @art.name.length > 8 %>
+                <%= @art.name.first(8) %>...
+              <% else %>
+                <%= @art.name %>
+              <% end %>
+            </span>
+          <% elsif params[:controller] == "exhb_logs" && params[:action] == "show" %>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/search" class="bb0"><span class="header-guide">検索</span></a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/search?t=exhibition" class="bb0"><span class="header-guide">展覧会</span></a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/exhibitions/<%= @exhb_log.exhibition.id %>" class="bb0">
+              <span class="header-guide">
+                <% if @exhibition.name.length > 8 %>
+                  <%= @exhibition.name.first(8) %>...
+                <% else %>
+                  <%= @exhibition.name %>
+                <% end %>
+              </span>
+            </a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+          <% elsif params[:controller] == "art_logs" && params[:action] == "show" %>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/search" class="bb0"><span class="header-guide">検索</span></a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/search?t=art" class="bb0"><span class="header-guide">作品</span></a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+            <a href="/arts/<%= @art_log.art.id %>" class="bb0">
+              <span class="header-guide">
+                <% if @art.name.length > 8 %>
+                  <%= @art.name.first(8) %>...
+                <% else %>
+                  <%= @art.name %>
+                <% end %>
+              </span>
+            </a>
+            <span class="mr5"><i class="fas fa-angle-right"></i></span>
+          <% end %>
+        </div>
+      </div>
     </header>
 
     <div class="inner">

@@ -91,6 +91,20 @@
 <%= javascript_include_tag 'swiper.js' %>
 
 <script type="text/javascript" language="javascript">
+    <% if params[:t] == "ranking" %>
+      deactivateNewPost();
+      activateRanking();
+      <% if params[:u] == "exhibition" %>
+        deactivateArt();
+        activateExhibition();
+      <% elsif params[:u] == "art" %>
+        deactivateExhibition();
+        activateArt();
+      <% end %>
+    <% elsif params[:t] == "newpost" %>
+      deactivateRanking();
+      activateNewPost();
+    <% end %>
     $('#ranking_tab')[0].onclick = function () {
         deactivateNewPost();
         activateRanking();
@@ -106,6 +120,7 @@
         $('#ranking_tab_text').removeClass("gray");
         $('#ranking_sub_tab_container').removeClass("non-active");
         $('#ranking_container').removeClass("non-active");
+        $('#header_guide-ranking').removeClass("non-active");
     };
 
     function deactivateRanking() {
@@ -114,6 +129,7 @@
         $('#ranking_tab_text').addClass("gray");
         $('#ranking_sub_tab_container').addClass("non-active");
         $('#ranking_container').addClass("non-active");
+        $('#header_guide-ranking').addClass("non-active");
     };
 
     function activateNewPost() {
@@ -121,6 +137,7 @@
         $('#new_post_tab_text').addClass("dark");
         $('#new_post_tab_text').removeClass("gray");
         $('#new_post_container').removeClass("non-active");
+        $('#header_guide-new_post').removeClass("non-active");
         activateLogs();
     };
 
@@ -129,6 +146,7 @@
         $('#new_post_tab_text').removeClass("dark");
         $('#new_post_tab_text').addClass("gray");
         $('#new_post_container').addClass("non-active");
+        $('#header_guide-new_post').addClass("non-active");
     };
 
     $('#exhb_tab')[0].onclick = function () {
@@ -145,6 +163,7 @@
         $('#exhb_tab_text').addClass("dark");
         $('#exhb_tab_arrow').addClass("pink");
         $('#exhb_container').removeClass("non-active");
+        $('#header_guide-ranking_exhb').removeClass("non-active");
     };
 
     function deactivateExhibition() {
@@ -152,6 +171,7 @@
         $('#exhb_tab_text').addClass("gray");
         $('#exhb_tab_arrow').removeClass("pink");
         $('#exhb_container').addClass("non-active");
+        $('#header_guide-ranking_exhb').addClass("non-active");
     };
 
     function activateArt() {
@@ -159,7 +179,7 @@
         $('#art_tab').addClass("dark");
         $('#art_tab_arrow').addClass("pink");
         $('#art_container').removeClass("non-active");
-
+        $('#header_guide-ranking_art').removeClass("non-active");
     };
 
     function deactivateArt() {
@@ -167,6 +187,7 @@
         $('#art_tab_text').addClass("gray");
         $('#art_tab_arrow').removeClass("pink");
         $('#art_container').addClass("non-active");
+        $('#header_guide-ranking_art').addClass("non-active");
     };
 
     function activateLogs() {
