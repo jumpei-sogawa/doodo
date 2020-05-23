@@ -10,7 +10,7 @@ module ApplicationHelper
 
   def is_admin?
     if user_signed_in?
-      return current_user.email == "admin@doodoo.jp"
+      return current_user.email == "admin@doodo.jp"
     end
     return false
   end

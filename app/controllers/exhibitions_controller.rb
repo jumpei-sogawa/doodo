@@ -29,8 +29,8 @@ class ExhibitionsController < ApplicationController
     end
     @exhibitions = @exhibitions.select { |exhb| exhb.id != 1 }
 
-    @title = "展覧会検索ページ | アート・展覧会の口コミなら【DooDoo】"
-    @description = "アート・展覧会の口コミサイト「DooDoo」の展覧会検索ページです。DooDooはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
+    @title = "展覧会検索ページ | アート・展覧会の口コミなら【doodo】"
+    @description = "アート・展覧会の口コミサイト「doodo」の展覧会検索ページです。doodoはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
     @headline = "展覧会 #{@exhibitions.count}件"
   end
 

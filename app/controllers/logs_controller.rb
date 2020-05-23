@@ -16,8 +16,8 @@ class LogsController < ApplicationController
 
   # GET /logs/new
   def new
-    @title = "投稿ページ｜アート・展覧会の口コミなら【DooDoo】"
-    @description = "アート・展覧会の口コミサイト「DooDoo」の投稿ページです。ログインすることで、アート・絵画・美術館・展覧会・美術展の口コミを投稿することができます。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報もご案内。"
+    @title = "投稿ページ｜アート・展覧会の口コミなら【doodo】"
+    @description = "アート・展覧会の口コミサイト「doodo」の投稿ページです。ログインすることで、アート・絵画・美術館・展覧会・美術展の口コミを投稿することができます。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報もご案内。"
 
     if params[:museum_area].present? || params[:museum_name].present?
       museums = Museum.where("address LIKE ?", "%#{params[:museum_area]}%").where("name LIKE ?", "%#{params[:museum_name]}%")

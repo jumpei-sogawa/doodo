@@ -15,12 +15,12 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    if !user_signed_in? || (user_signed_in? && current_user.email != "admin@doodoo.jp")
+    if !user_signed_in? || (user_signed_in? && current_user.email != "admin@doodo.jp")
       if !@article.published
         redirect_to articles_path
       end
     end
-    @title = "#{@article.title}｜アートの口コミサイト【DooDoo】"
+    @title = "#{@article.title}｜アートの口コミサイト【doodo】"
     @description = @article.description
   end
 
@@ -84,7 +84,7 @@ class ArticlesController < ApplicationController
     end
 
     def auth_admin
-      if !user_signed_in? || current_user.email != "admin@doodoo.jp"
+      if !user_signed_in? || current_user.email != "admin@doodo.jp"
         redirect_to articles_path
       end
     end
