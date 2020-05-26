@@ -957,3 +957,13 @@ span.denominator {
   display: flex;
   justify-content: space-around;
 }
+
+.article-show--footer-logo {
+  width: 60%;
+  margin: 20px 15px 10px 0;
+  padding: 0 20px 0 20px;
+
+  @media (max-width: 481px) {
+    width: 100%;
+  }
+}
