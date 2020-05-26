@@ -144,6 +144,18 @@
   color: #f8f060;
 }
 
+.gold {
+  color: gold;
+}
+
+.silver {
+  color: silver;
+}
+
+.bronze {
+  color: #b87333;
+}
+
 .dark {
   color: #3d4449;
 }
@@ -482,6 +494,10 @@ span.denominator {
   width: 100%;
   font-size: 1.5em;
   color: #3d4449;
+
+  &.white {
+    color: white;
+  }
 }
 
 .log-container {
