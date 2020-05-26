@@ -34,3 +34,5 @@
 /.env
 
 /.idea/*
+
+config/secrets.yml
