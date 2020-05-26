@@ -25,3 +25,6 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
+  database: doodoo_production
+  username: doodoo
+  password: 62thjumpei

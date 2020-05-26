@@ -38,6 +38,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :production do
   gem 'pg'
+  gem 'dotenv-rails'
+end
+
+group :production, :staging do
+  gem 'unicorn'
 end
 
 group :development, :test do
@@ -72,7 +77,7 @@ gem 'devise'
 
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'fog'
+gem 'fog-aws'
 
 gem 'jquery-rails'
 
