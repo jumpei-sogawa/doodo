@@ -53,7 +53,7 @@
         <% end %>
 
         <%= link_to exhb_log_path(exhb_log) do %>
-          <div id="exhb_log<%= exhb_log.id %>_body" class="dark is-text">
+          <div id="exhb_log<%= exhb_log.id %>_body" class="dark">
             <% if exhb_log.body.length > 200 %>
               <%= exhb_log.body.first(200) %>...
             <% else %>
@@ -61,13 +61,15 @@
             <% end %>
           </div>
         <% end %>
-        <%= form_with(model: exhb_log, url: "/logs/#{exhb_log.id}", method: "PATCH", id: "exhb_log#{exhb_log.id}_form", class: "non-active mb5") do |form| %>
-          <%= form.text_area :body, value: exhb_log.body %>
-          <div class="flex-container space-between">
-            <div id="cancel_edit_exhb_log<%= exhb_log.id %>" class="button mt5">キャンセル</div>
-            <%= form.submit "保存", id: "submit_exhb_log#{exhb_log.id}", class: "primary mt5" %>
-          </div>
-        <% end %>
+        <div id="exhb_log<%= exhb_log.id %>_form" class="non-active mb5">
+          <%= form_with(model: exhb_log, url: "/logs/#{exhb_log.id}", method: "PATCH") do |form| %>
+            <%= form.text_area :body, value: exhb_log.body %>
+            <div class="flex-container space-between">
+              <div id="cancel_edit_exhb_log<%= exhb_log.id %>" class="button mt5">キャンセル</div>
+              <%= form.submit "保存", id: "submit_exhb_log#{exhb_log.id}", class: "primary mt5" %>
+            </div>
+          <% end %>
+        </div>
         <%= link_to exhb_log_path(exhb_log) do %>
           <div class="gray" style="font-size:0.8em;"><%= l exhb_log.created_at, format: :short_date %></div>
         <% end %>
@@ -196,7 +198,7 @@
 <script type="text/javascript" language="javascript">
     $('#cancel_edit_exhb_log<%= exhb_log.id %>').on('click', function () {
         $('#exhb_log<%= exhb_log.id %>_body').removeClass('non-active');
-        $('#exhb_log<%= exhb_log.id %>_form').addClass('non-active')
+        $('#exhb_log<%= exhb_log.id %>_form').addClass('non-active');
     });
 
     $('#submit_exhb_log<%= exhb_log.id %>').on('click', function () {

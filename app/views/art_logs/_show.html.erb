@@ -37,15 +37,17 @@
       <% end %>
     <% end %>
     <%= link_to art_log_path(art_log) do %>
-      <div id="art_log<%= art_log.id %>_body" class="dark is-text mt5 mb10"><%= art_log.body %></div>
+      <div id="art_log<%= art_log.id %>_body" class="dark mt5 mb10"><%= art_log.body %></div>
     <% end %>
-    <%= form_with(model: art_log, url: "/art_logs/#{art_log.id}", method: "PATCH", id: "art_log#{art_log.id}_form", class: "non-active mb5") do |form| %>
-      <%= form.text_area :body, value: art_log.body %>
-      <div class="flex-container space-between">
-        <div id="cancel_edit_art_log<%= art_log.id %>" class="button mt5">キャンセル</div>
-        <%= form.submit "保存", id: "submit_art_log#{art_log.id}", class: "primary mt5" %>
-      </div>
-    <% end %>
+    <div id="art_log<%= art_log.id %>_form" class="non-active mb5">
+      <%= form_with(model: art_log, url: "/art_logs/#{art_log.id}", method: "PATCH") do |form| %>
+        <%= form.text_area :body, value: art_log.body %>
+        <div class="flex-container space-between">
+          <div id="cancel_edit_art_log<%= art_log.id %>" class="button mt5">キャンセル</div>
+          <%= form.submit "保存", id: "submit_art_log#{art_log.id}", class: "primary mt5" %>
+        </div>
+      <% end %>
+    </div>
     <div class="mb10" style="font-size:0.8em;"><%= l art_log.created_at, format: :short_date %></div>
 
     <div class="row">
