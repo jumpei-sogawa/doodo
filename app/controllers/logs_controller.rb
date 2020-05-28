@@ -110,7 +110,7 @@ class LogsController < ApplicationController
   # PATCH/PUT /logs/1.json
   def update
     @log.update(body: exhb_log_params[:body])
-    redirect_to session[:previous_url]
+    redirect_to session[:previous_url] || root_path
   end
 
   # DELETE /logs/1

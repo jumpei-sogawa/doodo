@@ -21,14 +21,16 @@ class ExhbLogCommentsController < ApplicationController
 
   def destroy
     exhb_log_comment = ExhbLogComment.find(params[:id])
-    unless user_signed_in?
-      redirect_to session[:previous_url]
+    if user_signed_in?
+      if exhb_log_comment.user.id == current_user.id || current_user.email == "admin@doodo.jp"
+        exhb_log_comment.destroy
+        redirect_to exhb_log_path(params[:exhb_log_id])
+      else
+        redirect_to session[:previous_url] || root_path
+      end
+    else
+      redirect_to session[:previous_url] || root_path
     end
-    if exhb_log_comment.user.id != current_user.id
-      redirect_to session[:previous_url]
-    end
-    exhb_log_comment.destroy
-    redirect_to exhb_log_path(params[:exhb_log_id])
   end
 
   private

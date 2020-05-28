@@ -56,7 +56,7 @@ class ArtLogsController < ApplicationController
   # PATCH/PUT /art_logs/1.json
   def update
     @art_log.update(body: art_log_params[:body])
-    redirect_to session[:previous_url]
+    redirect_to session[:previous_url] || root_path
   end
 
   # DELETE /art_logs/1
@@ -73,7 +73,7 @@ class ArtLogsController < ApplicationController
         end
       end
     end
-    redirect_to session[:previous_url]
+    redirect_to session[:previous_url] || root_path
   end
 
   private

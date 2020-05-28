@@ -21,14 +21,16 @@ class ArtLogCommentsController < ApplicationController
 
   def destroy
     art_log_comment = ArtLogComment.find(params[:id])
-    unless user_signed_in?
-      redirect_to session[:previous_url]
+    if user_signed_in?
+      if art_log_comment.user.id == current_user.id || current_user.email == "admin@doodo.jp"
+        art_log_comment.destroy
+        redirect_to art_log_path(params[:art_log_id])
+      else
+        redirect_to session[:previous_url] || root_path
+      end
+    else
+      redirect_to session[:previous_url] || root_path
     end
-    if art_log_comment.user.id != current_user.id
-      redirect_to session[:previous_url]
-    end
-    art_log_comment.destroy
-    redirect_to art_log_path(params[:art_log_id])
   end
 
   private

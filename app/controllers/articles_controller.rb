@@ -64,12 +64,12 @@ class ArticlesController < ApplicationController
 
   def publish
     @article.update(published: true)
-    redirect_to session[:previous_url]
+    redirect_to session[:previous_url] || root_path
   end
 
   def unpublish
     @article.update(published: false)
-    redirect_to session[:previous_url]
+    redirect_to session[:previous_url] || root_path
   end
 
   private
