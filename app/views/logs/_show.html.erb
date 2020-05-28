@@ -53,7 +53,7 @@
         <% end %>
 
         <%= link_to exhb_log_path(exhb_log) do %>
-          <div id="exhb_log<%= exhb_log.id %>_body" class="dark">
+          <div id="exhb_log<%= exhb_log.id %>_body" class="dark mt5">
             <% if exhb_log.body.length > 200 %>
               <%= exhb_log.body.first(200) %>...
             <% else %>

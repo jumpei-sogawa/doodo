@@ -1,9 +1,9 @@
 <% if user_signed_in? %>
   <% if ExhbLogLike.find_by(user_id: current_user.id, exhb_log_id: exhb_log.id) %>
-    <div class="align-center pink">いいね<%= exhb_log.exhb_log_likes.count %>件</div>
+    <div class="align-center pink">いいね <%= exhb_log.exhb_log_likes.count %>件</div>
   <% else %>
-    <div class="align-center">いいね<%= exhb_log.exhb_log_likes.count %>件</div>
+    <div class="align-center">いいね <%= exhb_log.exhb_log_likes.count %>件</div>
   <% end %>
 <% else %>
-  <div class="align-center">いいね<%= exhb_log.exhb_log_likes.count %>件</div>
+  <div class="align-center">いいね <%= exhb_log.exhb_log_likes.count %>件</div>
 <% end %>

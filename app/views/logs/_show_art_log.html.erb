@@ -44,7 +44,7 @@
         <% end %>
 
         <%= link_to art_log_path(art_log) do %>
-          <div id="art_log<%= art_log.id %>_body" class="dark">
+          <div id="art_log<%= art_log.id %>_body" class="dark mt5">
             <% if art_log.body.length > 200 %>
               <%= art_log.body.first(200) %>...
             <% else %>
@@ -124,7 +124,7 @@
 <script type="text/javascript" language="javascript">
     $('#cancel_edit_art_log<%= art_log.id %>').on('click', function () {
         $('#art_log<%= art_log.id %>_body').removeClass('non-active');
-        $('#art_log<%= art_log.id %>_form').addClass('non-active'):
+        $('#art_log<%= art_log.id %>_form').addClass('non-active');
     });
 
     $('#submit_art_log<%= art_log.id %>').on('click', function () {
