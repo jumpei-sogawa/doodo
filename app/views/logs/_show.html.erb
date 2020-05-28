@@ -16,23 +16,25 @@
   <div class="row mb5">
     <div class="col-8">
       <div class="log-body-container">
-        <h2 class="ml10 mb0">
-          <% n = exhb_log.star.floor %>
-          <% n.times do %>
-            <span><i class="fas fa-star yellow"></i></span>
-          <% end %>
-          <% if n != exhb_log.star %>
-            <% m = 3 - n - 1 %>
-            <span><i class="fas fa-star-half yellow"></i></span>
-          <% else %>
-            <% m = 3 - n %>
-          <% end %>
-          <% m.times do %>
-            <span><i class="fas fa-star light-gray"></i></span>
-          <% end %>
-          <span class="ml10"><%= exhb_log.star %></span>
-          <span class="denominator">/3</span>
-        </h2>
+        <%= link_to exhb_log_path(exhb_log) do %>
+          <h2 class="ml10 mb0">
+            <% n = exhb_log.star.floor %>
+            <% n.times do %>
+              <span><i class="fas fa-star yellow"></i></span>
+            <% end %>
+            <% if n != exhb_log.star %>
+              <% m = 3 - n - 1 %>
+              <span><i class="fas fa-star-half yellow"></i></span>
+            <% else %>
+              <% m = 3 - n %>
+            <% end %>
+            <% m.times do %>
+              <span><i class="fas fa-star light-gray"></i></span>
+            <% end %>
+            <span class="ml10"><%= exhb_log.star %></span>
+            <span class="denominator">/3</span>
+          </h2>
+        <% end %>
 
         <%= link_to exhibition_path(exhibition) do %>
           <% if exhibition.name.length > 11 %>
@@ -50,7 +52,15 @@
           <% end %>
         <% end %>
 
-        <div id="exhb_log<%= exhb_log.id %>_body" class="dark is-text"><%= exhb_log.body %></div>
+        <%= link_to exhb_log_path(exhb_log) do %>
+          <div id="exhb_log<%= exhb_log.id %>_body" class="dark is-text">
+            <% if exhb_log.body.length > 200 %>
+              <%= exhb_log.body.first(200) %>...
+            <% else %>
+              <%= exhb_log.body %>
+            <% end %>
+          </div>
+        <% end %>
         <%= form_with(model: exhb_log, url: "/logs/#{exhb_log.id}", method: "PATCH", id: "exhb_log#{exhb_log.id}_form", class: "non-active mb5") do |form| %>
           <%= form.text_area :body, value: exhb_log.body %>
           <div class="flex-container space-between">
@@ -58,7 +68,9 @@
             <%= form.submit "保存", id: "submit_exhb_log#{exhb_log.id}", class: "primary mt5" %>
           </div>
         <% end %>
-        <div style="font-size:0.8em;"><%= l exhb_log.created_at, format: :short_date %></div>
+        <%= link_to exhb_log_path(exhb_log) do %>
+          <div class="gray" style="font-size:0.8em;"><%= l exhb_log.created_at, format: :short_date %></div>
+        <% end %>
 
         <div class="reaction-buttons flex-container center">
           <div class="pl0">
@@ -94,6 +106,7 @@
           <div class="image"></div>
         <% end %>
       <% end %>
+
       <div class="flex-container space-evenly center">
         <h1 class="gray mb0"><a href="/logs/new/?e=<%= exhibition.id %>"><i class="fas fa-edit"></i></a></h1>
         <h1 class="exhb_pin_<%= exhibition.id %> gray mb0">
