@@ -6,4 +6,6 @@ class ArtLog < ApplicationRecord
   has_many :art_log_comments, dependent: :destroy
 
   mount_uploader :image, ImageUploader
+
+  validates :body, length: { maximum: 1000 }
 end
