@@ -60,16 +60,14 @@ class ExhbLogsController < ApplicationController
   # DELETE /exhb_logs/1
   # DELETE /exhb_logs/1.json
   def destroy
-    unless user_signed_in?
-      redirect_to session[:previous_url]
+    if user_signed_in?
+      if @exhb_log.user.id == current_user.id || current_user.email == "admin@doodo.jp"
+        @exhb_log.destroy
+        Exhibition.update_star_by(@exhb_log)
+        Art.update_stars_by(@exhb_log.art_logs)
+      end
     end
-    if @exhb_log.user.id != current_user.id
-      redirect_to session[:previous_url]
-    end
-    @exhb_log.destroy
-    Exhibition.update_star_by(@exhb_log)
-    Art.update_stars_by(@exhb_log.art_logs)
-    redirect_to session[:previous_url]
+    redirect_to session[:previous_url] || root_path
   end
 
   private

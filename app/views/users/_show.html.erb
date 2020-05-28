@@ -20,13 +20,15 @@
 <div id="overlay_<%= item_name %><%= item.id %>" class="overlay bg-transp-dark non-active">
   <div class="submenu-modal">
     <% if user_signed_in? %>
-      <% if user.id == current_user.id %>
+      <% if user.id == current_user.id || current_user.email == "admin@doodo.jp" %>
         <div class="container mb10">
           <%= link_to destroy_url, method: :delete do %>
             <div class="item delete">削除する</div>
           <% end %>
-          <% if item_name == "exhb_log" || item_name == "art_log" %>
-            <div id="edit_<%= item_name %><%= item.id %>" class="item edit pointer">編集する</div>
+          <% if user.id == current_user.id %>
+            <% if item_name == "exhb_log" || item_name == "art_log" %>
+              <div id="edit_<%= item_name %><%= item.id %>" class="item edit pointer">編集する</div>
+            <% end %>
           <% end %>
         </div>
       <% end %>

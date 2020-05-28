@@ -62,18 +62,16 @@ class ArtLogsController < ApplicationController
   # DELETE /art_logs/1
   # DELETE /art_logs/1.json
   def destroy
-    unless user_signed_in?
-      redirect_to session[:previous_url]
-    end
-    if @art_log.user.id != current_user.id
-      redirect_to session[:previous_url]
-    end
-    if @art_log.exhb_log.exhibition.id == 1
-      @art_log.exhb_log.destroy
-      @art_log.art.update_star
-    else
-      @art_log.destroy
-      @art_log.art.update_star
+    if user_signed_in?
+      if @art_log.user.id == current_user.id || current_user.email == "admin@doodo.jp"
+        if @art_log.exhb_log.exhibition.id == 1
+          @art_log.exhb_log.destroy
+          @art_log.art.update_star
+        else
+          @art_log.destroy
+          @art_log.art.update_star
+        end
+      end
     end
     redirect_to session[:previous_url]
   end
