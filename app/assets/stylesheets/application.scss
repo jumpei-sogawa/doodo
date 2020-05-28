@@ -42,6 +42,10 @@
 }
 
 // margin
+.ml0 {
+  margin-left: 0px;
+}
+
 .ml5 {
   margin-left: 5px;
 }
@@ -499,7 +503,7 @@ span.denominator {
 .log-container {
   border-radius: 15px;
   background-color: white;
-  padding: 0 5px 5px 5px;
+  padding: 0 10px 5px 10px;
   margin: 10px 0 0 0;
   filter: drop-shadow(5px 5px 5px #0002);
 }

@@ -45,8 +45,8 @@
 
         <%= link_to art_log_path(art_log) do %>
           <div id="art_log<%= art_log.id %>_body" class="dark mt5">
-            <% if art_log.body.length > 200 %>
-              <%= art_log.body.first(200) %>...
+            <% if art_log.body.length > 199 %>
+              <%= art_log.body.first(199) %>...
             <% else %>
               <%= art_log.body %>
             <% end %>
@@ -84,7 +84,7 @@
       </div>
     </div>
 
-    <div class="col-4 pt5">
+    <div class="col-4 pt5 pl0">
       <% if art_log.image.present? %>
         <%= link_to art_log_path(art_log) do %>
           <div style="position:relative;">
@@ -112,10 +112,6 @@
           <div class="image"></div>
         <% end %>
       <% end %>
-
-      <div class="flex-container space-evenly center">
-        <h1 class="gray mb0"><a href="/logs/new/?a=<%=art.id%>"><i class="fas fa-edit"></i></a></h1>
-      </div>
     </div>
   </div>
 </div>

@@ -54,8 +54,8 @@
 
         <%= link_to exhb_log_path(exhb_log) do %>
           <div id="exhb_log<%= exhb_log.id %>_body" class="dark mt5">
-            <% if exhb_log.body.length > 200 %>
-              <%= exhb_log.body.first(200) %>...
+            <% if exhb_log.body.length > 199 %>
+              <%= exhb_log.body.first(199) %>...
             <% else %>
               <%= exhb_log.body %>
             <% end %>
@@ -93,7 +93,7 @@
       </div>
     </div>
 
-    <div class="col-4 pt5">
+    <div class="col-4 pt5 pl0">
       <%= link_to exhibition_path(exhibition) do %>
         <% if exhibition.image.present? %>
           <div>
@@ -108,13 +108,6 @@
           <div class="image"></div>
         <% end %>
       <% end %>
-
-      <div class="flex-container space-evenly center">
-        <h1 class="gray mb0"><a href="/logs/new/?e=<%= exhibition.id %>"><i class="fas fa-edit"></i></a></h1>
-        <h1 class="exhb_pin_<%= exhibition.id %> gray mb0">
-          <%= render partial: "exhb_pins/button", locals: {exhb: exhibition} %>
-        </h1>
-      </div>
     </div>
   </div>
 
