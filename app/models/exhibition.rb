@@ -77,6 +77,10 @@ class Exhibition < ApplicationRecord
   end
 
   def is_open?
-    self.start_date <= Date.today && self.end_date >= Date.today
+    if self.start_date.present? && self.end_date.present?
+      self.start_date <= Date.today && self.end_date >= Date.today
+    else
+      return false
+    end
   end
 end

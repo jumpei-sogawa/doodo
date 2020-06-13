@@ -30,14 +30,22 @@
 			</div>
 
 			<h3 class="align-center mb0">
-				<% if @exhibition.start_date.year == @exhibition.end_date.year %>
+				<% if @exhibition.start_date.blank? %>
+					<span>開催日未定</span>
+				<% elsif @exhibition.end_date.blank? %>
 					<span><%= l @exhibition.start_date, format: :long %></span>
 					<span> 〜 </span>
-					<span><%= l @exhibition.end_date, format: :short %></span>
-				<% else %>
-					<span><%= l @exhibition.start_date, format: :short %></span>
-					<span> 〜 </span>
-					<span><%= l @exhibition.end_date, format: :long %></span>
+					<span>未定</span>
+			<% else %>
+					<% if @exhibition.start_date.year == @exhibition.end_date.year %>
+						<span><%= l @exhibition.start_date, format: :long %></span>
+						<span> 〜 </span>
+						<span><%= l @exhibition.end_date, format: :short %></span>
+					<% else %>
+						<span><%= l @exhibition.start_date, format: :short %></span>
+						<span> 〜 </span>
+						<span><%= l @exhibition.end_date, format: :long %></span>
+					<% end %>
 				<% end %>
 			</h3>
 
@@ -127,7 +135,13 @@
 
 				<h3 class="mb0">会期</h3>
 				<div class="mt5 mb20">
-					<%= l @exhibition.start_date, format: :long %> 〜 <%= l @exhibition.end_date, format: :short %>
+					<% if @exhibition.start_date.blank? %>
+						<span>開催日未定</span>
+					<% elsif @exhibition.end_date.blank? %>
+						<%= l @exhibition.start_date, format: :long %> 〜 未定
+					<% else %>
+						<%= l @exhibition.start_date, format: :long %> 〜 <%= l @exhibition.end_date, format: :short %>
+					<% end %>
 				</div>
 
 				<% if @exhibition.fee.present? %>

@@ -50,11 +50,22 @@
     <div class="align-center wrap_3 outer"><div class="inner"><%= exhb.museum.name %></div></div>
   <% end %>
   <div class="row">
-    <div class="col-12">
-      <%= l exhb.start_date, format: :long %>
-    </div>
-    <div class="col-11 col-12-xsmall align-right">
+    <% if exhb.start_date.blank? %>
+      <div class="col-12 align-center">
+        開催日未定
+      </div>
+    <% elsif exhb.end_date.blank? %>
+      <div class="col-12 align-center">
+        <%= l exhb.start_date, format: :long %>
+        <span> 〜 未定</span>
+      </div>
+    <% else %>
+      <div class="col-12">
+        <%= l exhb.start_date, format: :long %>
+      </div>
+      <div class="col-11 col-12-xsmall align-right">
         〜 <%= l exhb.end_date, format: :long %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
