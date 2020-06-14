@@ -1011,6 +1011,14 @@ span.denominator {
   filter: drop-shadow(5px 5px 5px #0002);
 }
 
+.article-show-container {
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0 10px 0;
+  filter: drop-shadow(5px 5px 5px #0002);
+}
+
 .article-submit-buttons {
   display: flex;
   justify-content: space-around;
@@ -1021,7 +1029,7 @@ span.denominator {
   margin: 20px 15px 10px 0;
   padding: 0 20px 0 20px;
 
-  @media (max-width: 481px) {
-    width: 100%;
+  @media (max-width: 480px) {
+    width: 80%;
   }
 }

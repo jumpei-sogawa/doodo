@@ -1,8 +1,8 @@
 <%= hidden_field_tag "articleBody", @article.body %>
 
-<div class="row mt10 mb10">
+<div class="row">
   <div class="off-2 col-8 off-0-xsmall col-12-xsmall">
-    <div class="article-container">
+    <div class="article-show-container">
       <div class="adjust-box box-16x9">
         <div class="inner-box align-center">
           <%= image_tag @article.image.to_s, class: "image w100 h100", style: "object-fit: cover;" %>
@@ -24,22 +24,26 @@
           <%= image_tag 'doodo-logo.png', class: "article-show--footer-logo" %>
         <% end %>
       </div>
-      <h2 class="align-center">
-        <div>アート作品を学ぶなら</div>
-        <div>doodo(ドゥードゥー)におまかせ</div>
+      <h2 class="align-center mb10">
+        doodoで気軽にアートを学ぼう！
       </h2>
-      <div class="align-center mb20">
+      <div class="align-center mb10">
         <div class="align-center mb5">
-          <div><strong>doodo</strong>では、</div>
-          <div>他にも<span class="pink">有名なアーティストの作品</span>を</div>
-          <div>たくさん学ぶことができます！</div>
+          <strong>doodo（ドゥードゥー）</strong>では、<span class="pink">有名なアーティストの作品</span>を<br class="br-sp">他にもたくさん学ぶことができます！
         </div>
         <div class="align-center mb5">
-          <div>お互いに<span class="pink">感想をシェア</span>して、</div>
-          <div>新しいアートの楽しみ方を見つけてみませんか？</div>
+          お互いに<span class="pink">感想をシェア</span>して、<br class="br-sp">新しいアートの楽しみ方を見つけてみませんか？
         </div>
         <div class="align-center mb5">
-          <div>あとから自分の感想を<span class="pink">振り返る</span>のも楽しいですよ！</div>
+          <div>あとから自分の感想を<span class="pink">振り返る</span>のもおすすめです！</div>
+        </div>
+        <div class="mt10 row">
+          <div class="col-6">
+            <%= link_to 'ランキングを見る', root_path, class: "button primary" %>
+          </div>
+          <div class="col-6">
+            <%= link_to 'みんなの感想を見る', root_path(t: 'newpost'), class: "button primary" %>
+          </div>
         </div>
       </div>
 
