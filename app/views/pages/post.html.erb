@@ -1,13 +1,25 @@
 <section class="mt100">
-  <div class="mt10 row">
-    <h2 class="col-12 align-center">
-      ログインすると<br class="br-sp">感想を投稿できるようになります
-    </h2>
+  <div class="row">
+    <div class="off-4 col-4 off-2-xsmall col-8-xsmall align-center">
+      <%= image_tag 'doodo-logo.png', class: "w100" %>
+    </div>
   </div>
 
   <div class="mt10 row">
+    <h2 class="col-12 align-center">
+        アートの感想をシェアしよう！
+    </h2>
+  </div>
+
+  <div class="align-center">
+    展覧会やアート作品の<span class="pink">感想をシェア</span>して
+    <br>
+    <span class="pink">もっと気軽に</span>アートを楽しみませんか？
+  </div>
+
+  <div class="mt20 row">
     <h3 class="col-12 align-center">
-      <%= link_to 'ログイン', new_log_path, class: "button" %>
+      <%= link_to 'ログインして感想をシェアする', new_log_path, class: "button primary" %>
     </h3>
   </div>
 </section>
