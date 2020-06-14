@@ -83,4 +83,7 @@ class PagesController < ApplicationController
       @arts = Art.order("star DESC NULLS LAST").first(20)
     end
   end
+
+  def post
+  end
 end

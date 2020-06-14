@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   get '/trend' => 'pages#trend'
   get '/search' => 'pages#search'
+  get '/post' => 'pages#post'
 
   resources :museums, only: [:index, :show]
 
