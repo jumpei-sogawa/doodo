@@ -15,9 +15,8 @@ class ArtsController < ApplicationController
       end
     end
 
-    @title = "作品検索ページ | アート・展覧会の口コミなら【doodo】"
-    @description = "アート・展覧会の口コミサイト「doodo」の作品検索ページです。doodoはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
-    @headline = "作品 #{@arts.count}件"
+    @title = "作品検索ページ | アート・展覧会の感想を見るなら【doodo】"
+    @description = "アート・展覧会の感想まとめサイト「doodo」の作品検索ページです。doodoはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
   end
 
   # GET /arts/1
@@ -25,7 +24,6 @@ class ArtsController < ApplicationController
   def show
     @title = @art.title
     @description = @art.description
-    @headline = "作品詳細"
     @art_logs = @art.art_logs.order(id: "DESC").select{|el| (el.body.present? || el.image.present? ) }.first(10)
     @art_log_comment = ArtLogComment.new
   end

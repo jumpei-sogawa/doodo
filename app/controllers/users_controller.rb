@@ -7,15 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    if user_signed_in? && @user.id == current_user.id
-      @title = "マイページ | アート・展覧会の口コミなら【doodo】"
-      @description = "アート・展覧会の口コミサイト「doodo」のマイページです。マイページにログインすることで、アート・絵画・美術館・展覧会・美術展の口コミを投稿することができます。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報もご案内。"
-      @headline = "マイページ"
-    else
-      @title = "#{@user.username}のページ | アート・展覧会の口コミなら【doodo】"
-      @description = "アート・展覧会の口コミサイト「doodo」のユーザーページです。doodoはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
-      @headline = "ユーザーページ"
-    end
+    @title = "#{@user.username}のマイページ | アート・展覧会の感想を見るなら【doodo】"
+    @description = "アート・展覧会の感想まとめサイト「doodo」の#{@user.username}のマイページです。doodoはアート・絵画・美術館・展覧会・美術展の感想が見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
     @visited_exhibitions = @user.visited_exhibitions.distinct.select { |exhb| exhb.id != 1}
     @clipped_exhibitions = @user.clipped_exhibitions.distinct.select { |exhb| exhb.id != 1}
     @exhb_logs = @user.exhb_logs.order(id: "DESC").first(24)
@@ -25,7 +18,6 @@ class UsersController < ApplicationController
     if @user != current_user
       redirect_to "/#{@user.username}"
     end
-    @headline = "プロフィール編集"
   end
 
   def update

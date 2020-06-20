@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
-    @title = "アート・絵画・美術館・展覧会の口コミ検索サイト | doodo"
-    @description = "アート・展覧会の口コミサイト「doodo」のトップページです。doodoはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。上野美術館、国立新美術館、国立西洋美術館、六本木など、各地で開催されている展覧会の最新情報をご案内。"
+    @title = "アート・絵画・美術館・展覧会の感想まとめサイト | doodo"
+    @description = "アート・展覧会の感想まとめサイト「doodo」のトップページです。doodoはアート・絵画・美術館・展覧会・美術展の感想が見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
     @exhibitions = Exhibition.is_open.order("star DESC NULLS LAST").first(12)
     @arts = Art.order("star DESC NULLS LAST").first(12)
     @exhb_logs = ExhbLog.order(id: "DESC").first(24)
@@ -13,8 +13,8 @@ class PagesController < ApplicationController
   end
 
   def search
-    @title = "口コミ検索ページ | アート・展覧会の口コミなら【doodo】"
-    @description = "アート・展覧会の口コミサイト「doodo」の口コミ検索ページです。doodoはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。上野美術館、国立新美術館、国立西洋美術館、六本木など、各地で開催されている展覧会の最新情報をご案内。"
+    @title = "検索ページ | アート・展覧会の感想を見るなら【doodo】"
+    @description = "アート・展覧会の感想まとめサイト「doodo」の検索ページです。doodoはアート・絵画・美術館・展覧会・美術展の感想が見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
 
     if params[:museum_area].present? || params[:museum_name].present?
       museums = Museum.where("address LIKE ?", "%#{params[:museum_area]}%").where("name LIKE ?", "%#{params[:museum_name]}%")
@@ -85,5 +85,7 @@ class PagesController < ApplicationController
   end
 
   def post
+    @title = "投稿ページ｜アート・展覧会の感想を見るなら【doodo】"
+    @description = "アート・展覧会の感想まとめサイト「doodo」の投稿ページです。ログインすることで、アート・絵画・美術館・展覧会・美術展の感想を投稿することができます。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報もご案内。"
   end
 end

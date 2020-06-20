@@ -20,9 +20,8 @@ class MuseumsController < ApplicationController
     end
     @museums = @museums.select { |museum| museum.id != 1 }
 
-    @title = "美術館検索ページ | アート・展覧会の口コミなら【doodo】"
-    @description = "アート・展覧会の口コミサイト「doodo」の美術館検索ページです。doodoはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
-    @headline = "美術館 #{@museums.count}件"
+    @title = "美術館検索ページ | アート・展覧会の感想を見るなら【doodo】"
+    @description = "アート・展覧会の感想まとめサイト「doodo」の美術館検索ページです。doodoはアート・絵画・美術館・展覧会・美術展の口コミが見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
   end
 
   # GET /museums/1
@@ -33,7 +32,6 @@ class MuseumsController < ApplicationController
     end
     @title = @museum.title
     @description = @museum.description
-    @headline = "美術館 詳細"
     @exhibitions = @museum.exhibitions.order(start_date: "DESC")
   end
 

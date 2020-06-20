@@ -12,8 +12,7 @@ class ArtLogsController < ApplicationController
   # GET /art_logs/1
   # GET /art_logs/1.json
   def show
-    @title = "アート・展覧会の口コミなら【doodo】"
-    @headline = "作品のログ"
+    @title = "アート・展覧会の感想を見るなら【doodo】"
     @art_log_comment = ArtLogComment.new
     @art_log_comments = @art_log.art_log_comments
     @art = @art_log.art
@@ -23,9 +22,8 @@ class ArtLogsController < ApplicationController
 
   # GET /art_logs/new
   def new
-    @title = "投稿ページ｜アート・展覧会の口コミなら【doodo】"
-    @description = "アート・展覧会の口コミサイト「doodo」の投稿ページです。ログインすることで、アート・絵画・美術館・展覧会・美術展の口コミを投稿することができます。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報もご案内。"
-    @headline = "ログ投稿"
+    @title = "投稿ページ｜アート・展覧会の感想を見るなら【doodo】"
+    @description = "アート・展覧会の感想まとめサイト「doodo」の投稿ページです。ログインすることで、アート・絵画・美術館・展覧会・美術展の感想を投稿することができます。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報もご案内。"
     @exhb_log = ExhbLog.new
     @exhb_log.art_logs.build
   end
