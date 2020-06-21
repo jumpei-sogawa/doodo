@@ -1,31 +1,28 @@
-<div class="art-header-container">
-	<header class="major align-center">
-		<h3><%= @art.name %></h3>
-	</header>
-</div>
-
 <div class="row">
-	<% if @art.exhibition_id == 1 %>
-		<div class="col-4 col-12-xsmall"></div>
-	<% end %>
-	<div class="col-4 col-12-xsmall">
+	<div class="off-1 col-10 off-0-xsmall col-12-xsmall">
 		<div class="art-info-container">
+			<header class="major align-center">
+				<h2><%= @art.name %></h2>
+			</header>
+
 			<% if @art.image.present? %>
-				<%= image_tag @art.image.to_s, class: "image", width: "100%" %>
+				<%= image_tag @art.image.to_s, class: "image arts-show-image align-center" %>
 			<% elsif @art.liked_image.present? %>
-				<%= image_tag @art.liked_image.to_s, class: "image", width: "100%" %>
+				<%= image_tag @art.liked_image.to_s, class: "image arts-show-image align-center" %>
 			<% else %>
 				<div class="adjust-box box-16x9">
 					<div class="inner-box align-center">
-						<div class="icon fa-gem gray" style="font-size:4em;"></div>
+						<div class="flex-container vertical">
+							<h3 class="gray mb0"><i class="fas fa-camera"></i></h3>
+							<div class="gray">NO IMAGE</div>
+						</div>
 					</div>
 				</div>
-				<div class="image"></div>
 			<% end %>
 
 			<div class="row">
-				<div class="col-7 ml10">
-					<h2 class="mobile-fs3em mb10">
+				<div class="off-3 col-3 off-1-xsmall col-6-xsmall align-center">
+					<h2 class="mobile-fs3em mb0">
 						<i class="fas fa-star yellow"></i>
 						<% if @art.star.present? %>
 							<span><%= @art.star.round(2) %></span>
@@ -35,8 +32,8 @@
 						<span class="denominator">/3</span>
 					</h2>
 				</div>
-				<div class="off-1 col-3 align-center">
-					<h2 class="mobile-fs3em mb10"><a href="/logs/new/?a=<%=@art.id%>"><i class="fas fa-edit"></i></a></h2>
+				<div class="col-3 off-1-xsmall col-3-xsmall align-center">
+					<h2 class="mobile-fs3em mb0"><a href="/logs/new/?a=<%=@art.id%>"><i class="fas fa-edit"></i></a></h2>
 				</div>
 			</div>
 
@@ -48,42 +45,57 @@
 				<% end %>
 			</div>
 		</div>
-	</div>
 
+		<% if @art.explanation.present? %>
+			<div class="art-explanation-container">
+				<header class="major align-center">
+					<h3>作品の説明</h3>
+				</header>
+				<%= @art.explanation %>
+			</div>
+		<% end %>
 
-	<% if @art.exhibition_id != 1 %>
-		<div class="col-8 col-12-xsmall">
+		<% if @art.exhibition_id != 1 %>
 			<div class="exhibition-info-container">
 				<header class="major align-center">
-					<h2>この作品を展示している展覧会</h2>
+					<% if @art.exhibition.is_open? %>
+						<h3>この作品を展示している展覧会</h3>
+					<% else %>
+						<h3>この作品が展示された展覧会</h3>
+					<% end %>
 				</header>
+
 				<div class="row">
-					<div class="off-4 col-4 off-3-xsmall col-6-xsmall">
-						<div class="mb10"><%= render partial: "exhibitions/show", locals: {exhb: @art.exhibition} %></div>
+					<div class="off-4 col-4 off-0-xsmall col-12-xsmall">
+						<div class="row">
+							<div class="col-12 off-2-xsmall col-8-xsmall">
+								<div class="mb10"><%= render partial: "exhibitions/show", locals: {exhb: @art.exhibition} %></div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	<% end %>
-</div>
+		<% end %>
 
-<div class="art-logs-container">
-  <header class="major align-center">
-    <h2>この作品のログ</h2>
-  </header>
-  <% if @art_logs.present? %>
-    <div class="row">
-			<% @art_logs.each do |art_log| %>
-				<div class="col-6 col-12-xsmall mb10">
-					<%= render partial: "users/show",
-                     locals: {
-                         item: art_log,
-                         item_name: "art_log",
-                         destroy_url: "/art_logs/#{art_log.id}"
-                     } %>
-					<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
+		<div class="art-logs-container">
+			<header class="major align-center">
+				<h3>この作品のログ</h3>
+			</header>
+			<% if @art_logs.present? %>
+				<div class="row">
+					<% @art_logs.each do |art_log| %>
+						<div class="col-6 col-12-xsmall mb10">
+							<%= render partial: "users/show",
+												 locals: {
+														 item: art_log,
+														 item_name: "art_log",
+														 destroy_url: "/art_logs/#{art_log.id}"
+												 } %>
+							<%= render partial: "art_logs/show", locals: {art_log: art_log} %>
+						</div>
+					<% end %>
 				</div>
 			<% end %>
 		</div>
-	<% end %>
+	</div>
 </div>

@@ -51,11 +51,11 @@
   <% end %>
   <div class="row">
     <% if exhb.start_date.blank? %>
-      <div class="col-12 align-center">
+      <div class="col-12 align-center mb20">
         開催日未定
       </div>
     <% elsif exhb.end_date.blank? %>
-      <div class="col-12 align-center">
+      <div class="col-12 align-center mb20">
         <%= l exhb.start_date, format: :long %>
         <span> 〜 未定</span>
       </div>
