@@ -53,7 +53,13 @@ class Exhibition < ApplicationRecord
 
     if params[:exhb_date].present?
       date = Date.strptime(params[:exhb_date])
-      exhibitions = exhibitions.select { |exhb| (exhb.start_date <= date && exhb.end_date >= date) }
+      exhibitions = exhibitions.select do |exhb|
+        if exhb.start_date.present? && exhb.end_date.present?
+          exhb.start_date <= date && exhb.end_date >= date
+        else
+          false
+        end
+      end
     end
 
     exhibitions
