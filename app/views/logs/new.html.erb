@@ -94,12 +94,34 @@
             <%# 展覧会画像表示 %>
             <% if params[:e].present? %>
               <div id="select-target-area" class="cursor">
-                <%= image_tag e.image, class: "image w100" %>
+                <% if e.image.present? %>
+                  <%= image_tag e.image, class: "image w100" %>
+                <% else %>
+                  <div class="adjust-box box-1x1">
+                    <div class="inner-box align-center">
+                      <div class="flex-container vertical">
+                        <h3 class="gray mb0"><i class="fas fa-camera"></i></h3>
+                        <div class="gray">NO IMAGE</div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
               </div>
             <%# 作品画像表示 %>
             <% elsif params[:a].present? %>
               <div id="select-target-area" class="cursor">
-                <%= image_tag a.image, class: "image w100" %>
+                <% if a.image.present? %>
+                  <%= image_tag a.image, class: "image w100" %>
+                <% else %>
+                  <div class="adjust-box box-3x4">
+                    <div class="inner-box align-center">
+                      <div class="flex-container vertical">
+                        <h3 class="gray mb0"><i class="fas fa-camera"></i></h3>
+                        <div class="gray">NO IMAGE</div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
               </div>
             <%# ターゲット選択ボタン %>
             <% else %>
