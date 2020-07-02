@@ -1,5 +1,5 @@
 class LogsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :update]
   before_action :set_exhibition, only: [:create]
   before_action :set_log, only: [:show, :edit, :update, :destroy]
 
@@ -79,7 +79,6 @@ class LogsController < ApplicationController
 
   # GET /logs/1/edit
   def edit
-
   end
 
   # POST /logs
@@ -109,7 +108,9 @@ class LogsController < ApplicationController
   # PATCH/PUT /logs/1
   # PATCH/PUT /logs/1.json
   def update
-    @log.update(body: exhb_log_params[:body])
+    if @log.user == current_user
+      @log.update(body: exhb_log_params[:body])
+    end
     redirect_to session[:previous_url] || root_path
   end
 
