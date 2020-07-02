@@ -1,5 +1,5 @@
 class ArtLogsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :update]
   before_action :set_art_log, only: [:show, :edit, :update, :destroy]
   before_action :set_art, only: [:new, :create]
 
@@ -53,7 +53,9 @@ class ArtLogsController < ApplicationController
   # PATCH/PUT /art_logs/1
   # PATCH/PUT /art_logs/1.json
   def update
-    @art_log.update(body: art_log_params[:body])
+    if @art_log.user == current_user
+      @art_log.update(body: art_log_params[:body])
+    end
     redirect_to session[:previous_url] || root_path
   end
 
