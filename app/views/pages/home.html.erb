@@ -3,19 +3,19 @@
     <div class="home-tab-container">
       <div class="row">
         <div class="col-6">
-          <header id="ranking_tab" class="major align-center pointer">
-            <h3 id="ranking_tab_text">ランキング</h3>
+          <header id="new_post_tab" class="major align-center pointer">
+            <h3 id="new_post_tab_text">最新の投稿</h3>
           </header>
         </div>
 
         <div class="col-6">
-          <header id="new_post_tab" class="align-center pointer">
-            <h3 id="new_post_tab_text" class="gray">最新の投稿</h3>
+          <header id="ranking_tab" class="align-center pointer">
+            <h3 id="ranking_tab_text" class="gray">ランキング</h3>
           </header>
         </div>
       </div>
 
-      <div id="ranking_sub_tab_container" class="row">
+      <div id="ranking_sub_tab_container" class="row non-active">
         <div class="off-1 col-5">
           <header id="exhb_tab" class="align-center pointer">
             <h4 id="exhb_tab_text">
@@ -35,7 +35,18 @@
       </div>
     </div>
 
-    <div id="ranking_container">
+    <%# 最新の投稿 %>
+    <div id="new_post_container">
+      <% @exhb_logs.each do |exhb_log| %>
+        <% if exhb_log.exhibition.id == 1 %>
+          <%= render partial: "logs/show_art_log", locals: {exhb_log: exhb_log} %>
+        <% else %>
+          <%= render partial: "logs/show", locals: {exhb_log: exhb_log} %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div id="ranking_container" class="non-active">
       <%# 人気の展覧会 %>
       <div id="exhb_container">
         <div class="row">
@@ -89,17 +100,6 @@
           <% end %>
         </div>
       </div>
-    </div>
-
-    <%# 最新の投稿 %>
-    <div id="new_post_container" class="non-active">
-      <% @exhb_logs.each do |exhb_log| %>
-        <% if exhb_log.exhibition.id == 1 %>
-          <%= render partial: "logs/show_art_log", locals: {exhb_log: exhb_log} %>
-        <% else %>
-          <%= render partial: "logs/show", locals: {exhb_log: exhb_log} %>
-        <% end %>
-      <% end %>
     </div>
   </div>
 </div>
