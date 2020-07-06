@@ -199,6 +199,7 @@
 		<div class="align-center">
 			<div>まだこの展覧会の感想はありません</div>
 			<div>あなたが最初の投稿者になりませんか？</div>
+			<%= link_to "感想を残す", "/logs/new/?e=#{@exhibition.id}", class: "button primary mt10" %>
 		</div>
 	<% end %>
 </div>
