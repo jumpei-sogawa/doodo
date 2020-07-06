@@ -79,30 +79,32 @@
 			</div>
 		<% end %>
 
-		<div class="other-arts-container">
-			<header class="major align-center">
-				<h3><%= artist.name %>のその他の作品</h3>
-			</header>
+		<% if artist.arts.count != 1 %>
+			<div class="other-arts-container">
+				<header class="major align-center">
+					<h3><%= artist.name %>のその他の作品</h3>
+				</header>
 
-			<div class="row">
-				<% artist.arts.each do |art| %>
-					<% if art.id != @art.id %>
-						<div class="col-3 col-6-xsmall other-art-box">
-							<%= link_to art_path(art) do %>
-								<div class="adjust-box">
-									<div class="box-1x1">
-										<div class="inner-box">
-											<%= image_tag art.image, class: "image w100 h100", style: "object-fit: cover;" %>
+				<div class="row">
+					<% artist.arts.each do |art| %>
+						<% if art.id != @art.id %>
+							<div class="col-3 col-6-xsmall other-art-box">
+								<%= link_to art_path(art) do %>
+									<div class="adjust-box">
+										<div class="box-1x1">
+											<div class="inner-box">
+												<%= image_tag art.image, class: "image w100 h100", style: "object-fit: cover;" %>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="text gray"><%= art.name %></div>
-							<% end %>
-						</div>
+									<div class="text gray"><%= art.name %></div>
+								<% end %>
+							</div>
+						<% end %>
 					<% end %>
-				<% end %>
+				</div>
 			</div>
-		</div>
+		<% end %>
 
 		<div class="art-logs-container">
 			<header class="major align-center">
