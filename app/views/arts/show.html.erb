@@ -1,3 +1,5 @@
+<% artist = @art.artist %>
+
 <div class="row">
 	<div class="off-1 col-10 off-0-xsmall col-12-xsmall">
 		<div class="art-info-container">
@@ -39,7 +41,7 @@
 
 			<div class="align-center">
 				<strong><%= @art.name %></strong>
-				<div><%= @art.artist.name %>作</div>
+				<div><%= artist.name %>作</div>
 				<% if @art.year.present? %>
 					<div>（<%= @art.year %>年）</div>
 				<% end %>
@@ -76,6 +78,31 @@
 				</div>
 			</div>
 		<% end %>
+
+		<div class="other-arts-container">
+			<header class="major align-center">
+				<h3><%= artist.name %>のその他の作品</h3>
+			</header>
+
+			<div class="row">
+				<% artist.arts.each do |art| %>
+					<% if art.id != @art.id %>
+						<div class="col-3 col-6-xsmall other-art-box">
+							<%= link_to art_path(art) do %>
+								<div class="adjust-box">
+									<div class="box-1x1">
+										<div class="inner-box">
+											<%= image_tag art.image, class: "image w100 h100", style: "object-fit: cover;" %>
+										</div>
+									</div>
+								</div>
+								<div class="text gray"><%= art.name %></div>
+							<% end %>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
 
 		<div class="art-logs-container">
 			<header class="major align-center">

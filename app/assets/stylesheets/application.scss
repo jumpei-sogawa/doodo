@@ -1011,6 +1011,24 @@ span.denominator {
   filter: drop-shadow(5px 5px 5px #0002);
 }
 
+.other-arts-container {
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0 10px 0;
+  filter: drop-shadow(5px 5px 5px #0002);
+}
+
+.other-art-box {
+  line-height: 1.0;
+  padding-bottom: 15px;
+
+  > a > .text {
+    text-align: center;
+    padding-top: 5px;
+  }
+}
+
 .art-logs-container {
   border-radius: 15px;
   background-color: white;
