@@ -2,9 +2,14 @@ class PagesController < ApplicationController
   def home
     @title = "アート・絵画・美術館・展覧会の感想まとめサイト | doodo"
     @description = "アート・展覧会の感想まとめサイト「doodo」のトップページです。doodoはアート・絵画・美術館・展覧会・美術展の感想が見れる検索サイトです。六本木、国立新美術館、上野、国立西洋美術館など、各地で開催されている展覧会の最新情報をご案内。"
-    @exhibitions = Exhibition.is_open.order("star DESC NULLS LAST").first(12)
-    @arts = Art.order("star DESC NULLS LAST").first(12)
-    @exhb_logs = ExhbLog.order(id: "DESC").first(24)
+    @exhb_logs = ExhbLog.order(id: "DESC").page(params[:page]).per(1)
+    @exhibitions = Exhibition.is_open.order("star DESC NULLS LAST").page(params[:page]).per(4)
+    @arts = Art.order("star DESC NULLS LAST").page(params[:page]).per(4)
+
+    case params[:type]
+    when 'exhb_logs', 'exhibitions', 'arts'
+      render "#{params[:type]}"
+    end
   end
 
   def trend

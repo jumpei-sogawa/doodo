@@ -1,0 +1,3 @@
+$('#more-exhb_logs').remove();
+$('#exhb_log-list').append("<%= j render partial: "exhb_logs", locals: {exhb_logs: @exhb_logs} %>")
+$('#more-exhb_logs-button_container').append("<%= j link_to_next_page @exhb_logs, 'もっと見る', remote: true, id: 'more-exhb_logs', class: "button mt10" %>")

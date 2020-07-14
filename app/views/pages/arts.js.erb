@@ -1,0 +1,3 @@
+$('#more-arts').remove();
+$('#art-list').append("<%= j render partial: "arts", locals: {arts: @arts} %>")
+$('#more-arts-button_container').append("<%= j link_to_next_page @arts, 'もっと見る', remote: true, id: 'more-arts', class: "button mt10" %>")

@@ -1,0 +1,7 @@
+<% exhb_logs.each do |exhb_log| %>
+  <% if exhb_log.exhibition_id == 1 %>
+    <%= render partial: "logs/show_art_log", locals: {exhb_log: exhb_log} %>
+  <% else %>
+    <%= render partial: "logs/show", locals: {exhb_log: exhb_log} %>
+  <% end %>
+<% end %>

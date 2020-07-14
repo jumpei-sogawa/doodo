@@ -1,0 +1,26 @@
+<div class="row">
+  <% exhibitions.each.with_index do |exhb, i| %>
+    <div class="col-6">
+      <div class="exhb-container">
+        <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+
+        <% if @e_toggle %>
+          <% if i < 3 %>
+            <div class="rank-box">
+              <% if i == 0 %>
+                <div class="rank-star align-center"><i class="fas fa-crown yellow"></i></div>
+                <div class="rank-number align-center bold"><%= i + 1 %></div>
+              <% elsif i == 1 %>
+                <div class="rank-star align-center"><i class="fas fa-crown silver"></i></div>
+                <div class="rank-number white align-center bold"><%= i + 1 %></div>
+              <% elsif i == 2 %>
+                <div class="rank-star align-center"><i class="fas fa-crown bronze"></i></div>
+                <div class="rank-number white align-center bold"><%= i + 1 %></div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
