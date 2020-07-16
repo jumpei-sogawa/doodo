@@ -26,16 +26,7 @@ class PagesController < ApplicationController
                      .where.not(id: 1)
                      .where("address LIKE ?", "%#{params[:museum_area]}%")
                      .where("name LIKE ?", "%#{params[:museum_name]}%")
-                     .page(params[:page]).per(24)
-      # @museums = @museums.sort do |a,b|
-      #   if !a.exhibitions.last.star.present?
-      #     1
-      #   elsif !b.exhibitions.last.star.present?
-      #     -1
-      #   else
-      #     b <=> a
-      #   end
-      # end
+                     .page(params[:page]).per(20)
     else
       @museums = Museum
                      .where.not(id: 1)
