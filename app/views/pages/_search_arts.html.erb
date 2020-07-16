@@ -1,0 +1,9 @@
+<div class="row">
+  <% arts.each do |art| %>
+    <div class="col-3 col-6-xsmall">
+      <div class="art-container">
+        <%= render partial: "arts/show", locals: {art: art} %>
+      </div>
+    </div>
+  <% end %>
+</div>

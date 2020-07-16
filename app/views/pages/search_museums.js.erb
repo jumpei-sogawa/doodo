@@ -1,0 +1,3 @@
+$('#more-museums').remove();
+$('#museum-list').append("<%= j render partial: "search_museums", locals: {museums: @museums} %>")
+$('#more-museums-button_container').append("<%= j link_to_next_page @museums, 'もっと見る', remote: true, id: 'more-museums', class: "button mt10" %>")

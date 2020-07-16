@@ -1,0 +1,9 @@
+<div class="row">
+  <% exhibitions.each do |exhb| %>
+    <div class="col-3 col-6-xsmall">
+      <div class="exhb-container">
+        <%= render partial: "exhibitions/show", locals: {exhb: exhb} %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -25,7 +25,7 @@
 <% if museum.exhibitions.is_open.present? %>
   <div class="align-center dark mb5">開催中の展覧会</div>
   <%= render partial: "exhibitions/show", locals: { exhb: museum.exhibitions.is_open.last } %>
-<% else %>
+<% elsif museum.exhibitions.present? %>
   <div class="align-center mb5">過去の展覧会</div>
   <%= render partial: "exhibitions/show", locals: { exhb: museum.exhibitions.last } %>
 <% end %>
